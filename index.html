@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" class="has-splash">
+<html lang="ja"  class="has-splash">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,342 +7,157 @@
 
   <!-- すぐスクロールを止めて初期ガタつき防止 -->
   <script>document.documentElement.classList.add('no-scroll');</script>
-  <script>document.documentElement.classList.add('no-scroll');</script>
-
-  <!-- Google Fonts -->
+  <script>
+    // 初期表示はスクロール封鎖
+    document.documentElement.classList.add('no-scroll');
+  </script>
+  <!-- head内：Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- ▼ triad（circle.webp）の最終版CSS：重複を排除 -->
+  <!-- ▼ 追加：circle.webp 専用の極小CSS（他には影響しません） -->
   <style>
-    /* ヒーロー見出し（既存） */
-    .hero__title{font:700 clamp(22px,4vw,34px)/1.35 "Zen Maru Gothic","Noto Sans JP",sans-serif}
-    .hero__title .em1{color:#4338ca}
-    .hero__title .em2{color:#efc94a}
-    .hero__figure{max-width:100%;height:auto;object-fit:contain}
-
-    /* ===== 三つの視点（circle.webp＋説明）決定版 ===== */
     .triad-visual{ padding: clamp(24px, 5vw, 56px) 0; }
-
-    .triad-visual__inner{
-      max-width: min(1100px, 92vw);
-      margin: 0 auto;
-      padding: 0 clamp(12px, 2vw, 24px);
-      box-sizing: border-box;
-      display: grid;
-      grid-template-columns: minmax(280px, 520px) 1fr;
-      /* 最小, 推奨, 最大の順に修正 */
-      gap: clamp(40px, 3vw, 100px);
-      align-items: center;
+    .triad-visual__inner{ 
+      max-width: min(1100px, 92vw); 
+      margin: 0 auto; 
+      padding: 0 clamp(12px,2vw,24px);
+      box-sizing: border-box; 
+      text-align: center; 
+    }
+    .triad-visual__img{ 
+      display: block; 
+      max-width: min(600px, 92vw);  /* 必要ならこの数値だけ調整 */
+      height: auto; 
+      margin: 0 auto; 
     }
 
-    /* 画像側 */
-    .triad-visual__figure{ margin: 0; }
-    .triad-visual__img{
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* テキスト側 */
-    .triad-copy{
-      max-width: 56ch;
-      margin-inline: auto 0;   /* PC時は左寄せ */
-      text-align: left;
-    }
-    .triad-copy::before{ display: none; }
-    .triad-copy__kicker{
-      font-size: .88rem;
-      letter-spacing: .08em;
-      opacity: .7;
-      margin: 0 0 .6rem 0;
-    }
-    .triad-copy__lead{
-      font-size: clamp(18px, 2.2vw, 22px);
-      line-height: 1.9;
-      margin: 0;
-      text-wrap: balance;
-      text-wrap: pretty;
-      line-break: strict;
-      hanging-punctuation: allow-end;
-      word-break: keep-all;
-    }
-
-    /* スマホ最適化：1カラム＋画像を物理的に中央寄せ */
-    @media (max-width: 900px){
-      .triad-visual__inner{
-        grid-template-columns: 1fr;
-        justify-items: center;         /* 画像・テキストを中央へ */
-      }
-      .triad-visual__figure{
-        width: min(520px, 92vw);       /* 画像枠を画面幅に合わせて中央配置 */
-        margin: 0 auto;
-        justify-self: center;
-      }
-      .triad-visual__img{
-        width: 100%;
-        height: auto;
-      }
-      .triad-copy{
-        margin-inline: 0;              /* 下段テキストの左右余白をリセット */
-      }
-    }
-
-    /* 任意：もう少しだけ余白を広げたいとき
-    .cta-slab{ margin-bottom: clamp(24px, 5vw, 56px); }
-    */
-
-/* ▼ スマホ時：画像を小さめに */
-@media (max-width: 900px){
-  .triad-visual__figure{
-    /* 以前の: width: min(520px, 92vw); を置き換え */
-    width: clamp(260px, 82vw, 460px);
-    /*      最小 , 推奨 , 最大  */
+ /* ===== circle.webp + 説明文（専用スコープ） ===== */
+  .triad-visual{
+    padding: clamp(24px, 5vw, 56px) 0;
   }
-  .triad-visual__img{
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 480px){
-  .triad-visual__figure{ width: clamp(240px, 78vw, 420px); }
-}
-
-/* ===== 画像の右はみ出し修正：vwをやめて容器基準に ===== */
-html, body { margin: 0; overflow-x: hidden; }  /* 念のための横はみ出し抑止 */
-
-.triad-visual{ overflow-x: clip; }             /* 一部ブラウザでは hidden でもOK */
-
-@media (max-width: 900px){
   .triad-visual__inner{
-    max-width: 100%;                           /* ← 画面幅に合わせる */
-    padding-inline: clamp(12px, 5vw, 24px);    /* 左右対称の内側余白 */
-    grid-template-columns: 1fr;
-    justify-items: center;
+    max-width: min(1100px, 92vw);
+    margin: 0 auto;
+    padding: 0 clamp(12px, 2vw, 24px);
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(280px, 520px) 1fr;
+    gap: clamp(100px, 3vw, 40px);
+    align-items: center;
+  }
+  /* 狭い幅では縦積み（画像→文章の順） */
+  @media (max-width: 900px){
+    .triad-visual__inner{
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* ★ここが核心：figureの幅は“親の内側幅”基準にする */
-  .triad-visual__figure{
-    width: min(520px, 100%) !important;        /* ← 以前の 82vw / 92vw を上書き */
-    margin-inline: auto;
-    justify-self: center;
-  }
-
+  /* 画像側 */
+  .triad-visual__figure{ margin: 0; }
   .triad-visual__img{
     display: block;
     width: 100%;
     height: auto;
-    margin: 0 auto;
   }
 
+  /* テキスト側 */
   .triad-copy{
-    margin-inline: 0;
-    text-align: left;
+    max-width: 56ch;              /* 読みやすい行長に制限 */
+    margin-inline: auto 0;        /* 左寄せ（縦積み時は自然に中央付近） */
   }
-}
-
-/* さらに極小幅の微調整（任意） */
-@media (max-width: 480px){
-  .triad-visual__figure{ width: min(420px, 100%) !important; }
-}
-
-/* ===== 三つの視点：画像の右はみ出し＆巨大化の最終修正 ===== */
-
-/* 念のため横はみ出しを全体で抑止 */
-html, body, #page { margin: 0; overflow-x: hidden; }
-
-/* 1) 内側コンテナは常に画面幅100%（padding込みで収まる） */
-.triad-visual__inner{
-  width: min(1100px, 100%) !important;  /* ← max-width:92vw を無効化 */
-  max-width: none !important;
-  margin: 0 auto;
-  padding: 0 clamp(12px, 5vw, 24px);
-  box-sizing: border-box;
-}
-
-/* 2) 画像ラッパーは“親の内側幅”基準。vwは使わない */
-.triad-visual__figure{
-  width: 100% !important;
-  max-width: 520px;          /* PC上限 */
-  margin-inline: auto;       /* 物理的に中央 */
-}
-.triad-visual__img{
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* 3) スマホ：1カラム＋画像をひと回り小さく */
-@media (max-width: 900px){
-  .triad-visual__inner{
-    grid-template-columns: 1fr !important;
-    place-items: center;
-    text-align: initial;  /* テキストは従来どおり */
+  .triad-copy__kicker{
+    font-size: .88rem;
+    letter-spacing: .08em;
+    opacity: .7;
+    margin: 0 0 .4rem 0;
   }
-  .triad-visual__figure{
-    max-width: 420px !important;   /* ← ここでサイズ感を決める */
+  .triad-copy__lead{
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.75;
+    margin: 0;
   }
-}
-/* 極小端末の微調整（任意） */
-@media (max-width: 480px){
-  .triad-visual__figure{ max-width: 360px !important; }
-}
 
-/* === triad（スマホ右ズレ修正・確定版）=== */
-
-/* 念のための土台：横はみ出しを全体で封じる */
-html, body { margin:0; overflow-x:hidden; }
-
-/* 1) 内側コンテナは “幅＝100%（内側余白込み）” に固定 */
-.triad-visual__inner{
-  width: min(1100px, 100%) !important; /* ← vw禁止 */
-  max-width:none !important;
-  margin:0 auto;
-  padding-inline: clamp(12px, 5vw, 24px);
-  box-sizing: border-box;              /* paddingを幅に含める */
-  display:grid;
-  grid-template-columns: minmax(280px, 520px) 1fr;
-  gap: clamp(40px, 3vw, 100px);
-  align-items:center;
-}
-
-/* 2) 画像ラッパーは親基準で中央寄せ、vwを使わない */
-.triad-visual__figure{
-  width:100% !important;
-  max-width:520px;                     /* PC上限 */
-  margin-inline:auto;                  /* 物理的センター */
-}
-.triad-visual__img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-/* 3) スマホは必ず1カラム＋画像ひと回り小さく */
-@media (max-width: 900px){
-  .triad-visual__inner{
-    grid-template-columns:1fr !important;
-    place-items:center;
+  /* ほんのり区切り（現行カラーを薄く利用） */
+  .triad-copy::before{
+    content:"";
+    display:block;
+    width: 44px;
+    height: 3px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: .12;
+    margin: 0 0 14px 0;
   }
-  .triad-visual__figure{
-    max-width:420px !important;        /* スマホ時の上限 */
-  }
-}
-@media (max-width: 480px){
-  .triad-visual__figure{ max-width:360px !important; }
-}
 
-/* オーバーフロー保険（古い端末向け） */
-.triad-visual{ overflow-x: clip; }     /* 一部ブラウザは hidden でもOK */
-
-
-/* 日本語の改行抑止を解除＋はみ出し防止 */
-.triad-copy__lead{
-  word-break: normal !important;      /* ← keep-all をやめる */
-  overflow-wrap: anywhere !important; /* 句読点なしの長い文字列でも折り返す */
-  white-space: normal !important;     /* 念のため */
-}
-
-/* テキスト側コンテナも100%以内に収める */
+/* ----- triad 右テキストの整形 ----- */
 .triad-copy{
-  max-width: min(56ch, 100%) !important;
-  margin-inline: 0 auto;  /* PCは左寄せ、スマホは後述で中央 */
+  max-width: 56ch;
+  margin-inline: auto 0;
+  text-align: left;                 /* ← 左揃え */
 }
 
-/* スマホ時は中央寄せ＆左右余白を内側に */
-@media (max-width: 900px){
+/* 飾りの横棒を消す */
+.triad-copy::before{ display: none; }
+
+.triad-copy__kicker{
+  font-size: .88rem;
+  letter-spacing: .08em;
+  opacity: .7;
+  margin: 0 0 .6rem 0;
+}
+
+.triad-copy__lead{
+  /* 1文字だけの行を出にくくする調整 */
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.9;
+  margin: 0;
+
+  /* 近年のブラウザで効く“気持ちいい折返し” */
+  text-wrap: balance;               /* 行のバランスを最適化 */
+  text-wrap: pretty;                /* 句読点の前後で美しく改行 */
+  line-break: strict;               /* 日本語向けの厳密処理 */
+  hanging-punctuation: allow-end;   /* 句読点を行末にぶら下げ可 */
+  word-break: keep-all;             /* 不自然な分割を抑制 */
+}
+
+/* PC・タブレット：図形↔文章の横の間隔を広げる */
+.triad-grid{
+  gap: clamp(32px, 6vw, 72px); /* 旧: 24–48px → 少しゆったり */
+}
+
+/* スマホ：縦積み時の上下の間隔も広げる */
+@media (max-width: 780px){
   .triad-copy{
-    margin-inline: auto !important;
-    padding-inline: clamp(12px, 5vw, 24px) !important;
+    margin-top: clamp(20px, 5vw, 32px); /* 図形の下に余白を足す */
   }
 }
 
-/* 念のための土台：幅計算のブレ消し＆横スクロール封じ */
-*, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; overflow-x: hidden; }
-
-/* ハンバーガーメニュー：閉じている間は “存在するけど幅ゼロ扱い” に */
-.c-hamburger-menu {
-  position: relative;
-  z-index: 1000;
+/* CTA帯の下だけ広げる */
+.cta-slab{
+  margin-bottom: clamp(24px, 5vw, 56px);
 }
 
-/* メニュー本体を画面固定・右からスライドイン */
-.c-hamburger-menu__list{
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100dvh;                /* アドレスバー伸縮に強い */
-  width: min(100%, 340px);       /* 端末幅を超えない */
-  margin: 0;
-  padding: 16px 20px;
-  box-sizing: border-box;
 
-  overflow-y: auto;
-  background: #fff;
-
-  /* ここが重要：画面外に “変形で” 退避（レイアウト幅に加算されない） */
-  transform: translateX(100%);
-  transition: transform .25s ease;
-  will-change: transform;
-}
-
-/* チェック時にだけ出す */
-.c-hamburger-menu__input:checked ~ .c-hamburger-menu__list{
-  transform: translateX(0);
-}
-
-/* 背景の黒幕（必要なら）も固定＆幅加算ゼロ */
-.c-hamburger-menu__bg{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s ease;
-}
-.c-hamburger-menu__input:checked ~ .c-hamburger-menu__bg{
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* メニュー内の各項目が横に伸びてオーバーしない保険 */
-.c-header__list,
-.c-header__list-item,
-.c-header__list-link,
-.submenu{
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-wrap: anywhere;
-}
-
-/* 画面内(0,0)に1pxで固定して完全不可視。横はみ出しにカウントされない */
-.visually-hidden{
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 1px !important;
-  height: 1px !important;
-  margin: 0 !important;              /* ← -1px をやめる */
-  padding: 0 !important;
-  overflow: hidden !important;
-  clip: rect(0 0 0 0) !important;
-  clip-path: inset(50%) !important;
-  border: 0 !important;
-  white-space: nowrap !important;
-}
+.hero__title{font:700 clamp(22px,4vw,34px)/1.35 "Zen Maru Gothic","Noto Sans JP",sans-serif}
+.hero__title .em1{color:#4338ca} /* 支援 */
+.hero__title .em2{color:#efc94a} /* 安心 */
+.hero__figure{max-width:100%;height:auto;object-fit:contain}
 
 
   </style>
-  <!-- ▲ triad 完了 -->
+  <!-- ▲ ここまで追加 -->
 </head>
 
 <body>
+
+<!-- ページ先頭へのリンク用 -->
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
+  <!-- ← ヘッダーからフッターまで**全部**ここに入れる -->
+
   <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
@@ -382,6 +197,7 @@ html, body { margin: 0; overflow-x: hidden; }
         </ul>
       </li>
 
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
@@ -402,81 +218,87 @@ html, body { margin: 0; overflow-x: hidden; }
     </label>
   </header>
 
+
   <main id="main">
-    <!-- ヒーロー -->
+    <!-- ヒーロー：キャッチコピーを主役で -->
     <section class="hero hero--simple" aria-label="紹介">
       <div class="hero__inner">
-        <h1 class="hero__title">
-          よりそう<span class="em1">支援</span>、つながる<span class="em2">安心</span>。
-        </h1>
+<h1 class="hero__title">
+  よりそう<span class="em1">支援</span>、つながる<span class="em2">安心</span>。
+</h1>
       </div>
     </section>
 
-    <!-- CTAスラブ -->
+    <!-- CTAスラブ：別ブロックとして独立 -->
     <section class="cta-slab" aria-label="ご相談・お問い合わせ">
       <div class="cta-slab__inner">
         <a class="btn btn--finder" href="finder.html">あなたに合う支援をさがす</a>
       </div>
     </section>
 
-    <!-- ▼ 三つの視点 -->
-    <section class="triad-visual" aria-label="三つの視点">
-      <div class="triad-visual__inner">
-        <figure class="triad-visual__figure">
-          <img src="img/circle2.webp"
-               alt="障がい福祉・就労支援・地域づくりがつながる図"
-               class="triad-visual__img"
-               loading="lazy" decoding="async">
-        </figure>
+<!-- ▼ 三つの視点（circle.webp＋説明文） -->
+<section class="triad-visual" aria-label="三つの視点">
+  <div class="triad-visual__inner">
+    <figure class="triad-visual__figure">
+      <img src="img/circle.webp"
+           alt="障がい福祉・就労支援・地域づくりがつながる図"
+           class="triad-visual__img"
+           loading="lazy" decoding="async">
+    </figure>
 
-        <div class="triad-copy">
-          <p class="triad-copy__kicker">ABOUT HANDS</p>
-          <p class="triad-copy__lead">
-            私たちレスパイトハウス・ハンズは、<br>
-            <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で、<br>
-            子どもから大人までの暮らしに寄り添う、<br>
-            このまちのNPO法人です。
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- ▲ 三つの視点ここまで -->
+    <!-- NEW: テキストブロック（右側／狭幅では下） -->
+    <div class="triad-copy">
+      <p class="triad-copy__kicker">ABOUT HANDS</p>
+      <p class="triad-copy__lead">
+        私たちレスパイトハウス・ハンズは、<br>
+        <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で、<br>
+        子どもから大人までの暮らしに寄り添う、<br>
+        このまちのNPO法人です。
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ▲ 三つの視点ここまで -->
 
     <!-- NEWS -->
-    <section class="news" aria-labelledby="news-title">
-      <div class="section__header">
-        <h2 id="news-title">NEWS</h2>
-        <a class="section__more" href="news.html">すべて見る</a>
-      </div>
+   <section class="news" aria-labelledby="news-title">
+  <div class="section__header">
+    <h2 id="news-title">NEWS</h2>
+    <a class="section__more" href="news.html">すべて見る</a>
+  </div>
 
-      <ul class="news__list">
-        <li class="news__item">
-          <a href="news3.html">
-            <time datetime="2025-11-11" class="news__date">2025.11.11</time>
-            <span class="news__tag">お知らせ</span>
-            <span class="news__title">新施設完成／見学会のお知らせ</span>
-          </a>
-        </li>
-        <li class="news__item">
-          <a href="news2.html">
-            <time datetime="2025-11-10" class="news__date">2025.11.10</time>
-            <span class="news__tag">お知らせ</span>
-            <span class="news__title">ホームページをリニューアルしました。</span>
-          </a>
-        </li>
-        <li class="news__item">
-          <a href="news1.html">
-            <time datetime="2025-04-01" class="news__date">2025.04.01</time>
-            <span class="news__tag">お知らせ</span>
-            <span class="news__title">マイルートリンクがスタートしました。</span>
-          </a>
-        </li>
-      </ul>
-    </section>
+  <ul class="news__list">
+    <!-- ここに入れる -->
+    <li class="news__item">
+      <a href="news3.html">
+        <time datetime="2025-11-11" class="news__date">2025.11.11</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">新施設完成／見学会のお知らせ</span>
+      </a>
+    </li>
+
+    <li class="news__item">
+      <a href="news2.html">
+        <time datetime="2025-11-10" class="news__date">2025.11.10</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">ホームページをリニューアルしました。</span>
+      </a>
+    </li>
+
+    <li class="news__item">
+      <a href="news1.html">
+        <time datetime="2025-04-01" class="news__date">2025.04.01</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">マイルートリンクがスタートしました。</span>
+      </a>
+    </li>
+  </ul>
+</section>
 
     <nav class="cta-bar" aria-label="主要導線">
       <a class="cta" href="tel:0191-31-5720">
         <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- Phone (outline) -->
           <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         電話で相談
@@ -484,12 +306,14 @@ html, body { margin: 0; overflow-x: hidden; }
 
       <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
         <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- Mail (outline) -->
           <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
           <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         メールで問い合わせ
       </a>
     </nav>
+
   </main>
 
   <!-- 上へ戻る（スクロール進捗リング付き） -->
@@ -571,28 +395,39 @@ html, body { margin: 0; overflow-x: hidden; }
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
+
 </div><!-- /#page -->
 
-<!-- スプラッシュ -->
+<!-- スプラッシュ：完全な白板でロゴを見せる -->
 <div id="splash" aria-hidden="true">
   <img src="img/logo.webp" alt="">
 </div>
 
 <script>
   window.addEventListener('load', function () {
-    const hold   = 1700;
-    const fadeMs = 700;
+    const hold   = 1700;                         // 見せておく時間
+    const fadeMs = 700;                          // フェードアウト時間( CSSと合わせる )
     const html   = document.documentElement;
     const splash = document.getElementById('splash');
 
+    // 安全策：念のため封鎖クラスを付けておく
     html.classList.add('no-scroll');
 
     setTimeout(() => {
+      // ページをフェードイン
       document.body.classList.add('page-show');
+
+      // スクロール解放（強制上書きも入れる）
       html.classList.remove('no-scroll');
       html.style.overflowY = 'auto';
+
+      // スプラッシュをフェードアウト開始（pointer-eventsはCSS側で無効化）
       splash.classList.add('splash-hide');
-      setTimeout(() => { splash.style.display = 'none'; }, fadeMs + 50);
+
+      // フェードが終わったらDOMから実質退場
+      setTimeout(() => {
+        splash.style.display = 'none';
+      }, fadeMs + 50);
     }, hold);
   });
 </script>
@@ -602,7 +437,7 @@ html, body { margin: 0; overflow-x: hidden; }
     const btn = document.getElementById('backToTop');
     if(!btn) return;
 
-    const showAt = 200;
+    const showAt = 200; // 200px超で表示
     const ring = btn.querySelector('.btt__ring');
 
     const update = () => {
@@ -612,10 +447,14 @@ html, body { margin: 0; overflow-x: hidden; }
       const deg = Math.round(ratio * 360) + 'deg';
       ring && ring.style.setProperty('--btt-progress', deg);
 
-      if (scrollTop > showAt) btn.classList.add('is-visible');
-      else btn.classList.remove('is-visible');
+      if (scrollTop > showAt) {
+        btn.classList.add('is-visible');
+      } else {
+        btn.classList.remove('is-visible');
+      }
     };
 
+    // クリックで先頭へ
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -627,5 +466,6 @@ html, body { margin: 0; overflow-x: hidden; }
     update();
   })();
 </script>
+
 </body>
 </html>
