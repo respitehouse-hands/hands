@@ -237,6 +237,104 @@ html, body { margin:0; overflow-x:hidden; }
 /* オーバーフロー保険（古い端末向け） */
 .triad-visual{ overflow-x: clip; }     /* 一部ブラウザは hidden でもOK */
 
+
+/* 日本語の改行抑止を解除＋はみ出し防止 */
+.triad-copy__lead{
+  word-break: normal !important;      /* ← keep-all をやめる */
+  overflow-wrap: anywhere !important; /* 句読点なしの長い文字列でも折り返す */
+  white-space: normal !important;     /* 念のため */
+}
+
+/* テキスト側コンテナも100%以内に収める */
+.triad-copy{
+  max-width: min(56ch, 100%) !important;
+  margin-inline: 0 auto;  /* PCは左寄せ、スマホは後述で中央 */
+}
+
+/* スマホ時は中央寄せ＆左右余白を内側に */
+@media (max-width: 900px){
+  .triad-copy{
+    margin-inline: auto !important;
+    padding-inline: clamp(12px, 5vw, 24px) !important;
+  }
+}
+
+/* 念のための土台：幅計算のブレ消し＆横スクロール封じ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: hidden; }
+
+/* ハンバーガーメニュー：閉じている間は “存在するけど幅ゼロ扱い” に */
+.c-hamburger-menu {
+  position: relative;
+  z-index: 1000;
+}
+
+/* メニュー本体を画面固定・右からスライドイン */
+.c-hamburger-menu__list{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;                /* アドレスバー伸縮に強い */
+  width: min(100%, 340px);       /* 端末幅を超えない */
+  margin: 0;
+  padding: 16px 20px;
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  background: #fff;
+
+  /* ここが重要：画面外に “変形で” 退避（レイアウト幅に加算されない） */
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  will-change: transform;
+}
+
+/* チェック時にだけ出す */
+.c-hamburger-menu__input:checked ~ .c-hamburger-menu__list{
+  transform: translateX(0);
+}
+
+/* 背景の黒幕（必要なら）も固定＆幅加算ゼロ */
+.c-hamburger-menu__bg{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.c-hamburger-menu__input:checked ~ .c-hamburger-menu__bg{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* メニュー内の各項目が横に伸びてオーバーしない保険 */
+.c-header__list,
+.c-header__list-item,
+.c-header__list-link,
+.submenu{
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+/* 画面内(0,0)に1pxで固定して完全不可視。横はみ出しにカウントされない */
+.visually-hidden{
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;              /* ← -1px をやめる */
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+
   </style>
   <!-- ▲ triad 完了 -->
 </head>
