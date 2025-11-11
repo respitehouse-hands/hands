@@ -2874,3 +2874,6 @@ body:where(:not(.allow-x-scroll)){
 /* サブピクセルで切れる場合のみ有効化 */
 // #site-header .c-header__list > li > .submenu{ top:calc(100% + 11px); }
 
+/* 全要素を border-box に統一（幅計算ブレ防止） */
+*, *::before, *::after { box-sizing: border-box; }
+
