@@ -145,6 +145,96 @@
 .hero__title .em2{color:#efc94a} /* 安心 */
 .hero__figure{max-width:100%;height:auto;object-fit:contain}
 
+/* === A) スクリーンリーダー用は1px固定（検出ノイズを出さない） === */
+.visually-hidden{
+  position:absolute !important; left:0 !important; top:0 !important;
+  width:1px !important; height:1px !important; margin:0 !important; padding:0 !important;
+  overflow:hidden !important; clip:rect(0 0 0 0) !important; clip-path:inset(50%) !important;
+  border:0 !important; white-space:nowrap !important;
+}
+
+/* === B) PCは“普通の横並び”を強制。ロゴ縮小/縦積みを解除（PCだけ） === */
+@media (min-width: 901px){
+  #site-header{
+    display:flex !important; align-items:center !important; justify-content:space-between !important;
+    gap:24px !important; overflow:visible !important;
+  }
+  .c-header__logo img{ width:auto !important; display:block; }
+
+  /* ナビ本体は flow に戻す（押し出し系を無効化） */
+  .c-hamburger-menu__list{
+    position:static !important; transform:none !important;
+    display:flex !important; flex-wrap:nowrap !important; align-items:center !important;
+    gap:.8rem !important; width:auto !important; height:auto !important;
+    margin:0 !important; padding:0 !important; white-space:nowrap !important; overflow:visible !important;
+  }
+
+  /* PCではハンバーガーUI無効 */
+  .c-hamburger-menu__input,
+  .c-hamburger-menu__button,
+  .c-hamburger-menu__bg{ display:none !important; }
+
+  /* サブメニュー：閉じている間はレイアウトから外す */
+  .submenu{ display:none !important; position:absolute; left:0; top:100%; }
+  .has-sub:hover > .submenu{ display:block !important; }
+}
+
+/* === C) モバイルは“重ねる型”＋閉時はDOMから外す（押し出しゼロ） === */
+@media (max-width: 900px){
+  /* 閉じている間は ul/bg を存在ごと消す */
+  #hamburger:not(:checked) ~ .c-hamburger-menu__list{ display:none !important; }
+  #hamburger:not(:checked) ~ .c-hamburger-menu__bg  { display:none !important; }
+
+  /* ドロワーは overlay 固定。左外で待機 → 開時だけ重ねてIN */
+  .c-hamburger-menu__list{
+    position:fixed !important; z-index:1000 !important;
+    top:0; left:0; width:min(100svw,340px) !important; height:100dvh !important;
+    margin:0 !important; padding:16px 20px !important; background:#fff !important; box-sizing:border-box !important;
+    transform:translateX(-100%) !important; transition:transform .25s ease !important; will-change:transform;
+    /* 中身が少ない時に出る“謎スクロール”を抑止 */
+    overflow-x:hidden !important; overflow-y:hidden !important;
+  }
+  #hamburger:checked ~ .c-hamburger-menu__list{
+    display:block !important; transform:translateX(0) !important; overflow-y:auto !important;
+  }
+  .c-hamburger-menu__bg{
+    position:fixed !important; inset:0; background:rgba(0,0,0,.35) !important; z-index:999 !important;
+  }
+
+  /* サブメニューはトグルで開閉（閉時はレイアウト非参加） */
+  .sub-toggle:not(:checked) ~ .submenu{ display:none !important; }
+  .sub-toggle:checked ~ .submenu{ display:block !important; }
+
+  /* ナビ内部の横はみ出し保険 */
+  .c-header__list, .c-header__list-item, .c-header__list-link, .submenu{
+    max-width:100% !important; white-space:normal !important; overflow-wrap:anywhere !important; box-sizing:border-box !important;
+  }
+}
+
+/* === D) triad周り：画像中央固定＋本文の折返しを強制 === */
+.triad-visual{ overflow-x:hidden; }
+.triad-visual__inner{
+  width:min(1100px,100%) !important; max-width:none !important; margin:0 auto !important;
+  padding-inline:clamp(12px,5vw,24px) !important; box-sizing:border-box !important;
+}
+.triad-visual__figure{
+  width:100% !important; max-width:520px !important; margin-inline:auto !important;
+}
+@media (max-width:900px){ .triad-visual__figure{ max-width:420px !important; } }
+@media (max-width:480px){ .triad-visual__figure{ max-width:360px !important; } }
+
+/* “ABOUT HANDS”本文のはみ出し対策（日本語でも必ず折り返す） */
+.triad-copy__lead{
+  word-break:normal !important; overflow-wrap:anywhere !important; white-space:normal !important;
+  max-width:100% !important; line-height:1.9;
+}
+
+/* === E) 全体保険 === */
+img, svg, video{ max-width:100%; height:auto; display:block; }  /* 横伸び防止 */
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; overflow-x:hidden; }
+
+
 
   </style>
   <!-- ▲ ここまで追加 -->
@@ -240,7 +330,7 @@
 <section class="triad-visual" aria-label="三つの視点">
   <div class="triad-visual__inner">
     <figure class="triad-visual__figure">
-      <img src="img/circle.webp"
+      <img src="img/circle2.webp"
            alt="障がい福祉・就労支援・地域づくりがつながる図"
            class="triad-visual__img"
            loading="lazy" decoding="async">
