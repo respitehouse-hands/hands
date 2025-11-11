@@ -17,20 +17,7 @@
 
   <!-- ▼ 追加：circle.webp 専用の極小CSS（他には影響しません） -->
   <style>
-    .triad-visual{ padding: clamp(24px, 5vw, 56px) 0; }
-    .triad-visual__inner{ 
-      max-width: min(1100px, 92vw); 
-      margin: 0 auto; 
-      padding: 0 clamp(12px,2vw,24px);
-      box-sizing: border-box; 
-      text-align: center; 
-    }
-    .triad-visual__img{ 
-      display: block; 
-      max-width: min(600px, 92vw);  /* 必要ならこの数値だけ調整 */
-      height: auto; 
-      margin: 0 auto; 
-    }
+
 
  /* ===== circle.webp + 説明文（専用スコープ） ===== */
   .triad-visual{
@@ -145,6 +132,71 @@
 .hero__title .em2{color:#efc94a} /* 安心 */
 .hero__figure{max-width:100%;height:auto;object-fit:contain}
 
+/* ===== 三つの視点（circle.webp＋説明）決定版 ===== */
+.triad-visual{ padding: clamp(24px, 5vw, 56px) 0; }
+
+.triad-visual__inner{
+  max-width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 0 clamp(12px, 2vw, 24px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(280px, 520px) 1fr;
+  /* clampは「最小, 推奨, 最大」の順。40〜100の範囲で3vwを採用 */
+  gap: clamp(40px, 3vw, 100px);
+  align-items: center;
+}
+
+/* 画像側 */
+.triad-visual__figure{ margin: 0; }
+.triad-visual__img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* テキスト側 */
+.triad-copy{
+  max-width: 56ch;
+  margin-inline: auto 0;  /* PC時は左寄せ */
+  text-align: left;
+}
+.triad-copy::before{ display: none; }
+.triad-copy__kicker{
+  font-size: .88rem;
+  letter-spacing: .08em;
+  opacity: .7;
+  margin: 0 0 .6rem 0;
+}
+.triad-copy__lead{
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.9;
+  margin: 0;
+  text-wrap: balance;
+  text-wrap: pretty;
+  line-break: strict;
+  hanging-punctuation: allow-end;
+  word-break: keep-all;
+}
+
+/* スマホ最適化：1カラム＋図を“物理的に中央寄せ” */
+@media (max-width: 900px){
+  .triad-visual__inner{
+    grid-template-columns: 1fr;
+    justify-items: center;        /* ← グリッドアイテムを中央に */
+  }
+  .triad-visual__figure{
+    width: min(560px, 92vw);      /* 図の枠を明示的に中央サイズに */
+    justify-self: center;         /* 念のため中央寄せを強制 */
+  }
+  .triad-visual__img{
+    width: 100%;
+    height: auto;
+  }
+  .triad-copy{
+    margin-inline: 0;             /* 画像の下で左右中央に座らせる */
+  }
+}
 
 
   </style>
