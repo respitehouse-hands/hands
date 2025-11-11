@@ -147,6 +147,95 @@ html, body { margin: 0; overflow-x: hidden; }  /* 念のための横はみ出し
   .triad-visual__figure{ width: min(420px, 100%) !important; }
 }
 
+/* ===== 三つの視点：画像の右はみ出し＆巨大化の最終修正 ===== */
+
+/* 念のため横はみ出しを全体で抑止 */
+html, body, #page { margin: 0; overflow-x: hidden; }
+
+/* 1) 内側コンテナは常に画面幅100%（padding込みで収まる） */
+.triad-visual__inner{
+  width: min(1100px, 100%) !important;  /* ← max-width:92vw を無効化 */
+  max-width: none !important;
+  margin: 0 auto;
+  padding: 0 clamp(12px, 5vw, 24px);
+  box-sizing: border-box;
+}
+
+/* 2) 画像ラッパーは“親の内側幅”基準。vwは使わない */
+.triad-visual__figure{
+  width: 100% !important;
+  max-width: 520px;          /* PC上限 */
+  margin-inline: auto;       /* 物理的に中央 */
+}
+.triad-visual__img{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 3) スマホ：1カラム＋画像をひと回り小さく */
+@media (max-width: 900px){
+  .triad-visual__inner{
+    grid-template-columns: 1fr !important;
+    place-items: center;
+    text-align: initial;  /* テキストは従来どおり */
+  }
+  .triad-visual__figure{
+    max-width: 420px !important;   /* ← ここでサイズ感を決める */
+  }
+}
+/* 極小端末の微調整（任意） */
+@media (max-width: 480px){
+  .triad-visual__figure{ max-width: 360px !important; }
+}
+
+/* === triad（スマホ右ズレ修正・確定版）=== */
+
+/* 念のための土台：横はみ出しを全体で封じる */
+html, body { margin:0; overflow-x:hidden; }
+
+/* 1) 内側コンテナは “幅＝100%（内側余白込み）” に固定 */
+.triad-visual__inner{
+  width: min(1100px, 100%) !important; /* ← vw禁止 */
+  max-width:none !important;
+  margin:0 auto;
+  padding-inline: clamp(12px, 5vw, 24px);
+  box-sizing: border-box;              /* paddingを幅に含める */
+  display:grid;
+  grid-template-columns: minmax(280px, 520px) 1fr;
+  gap: clamp(40px, 3vw, 100px);
+  align-items:center;
+}
+
+/* 2) 画像ラッパーは親基準で中央寄せ、vwを使わない */
+.triad-visual__figure{
+  width:100% !important;
+  max-width:520px;                     /* PC上限 */
+  margin-inline:auto;                  /* 物理的センター */
+}
+.triad-visual__img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* 3) スマホは必ず1カラム＋画像ひと回り小さく */
+@media (max-width: 900px){
+  .triad-visual__inner{
+    grid-template-columns:1fr !important;
+    place-items:center;
+  }
+  .triad-visual__figure{
+    max-width:420px !important;        /* スマホ時の上限 */
+  }
+}
+@media (max-width: 480px){
+  .triad-visual__figure{ max-width:360px !important; }
+}
+
+/* オーバーフロー保険（古い端末向け） */
+.triad-visual{ overflow-x: clip; }     /* 一部ブラウザは hidden でもOK */
 
   </style>
   <!-- ▲ triad 完了 -->
