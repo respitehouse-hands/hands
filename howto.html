@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>初めての方へ | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root{
+      --unit-brand:#2f7d5b; --unit-ink:#193528; --unit-tint:#eaf7f1; --unit-tint-2:#f5fbf8;
+      --accent:#4C8CF5; --accent-ink:#123567;
+      --accent-bg-weak: color-mix(in oklab, var(--accent) 10%, #fff);
+      --accent-border:  color-mix(in oklab, var(--accent) 40%, #fff);
+      --my-line:#e6edf2; --my-radius:14px; --my-max:1120px;
+    }
+    body.page-howto #site-header.c-header{ background: var(--unit-tint-2); }
+    .page{ padding-inline:min(4vw,24px); }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    .breadcrumb{ max-width: var(--my-max); margin: 0 auto; padding: .9rem min(4vw,24px) 0; }
+    .breadcrumb ol{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:0; margin:0; color:#6b7280; font-size:.95rem; }
+    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .breadcrumb a{ color: color-mix(in oklab, var(--unit-brand) 70%, #000); text-decoration:none; font-weight:500; }
+    .breadcrumb a:hover{ text-decoration:underline; }
+    .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+
+    .unit-hero{
+      margin:2.2rem 0 2.4rem;
+      background:
+        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+    .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+    .unit-hero__head{
+      display:grid; grid-template-columns: clamp(72px,8vw,92px) 1fr;
+      gap: clamp(12px,2.2vw,22px); align-items:center; margin-bottom: clamp(12px,2vw,26px);
+    }
+    .unit-hero__emblem{ width: 100%; height: clamp(72px,8vw,92px); border-radius:10px; overflow:hidden; background:transparent; border:0; box-shadow:none; display:grid; place-items:center; }
+    .unit-hero__emblem img{ width:100%; height:100%; object-fit:contain; image-rendering:-webkit-optimize-contrast; }
+    .unit-hero__title{ margin:0; color:var(--unit-ink); font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; }
+    .unit-hero__lead{ margin:.8rem 0 0; color:#1f2937; }
+
+    .note{ background: color-mix(in oklab, var(--unit-brand) 8%, #fff); border:1px solid color-mix(in oklab, var(--unit-brand) 25%, #fff); border-radius:10px; padding:10px 12px; color:#143957; }
+
+    .toc{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; padding:16px 18px; margin: 0 0 22px; }
+    .toc h2{ margin:.2rem 0 .6rem; font-size:1.05rem; }
+    .toc ol{ margin:0; padding-left:1.2rem; line-height:1.9; }
+    .toc a{ text-decoration:none; color:#1f6a4d; }
+    .toc a:hover{ text-decoration:underline; }
+
+    .flow{ display:grid; gap:20px; }
+    .step{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; box-shadow:0 1px 0 #0000000a; padding:16px; }
+    .step__head{ display:flex; align-items:center; gap:10px; padding-bottom:.55rem; border-bottom:1px solid color-mix(in oklab, var(--unit-brand) 22%, #fff); margin-bottom:1rem; }
+    .badge{ display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background: var(--accent-bg-weak); color: var(--accent-ink); border:1px solid var(--accent-border); font-weight:700; letter-spacing:-0.01em; }
+    .step h3{ margin:0; font-size:1.1rem; color:#111; }
+    .step__body{ display:grid; gap:12px; }
+
+    @media (min-width:900px){
+      .step{ padding:18px 20px; }
+      .step__body{ grid-template-columns: 1.2fr 1fr; align-items:start; }
+    }
+
+    .figure{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
+    .figure img{ display:block; width:100%; height:auto; cursor:zoom-in; }
+    .figure figcaption{ --figure-cap-bg:#ffffff; --figure-cap-border:#e7eeea; --figure-cap-ink:#44515d; padding:10px 12px; font-size:.95rem; color:var(--figure-cap-ink); background:var(--figure-cap-bg); border-top:1px solid var(--figure-cap-border); }
+
+    .nextprev{ display:flex; gap:10px; justify-content:space-between; margin-top:10px; }
+    .np-btn{ display:inline-flex; align-items:center; gap:.4em; padding:.6em .9em; border-radius:999px; text-decoration:none; border:1px solid var(--accent-border); background:#fff; color:var(--accent-ink); transition: box-shadow .18s ease, transform .18s ease; }
+    .np-btn:hover{ box-shadow:0 8px 18px rgba(0,0,0,.08); transform: translateY(-1px); }
+
+    .lb{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; place-items:center; z-index:9999; }
+    .lb__img{ max-width:92vw; max-height:90vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.4); }
+    .lb[aria-hidden="false"]{ display:grid; }
+
+    .page-howto{ --btt-ring-active:#2f7d5b; --btt-center:#eef8f3; }
+
+    @media print{
+      .figure figcaption:after{ content:"  画像: " attr(data-src); display:block; color:#666; font-size:.85em; margin-top:.2em; }
+    }
+
+    /* 右の図版を少し広げる版 */
+    @media (min-width: 900px){
+      .step--wide .step__body{ grid-template-columns: 1fr 1.6fr; gap: clamp(16px, 2.4vw, 28px); align-items: start; }
+      .step--wide .figure{ max-width: min(720px, 100%); margin-left: auto; }
+    }
+    .step--wide .figure img{ width: 100%; height: auto; display: block; }
+
+/* howto：右下のナビ（次へと同じポジション） */
+.howto-stepnav{
+  display:flex;
+  justify-content:flex-end;
+  margin-top: 1.25rem;
+}
+.howto-btn{
+  appearance:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  text-decoration:none;
+  font-weight:700;
+  padding:.85rem 1.1rem;
+  border-radius:12px;
+  border:1px solid transparent;
+  background:#009688;          /* 必要なら既存のボタン色に合わせて調整 */
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  transition: filter .15s ease, transform .06s ease;
+}
+.howto-btn:hover{ filter:brightness(.96); }
+.howto-btn:active{ transform: translateY(1px); }
+.howto-btn svg{ width:18px; height:18px; }
+@media (max-width:680px){
+  .howto-stepnav{ justify-content:stretch; }
+  .howto-btn{ width:100%; justify-content:center; }
+}
+
+
+  </style>
+</head>
+
+<body class="page-howto">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+ <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <nav class="breadcrumb" aria-label="パンくず">
+    <ol>
+      <li><a href="index.html">TOP</a></li>
+      <li aria-current="page">初めての方へ</li>
+    </ol>
+  </nav>
+
+  <main id="main" class="l-main page">
+    <section class="wrap">
+
+      <section class="unit-hero" aria-labelledby="hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem"><img src="img/hatena.webp" alt="案内アイコン" decoding="async" /></div>
+            <div>
+              <h1 id="hero-title" class="unit-hero__title">初めての方へ</h1>
+              <p class="unit-hero__lead">このページは、トップページから目的の情報までの「進み方」を図解でご案内します。</p>
+            </div>
+          </div>
+          <div class="note"><small>画像をタップ／クリックすると拡大できます。スマホとパソコンで配置が少し違う場合があります。</small></div>
+        </div>
+      </section>
+
+      <nav class="toc" aria-label="このページの使い方">
+        <h2>目的ページまでの流れ</h2>
+        <ol>
+          <li><a href="#step1">「あなたに合う支援をさがす」をクリック</a></li>
+          <li><a href="#step2">“分野”を選ぶ</a></li>
+          <li><a href="#step3">“事業所”を選ぶ</a></li>
+          <li><a href="#step4">事業内容の確認</a></li>
+          <li><a href="#step5">お問い合わせ</a></li>
+        </ol>
+      </nav>
+
+      <div class="flow">
+        <!-- STEP 1 -->
+        <section id="step1" class="step step--wide" aria-labelledby="s1">
+          <div class="step__head"><span class="badge">1</span><h3 id="s1">「あなたに合う支援をさがす」をクリック</h3></div>
+          <div class="step__body">
+            <div><p>①の「あなたに合う支援をさがす」をクリックすると、各事業所の分野をお選びいただけます。</p></div>
+            <figure class="figure" data-src="img/howto/top-01.png">
+              <img src="img/flow1.webp" alt="トップページのスクリーンショット（①：事業所紹介）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：トップページ。①をクリック（タップ）。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><span></span><a class="np-btn" href="#step2">②へ →</a></div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section id="step2" class="step step--wide" aria-labelledby="s2">
+          <div class="step__head"><span class="badge">2</span><h3 id="s2">“分野”を選ぶ</h3></div>
+          <div class="step__body">
+            <div><p>一覧から目的の分野を選びます。<br>例では「障がい福祉」をクリックします。</p></div>
+            <figure class="figure" data-src="img/howto/top-02.png">
+              <img src="img/flow2.webp" alt="分野の例（障がい福祉）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：分野一覧。「障がい福祉」を選びます。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step1">← 戻る</a><a class="np-btn" href="#step3">③へ →</a></div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section id="step3" class="step step--wide" aria-labelledby="s3">
+          <div class="step__head"><span class="badge">3</span><h3 id="s3">“事業所”を選ぶ</h3></div>
+          <div class="step__body">
+            <div><p>一覧から目的の事業所を選びます。<br>例では「わぁははクラブ」をクリックします。</p></div>
+            <figure class="figure" data-src="img/howto/top-03.png">
+              <img src="img/flow3.webp" alt="事業所の例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：事業所一覧。「わぁははクラブ」を選びます。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step2">← 戻る</a><a class="np-btn" href="#step4">④へ →</a></div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section id="step4" class="step step--wide" aria-labelledby="s4">
+          <div class="step__head"><span class="badge">4</span><h3 id="s4">事業内容を確認</h3></div>
+          <div class="step__body">
+            <div>
+              <p>事業内容をご確認ください。より詳しく知りたい場合、下部にあるボタン(※)をクリックしてご確認ください。他の事業所ページを見たい場合は、②まで戻り同様の手順でご覧ください。</p>
+             
+            </div>
+            <figure class="figure" data-src="img/howto/office-01.png">
+              <img src="img/flow4.webp" alt="事業所ページ例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：わぁははクラブの事業所ページ。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step3">← 戻る</a><a class="np-btn" href="#step5">⑤へ →</a></div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section id="step5" class="step step--wide" aria-labelledby="s5">
+          <div class="step__head"><span class="badge">5</span><h3 id="s5">お問い合わせ</h3></div>
+          <div class="step__body">
+            <div>
+              <p>ページ右上の「お問い合わせ」から、必要事項をご記入のうえ送信してください。</p>
+              <p>各事業所ページ内のメール／電話からの問い合わせも可能です。</p>
+            </div>
+            <figure class="figure" data-src="img/howto/contact-01.png">
+              <img src="img/flow5.webp" alt="お問い合わせページ例" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：お問い合わせページ。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step4">← 戻る</a><a class="np-btn" href="index.html">TOPへ →</a></div>
+        </section>
+      </div>
+
+
+    </section>
+  </main>
+
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+<!-- フッター（共通：マイルートリンクと同一） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html" aria-current="page">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+
+  </footer>
+</div>
+
+<script>
+  const lb = document.createElement('div');
+  lb.className = 'lb'; lb.setAttribute('aria-hidden','true');
+  lb.innerHTML = '<img class="lb__img" alt=""><span class="visually-hidden">画像を閉じる</span>';
+  lb.addEventListener('click',()=>lb.setAttribute('aria-hidden','true'));
+  document.body.appendChild(lb);
+  function openLb(img){
+    lb.querySelector('.lb__img').src = img.src;
+    lb.setAttribute('aria-hidden','false');
+  }
+</script>
+
+<script src="js/site.js"></script>
+</body>
+</html>

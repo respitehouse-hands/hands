@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ja"  class="has-splash">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- すぐスクロールを止めて初期ガタつき防止 -->
+  <script>document.documentElement.classList.add('no-scroll');</script>
+  <script>
+    // 初期表示はスクロール封鎖
+    document.documentElement.classList.add('no-scroll');
+  </script>
+  <!-- head内：Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- ▼ 追加：circle.webp 専用の極小CSS（他には影響しません） -->
+  <style>
+    .triad-visual{ padding: clamp(24px, 5vw, 56px) 0; }
+    .triad-visual__inner{ 
+      max-width: min(1100px, 92vw); 
+      margin: 0 auto; 
+      padding: 0 clamp(12px,2vw,24px);
+      box-sizing: border-box; 
+      text-align: center; 
+    }
+    .triad-visual__img{ 
+      display: block; 
+      max-width: min(600px, 92vw);  /* 必要ならこの数値だけ調整 */
+      height: auto; 
+      margin: 0 auto; 
+    }
+
+ /* ===== circle.webp + 説明文（専用スコープ） ===== */
+  .triad-visual{
+    padding: clamp(24px, 5vw, 56px) 0;
+  }
+  .triad-visual__inner{
+    max-width: min(1100px, 92vw);
+    margin: 0 auto;
+    padding: 0 clamp(12px, 2vw, 24px);
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(280px, 520px) 1fr;
+    gap: clamp(100px, 3vw, 40px);
+    align-items: center;
+  }
+  /* 狭い幅では縦積み（画像→文章の順） */
+  @media (max-width: 900px){
+    .triad-visual__inner{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* 画像側 */
+  .triad-visual__figure{ margin: 0; }
+  .triad-visual__img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* テキスト側 */
+  .triad-copy{
+    max-width: 56ch;              /* 読みやすい行長に制限 */
+    margin-inline: auto 0;        /* 左寄せ（縦積み時は自然に中央付近） */
+  }
+  .triad-copy__kicker{
+    font-size: .88rem;
+    letter-spacing: .08em;
+    opacity: .7;
+    margin: 0 0 .4rem 0;
+  }
+  .triad-copy__lead{
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ほんのり区切り（現行カラーを薄く利用） */
+  .triad-copy::before{
+    content:"";
+    display:block;
+    width: 44px;
+    height: 3px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: .12;
+    margin: 0 0 14px 0;
+  }
+
+/* ----- triad 右テキストの整形 ----- */
+.triad-copy{
+  max-width: 56ch;
+  margin-inline: auto 0;
+  text-align: left;                 /* ← 左揃え */
+}
+
+/* 飾りの横棒を消す */
+.triad-copy::before{ display: none; }
+
+.triad-copy__kicker{
+  font-size: .88rem;
+  letter-spacing: .08em;
+  opacity: .7;
+  margin: 0 0 .6rem 0;
+}
+
+.triad-copy__lead{
+  /* 1文字だけの行を出にくくする調整 */
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.9;
+  margin: 0;
+
+  /* 近年のブラウザで効く“気持ちいい折返し” */
+  text-wrap: balance;               /* 行のバランスを最適化 */
+  text-wrap: pretty;                /* 句読点の前後で美しく改行 */
+  line-break: strict;               /* 日本語向けの厳密処理 */
+  hanging-punctuation: allow-end;   /* 句読点を行末にぶら下げ可 */
+  word-break: keep-all;             /* 不自然な分割を抑制 */
+}
+
+/* PC・タブレット：図形↔文章の横の間隔を広げる */
+.triad-grid{
+  gap: clamp(32px, 6vw, 72px); /* 旧: 24–48px → 少しゆったり */
+}
+
+/* スマホ：縦積み時の上下の間隔も広げる */
+@media (max-width: 780px){
+  .triad-copy{
+    margin-top: clamp(20px, 5vw, 32px); /* 図形の下に余白を足す */
+  }
+}
+
+/* CTA帯の下だけ広げる */
+.cta-slab{
+  margin-bottom: clamp(24px, 5vw, 56px);
+}
+
+
+.hero__title{font:700 clamp(22px,4vw,34px)/1.35 "Zen Maru Gothic","Noto Sans JP",sans-serif}
+.hero__title .em1{color:#4338ca} /* 支援 */
+.hero__title .em2{color:#efc94a} /* 安心 */
+.hero__figure{max-width:100%;height:auto;object-fit:contain}
+
+
+
+  </style>
+  <!-- ▲ ここまで追加 -->
+</head>
+
+<body>
+
+<!-- ページ先頭へのリンク用 -->
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <!-- ← ヘッダーからフッターまで**全部**ここに入れる -->
+
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+
+  <main id="main">
+    <!-- ヒーロー：キャッチコピーを主役で -->
+    <section class="hero hero--simple" aria-label="紹介">
+      <div class="hero__inner">
+<h1 class="hero__title">
+  よりそう<span class="em1">支援</span>、つながる<span class="em2">安心</span>。
+</h1>
+      </div>
+    </section>
+
+    <!-- CTAスラブ：別ブロックとして独立 -->
+    <section class="cta-slab" aria-label="ご相談・お問い合わせ">
+      <div class="cta-slab__inner">
+        <a class="btn btn--finder" href="finder.html">あなたに合う支援をさがす</a>
+      </div>
+    </section>
+
+<!-- ▼ 三つの視点（circle.webp＋説明文） -->
+<section class="triad-visual" aria-label="三つの視点">
+  <div class="triad-visual__inner">
+    <figure class="triad-visual__figure">
+      <img src="img/circle.webp"
+           alt="障がい福祉・就労支援・地域づくりがつながる図"
+           class="triad-visual__img"
+           loading="lazy" decoding="async">
+    </figure>
+
+    <!-- NEW: テキストブロック（右側／狭幅では下） -->
+    <div class="triad-copy">
+      <p class="triad-copy__kicker">ABOUT HANDS</p>
+      <p class="triad-copy__lead">
+        私たちレスパイトハウス・ハンズは、<br>
+        <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で、<br>
+        子どもから大人までの暮らしに寄り添う、<br>
+        このまちのNPO法人です。
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ▲ 三つの視点ここまで -->
+
+    <!-- NEWS -->
+   <section class="news" aria-labelledby="news-title">
+  <div class="section__header">
+    <h2 id="news-title">NEWS</h2>
+    <a class="section__more" href="news.html">すべて見る</a>
+  </div>
+
+  <ul class="news__list">
+    <!-- ここに入れる -->
+    <li class="news__item">
+      <a href="news3.html">
+        <time datetime="2025-11-11" class="news__date">2025.11.11</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">新施設完成／見学会のお知らせ</span>
+      </a>
+    </li>
+
+    <li class="news__item">
+      <a href="news2.html">
+        <time datetime="2025-11-10" class="news__date">2025.11.10</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">ホームページをリニューアルしました。</span>
+      </a>
+    </li>
+
+    <li class="news__item">
+      <a href="news1.html">
+        <time datetime="2025-04-01" class="news__date">2025.04.01</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">マイルートリンクがスタートしました。</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+    <nav class="cta-bar" aria-label="主要導線">
+      <a class="cta" href="tel:0191-31-5720">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- Phone (outline) -->
+          <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        電話で相談
+      </a>
+
+      <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <!-- Mail (outline) -->
+          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        メールで問い合わせ
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- 上へ戻る（スクロール進捗リング付き） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+      </svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+</div><!-- /#page -->
+
+<!-- スプラッシュ：完全な白板でロゴを見せる -->
+<div id="splash" aria-hidden="true">
+  <img src="img/logo.webp" alt="">
+</div>
+
+<script>
+  window.addEventListener('load', function () {
+    const hold   = 1700;                         // 見せておく時間
+    const fadeMs = 700;                          // フェードアウト時間( CSSと合わせる )
+    const html   = document.documentElement;
+    const splash = document.getElementById('splash');
+
+    // 安全策：念のため封鎖クラスを付けておく
+    html.classList.add('no-scroll');
+
+    setTimeout(() => {
+      // ページをフェードイン
+      document.body.classList.add('page-show');
+
+      // スクロール解放（強制上書きも入れる）
+      html.classList.remove('no-scroll');
+      html.style.overflowY = 'auto';
+
+      // スプラッシュをフェードアウト開始（pointer-eventsはCSS側で無効化）
+      splash.classList.add('splash-hide');
+
+      // フェードが終わったらDOMから実質退場
+      setTimeout(() => {
+        splash.style.display = 'none';
+      }, fadeMs + 50);
+    }, hold);
+  });
+</script>
+
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200; // 200px超で表示
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
+      const deg = Math.round(ratio * 360) + 'deg';
+      ring && ring.style.setProperty('--btt-progress', deg);
+
+      if (scrollTop > showAt) {
+        btn.classList.add('is-visible');
+      } else {
+        btn.classList.remove('is-visible');
+      }
+    };
+
+    // クリックで先頭へ
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+
+
+</body>
+</html>

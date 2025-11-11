@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ハンズ居宅介護事業所 | レスパイトハウス・ハンズ</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===== 基本（ブランド色は入れない） ===== */
+    :root{
+      --ink:#17222f;
+      --ink-2:#425466;
+      --line:#e6edf2;
+      --surface:#fff;
+      --radius:14px;
+      --max:1120px;
+    }
+
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:
+        radial-gradient(1200px 220px at 15% -8%, #f6fbff 30%, transparent 60%),
+        radial-gradient(1000px 200px at 85% -10%, #f3faff 25%, transparent 60%),
+        #ffffff;
+    }
+    .wrap{ max-width:var(--max); margin-inline:auto; padding-inline:min(4vw,24px); }
+
+    /* ===== このページだけの“空色テーマ”を body.unit-sky に閉じ込める ===== */
+    .unit-sky{
+      --accent:#edf7ff;
+      --brand:#58b6f2;
+      --brand-ink:#0f4e77;
+      --brand-weak:#edf7ff;
+      --chip-line: color-mix(in oklab, var(--brand) 45%, #fff);
+    }
+
+    /* ▼▼ ヘッダー（このページのみ色替え。構造は触らない） ▼▼ */
+    .unit-sky #site-header{
+      background: var(--accent) !important;
+      border-bottom: 1px solid #cfe9ff;
+    }
+    .unit-sky #site-header::after{ background: none !important; }
+    .unit-sky #site-header .c-header__list{ background: transparent !important; box-shadow: none !important; }
+
+    /* ▼ このページ（unit-sky）だけのフッター配色 */
+    .unit-sky .site-footer{ background:#edf7ff; border-top:1px solid #cfe9ff; }
+    .unit-sky .site-footer .footer__bar{ background:#edf7ff; border-top:1px solid #cfe9ff; }
+    .unit-sky .site-footer::before,
+    .unit-sky .site-footer::after{ background:transparent !important; }
+    .unit-sky .site-footer h3,
+    .unit-sky .site-footer a{ color:#0f4e77; }
+
+    /* ヘッダー帯＆ドロップダウン色統一 */
+    body.unit-sky #site-header.c-header{ background:#e0faff; border-bottom:1px solid color-mix(in oklab, #58b6f2 28%, #fff); }
+    body.unit-sky .submenu{
+      background:#ffffff;
+      border:1px solid color-mix(in oklab, #58b6f2 26%, #fff);
+      box-shadow:0 12px 28px rgba(15,78,119,.12);
+    }
+    body.unit-sky .submenu li + li{ border-top:1px solid color-mix(in oklab, #58b6f2 14%, #fff); }
+    body.unit-sky .submenu a{ color:#0f4e77; background:transparent; }
+    body.unit-sky .submenu a:hover,
+    body.unit-sky .submenu a:focus{ background:#eaf8ff; color:#0f4e77; }
+
+    /* 1段目メニュー背景は無色へ */
+    body.unit-sky header.c-header .c-header__list > .c-header__list-item,
+    body.unit-sky header.c-header .c-header__list > .c-header__list-item:hover,
+    body.unit-sky header.c-header .c-header__list > .c-header__list-item:focus-within{
+      background: transparent !important;
+    }
+
+    /* ===== ページ固有ブロック ===== */
+    .hero{
+      margin:1.2rem 0 1.8rem;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:
+        radial-gradient(900px 240px at 15% -12%, #eef7ff, transparent 60%),
+        radial-gradient(640px 200px at 90% -25%, #f2faff, transparent 60%),
+        linear-gradient(180deg,#fff,#fff);
+      box-shadow:0 18px 48px rgba(15,78,119,.06);
+    }
+    .hero-inner{ padding:clamp(18px,3.2vw,36px) clamp(18px,3.6vw,40px); }
+    .hero-head{
+      display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,2vw,20px); align-items:center;
+      margin-bottom:clamp(12px,2vw,18px);
+    }
+    .emblem{
+      width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
+      display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #e6f4ff 70%);
+      border:3px solid color-mix(in oklab, var(--brand) 55%, #fff);
+      box-shadow:0 8px 22px rgba(88,182,242,.18);
+    }
+    .emblem svg{ width:58%; height:58%; fill:var(--brand); }
+    .hero-title{
+      margin:0 0 .1rem;
+      font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+      color:var(--brand-ink);
+    }
+    .hero-lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
+
+    .chips{ margin:.7rem 0 0; display:flex; gap:.5rem .6rem; flex-wrap:wrap; padding:0; list-style:none; }
+    .chips li{
+      border:1px solid var(--chip-line); background:#fff; color:var(--brand-ink);
+      border-radius:999px; padding:.28em .7em; font:500 .9rem "Noto Sans JP",system-ui;
+    }
+
+    .hero-grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:1.55fr .95fr; }
+    @media (max-width:920px){ .hero-grid{ grid-template-columns:1fr; } }
+
+    .checklist{ margin:.2rem 0 0; padding:0; list-style:none; }
+    .checklist li{ position:relative; padding-left:1.8rem; margin:.55rem 0; line-height:1.9; }
+    .checklist li::before{
+      content:"";
+      position:absolute; left:0; top:.55em; width:1.1rem; height:1.1rem; background: var(--brand);
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z"/></svg>') no-repeat center / 100% 100%;
+              mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z"/></svg>') no-repeat center / 100% 100%;
+    }
+
+    /* —— ここが“左に青ラインのカード” —— */
+    .callout{
+      background:#fff;
+      border:1px solid var(--chip-line);
+      border-left:6px solid var(--brand);
+      border-radius:14px;
+      padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
+      box-shadow:0 8px 26px rgba(88,182,242,.08);
+    }
+    .callout h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); }
+
+    /* ▼ TEL/MAIL をボタン化（デザイン・大きさは callout 内に収める） */
+    .cta-row{
+      display:grid;
+      gap:.6rem;
+      margin-top:.4rem;
+    }
+    .cta-btn{
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+      height:52px;
+      width:100%;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid #cfe3f6;
+      background:#fff;
+      color:#0f4e77;
+      box-shadow:0 4px 12px rgba(15,78,119,.08);
+      transition:filter .15s ease, background .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .cta-btn svg{ flex:0 0 auto; }
+
+    .cta-btn--tel{
+      background:#56aef2;        /* 青実ボタン */
+      border-color:#56aef2;
+      color:#fff;
+    }
+    .cta-btn--tel:hover{ filter:brightness(.96); }
+
+    .cta-btn--mail{
+      background:#fff;            /* 白ボタン */
+      border-color:#cfe3f6;
+      color:#0f4e77;
+    }
+    .cta-btn--mail:hover{
+      background:#f6fbff;
+      border-color:#a6c8e8;
+      box-shadow:0 6px 16px rgba(15,78,119,.12);
+    }
+
+    /* サブナビ（ページ内） */
+    .subnav{ position:sticky; top:0; z-index:15; background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .subnav-inner{ max-width:var(--max); margin-inline:auto; padding:.7rem min(4vw,24px); }
+    .subnav-list{ display:flex; justify-content:center; flex-wrap:wrap; gap:.6rem .7rem; list-style:none; padding:0; margin:0; }
+    .subnav-list a{
+      display:inline-block; text-decoration:none; color:var(--ink);
+      border:1px solid var(--line); padding:.65em 1.05em; border-radius:999px; background:#fff;
+      transition:.18s ease-in-out;
+    }
+    .subnav-list a:hover{ border-color:var(--brand); color:var(--brand-ink); box-shadow:0 6px 18px rgba(88,182,242,.14); }
+    .subnav-help{ text-align:center; color:#657b8f; font-size:.92rem; margin:.35rem 0 0; }
+
+    /* セクション */
+    section{ scroll-margin-top:84px; }
+
+    .sec-title{
+      font:700 clamp(1.25rem, 2vw, 1.5rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui;
+      margin: clamp(28px, 4.5vw, 44px) 0 clamp(16px, 2.4vw, 44px);
+      padding-left:.72rem;
+      border-left:5px solid var(--brand);
+    }
+    #flow-title{ font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+    .card{
+      background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+      padding:clamp(14px,2.2vw,20px) clamp(16px,2.6vw,24px);
+      box-shadow:0 10px 30px rgba(23,34,47,.05);
+    }
+    .muted{ color:#657b8f; font-size:.95rem; }
+
+    /* フロー */
+    .flow{ display:grid; gap:12px; }
+    .flow .flow-item{ border:1px solid var(--line); border-radius:12px; background:var(--brand-weak); padding:1rem 1rem 1rem 3.2rem; position:relative; }
+    .flow .num{
+      position:absolute; left:.9rem; top:1.2rem; width:1.9rem; height:1.9rem; border-radius:999px; background:var(--brand);
+      color:#fff; display:grid; place-items:center; font-weight:700;
+    }
+    .flow .flow-item h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); }
+    .dot{ margin:.4rem 0 .2rem 1rem; }
+    .dot li{ list-style:disc; margin:.25rem 0; }
+
+    /* アクセス表・地図 */
+    .facts{ display:grid; gap:.6rem .9rem; grid-template-columns: 1fr 2fr; }
+    .facts dt{ color:#4f657a; }
+    .facts dd{ margin:0; }
+    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
+
+    .map{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#f7fbff; min-height:260px; }
+    .map iframe{ width:100%; height:350px; border:0; display:block; }
+
+    /* アンカーオフセット */
+    :root { --sticky-offset: 120px; }
+    #services, #flow, #city, #access { scroll-margin-top: var(--sticky-offset); }
+
+    .sec-title .note-mark{
+      font-size:.7em; color:#8aa0b3; font-weight:600; margin-left:.15em; vertical-align:baseline; opacity:.85;
+    }
+
+    /* ===== このページ（unit-sky）専用：上へ戻るボタンを青系に ===== */
+    .unit-sky #backToTop.btt.btt--ring {
+      --btt-bg:#58b6f2; --btt-bg-h:#2ea6f0; --btt-fg:#ffffff;
+      --btt-ring:rgba(88,182,242,.35); --btt-ring-h:rgba(88,182,242,.55); --btt-focus:#94d8ff;
+    }
+    .unit-sky #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
+    .unit-sky #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
+    .unit-sky #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
+    .unit-sky #backToTop .btt__label{ color:var(--btt-fg); }
+    .unit-sky #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
+    .unit-sky #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
+    .unit-sky #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
+
+    body.unit-sky{ --btt-ring-active:#2EA6F0; --btt-ring-base:#e0faff; }
+
+    /* パンくず */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    /* スマホのメニュー確実化 */
+    @media (max-width: 750px){
+      .unit-sky .c-hamburger-menu{ position:relative; z-index:4000; }
+      .unit-sky .c-hamburger-menu__list{ z-index:4001; }
+      .unit-sky .c-hamburger-menu__bg{ z-index:4000; }
+      .unit-sky #site-header .c-header__list{ background:#fff !important; box-shadow:none !important; }
+
+      .unit-sky .has-sub{ display:grid; grid-template-columns:1fr auto; align-items:center; position:relative; }
+      .unit-sky .has-sub > .c-header__list-link{ grid-column:1; position:relative; z-index:1; padding-right:.5rem; }
+      .unit-sky .has-sub .sub-caret{ grid-column:2; z-index:2; width:56px !important; height:44px !important; display:flex !important; align-items:center !important; justify-content:center !important; cursor:pointer; user-select:none; margin-left:4px; }
+      .unit-sky .has-sub .sub-caret::after{ content:"＋"; font-size:22px; line-height:1; color:#2f3e33; }
+
+      .unit-sky .has-sub > .submenu{
+        position:static !important; display:none !important; opacity:1 !important; visibility:visible !important; transform:none !important;
+        background:#fff !important; border:1px solid #e6eaef !important; border-radius:12px !important; box-shadow:0 10px 26px rgba(0,0,0,.06) !important;
+        margin:.35rem 0 0 !important; width:100% !important;
+      }
+      .unit-sky .has-sub .sub-toggle{ display:none; }
+      .unit-sky .has-sub .sub-toggle:checked ~ .submenu{ display:block !important; }
+      .unit-sky .has-sub .sub-toggle:checked ~ .sub-caret::after{ content:"－"; }
+    }
+
+/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
+body.unit-sky .cta-bar .cta{
+  background: #58b6f2;          /* 空色 */
+  border: 2px solid #58b6f2;
+  color: #fff;
+}
+body.unit-sky .cta-bar .cta:hover{
+  background: #2ea6f0;          /* 濃いめの空色 */
+  border-color: #2ea6f0;
+  box-shadow: 0 8px 20px rgba(88,182,242,.20);
+  transform: translateY(-1px);
+}
+body.unit-sky .cta-bar .cta:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(88,182,242,.18);
+}
+
+
+/* ===== 居宅介護：下部CTAの横幅をそろえる ===== */
+body.unit-sky .cta-bar{
+  max-width: var(--max);
+  margin: 1.25rem auto 2.4rem;
+  padding-inline: min(4vw,24px);
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  flex-wrap: wrap;            /* 狭い時は折り返し */
+}
+
+body.unit-sky .cta-bar .cta{
+  display: flex;              /* 中央寄せ */
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: .95em 1.2em;
+  border-radius: 12px;
+
+  /* ここで“同じ幅”にする */
+  flex: 1 1 16rem;            /* 両ボタンとも16remを基準に等分 */
+  min-width: 16rem;           /* PC時に細くなりすぎないように */
+  text-align: center;
+}
+
+/* スマホ時は縦並びで幅100%に */
+@media (max-width: 680px){
+  body.unit-sky .cta-bar .cta{
+    flex-basis: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+
+  </style>
+</head>
+
+<body class="unit-sky">
+  <a id="top" class="visually-hidden">top</a>
+
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main class="wrap" id="main">
+    <!-- パンくず -->
+    <nav class="myroot-breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="office.html">事業所紹介</a></li>
+        <li aria-current="page">ハンズ居宅介護事業所</li>
+      </ol>
+    </nav>
+
+    <!-- ヒーローバンド -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-head">
+          <div class="emblem" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3 3 10h2v9h5v-6h4v6h5v-9h2L12 3z"/></svg>
+          </div>
+          <div>
+            <h1 id="hero-title" class="hero-title">ハンズ居宅介護事業所</h1>
+            <p class="hero-lead">
+              ハンズ居宅介護事業所は、しょうがい者の方々がご自宅において自立した日常生活・社会生活を営めるよう、
+              <b>相談・助言</b>や<b>生活全般にわたる援助</b>を総合的に行う介護事業所です。
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <ul class="checklist">
+              <li>在宅での入浴・排泄・食事等の介護、通院介助に対応します。</li>
+              <li>自己判断が制限される方の外出時、危険回避のための支援を行います。</li>
+              <li>重度の肢体不自由の方に対し、在宅介護〜外出支援を総合的に行います。</li>
+            </ul>
+          </div>
+
+          <!-- ▼ ここが“左に青ラインのカード”：デザインはそのまま、TEL/MAILだけボタン化 -->
+          <aside class="callout" aria-label="まずはご相談ください">
+            <h3>まずはご相談ください</h3>
+            <p>相談は無料です。ご状況を伺いながら、支援の進め方を一緒に考えます。</p>
+
+            <div class="cta-row">
+              <a class="cta-btn cta-btn--tel" href="tel:0191-31-5720" aria-label="電話で相談 0191-31-5720">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path fill="currentColor" d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11L7.54 9.6a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z"/>
+                </svg>
+                電話する（0191-31-5720）
+              </a>
+
+              <a class="cta-btn cta-btn--mail" href="mailto:hands-ma@ceres.ocn.ne.jp" aria-label="メールで相談">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" d="M3 5h18v14H3z"/>
+                  <path fill="currentColor" d="M3 7l9 6 9-6"/>
+                </svg>
+                メールで相談
+              </a>
+            </div>
+          </aside>
+          <!-- ▲ ボタン化ここまで -->
+        </div>
+      </div>
+    </section>
+
+    <!-- サブナビ -->
+    <div class="subnav">
+      <div class="subnav-inner">
+        <ul class="subnav-list" role="list">
+          <li><a href="#services">主なサービス内容</a></li>
+          <li><a href="#flow">ご利用までの流れ</a></li>
+          <li><a href="#city">一関市生活支援事業</a></li>
+          <li><a href="#access">事業所案内・アクセス</a></li>
+        </ul>
+        <p class="subnav-help">クリックすると各セクションへ移動します。</p>
+      </div>
+    </div>
+
+    <!-- 主なサービス -->
+    <section id="services" aria-labelledby="services-title">
+      <h2 id="services-title" class="sec-title">主なサービス内容</h2>
+      <div class="card">
+        <h3>▪ 居宅介護</h3>
+        <p>　　自宅で、入浴・排泄・食事の介護等を行います。また、病院への通院のための介助を行います。</p>
+        <hr style="border:none;border-top:1px solid var(--line); margin:1rem 0;" aria-hidden="true">
+        <h3>▪ 行動援護</h3>
+        <p>　　自己判断が制限されている方が行動する際、危険を回避するために必要な支援、および外出支援を行います。</p>
+        <hr style="border:none;border-top:1px solid var(--line); margin:1rem 0;" aria-hidden="true">
+        <h3>▪ 重度訪問介護</h3>
+        <p>　　重度の肢体不自由者で常に介護を必要とする方に、自宅入浴・排泄・食事の介護・外出時の移動支援などを総合的に行います。</p>
+      </div>
+    </section>
+
+    <!-- ご利用の流れ -->
+    <section id="flow" aria-labelledby="flow-title">
+      <h2 id="flow-title" class="sec-title">～ ご利用までの流れ ～</h2>
+      <div class="flow">
+        <div class="flow-item"><span class="num">1</span><h3>　担当相談支援専門員による支援計画の作成</h3></div>
+        <div class="flow-item"><span class="num">2</span><h3>　サービス内容の決定</h3></div>
+        <div class="flow-item"><span class="num">3</span><h3>　担当者会議（必要に応じ）</h3></div>
+        <div class="flow-item"><span class="num">4</span><h3>　利用者ならびにご家族の同意</h3></div>
+        <div class="flow-item"><span class="num">5</span><h3>　ご利用開始</h3></div>
+      </div>
+      <p class="muted" style="margin:.6rem 0 0;">※ 相談は無料です。</p>
+    </section>
+
+    <!-- 一関市生活支援事業 -->
+    <section id="city" aria-labelledby="city-title">
+      <h2 id="city-title" class="sec-title">一関市生活支援事業<span class="note-mark">※1</span>について</h2>
+      <div class="card">
+        <h3>A. 移動支援（個人）</h3>
+        <p>　　社会生活上必要不可欠な外出および余暇活動等、社会参加のための外出時の円滑な移動を支援します。</p>
+        <p class="muted">　　実施日：随時</p>
+        <hr style="border:none;border-top:1px solid var(--line); margin:1rem 0;" aria-hidden="true">
+        <h3>B. グループ型移動支援（複数）</h3>
+        <p>　　屋外でのグループワークイベント（映画鑑賞・コンサートなど）への参加を支援します。</p>
+        <p class="muted">　　実施日：月１回、土曜日に実施</p>
+        <p class="muted" style="margin-top:.8rem;">
+          　　※1　一関市生活支援事業は、一関市からの委託を受けて実施します。支援計画作成後に<b>一関市福祉課窓口への申請</b>が必要となります。
+        </p>
+      </div>
+    </section>
+
+    <!-- 事業所案内・アクセス -->
+    <section id="access" aria-labelledby="access-title">
+      <h2 id="access-title" class="sec-title">事業所案内</h2>
+      <div class="card">
+        <dl class="facts">
+          <div><dt>所在地</dt><dd>〒021-0031　岩手県一関市青葉二丁目 6-16</dd></div>
+          <div><dt>TEL / FAX</dt><dd>TEL：0191-31-5720　／　FAX：0191-31-5721</dd></div>
+          <div><dt>E-Mail</dt><dd>hands-ma@ceres.ocn.ne.jp（担当：千田）</dd></div>
+        </dl>
+
+        <div class="map" style="margin:1rem 0;">
+          <iframe title="ハンズ居宅介護事業所 周辺地図" loading="lazy" allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CTA（本文幅に揃える2ボタン：連絡先はわぁははクラブに合わせて） -->
+  <nav class="cta-bar" aria-label="主要導線">
+    <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      電話で相談
+    </a>
+    <a class="cta" href="mailto:hands-ma@ceres.ocn.ne.jp" aria-label="メールで問い合わせ">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      メールで問い合わせ
+    </a>
+  </nav>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+  <!-- 共通JS -->
+  <script src="js/site.js"></script>
+</body>
+</html>

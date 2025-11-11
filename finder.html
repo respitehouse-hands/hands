@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>あなたに合う支援をさがす | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --fd-ink:#0f172a; --fd-ink-2:#475569; --fd-muted:#64748b;
+      --fd-line:#e5e7eb; --fd-surface:#fff; --fd-bg:#f7fafb;
+      --fd-accent:#009688; --fd-accent-2:#0ea5a5;
+      --fd-radius:18px; --fd-shadow:0 8px 24px rgba(0,0,0,.08);
+      --community-brand:#0b2b6b;
+    }
+    /* ページ背景を常に統一 */
+    body, #page, main, .finder-page { background: var(--fd-bg) !important; }
+
+    .finder-page{ padding-inline:min(4vw,24px); }
+    .finder-wrap{ max-width:1120px; margin-inline:auto; }
+
+    .fd-breadcrumb{ margin:0 0 1rem; }
+    .fd-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1rem 0; margin:0; flex-wrap:wrap; }
+    .fd-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    .fd-hero{
+      background:linear-gradient(180deg,#e7f6f3 0%, #f7fafb 60%);
+      border:1px solid #edf2f7; border-radius:calc(var(--fd-radius) + 8px);
+      padding:clamp(18px,3vw,28px); box-shadow:0 1px 0 rgba(0,0,0,.03);
+      display:grid; gap:.8rem;
+    }
+    .fd-hero__eyebrow{ color:var(--fd-muted); font:500 .95rem "Noto Sans JP",system-ui,sans-serif; }
+    .fd-hero__title{ font:700 clamp(1.6rem,2.8vw,2.2rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; color:var(--fd-ink); margin:0; }
+    .fd-hero__lead{ color:#334155; margin:0; }
+    .fd-steps{ display:flex; gap:.4rem; align-items:center; margin-top:.3rem; }
+    .fd-step-dot{ width:8px; height:8px; border-radius:999px; background:#cbd5e1; }
+    .fd-step-dot.is-active{ background:var(--fd-accent); }
+
+    .fd-cats{ display:grid; grid-template-columns:1fr; gap:1rem; margin:1.2rem 0 1.6rem; }
+    @media (min-width:760px){ .fd-cats{ grid-template-columns:repeat(3,1fr); } }
+    .fd-cat{
+      background:var(--fd-surface); border:1px solid var(--fd-line); border-radius:22px; overflow:hidden;
+      box-shadow:var(--fd-shadow); display:flex; flex-direction:column; padding:1rem;
+      transition:transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .fd-cat:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.12); border-color:#dbe3ea; }
+    .fd-cat__icon{ width:56px; height:56px; border-radius:14px; background:#e9f4f2; display:grid; place-items:center; margin-bottom:.6rem; }
+    .fd-cat__title{ font:700 1.1rem/1.3 "Zen Maru Gothic","Noto Sans JP"; color:var(--fd-ink); margin:.2rem 0; }
+    .fd-cat__desc{ color:var(--fd-ink-2); margin:0 0 .8rem; }
+    .fd-cat__cta{ margin-top:auto; display:flex; justify-content:flex-end; }
+    .fd-btn{ appearance:none; border:1px solid transparent; background:var(--fd-accent); color:#fff;
+      border-radius:12px; padding:.65rem .9rem; font-weight:700; cursor:pointer; transition:background .2s ease, transform .06s ease; }
+    .fd-btn:hover{ background:var(--fd-accent-2); }
+    .fd-btn:active{ transform:translateY(1px); }
+
+    .fd-sub{ display:none; }
+    .fd-sub.is-open{ display:block; }
+    .fd-sub__head{ display:flex; gap:.6rem; align-items:center; justify-content:space-between; margin:1rem 0 .6rem; }
+    .fd-sub__title{ font:700 1.2rem/1.3 "Zen Maru Gothic","Noto Sans JP"; margin:0; }
+
+    .fd-subgrid{ display:grid; grid-template-columns:1fr; gap:1rem; margin:.6rem 0 1.8rem; }
+    @media (min-width:760px){ .fd-subgrid{ grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:1080px){ .fd-subgrid{ grid-template-columns:repeat(3,1fr); } }
+
+    /* STEP2カード：中身ごとアンカーにして全体クリック */
+    .fd-item{
+      background:#fff; border:1px solid var(--fd-line); border-radius:18px; overflow:hidden;
+      box-shadow:var(--fd-shadow); transition:transform .12s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .fd-item:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.12); border-color:#dbe3ea; }
+    .fd-cardlink{
+      display:block; padding:1rem; text-decoration:none; color:inherit;
+    }
+    .fd-cardlink h3{ font:700 1.05rem/1.35 "Zen Maru Gothic","Noto Sans JP"; margin:.2rem 0 .2rem; color:var(--fd-ink); }
+    .fd-cardlink p{ color:#475569; margin:0 0 .7rem; }
+    .fd-cta{
+      margin-top:auto; display:inline-flex; align-items:center; gap:.4rem;
+      color:var(--fd-accent); font-weight:700;
+    }
+
+    details.fd-brief{ border:1px dashed #cfe7e3; background:#eef9f7; border-radius:12px; padding:.6rem .7rem; }
+    details.fd-brief summary{ cursor:pointer; list-style:none; }
+    details.fd-brief summary::-webkit-details-marker{ display:none; }
+    details.fd-brief[open]{ background:#e9f6f3; }
+
+    /* 相談CTA：直下の余白も含めページ背景に統一 */
+    .fd-help{ margin:1.6rem 0 2rem; background: var(--fd-bg); }
+    .fd-help__inner{
+      background:#fff; color:#0b3b36; border:1px solid #dbe3ea; border-radius:16px;
+      padding:1rem 1.1rem; display:flex; gap:.9rem; align-items:center;
+      box-shadow:0 10px 24px rgba(0,0,0,.08);
+    }
+    .fd-help__text{ flex:1 1 auto; min-width:220px; }
+    .fd-help__text strong{ display:block; font:700 1.05rem/1.25 "Zen Maru Gothic","Noto Sans JP"; color:#0b3b36; }
+    .fd-help__text span{ color:#355e59; }
+    .fd-help__actions{ display:flex; gap:.6rem; flex-wrap:wrap; }
+    .fd-call,.fd-mail{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      text-decoration:none; padding:.85rem 1rem; border-radius:12px; font-weight:700;
+      border:1px solid transparent; white-space:nowrap; box-sizing:border-box;
+    }
+    .fd-call{ background:#10b981; color:#fff; }
+    .fd-call:hover{ filter:brightness(.96); }
+    .fd-mail{ background:#fff; color:#0b3b36; border-color:#dbe3ea; }
+    .fd-mail:hover{ background:#f8fbfb; }
+    @media (max-width:720px){
+      .fd-help__inner{ flex-direction:column; align-items:stretch; gap:.75rem; padding:.95rem; }
+      .fd-help__actions{ width:100%; display:grid; grid-template-columns:1fr; gap:.6rem; }
+      .fd-call,.fd-mail{ width:100%; }
+    }
+
+    .fd-back{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.55rem .9rem; font-weight:700; color:#475569; background:#fff;
+      border:1px solid #e5e7eb; border-radius:12px; text-decoration:none;
+      box-shadow:0 1px 0 #00000008; transition:border-color .2s ease, background .2s ease, color .2s ease;
+    }
+    .fd-back svg{ width:16px; height:16px; transition: transform .15s ease; }
+    .fd-back:hover{ background:#f9fafb; border-color:#d1d5db; color:#334155; }
+    .fd-back:hover svg{ transform: translateX(-2px); }
+    .fd-back:focus-visible{ outline:2px solid #94a3b8; outline-offset:2px; }
+
+    .svc-mark{
+      --accent:#16a34a;
+      inline-size:56px; block-size:56px; border-radius:14px;
+      display:grid; place-items:center;
+      background: color-mix(in oklab, var(--accent) 8%, #fff);
+      border:1px solid color-mix(in oklab, var(--accent) 28%, #fff);
+      box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+    .svc-mark svg{ width:26px; height:26px; color:var(--accent); }
+    .svc--work{ --accent:#f59e0b; }
+    .svc--community{ --accent: var(--community-brand); }
+
+.fd-cardlink h3 {
+
+
+margin: .2rem 0 1.2rem;
+
+}
+
+/* ← 分野を選び直す：ホバー時をはっきり */
+:root{
+  --fd-back-hover-bg: color-mix(in oklab, var(--fd-accent) 16%, #fff);
+  --fd-back-hover-border: color-mix(in oklab, var(--fd-accent) 42%, #fff);
+  --fd-back-hover-ink: color-mix(in oklab, var(--fd-accent) 72%, #0f172a);
+}
+
+/* 既存の .fd-back はそのまま。以下を追記（上書き） */
+.fd-back:hover,
+.fd-back:focus-visible{
+  background: var(--fd-back-hover-bg);
+  border-color: var(--fd-back-hover-border);
+  color: var(--fd-back-hover-ink);
+}
+
+/* 矢印も一緒に色と動き */
+.fd-back:hover svg,
+.fd-back:focus-visible svg{
+  transform: translateX(-2px);
+  color: currentColor;
+}
+
+/* アニメ控えめ派への配慮 */
+@media (prefers-reduced-motion: reduce){
+  .fd-back svg{ transition: none; }
+}
+
+/* ← 分野を選び直す：ホバーで“電話ボタン風”に反転 */
+:root{
+  --fd-back-strong-bg: #10b981;   /* コールボタンと同じ緑 */
+  --fd-back-strong-ink: #fff;     /* 文字・アイコンは白 */
+}
+
+/* 通常は今までどおり薄め */
+.fd-back{
+  transition:
+    color .15s ease,
+    background-color .15s ease,
+    border-color .15s ease,
+    box-shadow .15s ease;
+}
+
+/* ホバー／フォーカス時に反転（背景=緑・文字=白） */
+.fd-back:hover,
+.fd-back:focus-visible{
+  background: var(--fd-back-strong-bg);
+  color: var(--fd-back-strong-ink);
+  border-color: var(--fd-back-strong-bg);
+  box-shadow: 0 6px 16px rgba(16,185,129,.25);
+  text-decoration: none;
+}
+
+/* 矢印アイコンも白に＆ほんの少しだけ動く */
+.fd-back svg{
+  transition: transform .15s ease, color .15s ease;
+}
+.fd-back:hover svg,
+.fd-back:focus-visible svg{
+  color: currentColor;         /* = 白 */
+  transform: translateX(-2px); /* 左へ2px（戻る感） */
+}
+
+/* クリック時の押し込み感 */
+.fd-back:active{
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(16,185,129,.25);
+}
+
+/* 動きが苦手な人へ配慮 */
+@media (prefers-reduced-motion: reduce){
+  .fd-back,
+  .fd-back svg{ transition: none; }
+}
+
+
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main id="main" class="finder-page">
+    <section class="finder-wrap" aria-labelledby="fd-title">
+      <nav class="fd-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li aria-current="page">あなたに合う支援をさがす</li>
+        </ol>
+      </nav>
+
+      <header class="fd-hero">
+        <p class="fd-hero__eyebrow"> </p>
+        <h1 id="fd-title" class="fd-hero__title">あなたに合う支援をさがす</h1>
+        <p class="fd-hero__lead">最初に分野をお選びください。あなたの目的に合わせてご案内します。</p>
+        <div class="fd-steps" aria-hidden="true">
+          <span class="fd-step-dot is-active"></span>
+          <span class="fd-step-dot"></span>
+        </div>
+      </header>
+
+      <!-- STEP 1 -->
+      <section id="step1" class="fd-cats" aria-label="分野から選ぶ">
+        <article class="fd-cat" data-cat="npo">
+          <div class="fd-cat__icon"><span class="svc-mark"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <h2 class="fd-cat__title">障がい福祉</h2>
+          <p class="fd-cat__desc">しょうがいを抱える方へ。介護・福祉サービス利用のご相談など。</p>
+          <div class="fd-cat__cta"><button class="fd-btn js-choose" data-target="sub-npo">この分野でさがす</button></div>
+        </article>
+
+        <article class="fd-cat" data-cat="work">
+          <div class="fd-cat__icon"><span class="svc-mark svc--work"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2" ry="2" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.9" fill="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor"/></svg></span></div>
+          <h2 class="fd-cat__title">就労支援</h2>
+          <p class="fd-cat__desc">仕事探し・就職後のサポートなど。</p>
+          <div class="fd-cat__cta"><button class="fd-btn js-choose" data-target="sub-work">この分野でさがす</button></div>
+        </article>
+
+        <article class="fd-cat" data-cat="community">
+          <div class="fd-cat__icon"><span class="svc-mark svc--community">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M3 20.5h18"/>
+                <path d="M5.5 20.5V10.5l5-1.8v11.8"/>
+                <path d="M12.5 20.5V5.5l6 1.8v13.2"/>
+              </g>
+              <g fill="currentColor">
+                <rect x="7.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                <rect x="7.1" y="15.0" width="1.4" height="1.4" rx=".15"/>
+                <rect x="14.1" y="9.8"  width="1.4" height="1.4" rx=".15"/>
+                <rect x="14.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                <rect x="16.5" y="14.8" width="1.4" height="1.4" rx=".15"/>
+              </g>
+            </svg>
+          </span></div>
+          <h2 class="fd-cat__title">地域づくり</h2>
+          <p class="fd-cat__desc">地域を支える市民活動のサポート。</p>
+          <div class="fd-cat__cta"><button class="fd-btn js-choose" data-target="sub-community">この分野でさがす</button></div>
+        </article>
+      </section>
+
+      <!-- STEP 2：障がい福祉 -->
+      <section id="sub-npo" class="fd-sub" aria-label="障がい福祉の選択肢">
+        <div class="fd-sub__head">
+          <h2 class="fd-sub__title">障がい福祉</h2>
+          <a href="#step1" class="fd-back js-back" aria-label="分野選択へ戻る">
+            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            分野を選び直す
+          </a>
+        </div>
+        <div class="fd-subgrid">
+          <article class="fd-item">
+            <a class="fd-cardlink" href="wahaha.html">
+              <h3>日中活動・生活支援</h3>
+              <p>生活介護事業所｜わぁははクラブ</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="residence.html">
+              <h3>居宅介護、重度訪問看護</h3>
+              <p>ハンズ居宅介護事業所</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="soudan.html">
+              <h3>相談支援（福祉サービス）</h3>
+              <p>ハンズ相談支援事業所</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="little.html">
+              <h3>子どもの活動支援・学習サポート</h3>
+              <p>リトルハンズ</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="sakura.html">
+              <h3>働く場の提供（障がいのある方向け）</h3>
+              <p>さくらなみき</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- STEP 2：就労支援 -->
+      <section id="sub-work" class="fd-sub" aria-label="就労支援の選択肢">
+        <div class="fd-sub__head">
+          <h2 class="fd-sub__title">就労支援</h2>
+          <a href="#step1" class="fd-back js-back" aria-label="分野選択へ戻る">
+            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            分野を選び直す
+          </a>
+        </div>
+        <div class="fd-subgrid">
+          <article class="fd-item">
+            <a class="fd-cardlink" href="myroot.html">
+              <h3>障がいのある方の就労支援</h3>
+              <p>マイルートリンク</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="ichisapo.html">
+              <h3>15歳～49歳の就労支援</h3>
+              <p>いちのせき若者サポートステーション</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+          <article class="fd-item">
+            <a class="fd-cardlink" href="jobcafe.html">
+              <h3>すべての方の就職支援</h3>
+              <p>ジョブカフェ一関</p>
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- STEP 2：地域づくり -->
+      <section id="sub-community" class="fd-sub" aria-label="地域づくりの選択肢">
+        <div class="fd-sub__head">
+          <h2 class="fd-sub__title">地域づくり</h2>
+          <a href="#step1" class="fd-back js-back" aria-label="分野選択へ戻る">
+            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            分野を選び直す
+          </a>
+        </div>
+        <div class="fd-subgrid">
+          <article class="fd-item">
+            <a class="fd-cardlink" href="citizen.html">
+              <h3>市民活動の相談・協働支援</h3>
+              <p>いちのせき市民活動センター</p>
+ 
+              <span class="fd-cta">詳しくみる →</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- 相談CTA（白箱／周囲はページ色） -->
+      <div class="fd-help" aria-label="お急ぎの方はこちら">
+        <div class="fd-help__inner">
+          <div class="fd-help__text">
+            <strong>迷ったら、すぐ相談。</strong>
+            <span>ご希望の窓口へスタッフがご案内します。</span>
+          </div>
+          <div class="fd-help__actions">
+            <a class="fd-call" href="tel:0191-31-5720">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z"/></svg>
+              0191-31-5720
+            </a>
+            <a class="fd-mail" href="mailto:hands.guitar@ocn.ne.jp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/></svg>
+              メールで問い合わせ
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const html = document.documentElement;
+    document.body.classList.add('page-show');
+    html.classList.remove('no-scroll');
+    html.style.overflowY = 'auto';
+    const splash = document.getElementById('splash');
+    if (splash) splash.remove();
+  });
+</script>
+
+<script>
+(function(){
+  const step1 = document.getElementById('step1');
+  const subs = ['sub-npo','sub-work','sub-community'].map(id=>document.getElementById(id));
+  const dots = document.querySelectorAll('.fd-step-dot');
+
+  function openSub(id){
+    subs.forEach(s=>s.classList.remove('is-open'));
+    step1.style.display = 'none';
+    const tgt = document.getElementById(id);
+    if (tgt){ tgt.classList.add('is-open'); }
+    dots.forEach((d,i)=> d.classList.toggle('is-active', i===1));
+    history.replaceState(null,'', '#' + id);
+    tgt?.querySelector('.fd-sub__title')?.focus?.();
+  }
+  function backToCats(){
+    subs.forEach(s=>s.classList.remove('is-open'));
+    step1.style.display = '';
+    dots.forEach((d,i)=> d.classList.toggle('is-active', i===0));
+    history.replaceState(null,'', '#');
+    document.getElementById('fd-title')?.focus?.();
+  }
+  document.querySelectorAll('.js-choose').forEach(btn=>{
+    btn.addEventListener('click', ()=> openSub(btn.dataset.target));
+  });
+  document.querySelectorAll('.js-back').forEach(a=>{
+    a.addEventListener('click', (e)=>{ e.preventDefault(); backToCats(); });
+  });
+  const hash = (location.hash||'').replace('#','');
+  if(['sub-npo','sub-work','sub-community'].includes(hash)){ openSub(hash); }
+  window.addEventListener('hashchange', ()=>{
+    const h = (location.hash||'').replace('#','');
+    if(['sub-npo','sub-work','sub-community'].includes(h)) openSub(h);
+    else backToCats();
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const btn = document.getElementById('backToTop'); if(!btn) return;
+  const showAt = 200, ring = btn.querySelector('.btt__ring');
+  const update = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = docH > 0 ? Math.min(y / docH, 1) : 0;
+    ring && ring.style.setProperty('--btt-progress', Math.round(ratio * 360)+'deg');
+    btn.classList.toggle('is-visible', y > showAt);
+  };
+  btn.addEventListener('click', e=>{ e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' }); });
+  window.addEventListener('scroll', update, { passive:true });
+  window.addEventListener('resize', update); update();
+})();
+</script>
+</body>
+</html>

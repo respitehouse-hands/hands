@@ -1,0 +1,1187 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>マイルートリンク | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- ページ専用CSS（このページだけに適用） -->
+  <style>
+    :root{
+      --my-accent:#009688;
+      --my-ink:#222;
+      --my-ink-2:#555;
+      --my-line:#e5e7eb;
+      --my-surface:#fff;
+      --my-radius:14px;
+      --my-max:1120px; /* 本文の最大幅 */
+    }
+
+    /* ページ幅と余白 */
+    .myroot-page{ padding-inline:min(4vw,24px); }
+    .myroot-wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    /* パンくず */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    /* ヒーロー */
+    .myroot-hero{ margin: .5rem 0 1rem; }
+    .myroot-eyebrow{ font:500 .95rem "Noto Sans JP",system-ui,sans-serif; color:#666; }
+    .myroot-title{ font:700 clamp(1.7rem,2.6vw,2.2rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; margin:.25rem 0 .5rem; color:var(--my-ink); }
+    .myroot-lead{ color:#444; margin:0 0 1.25rem; }
+
+    /* セカンダリーナビ（ページ内ジャンプ） */
+    .myroot-subnav{
+      position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--my-line);
+      margin:0 calc(-1 * min(4vw,24px)); padding:.5rem min(4vw,24px);
+    }
+    .myroot-subnav__list{ display:flex; gap:.5rem .75rem; flex-wrap:wrap; align-items:center; }
+    .myroot-subnav__list a{
+      display:inline-block; padding:.45em .9em; border:1px solid var(--my-line);
+      border-radius:999px; background:#fafafa; text-decoration:none; color:#111; font-weight:500;
+    }
+    .myroot-subnav__help{ color:#6b7280; font-size:.9rem; margin:.4rem 0 1.2rem; }
+
+    /* セクション見出し */
+    .myroot-section{ scroll-margin-top:96px; margin:1.25rem 0 1.5rem; }
+    .myroot-section__title{
+      font-weight:700; font-size:1.15rem; color:#111; margin:3rem 0 3rem;
+      padding-left:.5rem; border-left:4px solid var(--my-accent);
+    }
+    .myroot-note{ color:#666; margin:.2rem 0 .8rem; }
+
+    /* 強調ボックス */
+    .myroot-card{
+      background:var(--my-surface); border:1px solid var(--my-line); border-radius:var(--my-radius);
+      box-shadow:0 1px 0 #00000008; padding:1rem 1.1rem; margin:0;
+    }
+    .myroot-card__title{ font-weight:700; margin:0 0 .4rem; }
+    .myroot-card p{ margin:.25rem 0; color:#444; }
+
+    /* 2カラム（PC） */
+    .myroot-grid{
+      display:grid; gap: clamp(16px,2.4vw,24px);
+      grid-template-columns: 2fr 1fr;
+    }
+    @media (max-width: 960px){ .myroot-grid{ grid-template-columns:1fr; } }
+
+    /* ステップ（初めての方） */
+    .steps{ display:grid; gap:12px; grid-template-columns:1fr; }
+    .step{
+      position:relative; background:#fff; border:1px solid var(--my-line); border-radius:12px; padding:.85rem 1rem .9rem 3.2rem;
+    }
+    .step__num{
+      position:absolute; left:.9rem; top:.8rem; width:1.9rem; height:1.9rem; border-radius:999px;
+      background:var(--my-accent); color:#fff; font-weight:700; display:grid; place-items:center;
+    }
+    .step h3{ margin:.1rem 0 .35rem; font-weight:700; }
+    .step ul{ margin:.25rem 0 0 1.1rem; }
+    .step li{ margin:.15rem 0; }
+
+    /* 箇条書き（●付き） */
+    .dot-list{ margin:.4rem 0 .2rem 1.1rem; }
+    .dot-list li{ list-style:disc; margin:.25rem 0; }
+
+    /* Q&A（details） */
+    .qa{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; }
+    .qa details{ border-top:1px solid var(--my-line); background:#fff; }
+    .qa details:first-of-type{ border-top:0; }
+    .qa summary{
+      cursor:pointer; padding: .9rem 1rem; font-weight:700; display:flex; align-items:center; justify-content:space-between;
+    }
+    .qa .a{ padding: .2rem 1rem 1rem; color:#444; line-height:1.8; }
+    .qa summary::after{ content:"＋"; color:#999; }
+    details[open] > summary::after{ content:"－"; color:#666; }
+
+    /* 支援フロー（番号見出し） */
+    .flow{ display:grid; gap:12px; }
+    .flow h3{ font-weight:700; margin:.1rem 0 .35rem; }
+    .flow .n{ display:inline-grid; place-items:center; font-weight:700; width:1.6rem; height:1.6rem; border-radius:999px; background:#f1f5f9; color:#111; margin-right:.4rem; }
+
+    /* 情報表 */
+    .facts{ display:grid; gap:.5rem; grid-template-columns: 1fr 2fr; border:1px solid var(--my-line); border-radius:12px; padding:.8rem 1rem; background:#fff; }
+    .facts dt{ color:#555; }
+    .facts dd{ margin:0; }
+    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
+
+    /* 地図（画像差し替え前提） */
+    .map{
+      border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fafafa;
+      display:grid; place-items:center; min-height:220px;
+    }
+    .map img{ width:100%; height:auto; display:block; }
+
+    /* CTA（このページは本文幅に収める） */
+    .myroot-page + .cta-bar{
+      max-width:var(--my-max); margin:1.25rem auto 2rem; padding-inline:min(4vw,24px);
+      display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap;
+    }
+    .myroot-page + .cta-bar .cta{
+      flex:1 1 0; display:flex; align-items:center; justify-content:center; padding:.9em 1.2em; white-space:nowrap;
+    }
+    @media (max-width:680px){ .myroot-page + .cta-bar .cta{ width:100%; } }
+
+    /* 補助：小テキスト */
+    .muted{ color:#6b7280; font-size:.92rem; }
+    .small{ font-size:.92rem; }
+    .strong{ font-weight:700; }
+
+/* ===== Intro block（最初の説明だけ少し差別化） ===== */
+:root{
+  --myr-accent: #2f7d6d;       /* ハンズ緑寄りのアクセント */
+  --myr-surface: #f7fbf9;      /* ほんのり色のついた面 */
+  --myr-line:    #e5e7eb;
+}
+
+.myr-section { margin: 2.5rem auto 2rem; }
+.myr-section__title{
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  margin: 0 0 1rem;
+  padding-left: .6rem;
+  border-left: 6px solid var(--myr-accent);
+  line-height: 1.2;
+}
+
+/* 強調カード（1枚） */
+.myr-intro{
+  position: relative;
+  background: var(--myr-surface);
+  border: 1px solid var(--myr-line);
+  border-radius: 16px;
+  padding: clamp(16px, 2.6vw, 28px) clamp(16px, 2.6vw, 28px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+  overflow: hidden;
+}
+
+/* 左端にアクセントバー */
+.myr-intro::before{
+  content:"";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 8px;
+  background: var(--myr-accent);
+}
+
+/* ヘッダー行 */
+.myr-intro__head{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: .5rem;
+}
+.myr-intro__icon{
+  width: 36px; height: 36px; fill: var(--myr-accent);
+}
+.myr-intro__title{
+  font-weight: 700;
+  margin: 0 0 .15rem;
+  font-size: clamp(1.05rem,1.6vw,1.2rem);
+}
+.myr-intro__lead{
+  margin: 0;
+  color: #223;
+}
+
+/* 箇条書き：文章と揃いやすいシンプルな丸 */
+.myr-intro__list{
+  margin: .8rem 0 .8rem 0;
+  padding: 0;
+  list-style: none;
+}
+.myr-intro__list li{
+  position: relative;
+  padding-left: 1.35em;
+  margin: .4rem 0;
+  line-height: 1.75;
+}
+.myr-intro__list li::before{
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--myr-accent);
+  font-weight: 700;
+}
+
+/* 旧・右カードの内容を吸収する軽い囲み */
+.myr-callout{
+  background: #fff;
+  border: 1px dashed var(--myr-accent);
+  border-radius: 12px;
+  padding: .8rem .9rem;
+  line-height: 1.75;
+  margin: .6rem 0 .8rem;
+}
+.myr-callout__note{ color:#6b7280; margin-left:.4rem; }
+
+/* 受託表記 */
+.myr-intro__note{
+  margin: .4rem 0 0;
+  color:#4b5563;
+  font-size: .95rem;
+}
+
+/* セクション間の見た目に少し段差を付ける（差別化） */
+#about + section { margin-top: 2.2rem; }
+
+/* ===== 事業所ヒーローバンド ===== */
+/* 事業所ごとにここだけ変える */
+:root{
+  --unit-brand: #1f8a7a;        /* ベース色（マイルートリンク：ティール） */
+  --unit-brand-ink: #0f3d37;    /* 文字の濃色 */
+  --unit-grad-1: #e7f4f1;       /* グラデの薄色1 */
+  --unit-grad-2: #f4faf9;       /* グラデの薄色2 */
+}
+
+.unit-hero{
+  margin: 2rem 0 2.5rem;
+  background:
+    radial-gradient(1400px 300px at 10% -20%, var(--unit-grad-1), transparent 60%),
+    radial-gradient(900px 260px at 80% -30%, var(--unit-grad-2), transparent 60%),
+    linear-gradient(180deg, #fff, #fff);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.06);
+}
+.unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+
+.unit-hero__head{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(12px,2vw,20px);
+  align-items: center;
+  margin-bottom: clamp(14px,2vw,18px);
+}
+.unit-hero__emblem{
+  width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(120% 120% at 30% 20%, #ffffff, #dff1ee 70%);
+  border: 3px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+  box-shadow: 0 6px 20px rgba(31,138,122,.18);
+}
+.unit-hero__emblem svg{ width: 58%; height: 58%; fill: var(--unit-brand); }
+
+.unit-hero__title{ 
+  margin: 0 0 .1rem; 
+  font: 700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+  color: var(--unit-brand-ink);
+}
+.unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2937; }
+
+.unit-hero__chips{
+  margin:.6rem 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:.5rem .6rem;
+}
+.unit-hero__chips li{
+  border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #fff);
+  background:#fff; color:var(--unit-brand-ink);
+  border-radius:999px; padding:.28em .7em; font:500 .9rem "Noto Sans JP",system-ui;
+}
+
+/* 本文エリア */
+.unit-hero__grid{
+  display:grid; gap: clamp(16px,2.2vw,24px);
+  grid-template-columns: 1.6fr .9fr;
+}
+@media (max-width: 920px){ .unit-hero__grid{ grid-template-columns: 1fr; } }
+
+.unit-hero__points{ min-width: 0; }
+
+.checklist{ margin:.4rem 0 .6rem; padding:0; list-style:none; }
+.checklist li{
+  position:relative; padding-left:1.6em; margin:.4rem 0; line-height:1.8;
+}
+.checklist li::before{
+  content:"";
+  position:absolute;
+  left:0; top:.55em;
+  width:1.1rem; height:1.1rem;
+  background: var(--brand);               /* ピンクで塗る */
+  /* マスク（ベンダープレフィックス込み、改行なしの data URL） */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+  -webkit-mask-position: center;          mask-position: center;
+  -webkit-mask-size: 100% 100%;           mask-size: 100% 100%;
+}
+
+/* 備考 */
+.unit-hero__note{ color:#4b5563; margin:.4rem 0 0; }
+
+/* 右側の短いコールアウト */
+.unit-hero__callout{
+  background:#fff; border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);
+  border-left:6px solid var(--unit-brand);
+  border-radius:14px; padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
+  box-shadow:0 8px 26px rgba(31,138,122,.08);
+}
+.unit-hero__callout h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--unit-brand-ink); }
+.unit-hero__small{ color:#6b7280; font-size:.92rem; margin:.3rem 0 0; }
+.unit-hero__cta{ display:flex; flex-wrap:wrap; gap:.5rem .6rem; margin:.7rem 0 0; }
+.btn.ghost{
+  display:inline-block; text-decoration:none; font-weight:600;
+  padding:.55em .9em; border-radius:10px; color:var(--unit-brand-ink);
+  border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);
+  background:#fff;
+}
+.btn.ghost:hover{ background:color-mix(in oklab, var(--unit-brand) 6%, #fff); }
+
+/* 1) 文章ブロックの余白をゆったり */
+.unit-hero__points > * + * {               /* 段落やULの間隔 */
+  margin-top: clamp(.6rem, 1.2vw, 1rem);
+}
+.checklist li + li {                        /* 箇条書きの行間 */
+  margin-top: .45rem;
+  line-height: 1.9;
+}
+/* 備考の少し上に余白を追加 */
+.unit-hero__note { margin-top: .8rem; }
+
+/* 2) 右側コールアウト内のCTAを中央寄せ＆幅そろえ */
+.unit-hero__cta{
+  display: flex;
+  justify-content: center;                  /* ← 中央寄せ */
+  gap: .6rem .8rem;
+  flex-wrap: wrap;
+}
+.unit-hero__cta .btn{
+  min-width: 12rem;                         /* ボタン幅をそろえる */
+  text-align: center;
+}
+
+/* 3) 左のエンブレム（丸アイコン）が見切れないようにする */
+.unit-hero__head{
+  grid-template-columns: clamp(72px, 8vw, 92px) 1fr;  /* 左カラムを少し広げる */
+  align-items: center;
+}
+.unit-hero__emblem{
+  margin-left: .25rem;                      /* 枠から少し内側へ */
+  flex: 0 0 auto;                           /* つぶれ防止 */
+  overflow: visible;                        /* 切れ防止（念のため） */
+  box-shadow: 0 6px 20px rgba(31,138,122,.18);
+}
+/* エンブレムの中のアイコンも大きすぎないように */
+.unit-hero__emblem svg{
+  width: 58%;
+  height: 58%;
+}
+
+/* 4) イントロ全体の上下マージンを少し広めに（セクション間の呼吸） */
+.unit-hero{
+  margin: 2.2rem 0 2.8rem;
+}
+
+/* 丸数字カウンタ（1〜20）。対応外は下のフォールバックへ */
+@counter-style circled-decimal-fixed {
+  system: fixed;
+  symbols: '①' '②' '③' '④' '⑤' '⑥' '⑦' '⑧' '⑨' '⑩'
+           '⑪' '⑫' '⑬' '⑭' '⑮' '⑯' '⑰' '⑱' '⑲' '⑳';
+  suffix: " ";
+}
+
+/* ====== シンプルな番号フロー ====== */
+.flow {
+  counter-reset: step;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flow > li {
+  display: flex;                 /* ← アイコンと本文を横並び */
+  align-items: baseline;         /* ← 1行目ベースラインで揃える */
+  gap: .65rem;                   /* ← 番号と本文の間隔 */
+  margin: .55rem 0;
+  line-height: 1.9;
+}
+
+
+/* モバイルでは少し小さめに */
+@media (max-width: 640px) {
+  .flow > li { gap: .55rem; }
+  .flow > li::before {
+    width: 1.3rem; height: 1.3rem;
+    font-size: .9rem;
+  }
+}
+
+/* --- step 行のそろえ直し --- */
+.step{
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;  /* 左=丸番号 / 右=本文 */
+  column-gap: .6rem;
+  padding: .85rem 1rem .9rem 1rem;
+  align-items: center;                /* ★ ここを start から center に */
+}
+
+.step__num{
+  width: 1.9rem; height: 1.9rem; border-radius: 999px;
+  background: var(--my-accent); color: #fff; font-weight: 700;
+  display: grid; place-items: center;
+  align-self: center;                 /* 念のため */
+  justify-self: center;               /* 念のため */
+
+}
+
+.step > h3{
+  grid-column: 2; grid-row: 1;
+  margin: 0;
+  line-height: 1.3;
+  align-self: center;
+}
+
+/* 下に続く本文・カードは右カラムで上揃え */
+.step > p,
+.step .myroot-card,
+.step ul{
+  grid-column: 2;
+  align-self: start;                  /* ★ ここで上寄せに */
+}
+
+/* 丸番号のサイズをここで統一管理 */
+:root{
+  --flow-n-d: 1.6rem;   /* 直径 */
+  --flow-n-fs: .95rem;  /* 数字の文字サイズ */
+}
+
+/* 見出し行をFlexにして縦位置を中央で揃える */
+.flow .myroot-card > h3{
+  display: flex;
+  align-items: center;      /* ← これで丸とテキストの縦がピタッと揃う */
+  gap: .55rem;              /* 丸と文字の間隔 */
+  line-height: 1.4;         /* お好みで */
+}
+
+/* 丸番号（.flow .n） */
+.flow .n{
+  flex: 0 0 auto;
+  width: var(--flow-n-d);
+  height: var(--flow-n-d);
+  font-size: var(--flow-n-fs);
+  line-height: 1;
+  display: grid;            /* 数字を丸の中央へ */
+  place-items: center;
+  border-radius: 50%;
+  border: 1.8px solid var(--unit-brand, #2f7f67);
+  color: var(--unit-brand, #2f7f67);
+  /* 微調整したくなったら下の translate を少し触る（例: .05rem） */
+  translate: 0 0; 
+}
+
+/* 2カラム：左右を同じ高さに伸ばす */
+.myroot-grid{
+  display: grid;
+  gap: clamp(16px, 2.2vw, 24px);
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr);
+  align-items: stretch;           /* ← ここを stretch に */
+}
+
+/* グリッド直下の子を等高さに */
+.myroot-grid > * { height: 100%; }
+
+/* 左のカードもボックスいっぱいに伸びるように */
+.myroot-card { height: 100%; box-sizing: border-box; }
+
+/* 右のマップ：等高さに合わせる（2カラム時は比率を使わない） */
+.map{
+  height: 100%;
+  min-height: 300px;              /* 低すぎ防止のクッション */
+  border: 1px solid var(--my-line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-sizing: border-box;         /* ボーダー分の丸め誤差を減らす */
+}
+
+/* 埋め込みiframeをフィットさせる */
+.map iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* スマホ幅：1カラムにして、ここでだけ比率/最低高さを使う */
+@media (max-width: 920px){
+  .myroot-grid{
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .map{
+    height: auto;                 /* 2カラム時の 100% を解除 */
+    aspect-ratio: 4 / 3;          /* 好みで 16/10 や 16/9 でもOK */
+    min-height: 340px;
+  }
+  @supports not (aspect-ratio: 1){
+    .map{ padding-top: 75%; min-height: 0; position: relative; }
+    .map iframe{ position: absolute; inset: 0; }
+  }
+}
+
+/* 相談方法セクションのカード間にだけ 12px の余白 */
+#how .myroot-card { margin: 0; }               /* 既存の上下マージンをリセット */
+#how .myroot-card + .myroot-card { margin-top: 12px; }
+
+/* ---- アンカーの停止位置を補正（stickyサブナビの分だけ上に余白を確保） ---- */
+:root{
+  /* 初期値。JSで実測して上書きするので大体でOK */
+  --anchor-offset: 110px;
+}
+
+.myroot-section{
+  scroll-margin-top: var(--anchor-offset);
+}
+
+/* アニメーションはユーザー設定に合わせる */
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+}
+
+/* ===== サブナビ：本文幅に揃える（フルブリード解除） ===== */
+.myroot-subnav{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #fff;
+  border-bottom: 1px solid var(--my-line);
+
+  /* ここを変更：ネガティブマージンをやめて本文幅に合わせる */
+  margin: 0 auto;                    /* 中央寄せ */
+  max-width: var(--my-max);          /* 本文と同幅に固定 */
+  padding: .75rem min(4vw, 24px);    /* 内側余白で呼吸を作る */
+}
+
+/* 並び・中央ぞろえ（前回の設定＋微調整） */
+.myroot-subnav__list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;           /* ← 中央揃え */
+  gap: .6rem .95rem;                 /* ← ボタン間の余白を少し広げる */
+}
+
+/* ボタン自体の余白を増やしてタップ面積をアップ */
+.myroot-subnav__list a{
+  display: inline-block;
+  padding: .65em 1.15em;             /* ← ここで“もう少し大きく” */
+  border: 1px solid var(--my-line);
+  border-radius: 999px;
+  background: #fafafa;
+  color: #111;
+  font-weight: 500;                  /* 見出しとして少し強めに */
+  line-height: 1;                    /* 余計なはみ出し防止 */
+}
+
+/* 説明文も中央寄せ（任意） */
+.myroot-subnav__help{
+  text-align: center;
+  margin: .45rem 0 1.1rem;
+  color: #6b7280;
+  font-size: .9rem;
+}
+
+/* ===== サブナビのホバー/フォーカス/現在地 ===== */
+
+/* メインカラーの変数を共通化（どちらかが未定義でも拾えるように） */
+:root{
+  --subnav-accent: var(--unit-brand, var(--my-accent, #009688));
+  --subnav-ink:    var(--unit-brand-ink, #0f3d37);
+}
+
+/* ボタンの基礎（前回の拡張に＋α） */
+.myroot-subnav__list a{
+  display: inline-block;
+  padding: .65em 1.15em;
+  border: 1px solid var(--my-line);
+  border-radius: 999px;
+  background: #fafafa;
+  color: #111;
+  font-weight: 500;
+  line-height: 1;
+
+  /* アニメーション（好まない人向けの配慮は下で） */
+  transition: background-color .18s ease, border-color .18s ease,
+              color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+/* ホバー時：うっすら緑の面＋枠も緑に */
+.myroot-subnav__list a:hover{
+  background: color-mix(in oklab, var(--subnav-accent) 14%, #fff);
+  border-color: color-mix(in oklab, var(--subnav-accent) 70%, #fff);
+  color: var(--subnav-ink);
+  box-shadow: 0 4px 14px rgba(31,138,122,.14);
+  transform: translateY(-1px);
+}
+
+/* キーボードフォーカス：輪郭をはっきり */
+.myroot-subnav__list a:focus-visible{
+  outline: none;
+  border-color: color-mix(in oklab, var(--subnav-accent) 80%, #fff);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--subnav-accent) 26%, #fff),
+    0 6px 18px rgba(31,138,122,.16);
+  background: color-mix(in oklab, var(--subnav-accent) 12%, #fff);
+  color: var(--subnav-ink);
+}
+
+/* 現在地（aria-current または .is-active を付ける想定） */
+.myroot-subnav__list a[aria-current="true"],
+.myroot-subnav__list a.is-active{
+  background: color-mix(in oklab, var(--subnav-accent) 18%, #fff);
+  border-color: color-mix(in oklab, var(--subnav-accent) 75%, #fff);
+  color: var(--subnav-ink);
+  box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--subnav-accent) 55%, #fff);
+}
+
+/* モーション配慮 */
+@media (prefers-reduced-motion: reduce){
+  .myroot-subnav__list a{
+    transition: none;
+  }
+}
+
+/* 地域ネットワーク画像だけ少し小さく（中央寄せ） */
+#network .map img{
+  width: auto;                                /* 100% を解除 */
+  max-width: clamp(520px, 72vw, 800px);       /* 画面に応じて可変、上限を設定 */
+  height: auto;
+  display: block;
+  margin-inline: auto;                        /* 中央寄せ */
+}
+
+/* 全ての .myroot-section__title を控えめに拡大 */
+.myroot-section__title{
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+@supports not (mask-image: url("")) {
+  .checklist li::before{
+    content:"✓";
+    background:none; width:auto; height:auto;
+    color:var(--brand); font-weight:700; top:0.1em;
+  }
+}
+
+/* ===== ヘッダーナビ：上段リンクの色をサブと同じ緑に統一 ===== */
+#site-header .c-header__list > .c-header__list-item > .c-header__list-link:hover,
+#site-header .c-header__list > .c-header__list-item > .c-header__list-link:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 14%, #fff) !important;
+  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 70%, #fff) !important;
+  color: var(--unit-brand-ink, #0f3d37) !important;
+  box-shadow: 0 6px 18px rgba(31,138,122,.12) !important;
+}
+
+/* 現在地表示（is-current や aria-current）も緑面に */
+#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link,
+#site-header .c-header__list > .c-header__list-item > .c-header__list-link[aria-current="page"]{
+  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 18%, #fff) !important;
+  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 75%, #fff) !important;
+  color: var(--unit-brand-ink, #0f3d37) !important;
+  box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--unit-brand, #1f8a7a) 55%, #fff) !important;
+}
+
+/* 上段 <li> に背景を付けている共通指定があれば打ち消す（保険） */
+#site-header .c-header__list > .c-header__list-item{
+  background: transparent !important;
+}
+
+/* 現在地（.is-current）は“常時”色を付けない */
+#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link{
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;     /* 文字色も通常に戻す */
+}
+
+/* ただしホバー/フォーカス時は緑に（他の上段と同じ） */
+#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:hover,
+#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 14%, #fff) !important;
+  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 70%, #fff) !important;
+  color: var(--unit-brand-ink, #0f3d37) !important;
+  box-shadow: 0 6px 18px rgba(31,138,122,.12) !important;
+}
+
+/* ===== アクセス系（myroot版）横スク抑止 ===== */
+#page,
+.l-main.myroot-page,
+.myroot-wrap,
+#access.myroot-section,
+.myroot-grid,
+.map.map--embed {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip; /* hiddenでもOK。clipの方が副作用少なめ */
+}
+
+
+
+/* Mapのiframeを完全レスポンシブ化（属性幅・インライン幅も無効化） */
+.map.map--embed iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;  /* 必要なら比率変更OK */
+  border: 0;
+}
+
+/* ラッパー側でも横はみ出しを封じる */
+.map.map--embed { overflow: hidden; }
+
+/* すでに入れてたら重複OKの“土台” */
+html, body { width:100%; max-width:100%; overflow-x:hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+img, svg, video, canvas { display:block; max-width:100%; height:auto; }
+
+/* 2カラム：左右を同じ高さに伸ばす（列定義は上で既に 1.6fr /.9fr） */
+.myroot-grid { align-items: stretch; }
+@media (max-width: 920px){
+  .myroot-grid { align-items: start; }
+}
+
+/* ===== スマホだけ：番号付き行の二行目以降を揃える（ぶら下げ） ===== */
+@media (max-width: 560px){
+  /* 「支援スタート」内の 1〜11 のリスト */
+  #flow .flow--circled{
+    margin: 0;
+    padding: 0;
+  }
+  #flow .flow--circled > li{
+    list-style: none;          /* 数字をテキストで書いている想定なのでマーカーは消す */
+    padding-left: 1.9em;       /* ← 2行目以降の開始位置（数字+ドットの幅ぶん） */
+    text-indent: -1.9em;       /* ← 1行目だけ左へ戻して数字を“外側”に出す */
+    line-height: 1.9;
+  }
+
+  /* 同セクション内の他の1行見出しも少しだけ詰める（任意） */
+  #flow .myroot-card h3{ font-size: 1.02rem; }
+  #flow .myroot-card p,
+  #flow .myroot-card li{ font-size: .97rem; }
+}
+
+/* 超狭幅（SE級）でさらに詰めたい場合 */
+@media (max-width: 380px){
+  #flow .flow--circled > li{
+    padding-left: 1.7em;
+    text-indent: -1.7em;
+  }
+}
+
+.myroot-wrap { max-width: var(--my-max) !important; margin-inline: auto !important; }
+
+
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+   <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <!-- メイン -->
+  <main id="main" class="l-main myroot-page">
+    <section class="myroot-wrap" aria-labelledby="myroot-title">
+      <!-- パンくず -->
+      <nav class="myroot-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="office.html">事業所紹介</a></li>
+          <li aria-current="page">マイルートリンク</li>
+        </ol>
+      </nav>
+
+<!-- ========= ヒーローバンド：マイルートリンク ========= -->
+<section class="unit-hero" aria-labelledby="unit-hero-title">
+  <div class="unit-hero__inner">
+    <div class="unit-hero__head">
+      <div class="unit-hero__emblem" aria-hidden="true">
+        <!-- 任意のアイコン（SVGでも絵文字でもOK）-->
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.5 0-8 2-8 4.5V20h16v-1.5C20 16 16.5 14 12 14Z"/>
+        </svg>
+      </div>
+      <div class="unit-hero__titlewrap">
+        <h2 id="unit-hero-title" class="unit-hero__title">マイルートリンク</h2>
+        <p class="unit-hero__lead">
+          一関広域（一関市・平泉町）の障がいのある方と、障がい者雇用に携わる企業を支援する相談事業所です。
+        </p>
+      </div>
+    </div>
+
+    <div class="unit-hero__grid">
+      <div class="unit-hero__points">
+        <ul>
+          <li>マイルートリンクには『<b>自分の道・選択が人や機会、チャンスと繋がっていく</b>』という意味が込められています。</li>
+          <li>障がいの種別は問いません。ご本人、ご家族、どなたでも相談できます。</li>
+          <li>就業や生活のことなど、どんなご相談にも対応します。お気軽にご相談ください。</li>
+        </ul>
+        <p class="unit-hero__note">
+          　　受託団体：特定非営利活動法人レスパイトハウス・ハンズ（岩手県／岩手労働局 受託事業）
+        </p>
+      </div>
+
+      <aside class="unit-hero__callout" aria-label="まずはお気軽に">
+        <h3>まずはお気軽に</h3>
+              <br>
+        <div class="unit-hero__cta">
+          <a class="btn ghost" href="tel:0191-48-3787">電話で相談・予約</a>
+          <a class="btn ghost" href="mailto:hands.nakapotsu@gmail.com">メールで問い合わせ</a>
+        </div>
+<br>
+  <p class="unit-hero__small">※相談は無料です。予約制にご協力ください。</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+      <!-- サブナビ（ページ内） -->
+      <nav class="myroot-subnav" aria-label="このページ内のメニュー">
+        <div class="myroot-subnav__list">
+          <a href="#first">初めての方へ</a>
+          <a href="#how">相談方法</a>
+          <a href="#flow">支援内容の一例</a>
+          <a href="#staff">スタッフの体制</a>
+          <a href="#qa">Q&amp;A</a>
+          <a href="#access">事業所案内</a>
+
+
+        </div>
+        <p class="myroot-subnav__help muted small">クリックすると各セクションへ移動します。</p>
+      </nav>
+
+
+
+      <!-- 初めての方へ -->
+      <section id="first" class="myroot-section" aria-labelledby="first-title">
+        <h2 id="first-title" class="myroot-section__title">初めてご利用の方へ</h2>
+        <div class="steps">
+          <!-- 1 予約 -->
+          <article class="step">
+            <div class="step__num">1</div>
+            <h3>事前予約</h3>
+            <p>マイルートリンクは<span class="strong">事前予約制</span>です。電話かメールにてご予約ください。<br>ご予約がない場合、お待たせすることがあります。</p>
+            <p class="muted small">ご理解とご協力をお願いします。</p>
+          </article>
+          <!-- 2 登録 -->
+          <article class="step">
+            <div class="step__num">2</div>
+            <h3>登録（約1時間）</h3>
+            <p>利用規約・個人情報の取扱いに同意いただき、登録シートをご記入いただきます。</p>
+            <div class="myroot-card" style="margin-top:.6rem">
+              <p class="myroot-card__title small">当日の持ち物（例）</p>
+              <ul class="dot-list">
+                <li>障がい者手帳、お薬手帳、年金証書、心理検査結果、診断書</li>
+                <li>履歴書、職務経歴書 など（ある範囲でOK）</li>
+              </ul>
+              <p class="small muted">※ご本人を理解する大切な情報です。可能な範囲でお持ちください。</p>
+            </div>
+          </article>
+          <!-- 3 相談 -->
+          <article class="step">
+            <div class="step__num">3</div>
+            <h3>相談</h3>
+            <p>登録シートをご記入後、お話を伺います。<br>これまでの職歴や健康状態、家庭状況、希望等を確認します。<br>就業面・生活面について継続した支援を行うための方向性を、一緒に考えていきます。</p>
+          </article>
+        </div>
+      </section>
+
+ <!-- 相談方法 -->
+      <section id="how" class="myroot-section" aria-labelledby="how-title">
+        <h2 id="how-title" class="myroot-section__title">相談方法</h2>
+        <div class="myroot-card">
+          <h3 class="myroot-card__title">ご利用できる方</h3>
+          <ul class="dot-list">
+            <li>一関市・平泉町にお住まいの障がいのある方</li>
+            <li>一般企業での就職を希望、または既に就職されている方</li>
+            <li>障がい者雇用をご検討／実施中の企業の方</li>
+          </ul>
+        </div>
+        <div class="myroot-card">
+          <h3 class="myroot-card__title">相談の方法</h3>
+          <ul class="dot-list">
+            <li>来所のほか、電話・メール、家庭や企業への訪問面談も可能です。<br>
+              <span class="muted small">HPからのお問い合わせは本ページ上部の「メールで問い合わせ」から。</span>
+            </li>
+            <li>一関市役所・各支所、平泉町保健センター、ハローワーク一関等の支援機関にも出向きます。</li>
+            <li>相談は無料です。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 企業向け -->
+      <section id="biz" class="myroot-section" aria-labelledby="biz-title">
+        <h2 id="biz-title" class="myroot-section__title">企業の皆様への支援</h2>
+        <div class="myroot-card">
+          <ul class="dot-list">
+            <li>障がいのある方の企業実習に関するご相談</li>
+            <li>障がい者雇用に関するご相談全般</li>
+            <li>定着訪問および生活支援</li>
+            <li>一関ハローワークと連携して対応します</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 相談と支援の流れ -->
+      <section id="flow" class="myroot-section" aria-labelledby="flow-title">
+        <h2 id="flow-title" class="myroot-section__title">相談と支援内容の一例</h2>
+        <div class="flow">
+          <div class="myroot-card"><h3><span class="n">1</span>予約</h3><p>　　「初めてご利用の方へ」を参考にご予約ください。</p></div>
+          <div class="myroot-card"><h3><span class="n">2</span>初回面談</h3><p>　　職歴・健康状態・家庭状況・希望の確認。</p></div>
+          <div class="myroot-card"><h3 class="unit-subtitle"><span class="n">3</span>支援スタート</h3>
+            <ol class="flow flow--circled">
+              <li>　　1. 通院同行：</span>就職活動の留意点や疾患の状態共有</li>
+              <li>　　2. ハローワーク同行：求職相談、雇用保険手続き</li>
+              <li>　　3. 企業見学：希望求人にもとづく見学打診・同行</li>
+              <li>　　4. 企業実習：双方実習を希望した場合、実習開始(3日以上の実習で適性把握・ミスマッチ軽減)</li>
+              <li>　　5. 振り返り：良かった点や必要な支援を踏まえ応募可否、意思を確認</li>
+              <li>　　6. 求人応募：ハローワークワーク経由で紹介状取得</li>
+              <li>　　7. 採用面接：履歴書・身だしなみチェック</li>
+              <li>　　8. 面接同行：採否通知。採用→定着支援／不採用→再トライ</li>
+              <li>　　9. 就業前：入社書類の準備、必要な支援</li>
+              <li>　　10. 就業初日：必要に応じて同行・訪問</li>
+              <li>　　11. 職場訪問：ご本人・企業双方にヒアリング（就業面／生活面）</li>
+            </ol>
+            <p class="muted small">※上記は一例です。ご希望や状況に合わせて支援を設計します。</p>
+          </div>
+        </div>
+      </section>
+
+ <!-- スタッフ体制 -->
+      <section id="staff" class="myroot-section" aria-labelledby="staff-title">
+        <h2 id="staff-title" class="myroot-section__title">スタッフの体制</h2>
+        <div class="myroot-card">
+          <ul class="dot-list">
+            <li><span class="strong">就業支援担当者：</span>就職準備支援や企業への雇用管理の助言（職場実習の斡旋、履歴書・面接支援、定着支援など）</li>
+            <li><span class="strong">生活支援担当者：</span>長く働くための日常生活・健康維持の助言（障害年金、家族関係、お金の管理、生活設計など）</li>
+          </ul>
+          <p class="muted small">必要に応じて地域の専門機関・行政と連携します。</p>
+        </div>
+      </section>
+
+      <!-- Q&A -->
+      <section id="qa" class="myroot-section" aria-labelledby="qa-title">
+        <h2 id="qa-title" class="myroot-section__title">Q&amp;A</h2>
+        <div class="qa">
+          <details>
+            <summary>Q1. 他にどんなことをしていますか？</summary>
+            <div class="a">
+              在職者交流会、ピアサポートを開催します。在職者交流会は、すでに働いている登録者の方を対象とした交流会です。登録者同士で交流を深めることで、ストレス発散や就労意欲の向上につなげます。またピアサポートは、すでに就労されている登録者が、就労を目指す方に対して、これまでの体験などについて共有を行い、就職活動中の方同士で悩みなどを分かち合う会です。
+            </div>
+          </details>
+          <details>
+            <summary>Q2. 「なかぽつ」って何？</summary>
+            <div class="a">
+              正式名称は「障がい者就業・生活支援センター」。就業と生活の<span class="strong">両方</span>を相談できる施設です。
+              名称の「就業・生活」の間に「・」があることから「なかぽつ」と呼ばれています。<br>
+              <span class="muted small">全国に339か所、岩手にはマイルートリンクを含めて9か所あります。（令和7年度現在）</span>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- アクセス -->
+      <section id="access" class="myroot-section" aria-labelledby="access-title">
+        <h2 id="access-title" class="myroot-section__title">事業所のご案内</h2>
+        <div class="myroot-grid">
+          <div class="myroot-card">
+            <dl class="facts">
+              <div><dt>所在地</dt><dd>〒021-0881　一関市大町4-29 なのはなプラザ4階</dd></div>
+              <div><dt>受付時間</dt><dd>平日（月～金）10:00–17:00（最終受付16:00／予約優先）</dd></div>
+              <div><dt>TEL</dt><dd><a href="tel:0191-48-3787">0191-48-3787</a></dd></div>
+              <div><dt>FAX</dt><dd>0191-48-3788</dd></div>
+              <div><dt>MAIL</dt><dd><a href="mailto:hands.nakapotsu@gmail.com">hands.nakapotsu@gmail.com</a></dd></div>
+              <div><dt>駐車場</dt><dd>なのはなプラザ無料駐車場／一関図書館駐車場</dd></div>
+            </dl>
+          </div>
+<div class="map map--embed">
+  <iframe
+    title="マイルートリンク周辺地図"
+    src="https://www.google.com/maps?q=なのはなプラザ%204F%20一関&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen>
+  </iframe>
+</div>
+        </div>
+      </section>
+
+         </section>
+  </main>
+
+  <!-- CTA（本文幅に揃える2ボタン） -->
+  <nav class="cta-bar" aria-label="主要導線">
+    <a class="cta" href="tel:0191-48-3787" aria-label="電話で相談">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      電話で相談
+    </a>
+    <a class="cta" href="mailto:hands.nakapotsu@gmail.com" aria-label="メールで問い合わせ">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      メールで問い合わせ
+    </a>
+  </nav>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+      </svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- フッター（共通） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html" aria-current="page">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div><!-- /#page -->
+
+<!-- 共通JS（ページ遷移フェード／上へ戻る など） -->
+<script src="js/site.js"></script>
+
+<script>
+document.getElementById('loadMap')?.addEventListener('click', function(){
+  const box = document.getElementById('gmapBox');
+  box.classList.add('map--embed');
+  box.innerHTML =
+    '<iframe src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E5%A4%A7%E7%94%BA4-29%20%E3%81%AA%E3%81%AE%E3%81%AF%E3%81%AA%E3%83%97%E3%83%A9%E3%82%B6&hl=ja&z=16&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="マイルートリンク（なのはなプラザ4階）の地図"></iframe>';
+});
+</script>
+
+
+</body>
+</html>

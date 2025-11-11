@@ -1,0 +1,2876 @@
+/* スクロールバーの有無で横幅が変わらないよう常に溝を確保 */
+html { scrollbar-gutter: stable both-edges; }
+
+/* 古いブラウザ向けフォールバック（常に縦スクロールを確保） */
+@supports not (scrollbar-gutter: stable) {
+  body { overflow-y: scroll; }
+}
+
+
+.c-header {
+  align-items: center;
+  background-color: #000; /* カスタマイズしてください */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem; /* カスタマイズしてください */
+  width: 100%;
+}
+
+.c-header__logo {
+  color: #000; /* カスタマイズしてください */
+  min-width: 80px; /* カスタマイズしてください */
+  text-decoration: none;
+}
+
+.c-header__list {
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.c-header__list-item {
+  list-style: none;
+  text-decoration: none;
+}
+
+.c-header__list-link {
+  color: #000; /* カスタマイズしてください */
+  display: block;
+  margin-right: 20px; /* カスタマイズしてください */
+  text-decoration: none;
+  padding: 10px 0px; /* カスタマイズしてください */
+}
+
+.c-header__list-link:hover {
+  filter: opacity(0.6); /* カスタマイズしてください */
+}
+
+.c-hamburger-menu {
+  position: relative;
+}
+
+@media screen and (max-width: 750px) {
+  .c-hamburger-menu__list {
+    background-color: #ffffff; /* カスタマイズしてください */
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    padding: 2rem; /* カスタマイズしてください */
+    position: absolute;
+    transform: translateX(-100%);
+    transition: 0.3s; /* カスタマイズしてください */
+    top: 100%;
+    width: 100%;
+  }
+
+  #hamburger:checked ~ .c-hamburger-menu__list {
+    transform: translateX(0%);
+    transition: 0.3s;
+  }
+}
+
+.c-hamburger-menu__input {
+  display: none;
+}
+
+.c-hamburger-menu__bg {
+  background-color: #000; /* カスタマイズしてください */
+  cursor: pointer;
+  display: none;
+  height: 100vh;
+  left: 0;
+  opacity: 0.4; /* カスタマイズしてください */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+#hamburger:checked ~ .c-hamburger-menu__bg {
+  display: block;
+}
+
+.c-hamburger-menu__button {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .c-hamburger-menu__button {
+    align-items: center;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* カスタマイズしてください */
+    height: 32px; /* カスタマイズしてください */
+    justify-content: center;
+    width: 32px; /* カスタマイズしてください */
+  }
+}
+
+.c-hamburger-menu__button-mark {
+  background-color: #000; /* カスタマイズしてください */
+  display: block;
+  height: 1px; /* カスタマイズしてください */
+  transition: 0.3s; /* カスタマイズしてください */
+  width: 20px; /* カスタマイズしてください */
+}
+
+@media screen and (max-width: 750px) {
+  #hamburger:checked
+    ~ .c-hamburger-menu__button
+    .c-hamburger-menu__button-mark:nth-of-type(1) {
+    transform: translate(2px, 1px) rotate(45deg); /* カスタマイズしてください */
+    transform-origin: 0%; /* カスタマイズしてください */
+  }
+  #hamburger:checked
+    ~ .c-hamburger-menu__button
+    .c-hamburger-menu__button-mark:nth-of-type(2) {
+    opacity: 0;
+  }
+  #hamburger:checked
+    ~ .c-hamburger-menu__button
+    .c-hamburger-menu__button-mark:nth-of-type(3) {
+    transform: translate(2px, 3px) rotate(-45deg); /* カスタマイズしてください */
+    transform-origin: 0%; /* カスタマイズしてください */
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* ページのベース色 */
+}
+
+/* ▼ ロゴのサイズ設定（PC～スマホ対応） */
+.c-header__logo img {
+  height: 80px;   /* ← PC表示時の基準。自然に見えるサイズ */
+  width: auto;
+  display: block;
+}
+
+/* ▼ 画面幅が狭くなったときに少しずつ小さく */
+@media (max-width: 1024px) {
+  .c-header__logo img {
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .c-header__logo img {
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .c-header__logo img {
+    height: 60px;
+  }
+}
+
+/* ▼ 大画面（PC）では少し大きく */
+@media (min-width: 1025px) {
+  .c-header__logo img {
+    height: 130px; /* ← ここを調整。存在感を出したいなら 110px でもOK */
+  }
+}
+
+.c-header {
+  background-color: #f0f8f4; /* 薄いミントグリーン */
+}
+
+.c-hamburger-menu__list {
+  background: linear-gradient(to bottom, #ffffff, #ffffff);
+}
+
+li.c-header__list-item {
+ background-color: #f0f8f4; /* 薄いミントグリーン */
+
+}
+
+/* ===== ドロップダウン（追加分） ===== */
+.has-sub { position: relative; }
+
+/* ドロップダウン本体（PC） */
+.has-sub > .submenu {
+  list-style: none;
+  margin: 0;
+  padding: .5rem 0;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  min-width: 180px;
+  background: #f0f8f4;                 /* ヘッダーと統一 */
+  border: 1px solid #e3efe9;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: .16s ease;
+  z-index: 999;
+}
+
+.has-sub > .submenu li a {
+  display: block;
+  padding: .6rem .9rem;
+  color: #2f3e33;
+  text-decoration: none;
+}
+.has-sub > .submenu li a:hover {
+  background: #eaf3ee;                 /* 少し濃いトーンでホバー */
+}
+
+/* PC：ホバーで表示 */
+@media (min-width: 751px){
+  .has-sub:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+/* スマホ：ハンバーガー内では常に下に展開（タップでページ遷移） */
+@media (max-width: 750px){
+  .has-sub { position: static; }
+  .has-sub > .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border: 0;
+    border-radius: 6px;
+    background: #eaf3ee;
+    margin: .25rem 0 0;
+    box-shadow: none;
+  }
+  .has-sub > .submenu li a { padding: .7rem 1rem; }
+}
+
+/* ===== ドロップダウン（PCはホバー、スマホは＋で開閉） ===== */
+.has-sub { position: relative; }
+
+/* ▼ ドロップダウン基礎（PCスタイル） */
+.has-sub > .submenu{
+  list-style: none;
+  margin: 0;
+  padding: .5rem 0;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  min-width: 180px;
+  background: #f0f8f4;                 /* ヘッダー色と統一 */
+  border: 1px solid #e3efe9;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: .16s ease;
+  z-index: 999;
+}
+.has-sub > .submenu li a{
+  display: block;
+  padding: .6rem .9rem;
+  color: #2f3e33;
+  text-decoration: none;
+}
+.has-sub > .submenu li a:hover{ background: #eaf3ee; }
+
+/* ▼ PC（751px以上）：ホバーで表示、＋ボタンは隠す */
+@media (min-width: 751px){
+  .has-sub:hover > .submenu{
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .has-sub .sub-toggle,
+  .has-sub .sub-caret{ display: none; }
+}
+
+/* ▼ PCは今まで通り：hoverで出す（そのままでOK） */
+@media (min-width: 751px){
+  /* 既存の .has-sub:hover > .submenu ... が効いていればOK */
+}
+
+/* ▼ スマホ：＋で開閉。初期は非表示、右端に＋配置 */
+@media (max-width: 750px){
+  .has-sub{
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr auto; /* 左：テキスト 右：＋ */
+    align-items: center;
+    width: 100%;
+  }
+
+  /* 初期は閉じる */
+  .has-sub > .submenu{
+    position: static;
+    display: none;
+    background: #eaf3ee;
+    margin: .25rem 0 0;
+    border-radius: 6px;
+    box-shadow: none;
+    border: 0;
+    padding: .5rem 0;
+  }
+
+  /* トグルは非表示（状態だけ保持） */
+  .has-sub .sub-toggle{ display: none; }
+
+  /* 右端の＋ボタン */
+  .has-sub .sub-caret{
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    cursor: pointer; user-select: none;
+    justify-self: end;                /* ← 右端に寄せる */
+  }
+  .has-sub .sub-caret::after{
+    content: "＋";
+    font-size: 18px; line-height: 1; color:#2f3e33;
+  }
+
+  /* ▼ ここがポイント：チェックされたら .submenu を表示 */
+  /* 間に a と label があっても届くように「~（一般兄弟）」を使う */
+  .has-sub .sub-toggle:checked ~ .submenu{
+    display: block;
+  }
+  .has-sub .sub-toggle:checked ~ .sub-caret::after{
+    content: "－";
+  }
+
+  .has-sub > .submenu li a{ padding: .7rem 1rem; display:block; }
+}
+
+/* === スマホ幅でのサブメニュー開閉を最優先で上書き === */
+@media (max-width: 750px){
+  .has-sub{
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr auto; /* 左：テキスト / 右：＋ */
+    align-items: center;
+    width: 100%;
+  }
+
+  .has-sub > .c-header__list-link{ padding-right: .5rem; }
+
+  /* 初期は閉じる。PC用の opacity/visibility/transform をリセットしておく */
+  .has-sub > .submenu{
+    position: static;
+    display: none;
+    width: 100%;
+    background: #eaf3ee;
+    margin: .25rem 0 0;
+    border-radius: 6px;
+    box-shadow: none;
+    border: 0;
+    padding: .5rem 0;
+
+    /* ← 重要：見えない指定を解除 */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  /* 行ごとの帯が邪魔なら消す */
+  li.c-header__list-item{ background: transparent !important; }
+
+  /* チェックボックスは見せない（状態のみ） */
+  .has-sub .sub-toggle{ display: none; }
+
+  /* 右端の＋／－ボタン */
+  .has-sub .sub-caret{
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    cursor: pointer; user-select: none;
+    justify-self: end;
+  }
+  .has-sub .sub-caret::after{
+    content: "＋";
+    font-size: 18px; line-height: 1; color:#2f3e33;
+  }
+
+  /* チェック時に表示（displayだけでOK。見えない指定は上で解除済み） */
+  .has-sub .sub-toggle:checked ~ .submenu{
+    display: block !important;
+  }
+  .has-sub .sub-toggle:checked ~ .sub-caret::after{
+    content: "－";
+  }
+
+  .has-sub > .submenu li a{
+    display: block;
+    padding: .7rem 1rem;
+    color: #2f3e33;
+    text-decoration: none;
+  }
+}
+
+:root{
+  --mint: #f0f8f4;
+  --mint-2: #eaf3ee;
+  --ink: #2f3e33;
+  --accent: #2f7d5b;  /* 深めグリーン */
+  --accent-2: #5ba789;
+}
+
+/* ヒーロー */
+.hero{ position: relative; background: var(--mint); }
+.hero > img{
+  width: 100%; height: clamp(180px, 28vw, 320px);
+  object-fit: contain; object-position: left center;
+  display: block; margin: 0 auto; padding: 12px 2%;
+}
+.hero__content{
+  position: absolute; inset: 0; display: grid;
+  align-content: center; padding-left: min(8%, 80px);
+  pointer-events: none; /* 画像の上でもクリック邪魔しない */
+}
+.hero__lead{
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  color: var(--ink); text-shadow: 0 1px 0 #fff;
+  font-weight: 700; margin: 0 0 .8rem 0;
+}
+.hero__actions{ display: flex; gap: .8rem; pointer-events: auto; }
+.btn{
+  display: inline-block; padding: .8rem 1.2rem; border-radius: 10px;
+  font-weight: 700; text-decoration: none; font-size: 1rem;
+}
+.btn--primary{ background: var(--accent); color: #fff; }
+.btn--primary:hover{ background: var(--accent-2); }
+.btn--secondary{ background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+.btn--secondary:hover{ background: var(--mint-2); }
+
+/* NEWS */
+.section__header{
+  display:flex; justify-content: space-between; align-items: baseline;
+  padding: 4rem 2%;
+}
+.section__header h2{ font-size: 1.4rem; margin: 0; color: var(--ink); }
+.section__more{ font-size: .95rem; color: var(--accent); text-decoration: none; }
+.section__more:hover{ text-decoration: underline; }
+
+.news{ background:#fff; }
+.news__list{
+  list-style:none; margin:0; padding: .2rem 2% 1.2rem;
+  display:grid; gap:.6rem;
+}
+.news__item a{
+  display:grid; grid-template-columns: auto auto 1fr; gap:.8rem;
+  align-items:center; padding: .9rem 1rem; border-radius:10px;
+  background: var(--mint-2); color: var(--ink); text-decoration:none;
+}
+.news__item a:hover{ background:#e3efe9; }
+.news__date{ font-variant-numeric: tabular-nums; color:#4a5a51; }
+.news__tag{
+  font-size:.85rem; padding:.15rem .5rem; border-radius:999px;
+  background:#dff3ea; color:#236d53;
+}
+.news__title{ font-size:1rem; }
+
+/* 主要導線バー */
+.cta-bar{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:.8rem; padding: 2rem 2% 2rem;
+}
+.cta{
+  display:block; text-decoration:none; text-align:center;
+  padding:1rem; border-radius:12px; background:var(--accent); color:#fff; font-weight:700;
+}
+.cta:hover{ background: var(--accent-2); }
+
+/* アクセシビリティ強化 */
+:focus-visible{ outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; }
+}
+
+/* レスポンシブ微調整 */
+@media (max-width: 768px){
+  .hero__content{ position: static; padding: 0 2% 1rem; }
+  .hero__actions{ flex-wrap: wrap; }
+  .news__item a{ grid-template-columns: 1fr; gap:.4rem; }
+}
+
+/* 画像を控えめサイズで中央配置 */
+.hero { background: var(--mint); }
+.hero__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 2% 16px;
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+.hero__img {
+  width: clamp(280px, 42vw, 560px); /* 小さめ～中くらいまで可変 */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 以前のオーバーレイを無効化（残っていても影響しないように） */
+.hero__content { position: static !important; padding: 0 !important; }
+.hero__lead { display: none; }
+
+/* 視覚的非表示（読み上げには残す） */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
+/* ボタンの並び（使うなら） */
+.hero__actions {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+}
+@media (max-width: 768px){
+  .hero__actions { flex-direction: column; width: 100%; max-width: 420px; }
+}
+
+/* ヘッダーはミントのまま */
+.c-header { background: #f0f8f4; }
+
+/* ヒーローは白背景にしてセクションを分ける */
+.hero {
+  background: #fff;               /* ← ミントから白へ */
+  border-top: 1px solid #e9efe9;  /* 境界のうすいライン（任意） */
+}
+
+.hero__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 2% 20px;          /* ヘッダーとしっかり間隔 */
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+/* opening.png を控えめ・中央 */
+.hero__img {
+  width: clamp(280px, 40vw, 520px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ボタンを使うなら中央に並べる（不要ならこのブロック削除でOK） */
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+@media (max-width: 768px){
+  .hero__actions { flex-direction: column; width: 100%; max-width: 420px; }
+}
+
+/* 余白スケール（画面幅に応じて自動で増減） */
+:root{
+  --space-hero-top: clamp(48px, 8vw, 120px);     /* ヘッダー下～ヒーローの上側余白 */
+  --space-hero-bottom: clamp(28px, 6vw, 80px);   /* ヒーロー下の余白 */
+  --space-cta: clamp(16px, 3.5vw, 36px);         /* 画像とボタンの間 */
+}
+
+/* ヒーロー：白背景・余白をしっかり */
+.hero{
+  background: #fff;
+  border-top: 1px solid #e9efe9; /* 境界ライン（不要なら消してOK） */
+}
+.hero__inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-hero-top) 2% var(--space-hero-bottom);
+  display: grid;
+  place-items: center;
+  gap: clamp(12px, 2.5vw, 24px);
+}
+
+/* opening.png を控えめサイズのまま中央 */
+.hero__img{
+  width: clamp(300px, 38vw, 520px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ボタンを使う場合：中央配置＋上下に余白をとる */
+.hero__actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-cta); /* 画像との間隔 */
+}
+.hero__actions .btn{ min-width: 220px; } /* タップしやすく */
+
+@media (max-width: 768px){
+  .hero__actions{
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    gap: 10px;
+  }
+}
+
+/* NEWS の前にも余白を追加（ヒーローと分ける） */
+.news{ 
+  margin-top: clamp(24px, 6vw, 72px);
+}
+
+/* ボタンの文字を完全センターに */
+.btn{
+  display: inline-flex;         /* 中央寄せしたいのでinline-flex */
+  align-items: center;          /* 縦中央 */
+  justify-content: center;      /* 横中央 */
+  text-align: center;           /* 行内テキストも中央 */
+  padding: .9rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1rem;
+  min-width: 220px;             /* 当たり判定を確保 */
+}
+
+.hero__actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;      /* ボタン自体も中央に */
+  margin-top: var(--space-cta);
+}
+
+@media (max-width: 768px){
+  .hero__actions{ flex-direction: column; max-width: 420px; width: 100%; }
+}
+
+/* === ハンバーガー：重なり順と展開の確実化（750px以下） === */
+@media (max-width: 750px){
+  /* ヘッダーと各層のz-indexを明示して、下のコンテンツより前面に */
+  .c-hamburger-menu{ position: relative; z-index: 2000; }
+  .c-hamburger-menu__button{ z-index: 2002; }  /* 三本線/×ボタン */
+  .c-hamburger-menu__list{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #ffffff);
+    transform: translateX(-100%) !important;   /* 初期は画面外へ */
+    transition: transform .3s ease;
+    z-index: 2001;                              /* リストが一番上に来る */
+  }
+  /* 背景の黒幕はリストの下、コンテンツの上 */
+  .c-hamburger-menu__bg{
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(0,0,0,.4);
+    z-index: 200;                               /* -1 だと見えないので上げる */
+  }
+
+  /* チェック時に確実に展開させる（セレクタ強め＋!important） */
+  .c-hamburger-menu #hamburger:checked ~ .c-hamburger-menu__list{
+    transform: translateX(0) !important;
+  }
+  .c-hamburger-menu #hamburger:checked ~ .c-hamburger-menu__bg{
+    display: block;
+  }
+}
+
+/* 視覚的に非表示（読み上げには残す） */
+.visually-hidden {
+  position: absolute !important; width:1px; height:1px; margin:-1px; padding:0; border:0;
+  clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
+/* Footer */
+.site-footer{
+  background: #eef6f2; /* ミント系でやさしく */
+  color: #2f3e33;
+  margin-top: clamp(24px, 6vw, 80px);
+  border-top: 1px solid #e0ebe6;
+}
+.footer__inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 48px) 2%;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1.1fr 2fr; /* 左：連絡先　右：ナビ */
+}
+@media (max-width: 900px){
+  .footer__inner{ grid-template-columns: 1fr; }
+}
+
+/* 左：ブランド/連絡先 */
+.footer__logo img{ height: 100px; width: auto; display: block; }
+.footer__addr{ margin: 10px 0 6px; font-style: normal; line-height: 1.8; }
+.footer__addr a{ color: #2f3e33; text-decoration: none; }
+.footer__addr a:hover{ text-decoration: underline; }
+.footer__note{ margin: 0 0 6px; color:#4b5a52; font-size: .95rem; }
+.footer__map a{ color:#2f7d5b; text-decoration: none; }
+.footer__map a:hover{ text-decoration: underline; }
+
+/* 右：リンクグループ */
+.footer__nav{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 16px 24px;
+}
+@media (max-width: 900px){
+  .footer__nav{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .footer__nav{ grid-template-columns: 1fr; }
+}
+.footer__group h3{
+  margin: 0 0 .6rem; font-size: 1rem; color:#264b3e;
+}
+.footer__group ul{ list-style: none; margin:0; padding:0; }
+.footer__group li + li{ margin-top: .4rem; }
+.footer__group a{
+  color:#2f3e33; text-decoration: none;
+}
+.footer__group a:hover{ text-decoration: underline; }
+
+/* 下段バー */
+.footer__bar{
+  border-top: 1px solid #e0ebe6;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+  padding: 10px 2% 16px;
+  max-width: 1200px; margin: 0 auto;
+}
+.footer__top{
+  color:#2f7d5b; text-decoration: none; font-size:.95rem;
+}
+.footer__top:hover{ text-decoration: underline; }
+
+/* キーボード操作の見やすさ */
+.site-footer a:focus-visible{
+  outline: 3px solid #2f7d5b; outline-offset: 3px; border-radius: 6px;
+}
+
+/* ===== Hero（キャッチを主役に） ===== */
+.hero--simple{
+  background:#fff;
+  padding: clamp(28px, 6vw, 72px) 2% 0;
+}
+.hero__inner{
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero__title{
+  font-size: clamp(24px, 4.5vw, 40px);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: .02em;
+  color: #22352c; /* 少し濃い緑がかった墨色 */
+  margin: 0;
+}
+.hero__img{
+  display:block;
+  margin: clamp(12px, 3vw, 24px) auto 0;
+  width: min(560px, 90%);
+  height: auto;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,.05));
+}
+
+/* ヘッダーとヒーローの“間”をしっかり空ける */
+.c-header + .hero--simple{
+  margin-top: clamp(12px, 3vw, 32px);
+}
+
+/* ===== CTAスラブ（別ブロックで独立） ===== */
+.cta-slab{
+  max-width: 1100px;
+  margin: clamp(16px, 4vw, 40px) auto 0;
+  padding: clamp(16px, 4vw, 28px) 2%;
+   border-radius: 16px;
+}
+.cta-slab__inner{
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ボタン（必要なら最小の見た目） */
+.btn{
+  display:inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration:none;
+  line-height:1;
+  font-weight:700;
+  border: 1px solid transparent;
+}
+.btn--primary{
+  background:#2f7d5b; color:#fff;
+}
+.btn--secondary{
+  background:#ffffff; color:#2f7d5b; border-color:#cfe6db;
+}
+.btn:hover{ filter:brightness(0.98); }
+.btn:focus-visible{ outline: 3px solid #a5d8c6; outline-offset: 2px; }
+
+/* 2カラムの中身を“同じ行・同じ高さ”に */
+.grid-eq{
+  display: grid;
+  gap: clamp(16px,3vw,28px);
+  grid-template-columns: 1.1fr .9fr;   /* 左ちょい広め */
+  align-items: stretch;                 /* 高さをそろえる */
+}
+.grid-eq > .card{ height: 100%; }       /* カードを行の高さにフィット */
+
+/* 右カード：写真用のスタイル */
+.photo-card{ padding: 0; overflow: hidden; }
+.photo-card img{
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;    /* 画像をカードいっぱいに */
+  border-radius: 14px;                  /* cardと同じ丸み */
+}
+/* 画像がまだ無い間のダミー */
+.photo-dummy{
+  display: grid; place-items: center;
+  color: #9aa7a1; height: 100%;
+  background: #f7f7f7; border: 1px dashed #e0e0e0;
+  border-radius: 14px;
+}
+
+/* 見出しの横線は既存の .section__hd を流用（そのままで全幅に伸びます） */
+/* .section__hd{ display:flex; align-items:center; gap:1.6rem; margin-bottom:.8rem } */
+/* .section__hd .bar{ flex:1; height:2px; background: var(--accent); opacity:.5 } */
+
+/* 見出し専用フォント（丸ゴ） */
+:root{
+  --headline-font: "Zen Maru Gothic", "Hiragino Maru Gothic ProN",
+                   "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+.hero-local__title,
+.section__hd h2 {            /* 必要な見出しを足してOK */
+  font-family: var(--headline-font);
+  font-weight: 700;          /* 500〜700で調整。柔らかくするなら 600 付近 */
+  letter-spacing: .02em;     /* ほんの少しだけ広げると読みやすい */
+  line-height: 1.3;          /* つめ過ぎを回避 */
+}
+
+/* 見出しだけ丸ゴにする */
+:root{
+  --headline-font: "Zen Maru Gothic", "Hiragino Maru Gothic ProN",
+                   "Yu Gothic", "Meiryo", sans-serif;
+}
+
+/* わぁははクラブ（ページのH1） */
+.hero-local__title{
+  font-family: var(--headline-font) !important;
+  font-weight: 700;              /* ← 800をやめる */
+  letter-spacing: .01em;         /* 少しだけ広げて優しく */
+  font-synthesis: none;          /* 擬似ボールドを防ぐ（対応ブラウザで有効） */
+}
+
+/* セクション見出しも柔らかくしたいとき */
+.section__hd h2{
+  font-family: var(--headline-font);
+  font-weight: 600;              /* 強すぎない太さ */
+}
+
+
+/* TL→BR にほんのりミント */
+body{
+  background:
+    linear-gradient(135deg,
+      #ffffff 0%,
+      #f7fbf9 55%,   /* ほぼ白に近いミント */
+      #eef7f2 100%   /* ヘッダーの #f0f8f4 と近い */
+    );
+}
+.hero, .hero--simple{ background: transparent !important; border-top:none!important; }
+
+
+/* スマホ時：ロゴ（左）＋ 住所/受付時間/地図（右）を縦3段でまとめる */
+@media (max-width: 768px){
+  .site-footer .footer__brand{
+    display: grid !important;
+    grid-template-columns: max-content 1fr;  /* ← ロゴの実サイズに合わせる */
+    column-gap: 20px;                        /* ← ロゴと文字の間隔 */
+    row-gap: 6px;
+    align-items: center;                     /* ロゴを縦方向で中央寄せ */
+  }
+  .site-footer .footer__brand .footer__logo{
+    grid-column: 1;
+    grid-row: 1 / 4;                         /* 右の3段にまたがる */
+    align-self: center;
+  }
+  .site-footer .footer__brand .footer__logo img{
+    height: 80px;                            /* お好みで 56〜64px くらい */
+    width: auto; display: block;
+  }
+  .site-footer .footer__brand .footer__addr{
+    grid-column: 2; grid-row: 1;
+    margin: 0; line-height: 1.7;
+  }
+  .site-footer .footer__brand .footer__note{
+    grid-column: 2; grid-row: 2;
+    margin: 2px 0 0;
+  }
+  .site-footer .footer__brand .footer__map{
+    grid-column: 2; grid-row: 3;
+    margin: 2px 0 0;
+  }
+}
+
+
+/* 極小幅：フッターナビを中央寄せ（最後に置く＆!importantで確実に） */
+@media (max-width: 500px){
+  .footer__nav{
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* 1列 */
+    place-items: center !important;        /* ボックス自体を中央に */
+    text-align: center !important;         /* テキスト中央 */
+    row-gap: 18px !important;
+  }
+  .footer__group{
+    width: 100% !important;
+    max-width: 28rem !important;           /* 行幅が広がりすぎないように */
+  }
+  .footer__group h3{
+    margin: 0 0 .4rem !important;
+    text-align: center !important;
+  }
+  .footer__group ul{
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .footer__group li{
+    margin: .35rem 0 !important;
+  }
+  .footer__group a{
+    display: inline-block !important;
+  }
+}
+
+/* フッター：見出しと配下リンクのサイズ差を出す */
+.site-footer .footer__group h3{
+  font-size: 1rem;            /* 見出しは従来どおり */
+  font-weight: 700;
+}
+
+.site-footer .footer__group ul a{
+  font-size: .92rem;          /* 配下リンクは少し小さく */
+  line-height: 1.8;           /* 読みやすく行間ひろめ */
+}
+
+/* 画面が狭いときは読みやすさ優先で少しだけ戻す */
+@media (max-width: 500px){
+  .site-footer .footer__group ul a{
+    font-size: .98rem;
+    line-height: 1.9;
+  }
+}
+
+
+/* フッター：見出しとリストの間に余白 */
+.site-footer .footer__group h3{
+  margin: 0 0 .1rem;      /* ← ここで見出しの下を広げる */
+}
+
+/* さらにゆったりさせたいときは */
+@media (min-width: 560px){
+  .site-footer .footer__group h3{
+    margin-bottom: 1rem;  /* PC幅では少し多め */
+  }
+}
+
+/* ==== Splash / 初期表示制御（追加）================================= */
+
+/* スクロール幅のガタつきを防ぐ（対応ブラウザ） */
+html { scrollbar-gutter: stable both-edges; }
+
+/* 対応していないブラウザ向けフォールバック */
+@supports not (scrollbar-gutter: stable) {
+  body { overflow-y: scroll; }
+}
+
+/* スプラッシュ中はスクロール不可（<head>のスクリプトが付け外し） */
+html.no-scroll { overflow: hidden; }
+
+/* 画面全体の白板＋ロゴ */
+#splash{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #fff;                 /* 透けさせないため完全白 */
+  display: grid;
+  place-items: center;
+}
+
+/* ロゴをふわっと出す */
+#splash img{
+ width: clamp(260px, 50vw, 480px); /* 最小/中間/最大を一気に調整 */
+  height: auto;
+  opacity: 0;
+  transform: translateY(10px) scale(.985);
+  animation: splash-pop 1.2s ease .3s forwards;
+}
+@keyframes splash-pop {
+  to { opacity: 1; transform: none; }
+}
+
+/* 本編は最初は見せない */
+#page{
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* スプラッシュ撤去後にフェードイン（JSで body に .page-show を付与） */
+body.page-show #page{
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .9s ease .90s;
+}
+
+/* 動きが苦手な人への配慮：アニメーションを即時化 */
+@media (prefers-reduced-motion: reduce){
+  #splash{ display: none !important; }
+  html.no-scroll { overflow: auto; }
+  #page{ opacity: 1 !important; visibility: visible !important; }
+}
+
+/* アクセシビリティ用の視覚的に非表示（#top アンカーで使用） */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ロゴをゆっくり消す */
+#splash.splash-hide{
+  opacity: 0;
+  transition: opacity 1s ease; /* ← ここで速度を調整（例: 1.6秒） */
+}
+
+/* 透明になったら操作を邪魔しない */
+#splash.splash-hide{
+  opacity: 0;
+  transition: opacity 0.9s ease; /* お好みで */
+  pointer-events: none;          /* ← これ重要 */
+}
+
+
+
+/* ── SP幅ではフッターブランドを縦並び＆ロゴを強制センター ── */
+@media (max-width: 768px){
+  .site-footer .footer__brand{
+    display: block !important;          /* 以前の grid を無効化 */
+    text-align: center !important;
+  }
+
+  .site-footer .footer__brand .footer__logo{
+    display: flex !important;            /* 自分で中央寄せする */
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    float: none !important;              /* 念のためフロートも解除 */
+    margin: 0 0 10px !important;
+  }
+
+  .site-footer .footer__brand .footer__logo img{
+    display: block !important;
+    margin: 0 auto !important;           /* 画像自体も中央 */
+    height: 100px !important;             /* お好みで 64〜88px などに調整 */
+    width: auto !important;
+  }
+
+  /* grid 時代の残りを無効化（保険） */
+  .site-footer .footer__brand .footer__addr,
+  .site-footer .footer__brand .footer__note,
+  .site-footer .footer__brand .footer__map{
+    grid-column: auto !important;
+    grid-row: auto !important;
+    margin: 6px auto !important;
+    max-width: 28rem;
+    text-align: center !important;
+  }
+}
+
+/* === Finder 主役ボタン：アウトライン→塗りつぶしで明確に変化 === */
+.btn--finder{
+  /* サイズ感 */
+  font-size: clamp(16px, 1.15vw, 20px);
+  padding: clamp(14px, 1.2vw, 18px) clamp(24px, 2.6vw, 34px);
+  min-width: clamp(240px, 28vw, 340px);
+  border-radius: 999px;
+
+  /* 配色（通常はアウトライン） */
+  color: var(--accent, #2f7d5b);
+  background: #fff;
+  border: 2px solid var(--accent, #2f7d5b);
+
+  /* 文字・レイアウト */
+  letter-spacing: .02em;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+
+  /* エフェクト準備 */
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .12s ease;
+}
+
+/* 右の矢印（通常は同色） */
+.btn--finder::after{
+  content: "→";
+  font-weight: 700;
+  transform: translateX(0);
+  transition: transform .18s ease, filter .18s ease, color .18s ease;
+  color: currentColor;
+}
+
+/* ホバー：はっきり “塗りつぶし” になる */
+.btn--finder:hover{
+  color: #fff;
+  border-color: transparent;
+  background: linear-gradient(180deg,
+              var(--accent-2, #5ba789) 0%,
+              var(--accent,   #2f7d5b) 100%);
+  box-shadow: 0 10px 26px rgba(47,125,91,.22);
+  transform: translateY(-1px);
+}
+.btn--finder:hover::after{
+  transform: translateX(4px);
+  color: #fff;
+}
+
+/* クリック時は少し沈む */
+.btn--finder:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(47,125,91,.18);
+}
+
+/* フォーカスリング（キーボード操作） */
+.btn--finder:focus-visible{
+  outline: 3px solid #a5d8c6;
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* ほのかな “きらり” ライン（ホバーで左→右） */
+/* きらり差し替え：下線スライド */
+/* きらり差し替え：やさしい呼吸グロー */
+.btn--finder::before{ display:none; }  /* 旧きらりは無効化 */
+
+.btn--finder{
+  transition:
+    background-color .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .12s ease;
+}
+.btn--finder:hover{
+  animation: finderGlow 1.6s ease-in-out infinite;
+}
+@keyframes finderGlow {
+  0%,100% { box-shadow: 0 10px 26px rgba(47,125,91,.18); }
+  50%     { box-shadow: 0 14px 32px rgba(47,125,91,.28); }
+}
+@media (prefers-reduced-motion: reduce){
+  .btn--finder:hover{ animation: none !important; }
+}
+
+/* モバイルで押しやすく */
+@media (max-width: 768px){
+  .btn--finder{ width: min(92%, 400px); }
+}
+
+/* 動きが苦手な設定の人に配慮 */
+@media (prefers-reduced-motion: reduce){
+  .btn--finder,
+  .btn--finder::before,
+  .btn--finder::after{
+    transition: none !important;
+  }
+}
+
+/* ===== Back-to-Top（進捗リング付き） ===== */
+:root{
+  --btt-size: 56px;               /* 直径 */
+  --btt-bg: #ffffff;              /* 内側の色 */
+  --btt-fg: #2f7d5b;              /* アイコン/文字色 */
+  --btt-ring: #cfe6db;            /* リングのベース色 */
+  --btt-ring-active: #2f7d5b;     /* リングの進捗色 */
+  --btt-shadow: 0 10px 24px rgba(0,0,0,.15);
+  --btt-offset: 20px;             /* 画面端からの余白 */
+  --btt-font: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+.btt{
+  position: fixed;
+  right: max(var(--btt-offset), env(safe-area-inset-right));
+  bottom: calc(var(--btt-offset) + env(safe-area-inset-bottom));
+  width: var(--btt-size);
+  height: var(--btt-size);
+  border: none;
+  padding: 0;
+  border-radius: 999px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3000;
+
+  /* 初期は非表示 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .28s ease, transform .28s ease, visibility 0s linear .28s;
+}
+
+.btt.is-visible{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity .28s ease, transform .28s ease;
+}
+
+/* 外周リング（conic-gradient で進捗表示） */
+.btt__ring{
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background:
+    conic-gradient(var(--btt-ring-active) var(--btt-progress, 0deg), var(--btt-ring) 0);
+  box-shadow: var(--btt-shadow);
+}
+
+/* 中身（白い円） */
+.btt__inner{
+  position: relative;
+  width: calc(var(--btt-size) - 8px);
+  height: calc(var(--btt-size) - 8px);
+  border-radius: 999px;
+  background: var(--btt-bg);
+  display: grid;
+  place-items: center;
+}
+
+/* アイコン＋ラベル */
+.btt__icon{
+  width: 22px; height: 22px;
+  fill: var(--btt-fg);
+  transition: transform .18s ease;
+}
+.btt__label{
+  display: block;
+  font: 700 10px/1 var(--btt-font);
+  color: var(--btt-fg);
+  margin-top: 2px;
+  letter-spacing: .04em;
+}
+
+.btt:hover .btt__icon{ transform: translateY(-2px); }
+.btt:active .btt__icon{ transform: translateY(-1px); }
+
+.btt:focus-visible{
+  outline: 3px solid #a5d8c6;
+  outline-offset: 4px;
+}
+
+/* 印刷時は非表示 */
+@media print{
+  [data-no-print]{ display: none !important; }
+}
+
+/* 動き苦手な人向け */
+@media (prefers-reduced-motion: reduce){
+  .btt, .btt__icon{ transition: none !important; }
+}
+
+/* 既存が例として「.page-show #page { opacity:1 }」になっているなら… */
+#page { opacity: 1; }                   /* デフォは常に表示 */
+.has-splash #page { opacity: 0; }       /* トップだけ初期は非表示 */
+.has-splash .page-show #page { opacity: 1; transition: opacity .7s; }
+
+
+:root{
+  --ff-body: "Noto Sans JP", system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Noto Sans JP", "Meiryo", sans-serif;
+  --ff-head: "Zen Maru Gothic", "Noto Sans JP", "Hiragino Maru Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+}
+html { font-family: var(--ff-body); line-height: 1.8; }
+h1,h2,h3 { font-family: var(--ff-head); font-weight: 700; }
+h4,h5,h6 { font-family: var(--ff-head); font-weight: 500; }
+
+/* 理念の強調ブロック */
+.lead-block {
+  margin: 1.5rem auto 2rem;
+  max-width: 72ch;
+}
+.lead-block--accent blockquote {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+  background: #fefdfb;               /* 生成り寄りの白 */
+  border-left: 6px solid #009688;     /* ブランドのアクセント色に合わせる */
+  border-radius: 8px;
+}
+.lead-block--accent p {
+  font-size: clamp(1.05rem, 1.2vw + 1rem, 1.35rem);
+  line-height: 1.9;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
+/* 柱カード */
+.cards--pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.2rem;
+}
+@media (max-width: 960px) {
+  .cards--pillars { grid-template-columns: 1fr; }
+}
+.card.pillar {
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 14px;
+  padding: 1.2rem 1.1rem;
+  box-shadow: 0 1px 12px rgba(0,0,0,.04);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card.pillar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+.pillar__icon {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: #e0f2f1;             /* ティール系の淡色 */
+  margin-bottom: .75rem;
+}
+.pillar__icon svg { width: 26px; height: 26px; fill: #00796b; }
+
+.card__title { font-size: 1.05rem; font-weight: 700; margin: .25rem 0 .35rem; }
+.card__text  { margin: 0 0 .75rem; line-height: 1.8; }
+.card__links { display: flex; flex-wrap: wrap; gap: .5rem .9rem; }
+.card__link  {
+  font-size: .95rem; text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 設立趣旨リンクの脚注感 */
+.section--footnote .note {
+  max-width: 72ch; margin: 1rem auto 0; color: #555;
+}
+.section--footnote .note a { color: #00695c; font-weight: 600; }
+
+
+.footer__addr,
+.footer__note,
+.footer__map {
+  font-size: 0.92rem;      /* お好みで 0.9–0.95rem の間で調整 */
+  line-height: 1.7;
+}
+
+.footer__addr a,
+.footer__map a {
+  font-size: inherit;      /* リンクだけ大きくならないよう揃える */
+}
+
+/* --- フッター：PCは4列を固定、見出しは改行させない --- */
+@media (min-width: 960px){
+  .footer__nav{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 常に4列 */
+    column-gap: 3rem;
+    row-gap: 2rem;
+  }
+  .footer__group h3{
+    white-space: nowrap;         /* 1行固定 */
+    overflow: hidden;            /* 収まらない場合は切り捨て */
+    text-overflow: ellipsis;     /* ごく狭い環境の保険で… */
+    letter-spacing: .01em;
+    font-size: clamp(1rem, 0.9vw + .6rem, 1.1rem); /* ちょい可変で折返し回避 */
+  }
+}
+
+/* スマホ／タブは従来通り崩してOK（例） */
+@media (max-width: 959.98px){
+  .footer__nav{ grid-template-columns: 1fr 1fr; } /* 必要なら1列でもOK */
+}
+
+.purpose-lead{
+  max-width: 70ch;
+  margin: .5rem auto 1.25rem;
+  padding: .9rem 1rem;
+  background: #f5fbf9;
+  border-left: 6px solid #009688;
+  border-radius: 8px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.signature { margin-top: 1.2rem; }
+.signature p { margin: .2rem 0; color: #555; }
+
+.related-links{
+  display: flex; flex-wrap: wrap; gap: .75rem 1.2rem;
+  justify-content: flex-start; padding-left: 0; list-style: none;
+}
+.related-links a{
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600; color: #00695c;
+}
+
+/* パンくず：横並び＆区切り記号 */
+.breadcrumb ol{
+  display: flex;
+  flex-wrap: wrap;           /* 画面が狭い時は単位ごとに折返し */
+  align-items: center;
+  gap: .25rem;               /* 余白は最小で */
+  list-style: none;          /* ① 番号を消す */
+  margin: .5rem 0 1rem;
+  padding: 0;
+  font-size: .95rem;
+}
+.breadcrumb li{
+  display: flex; 
+  align-items: center;
+}
+.breadcrumb li + li::before{
+  content: "›";              /* ② 区切り（"›"推奨） */
+  margin: 0 .5rem;
+  color: #9aa5a9;
+}
+
+/* リンクと現在地の見た目 */
+.breadcrumb a{
+  text-decoration: none;
+
+}
+.breadcrumb a:hover{ text-decoration: underline; }
+.breadcrumb [aria-current="page"]{
+  font-weight: 700;
+  color: #2c3e3a;
+}
+
+/* —— 読みやすい横幅を共通化 —— */
+:root{
+  /* 読み物系の理想幅：日本語は 66–72 文字が目安 */
+  --read-width: 80ch;
+  --side-pad: clamp(16px, 4vw, 24px);
+}
+
+/* ページ見出しやパンくずも同じ帯に揃える */
+.hero--page .hero__inner,
+.breadcrumb,
+.section--narrow,
+.section--narrow .section__header,
+.section--narrow .prose{
+  max-width: var(--read-width);
+  margin-inline: auto;
+  padding-inline: var(--side-pad);
+}
+
+/* 本文の行間＆サイズを少しだけゆったり */
+.section--narrow .prose{
+  font-size: clamp(1rem, 0.2vw + 1rem, 1.06rem);
+  line-height: 1.9;
+}
+
+/* 段落間の余白を整える */
+.section--narrow .prose p{ margin: 0 0 1em; }
+
+/* 日本語の折返しを素直に（英数字は無理に割らない） */
+.section--narrow .prose{
+  line-break: strict;
+  word-break: keep-all;
+  text-wrap: pretty; /* 対応ブラウザで自然な折返し */
+}
+
+:root{ --read-width: 76ch; }          /* 基本はやや広め */
+@media (min-width: 1200px){
+  :root{ --read-width: 82ch; }        /* 大きめモニタ */
+}
+@media (min-width: 1440px){
+  :root{ --read-width: 86ch; }        /* さらに大きい環境 */
+}
+
+:root{
+  /* 既存アクセント色に合わせて調整OK */
+  --tint-bg: #f5fbf9;     /* ごく淡いティール */
+  --tint-border: #009688; /* 左帯の色 */
+}
+
+/* 本文カード */
+.prose--tint{
+  position: relative;
+  background: var(--tint-bg);
+  border-radius: 12px;
+  padding: clamp(16px, 2vw, 22px);
+  box-shadow: 0 2px 18px rgba(0,0,0,.05);
+  border: 1px solid rgba(0,0,0,.04);
+  /* 読みやすさ */
+  line-height: 1.9;
+}
+
+/* 左のアクセント帯（視線のガイド） */
+.prose--tint::before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;      /* 上右下左 */
+  width: 6px;
+  border-radius: 12px 0 0 12px;
+  background: var(--tint-border);
+  opacity: .9;
+}
+
+/* 段落間＆最終段の余白を少し整える */
+.prose--tint p{ margin: 0 0 1.15em; }
+.prose--tint p:last-child{ margin-bottom: 0; }
+
+/* 署名はカード内でトーンを落とす */
+.prose--tint .signature{ margin-top: 1rem; color:#555; }
+.prose--tint .signature p{ margin: .2rem 0; }
+
+/* 画面が極端に狭いときは帯を細く */
+@media (max-width: 420px){
+  .prose--tint::before{ width: 4px; }
+}
+
+/* 署名ブロック：本文としっかり離し、右揃え・小さめ文字・やや詰めた行間 */
+.signature{
+  margin-top: clamp(28px, 4.5vw, 56px);   /* ← 余白を広げる（PCでしっかり離す） */
+  text-align: right;
+  font-size: clamp(.9rem, .2vw + .88rem, 1rem); /* ← 本文より一段小さく */
+  line-height: 1.4;                       /* ← 3行の行間をやや詰める */
+  color: #555;
+}
+.signature p{ margin: .15rem 0; }
+
+/* カード化している場合（.prose--tint内）は、さらに少し余白を足す */
+.prose--tint .signature{
+  margin-top: clamp(32px, 5vw, 72px);
+}
+
+.timeline {
+  list-style: none;
+}
+.timeline > li {
+  margin-bottom: 60px;
+}
+
+/* for Desktop */
+@media ( min-width : 640px ){
+  .timeline > li {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+  .timeline-date {
+    width: 110px;
+    float: left;
+    margin-top: 20px;
+  }
+  .timeline-content {
+    width: 75%;
+    float: left;
+    border-left: 3px #e5e5d1 solid;
+    padding-left: 30px;
+  }
+  .timeline-content:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #6fc173;
+    position: absolute;
+    left: 106px;
+    top: 24px;
+    border-radius: 100%;
+  }
+}
+
+/* タグと本文の縦位置を揃える（カード内の1行） */
+.history-item{
+  display:grid;
+  grid-template-columns: max-content 1fr; /* [タグ] [本文] */
+  column-gap:.75rem;
+  align-items:center;                   /* ←ここで縦位置を統一 */
+  line-height:1.7;                      /* 適度に詰める */
+}
+
+/* バッジの内側を少しだけ高くして見た目を中段に */
+.history-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:.4em;
+  padding:.32em .66em;                  /* 高さを控えめに */
+  line-height:1;                        /* バッジ内の行高は1 */
+}
+
+/* 本文の行高を少しだけ下げて目線を合わせる */
+.history-text{
+  margin:0;
+  line-height:1.7;
+}
+
+:root{ --history-body-size: .95rem; }
+.history-text{ font-size: var(--history-body-size); line-height:1.65; }
+
+/* 行レイアウトを安定化：タグ列 / 本文列 */
+.history-list{
+  display:grid;
+  gap:.42rem;                 /* 各行の上下間隔を一定に */
+}
+.history-item{
+  display:grid;
+  grid-template-columns: max-content 1fr;  /* [タグ] [本文] */
+  column-gap:.75rem;
+  align-items:center;          /* タグと本文の縦位置を中央に揃える */
+  min-width:0;                 /* 省略時のはみ出し防止 */
+  line-height:1.65;
+}
+.history-tag{
+  display:inline-flex; align-items:center; gap:.4em;
+  padding:.3em .64em; line-height:1;       /* バッジの高さを一定に */
+  white-space:nowrap;                       /* タグは折り返さない */
+}
+.history-text{
+  margin:0; min-width:0;
+  line-height:1.65;
+  text-wrap:pretty;                         /* 折り返しの見栄えを改善（対応ブラウザ） */
+  word-break:keep-all;                      /* 和文の”変な所での改行”を抑制 */
+  overflow-wrap:anywhere;                   /* でも必要なら割ってOK */
+}
+
+/* --- 広い画面では極力1行に収める（はみ出す場合は…） --- */
+@media (min-width: 1100px){
+  .history-text{
+    white-space:nowrap;        /* 1行化 */
+    overflow:hidden; text-overflow:ellipsis;  /* 入り切らない時は省略記号 */
+  }
+}
+
+/* --- タブレット/スマホ：折り返しても揃って見えるように “ぶら下げ” --- */
+@media (max-width: 900px){
+  .history-item{
+    grid-template-columns: max-content 1fr;  /* 2カラムのまま */
+    align-items:baseline;                    /* ベースライン寄せで自然に */
+  }
+  .history-text{
+    white-space:normal;                      /* 折り返し許可 */
+    text-indent:0;                           /* 先頭は通常 */
+  }
+}
+
+/* 微調整：フォントを少し締めたい時（任意） */
+/* .history-text{ font-size:.95rem; } */
+
+.history-caption{
+  margin:.25rem 0 1.25rem;
+  color:#6b7280;
+  font-size:.92rem;
+}
+
+/* CTAバーは今のを使ってOK。アイコン用だけ追加 */
+.cta { display:inline-flex; align-items:center; gap:.5rem; }
+.cta__icon{
+  width:1.4em; height:1.4em;        /* 文字サイズに追従 */
+  flex:0 0 auto;
+}
+.cta:hover { box-shadow:0 0 0 2px #00000008; }
+
+/* 色替えしたいときはここだけ。ブランド緑など */
+.cta { color:#ffffff; }                /* 文字＆線（currentColor） */
+.cta:hover { color:#009688; }          /* ホバーで色変化 */
+
+/* 共通 */
+.cta-bar{ display:flex; gap:.75rem; flex-wrap:wrap; }
+.cta{
+  display:flex; align-items:center; justify-content:flex-start; /* PCは左寄せ */
+  gap:.6rem; padding:.9em 1rem; border-radius:14px;
+  background:#2f7d63; color:#fff; text-decoration:none; font-weight:700;
+}
+.cta__icon{ width:1.2em; height:1.2em; flex:0 0 auto; }
+.cta:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
+
+/* モバイルは中央寄せ＆アイコンと文字も中央揃え */
+@media (max-width: 680px){
+  .cta{ justify-content:center; text-align:center; }
+}
+
+/* --- CTAを中央に並べる（上書き） --- */
+.cta-bar{
+  display:flex;
+  justify-content:center;   /* まとまりを中央寄せ */
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+
+/* 役員ページ：本文と同じ幅でCTAを箱に収める */
+.member-page + .cta-bar{
+  /* .member-wrap の幅に合わせる（= 960px） */
+  max-width: 960px;
+  margin: 1rem auto 2rem;        /* 中央寄せ */
+  padding: .5rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: center;       /* まとまりを中央 */
+  flex-wrap: wrap;
+}
+
+/* ボタンを等幅でぐっと伸ばす */
+.member-page + .cta-bar .cta{
+  flex: 1 1 0;                   /* 2つなら1:1で均等 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .9em 1.1em;
+}
+
+/* モバイルは縦積みで全幅 */
+@media (max-width: 680px){
+  .member-page + .cta-bar .cta{ width:100%; }
+}
+
+
+
+/* モバイルはボタン自体も中央寄せ＆横幅100%でタップしやすく */
+@media (max-width:680px){
+  .cta{ justify-content:center; width:100%; }
+}
+
+/* 1) スマホで caption「理事・監事」が分割されるのを防止 */
+.member-table caption{
+  word-break: keep-all;      /* 和文の変な所で改行しない */
+  white-space: nowrap;       /* 句読点の前での改行も防ぐ */
+}
+
+/* 2) CTA文言が1文字だけ折り返されるのを防止（ボタンは横幅を確保） */
+.cta{ 
+  white-space: nowrap;       /* ボタン内は1行固定 */
+}
+
+/* 念のため：スマホ時はボタンの横幅をきちんと確保して収める */
+@media (max-width:680px){
+  .cta-bar{ padding-inline: .75rem; }
+  .cta-bar .cta{ width:100%; justify-content:center; }
+}
+
+/* ===== philosophy.html 専用の薄い上書き ===== */
+
+/* ページ幅：本文とCTAを同じ幅に */
+.ph-wrap{
+  max-width: 1200px;            /* 好みで 1100〜1280 */
+  margin-inline: auto;
+  padding-inline: min(4vw,24px);
+}
+
+/* 3枚カードを大画面で1行に */
+.cards--pillars{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: stretch;
+}
+@media (max-width: 1100px){
+  .cards--pillars{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 680px){
+  .cards--pillars{ grid-template-columns: 1fr; }
+}
+
+/* カードの高さを揃えつつ中身は自然に */
+.cards--pillars .card{
+  display: flex;
+  flex-direction: column;
+}
+.cards--pillars .card .card__text{ margin-top:.35rem; line-height:1.7; }
+
+/* CTAを本文幅に“収める”＋2ボタンを等幅で伸ばす */
+.cta-bar--contained{
+  max-width: 1200px;            /* .ph-wrap と同じ値 */
+  margin: 1rem auto 2rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-inline: min(4vw,24px);
+}
+.cta-bar--contained .cta{
+  flex: 1 1 0;                  /* 2つを均等幅 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .9em 1.2em;
+  white-space: nowrap;
+}
+@media (max-width: 680px){
+  .cta-bar--contained .cta{ width:100%; }
+}
+
+/* ===== philosophy（このページだけの上書き） ===== */
+
+/* 1) .section--narrow が狭めているのを解除して広げる */
+.ph-wrap .section--narrow,
+.ph-wrap .section--narrow .section__header{
+  max-width: 1200px;                  /* 好みで 1100〜1280 に調整可 */
+  margin-inline: auto;
+  padding-inline: min(4vw, 24px);
+}
+
+/* 2) カードコンテナを“必ず”グリッドに（既存の .cards の指定を打ち消す） */
+.ph-wrap .cards--pillars{
+  display: grid !important;           /* ここがポイント：既存のflex等に勝つ */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: stretch;
+  width: 100%;
+}
+
+/* 画面幅に応じて 3 → 2 → 1 列 */
+@media (max-width: 1100px){
+  .ph-wrap .cards--pillars{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 680px){
+  .ph-wrap .cards--pillars{ grid-template-columns: 1fr; }
+}
+
+/* 3) 個々のカードが幅制限されている場合に備えて解除 */
+.ph-wrap .cards--pillars .card{
+  max-width: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ph-wrap .cards--pillars .card .card__text{ margin-top:.35rem; line-height:1.7; }
+
+/* 4) CTAはそのまま本文幅に収める（すでに効いているが念のため） */
+.cta-bar--contained{
+  max-width: 1200px;
+  margin: 1rem auto 2rem;
+  padding-inline: min(4vw,24px);
+  display: flex; gap:.75rem; justify-content:center; flex-wrap:wrap;
+}
+.cta-bar--contained .cta{
+  flex: 1 1 0;
+  display:flex; align-items:center; justify-content:center;
+  padding:.9em 1.2em; white-space:nowrap;
+}
+@media (max-width:680px){
+  .cta-bar--contained .cta{ width:100%; }
+}
+
+/* ===== philosophy ページ：3カードのズレ/重なり修正 ===== */
+
+/* セクションを広げる（既存の section--narrow を上書き） */
+.ph-wrap .section--narrow,
+.ph-wrap .section--narrow .section__header{
+  max-width:1200px;
+  margin-inline:auto;
+  padding-inline:min(4vw,24px);
+}
+
+/* 親を“必ず”グリッドに。既存の .cards の指定を無効化 */
+.ph-wrap .cards--pillars{
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:clamp(20px,2.8vw,32px);
+  align-items:stretch;
+  width:100%;
+}
+
+/* 子カードの固定幅/外側マージン/フレックス残りをリセット */
+.ph-wrap .cards--pillars > *{
+  box-sizing:border-box;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  flex:none !important;             /* 既存flexの伸縮を打ち消す */
+  transform:none !important;        /* hoverでのズレ対策（もし指定があれば） */
+}
+
+/* カードの中身は素直に縦積み */
+.ph-wrap .cards--pillars .card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.ph-wrap .cards--pillars .card .card__text{
+  margin-top:.35rem; line-height:1.7;
+}
+
+/* ブレークポイント：2列→1列 */
+@media (max-width:1100px){
+  .ph-wrap .cards--pillars{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@media (max-width:680px){
+  .ph-wrap .cards--pillars{ grid-template-columns:1fr; }
+}
+
+/* 念のため：CTAが要素に重ならないようクリア＆余白 */
+.cta-bar--contained{
+  max-width:1200px;
+  margin:1.25rem auto 2rem;
+  padding-inline:min(4vw,24px);
+  display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap;
+  clear:both;                      /* 浮動化の影響を受けない */
+}
+.cta-bar--contained .cta{
+  flex:1 1 0;
+  display:flex; align-items:center; justify-content:center;
+  padding:.9em 1.2em; white-space:nowrap;
+}
+@media (max-width:680px){
+  .cta-bar--contained .cta{ width:100%; }
+}
+
+/* ===== CTAを“カードの列”に合わせて配置 ===== */
+/* カード3列に合わせるので、CTAは6分割 (=各カードの半分幅) でグリッド化 */
+.cta-bar--align-grid{
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr);          /* 3列×2 */
+  gap: clamp(20px, 2.8vw, 32px);                  /* cards--pillars と同じ値に */
+  max-width: 1200px;                               /* .ph-wrap と同じ幅 */
+  margin: 1.25rem auto 2rem;
+  padding-inline: min(4vw, 24px);
+}
+.cta-bar--align-grid .cta{
+  width: auto;                                     /* flex での均等伸長を打ち消す */
+  justify-content: center;
+  white-space: nowrap;
+  padding: .9em 1.2em;
+  border-radius: 16px;
+}
+
+/* 1つ目は左の2カード分(=3/6)、2つ目は右の2カード分(=3/6) */
+.cta-bar--align-grid .cta:nth-child(1){ grid-column: 1 / span 3; }
+.cta-bar--align-grid .cta:nth-child(2){ grid-column: 4 / span 3; }
+
+/* ===== レスポンシブ：カードが2列になったらCTAも2分割に同期 ===== */
+@media (max-width:1100px){
+  .cta-bar--align-grid{
+    grid-template-columns: repeat(4, 1fr);        /* 2列×2 */
+    gap: clamp(16px, 2.4vw, 24px);
+  }
+  .cta-bar--align-grid .cta:nth-child(1){ grid-column: 1 / span 2; }
+  .cta-bar--align-grid .cta:nth-child(2){ grid-column: 3 / span 2; }
+}
+
+/* ===== 1列表示時は全幅で縦積み ===== */
+@media (max-width:680px){
+  .cta-bar--align-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .cta-bar--align-grid .cta:nth-child(1),
+  .cta-bar--align-grid .cta:nth-child(2){
+    grid-column: 1 / span 2;
+    width: 100%;
+  }
+}
+
+/* ページ初期状態はうっすら透明→すぐ不透明へ */
+html.is-enter { opacity: 0; }
+html.is-enter.is-in { opacity: 1; transition: opacity .22s ease; }
+
+/* 離脱フェード（遷移直前） */
+html.is-leave { opacity: 0; transition: opacity .18s ease; }
+
+/* 動きを控える設定の人には即表示 */
+@media (prefers-reduced-motion: reduce){
+  html.is-enter, html.is-enter.is-in, html.is-leave { opacity: 1 !important; transition: none !important; }
+}
+
+/* ---- ページ遷移フェード ---- */
+html.is-enter { opacity: 0; }
+html.is-enter.is-in { opacity: 1; transition: opacity .22s ease; }
+html.is-leave { opacity: 0; transition: opacity .18s ease; }
+
+@media (prefers-reduced-motion: reduce){
+  html.is-enter, html.is-enter.is-in, html.is-leave {
+    opacity: 1 !important; transition: none !important;
+  }
+}
+
+/* 箇条書き（左に余白を確保して、チェックはその中に描画） */
+.unit-hero ul{
+  list-style: none;
+  margin: 0;
+  padding-left: 2.2rem; /* 左に十分なスペースを確保（かぶり防止） */
+}
+.unit-hero ul > li{
+  position: relative;
+  margin: 1rem 0;
+  line-height: 1.9;
+}
+
+/* ← ここを SVG マスクで描く方式に変更（向きブレません） */
+.unit-hero ul > li::before{
+  content: "";
+  position: absolute;
+  left: -1.5rem;            /* 余白の先頭から描くのでテキストに重ならない */
+  top: .55em;         /* 行の中心に寄せる。 .52〜.60em で微調整可 */
+  width: 1.05rem;     /* チェック全体サイズ */
+  height: 1.05rem;
+  background: var(--unit-brand);
+
+  /* SVG のチェックをマスクにして塗りつぶす */
+  -webkit-mask: no-repeat center / contain
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path d='M5 12.5 10 17.5 19 6.5' stroke='black' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/>\
+</svg>");
+          mask: no-repeat center / contain
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path d='M5 12.5 10 17.5 19 6.5' stroke='black' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/>\
+</svg>");
+}
+
+/* 「受託団体〜」は小さめ＆離しておく（既存があれば不要） */
+.unit-hero__note{
+  margin-top: 1.8rem;
+  padding-top: .5rem;
+  font-size: clamp(.8rem, .9vw, .9rem);
+  color: #6b7280;
+}
+
+
+
+/* === 左端の白い余白をなくす（全ページ共通） === */
+html {
+  /* 両端に溝を確保する指定をやめ、右側のみ確保にする */
+  scrollbar-gutter: stable !important;
+}
+
+/* 非対応ブラウザ向けフォールバック（常に縦スクロールを確保） */
+@supports not (scrollbar-gutter: stable) {
+  body { overflow-y: scroll; }
+}
+
+/* === Hamburger hotfix: SPで常時展開/配色崩れを強制リセット === */
+@media (max-width:750px){
+  .c-hamburger-menu{ position:relative; z-index:2000; }
+
+  /* 初期は閉じる／チェック時だけ開く（スライド本体） */
+  .c-hamburger-menu__list{
+    transform: translateX(-100%) !important;
+    transition: transform .3s ease;
+    position:absolute; top:100%; left:0; width:100%;
+    background:#fff !important;
+    z-index:2001;
+  }
+  #hamburger:checked ~ .c-hamburger-menu__list{ transform: translateX(0) !important; }
+  #hamburger:checked ~ .c-hamburger-menu__bg{ display:block; }
+
+  /* --- サブメニュー：初期は閉じる / チェックで開く --- */
+  .has-sub{ position:static; display:grid; grid-template-columns:1fr auto; align-items:center; }
+  .has-sub > .submenu{
+    position:static !important;
+    display:none !important;                 /* ← ここを最優先 */
+    opacity:1 !important; visibility:visible !important; transform:none !important;
+    background:#fff !important;
+    border:1px solid #e6eaef !important; border-radius:12px !important;
+    margin:.35rem 0 0 !important;
+    box-shadow:0 10px 26px rgba(0,0,0,.06) !important;
+    width:100%;
+  }
+  .has-sub .sub-toggle{ display:none; }      /* 状態だけ保持 */
+  .has-sub .sub-toggle:checked ~ .submenu{ display:block !important; }
+
+  /* 右端の＋／－を押しやすく */
+  .has-sub .sub-caret{
+    width:56px !important; height:44px !important;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; user-select:none; justify-self:end;
+  }
+  .has-sub .sub-caret::after{ content:"＋"; font-size:22px; color:#2f3e33; }
+  .has-sub .sub-toggle:checked ~ .sub-caret::after{ content:"－"; }
+
+  /* 行は白ベース。hoverでうっすら */
+  .c-header__list-link{
+    background:#fff !important;
+    padding:14px 88px 14px 14px; border-radius:12px;
+  }
+  .c-header__list-link:hover{ background:#f6f8fb !important; }
+}
+
+/* ===== Header Glass Layer (色は変えない) ===== */
+#site-header.c-header{
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(6px);                /* 背景だけを軽くぼかす */
+  -webkit-backdrop-filter: blur(6px);
+  /* 既存の背景色はそのまま採用（ここで色は指定しない） */
+  border-bottom: 1px solid rgba(0,0,0,.05);  /* 極細の仕切り */
+  transition: box-shadow .18s ease, transform .18s ease, background-color .18s ease;
+}
+
+/* ナビの“白い箱”や影がある場合は透過にして一体化 */
+#site-header .c-header__list,
+#site-header .c-hamburger-menu__list,
+#site-header .c-header__list-item{
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* PC時：リンクはピル化してタップ面積UP（色は既存のまま） */
+@media (min-width:1025px){
+  #site-header .c-header__list-link{
+    border-radius: 999px;
+    padding: .55em .85em;
+    line-height: 1;
+    transition: background-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  #site-header .c-header__list-link:hover,
+  #site-header .c-header__list-link:focus-visible{
+    background: rgba(255,255,255,.28);       /* 色は付けずに薄い面だけ */
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    outline: none;
+  }
+}
+
+/* スクロール後は“固定感”を少し強める（色は変えない） */
+#site-header.is-scrolled{
+  box-shadow: 0 8px 26px rgba(0,0,0,.06);
+  border-bottom-color: rgba(0,0,0,.06);
+}
+
+/* モバイル：開いた時のパネルは白面に（可読性優先、ブランド色は触らない） */
+@media (max-width:1024px){
+  #hamburger:checked ~ .c-hamburger-menu__list{
+    background: rgba(255,255,255,.96) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 14px 36px rgba(0,0,0,.12);
+  }
+  #site-header .submenu{
+    background:#fff; border:1px solid rgba(0,0,0,.06);
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  }
+  #site-header .submenu a{ border-radius:10px; }
+}
+
+/* ===== ハンバーガー：確実に開くための最終パッチ ===================== */
+/* 0) 追従固定はやめる（共通） */
+#site-header.c-header{
+  position: static !important;
+  top: auto !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 1) PC(>=751px)：メニュー背景は透明のまま / ボタンは非表示 */
+@media (min-width: 751px){
+  #site-header .c-hamburger-menu__button{ display: none !important; }
+  #site-header .c-hamburger-menu__bg{ display: none !important; }
+  #site-header .c-hamburger-menu__list{
+    position: static !important;
+    transform: none !important;
+    background: transparent !important;   /* ← PCは透明 */
+    box-shadow: none !important;
+    opacity: 1 !important; visibility: visible !important;
+  }
+  #site-header .c-header__list-item,
+  #site-header .c-header__list-link{ background: transparent !important; }
+}
+
+/* 2) SP(<=750px)：ボタン必ず表示＋白パネル＋黒幕＋トグル強制 */
+@media (max-width: 750px){
+  #site-header.c-hamburger-menu{ position: relative; z-index: 3000; }
+
+  /* ボタンを“必ず”前面に出す（他の display:none を踏み潰す） */
+  #site-header .c-hamburger-menu__button{
+    display: flex !important;
+    align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    position: relative; z-index: 3002;
+    pointer-events: auto !important;
+  }
+  #site-header .c-hamburger-menu__button-mark{
+    background-color: #000 !important;
+    width: 20px; height: 2px; transition: .3s;
+  }
+
+  /* メニュー本体（初期は画面外） */
+  #site-header .c-hamburger-menu__list{
+    position: absolute !important;
+    top: 100%; left: 0; width: 100%;
+    background: #fff !important;              /* ← SPは白固定 */
+    transform: translateX(-100%) !important;  /* 初期は隠す */
+    transition: transform .3s ease;
+    z-index: 3001;
+    opacity: 1 !important; visibility: visible !important; /* display系の競合回避 */
+  }
+
+  /* ←←← ここが勝ち筋：選択子を“最強化”してトグルを通す */
+  #site-header.c-hamburger-menu #hamburger:checked ~ ul.c-hamburger-menu__list{
+    transform: translateX(0) !important;
+  }
+
+  /* 黒幕（チェック時のみ表示） */
+  #site-header .c-hamburger-menu__bg{
+    position: fixed !important;
+    inset: 0;
+    background: rgba(0,0,0,.4);
+    display: none;
+    z-index: 3000;
+  }
+  #site-header.c-hamburger-menu #hamburger:checked ~ label.c-hamburger-menu__bg{
+    display: block !important;
+  }
+
+  /* サブメニュー：初期は閉じる、チェックで開く */
+  #site-header .has-sub{ position: static; display: grid; grid-template-columns: 1fr auto; align-items: center; }
+  #site-header .has-sub > .submenu{
+    position: static !important;
+    display: none !important;
+    background: #fff !important;
+    border: 1px solid #e6eaef; border-radius: 12px;
+    margin: .35rem 0 0; padding: .5rem 0;
+    box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  }
+  #site-header .has-sub .sub-toggle{ display: none; }
+  #site-header .has-sub .sub-toggle:checked ~ .submenu{ display: block !important; }
+}
+
+/* 3) 余計な“透明化”が上書きしてこないよう、SP時は白を死守 */
+@media (max-width: 750px){
+  #site-header .c-header__list,
+  #site-header .c-header__list-item{ background: transparent !important; }
+  #site-header .c-hamburger-menu__list{ background: #fff !important; } /* 再度確約 */
+}
+
+/* ===== ハンバーガー完全復旧（競合リセット版）========================= */
+/* PCは透明のまま / ヘッダー追従なし（共通） */
+#site-header.c-header{ position: static !important; top:auto !important; }
+
+/* ---------- PC (>=751px)：何も変えない。背景は透明のまま ---------- */
+@media (min-width:751px){
+  #site-header .c-hamburger-menu__button{ display:none !important; }
+  #site-header ul.c-hamburger-menu__list{
+    background: transparent !important;
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important; visibility: visible !important;
+  }
+}
+
+/* ---------- SP (<=750px)：ここだけ“確実に開く”指定 ---------- */
+@media (max-width:750px){
+  /* まず、関連要素を局所リセット（以前の !important を無効化） */
+  #site-header.c-hamburger-menu{
+    position: relative !important;
+    z-index: 3000 !important;
+  }
+  #site-header .c-hamburger-menu__button,
+  #site-header .c-hamburger-menu__bg,
+  #site-header ul.c-hamburger-menu__list{
+    /* 競合で壊れがちなプロパティをリセット */
+    display: revert !important;
+    position: revert !important;
+    transform: none !important;
+    opacity: 1 !important; visibility: visible !important;
+    background: revert !important;
+  }
+
+  /* ボタンは必ず表示・前面 */
+  #site-header .c-hamburger-menu__button{
+    display: flex !important;
+    align-items:center; justify-content:center;
+    width:32px; height:32px;
+    position: relative !important;
+    z-index: 3002 !important;
+    pointer-events: auto !important;
+  }
+  #site-header .c-hamburger-menu__button-mark{
+    background:#000 !important; width:20px; height:2px;
+    transition:.3s;
+  }
+
+  /* パネル本体：初期は画面外、白固定、左からスライド */
+  #site-header ul.c-hamburger-menu__list{
+    position: absolute !important;
+    top:100% !important; left:0 !important; width:100% !important;
+    background:#fff !important;
+    transform: translateX(-100%) !important;
+    transition: transform .3s ease !important;
+    z-index:3001 !important;
+  }
+
+  /* トグル（チェック）時の“最強”セレクタで確実に開く */
+  #site-header.c-hamburger-menu #hamburger:checked ~ ul.c-hamburger-menu__list{
+    transform: translateX(0) !important;
+  }
+
+  /* 黒幕（チェック時のみ表示） */
+  #site-header .c-hamburger-menu__bg{
+    position: fixed !important; inset:0 !important;
+    background: rgba(0,0,0,.4) !important;
+    display: none !important; z-index:3000 !important;
+  }
+  #site-header.c-hamburger-menu #hamburger:checked ~ label.c-hamburger-menu__bg{
+    display: block !important;
+  }
+
+  /* サブメニュー：初期非表示、トグルで開く（displayだけで制御） */
+  #site-header .has-sub{ position: static !important; display:grid !important; grid-template-columns:1fr auto !important; align-items:center !important; }
+  #site-header .has-sub > .submenu{
+    position: static !important;
+    display: none !important;
+    background:#fff !important;
+    border:1px solid #e6eaef !important; border-radius:12px !important;
+    margin:.35rem 0 0 !important; padding:.5rem 0 !important;
+    box-shadow:0 10px 26px rgba(0,0,0,.06) !important;
+  }
+  #site-header .has-sub .sub-toggle{ display:none !important; }
+  #site-header .has-sub .sub-toggle:checked ~ .submenu{ display:block !important; }
+
+  /* リスト項目の背景は透過でOK（行の塗りつぶしを解除） */
+  #site-header .c-header__list-item,
+  #site-header .c-header__list-link{ background: transparent !important; }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ヘッダーの現在地・ホバーをもう少し可視化 */
+.c-header__list-link:hover,
+.c-header__list-item.is-current > .c-header__list-link{
+  background: color-mix(in oklab, var(--brand, #2ec4b6) 12%, #fff);
+  border-radius: 8px;
+}
+
+/* ヒーローCTAを“押せる”見た目に微ブースト */
+.hero .cta-primary{
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  transform: translateY(0);
+  transition: box-shadow .15s ease, transform .12s ease;
+}
+.hero .cta-primary:hover{
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  transform: translateY(-1px);
+}
+
+/* NEWS行を行クリック化（aで囲めない時の擬似クリック感） */
+.news-item{
+  display:flex; gap:.8rem; align-items:center;
+  border-radius: 10px; padding: .9rem 1rem;
+  transition: background .15s ease, box-shadow .15s ease, transform .12s ease;
+}
+.news-item:hover{
+  background: #f6fbf9; /* ブランドに合わせ薄色へ */
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  transform: translateY(-1px);
+}
+.news-item__date{ min-width: 8.5rem; font-weight:600; }
+.news-item__tag{ font-weight:600; color: var(--brand-ink, #0b4b46); }
+.news-item::after{ content:"→"; margin-left:auto; opacity:.4; }
+
+/* スマホ時：パンくずは一行固定＋自然に省略 */
+@media (max-width: 680px){
+
+  /* 余白を詰めて横幅を確保 */
+  .breadcrumb ol,
+  .myroot-breadcrumb ol{
+    display: flex;
+    align-items: center;
+    gap: .4rem;               /* 小さめの隙間 */
+    white-space: nowrap;      /* 折り返し禁止 */
+    overflow: hidden;         /* はみ出しは隠す */
+    padding: .8rem 0;         /* 1.5em → 圧縮 */
+  }
+
+  /* 省略（…）が効くように必須の下地 */
+  .breadcrumb li,
+  .myroot-breadcrumb li{
+    display: flex;
+    align-items: center;
+    min-width: 0;             /* これが無いと省略されない */
+  }
+
+  /* リンク／現在地テキストは省略可能に */
+  .breadcrumb li a,
+  .myroot-breadcrumb li a,
+  .breadcrumb li[aria-current="page"],
+  .myroot-breadcrumb li[aria-current="page"]{
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 中間項目は短め。最後（現在地）は残り幅を取る */
+  .breadcrumb li:not(:last-child) a,
+  .myroot-breadcrumb li:not(:last-child) a{
+    max-width: 12ch;          /* 見出し12文字ぶんでカット */
+    flex: 0 1 auto;
+  }
+  .breadcrumb li:last-child,
+  .myroot-breadcrumb li:last-child{
+    flex: 1 1 auto;           /* 最後だけ広がる */
+  }
+
+  /* ほんのり縮小（好みで調整） */
+  .breadcrumb,
+  .myroot-breadcrumb{
+    font-size: clamp(.84rem, 3.2vw, .92rem);
+  }
+}
+
+/* ===== Breadcrumb: mobile one-line (全ページ共通) ===== */
+@media (max-width: 680px){
+
+  /* どのページのパンくずでも拾う */
+  nav[aria-label*="パンくず"],
+  .breadcrumb,
+  .myroot-breadcrumb,
+  .c-breadcrumb{
+    font-size: clamp(.84rem, 3.2vw, .92rem);
+  }
+
+  nav[aria-label*="パンくず"] ol,
+  .breadcrumb ol,
+  .myroot-breadcrumb ol,
+  .c-breadcrumb ol{
+    display: flex;
+    align-items: center;
+    gap: .4rem;                 /* 余白控えめ */
+    white-space: nowrap;        /* 折り返し禁止 */
+    overflow: hidden;           /* はみ出し隠す */
+    padding: .8rem 0;           /* 余白圧縮 */
+    margin: 0;                  /* 余白で落ちないように */
+  }
+
+  /* 省略記号を効かせる下地 */
+  nav[aria-label*="パンくず"] li,
+  .breadcrumb li,
+  .myroot-breadcrumb li,
+  .c-breadcrumb li{
+    display: flex;
+    align-items: center;
+    min-width: 0;               /* ←これ重要 */
+  }
+
+  /* 区切り矢印（ページにより未定義の所も拾う） */
+  nav[aria-label*="パンくず"] li+li::before,
+  .breadcrumb li+li::before,
+  .myroot-breadcrumb li+li::before,
+  .c-breadcrumb li+li::before{
+    content: "›";
+    color: #9ca3af;
+    margin: 0 .35rem;
+    flex: 0 0 auto;
+  }
+
+  /* テキストを省略可能に */
+  nav[aria-label*="パンくず"] li a,
+  nav[aria-label*="パンくず"] li[aria-current="page"],
+  .breadcrumb li a,
+  .breadcrumb li[aria-current="page"],
+  .myroot-breadcrumb li a,
+  .myroot-breadcrumb li[aria-current="page"],
+  .c-breadcrumb li a,
+  .c-breadcrumb li[aria-current="page"]{
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 中間は短め、最後（現在地）は広く */
+  nav[aria-label*="パンくず"] li:not(:last-child) a,
+  .breadcrumb li:not(:last-child) a,
+  .myroot-breadcrumb li:not(:last-child) a,
+  .c-breadcrumb li:not(:last-child) a{
+    max-width: 12ch;            /* 調整点：10〜14chで好みに */
+    flex: 0 1 auto;
+  }
+  nav[aria-label*="パンくず"] li:last-child,
+  .breadcrumb li:last-child,
+  .myroot-breadcrumb li:last-child,
+  .c-breadcrumb li:last-child{
+    flex: 1 1 auto;
+  }
+}
+
+/* フッターの ▲TOP は使わない */
+.footer__bar .footer__top{
+  display: none !important;
+}
+
+/* 著作権表記を中央揃えに */
+.footer__bar{
+  display: flex;                /* 既存があっても上書き可 */
+  justify-content: center;      /* 中央配置 */
+  align-items: center;
+  text-align: center;           /* 念のため */
+}
+.footer__bar small{
+  margin: 0 auto;               /* 万一の余白クセ対策 */
+}
+
+/* ===== 共通：下部CTA（幅そろえ＋アクセシビリティ配慮） ===== */
+.cta-bar{
+  max-width: var(--page-max, 1120px);
+  margin: 1.25rem auto 2.4rem;
+  padding-inline: min(4vw, 24px);
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .95em 1.2em;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid var(--cta-border, currentColor);
+  background: var(--cta-bg, #f5f5f5);
+  color: var(--cta-ink, #111);
+  transition: transform .12s ease, box-shadow .2s ease, background .18s ease, border-color .18s ease;
+  /* 幅そろえ（PC） */
+  flex: 1 1 var(--cta-min, 16rem);
+  min-width: var(--cta-min, 16rem);
+  text-align: center;
+}
+
+.cta:hover{
+  background: var(--cta-bg-hover, #eee);
+  border-color: var(--cta-border-hover, var(--cta-border, currentColor));
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+.cta .cta__icon{ width: 1.15em; height: 1.15em; }
+.cta .cta__icon path{ stroke: currentColor; fill: none; }
+
+/* モバイルは100%幅で縦並び */
+@media (max-width: 680px){
+  .cta{ flex-basis: 100%; min-width: 0; width: 100%; }
+}
+
+/* ========== Header Nav：ボタン風ホバー/選択だけ強調 ========== */
+@media (hover: hover) {
+  :root{
+    /* 好みで後から微調整可能 */
+    --nav-hover-bg: #fff;
+    --nav-hover-bd: rgba(0,0,0,.12);
+    --nav-hover-shadow: 0 8px 22px rgba(0,0,0,.10);
+    --nav-press-bg: #f3f6f9;
+  }
+
+  /* ベース：丸タブにしておく */
+  .c-header .c-header__list .c-header__list-link{
+    border-radius: 999px;
+    transition: background .15s ease, box-shadow .15s ease, border-color .15s ease, transform .04s ease;
+  }
+
+  /* ホバー／キーボード選択時：白いボタン＋薄い枠＋影 */
+  .c-header .c-header__list .c-header__list-link:hover,
+  .c-header .c-header__list .c-header__list-link:focus-visible{
+    background: var(--nav-hover-bg);
+    border: 1px solid var(--nav-hover-bd);
+    box-shadow: var(--nav-hover-shadow);
+    text-decoration: none; /* 下線などがあれば無効化 */
+  }
+
+  /* クリック押下中の見た目（わずかに沈む） */
+  .c-header .c-header__list .c-header__list-link:active{
+    background: var(--nav-press-bg);
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,.10) inset, 0 1px 2px rgba(0,0,0,.06);
+  }
+
+  /* ドロップダウン項目にも同じ“ボタン感”を付与 */
+  .c-header .submenu a{
+    border-radius: 12px;
+    transition: background .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .c-header .submenu a:hover,
+  .c-header .submenu a:focus-visible{
+    background: var(--nav-hover-bg);
+    border: 1px solid var(--nav-hover-bd);
+    box-shadow: var(--nav-hover-shadow);
+  }
+
+  /* もし既存の半透明ホバーが ::before などで出ている場合の保険 */
+  .c-header .c-header__list .c-header__list-link:hover::before,
+  .c-header .submenu a:hover::before{ content: none !important; }
+}
+
+/* キーボード操作時の見やすいフォーカス（現在地強調とは無関係の中立色） */
+.c-header .c-header__list .c-header__list-link:focus-visible,
+.c-header .submenu a:focus-visible{
+  outline: 2px solid #9ec7ff;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+@media (max-width: 750px){
+  /* input#hamburger の後続にボタンが来ている前提 */
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-child(1){
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-child(2){
+    opacity: 0;                   /* 真ん中は消す */
+  }
+  #hamburger:checked ~ .c-hamburger-menu__button .c-hamburger-menu__button-mark:nth-child(3){
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+
+/* PC幅のナビだけ文字を少し大きく＆タップ面積も確保 */
+@media (min-width: 960px){
+  /* メインメニュー */
+  .c-header__list-link{
+    font-size: clamp(15px, 1.15vw, 18px); /* だいたい16→18pxへ */
+    font-weight: 400;                     /* ほんの少しだけ太く */
+    letter-spacing: .01em;
+    padding-inline: clamp(12px, 1.2vw, 18px); /* 文字サイズに合わせて間隔も微増 */
+    line-height: 1.6;
+  }
+
+  /* サブメニュー（ドロップダウン）も揃える */
+  .submenu a{
+    font-size: clamp(14px, 1.05vw, 17px);
+    line-height: 1.6;
+    padding: 10px 14px;
+  }
+
+  /* ヘッダーの高さが窮屈ならわずかに余白を追加（任意） */
+  #site-header.c-header{
+    padding-block: 10px; /* きつければ 12px まで */
+  }
+}
+
+
+@media (min-width: 1025px) {
+    .c-header__logo img {
+
+padding: 1rem;
+
+}
+
+}
+
+/* ===============================
+   Themed Header / Footer (by tokens)
+   各ページの :root で --unit-* を上書きすれば色が切り替わる
+   デフォルトはサイト共通グリーン
+==================================*/
+:root{
+  --unit-brand:#2f7d5b;
+  --unit-ink:#193528;
+  --unit-tint:#eaf7f1;
+  --unit-tint-2:#f5fbf8;
+}
+
+/* header */
+.c-header{
+  background: var(--unit-tint-2);
+}
+.c-hamburger-menu__button .c-hamburger-menu__button-mark{
+  background: var(--unit-brand);
+}
+
+/* （必要なら）グローバルのヘッダーホバーもトークン準拠に */
+.c-header .c-header__list-link:hover,
+.c-header .c-header__list-link:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand) 10%, #fff);
+  color: var(--unit-ink);
+  border-radius: 8px;
+  outline: none;
+}
+
+/* footer */
+.site-footer{
+  background: var(--unit-tint-2);
+}
+.site-footer .footer__group h3{
+  color: var(--unit-ink);
+}
+.site-footer .footer__bar{
+  border-top: 2px solid color-mix(in oklab, var(--unit-brand) 24%, #fff);
+}
+.footer__top{
+  color: var(--unit-ink);
+}
+
+/* ===========================
+   Submenu colors (desktop & mobile)
+   すべてページトークンで着色する
+=========================== */
+
+/* 下層メニューのパネル */
+.c-header .submenu{
+  background: color-mix(in oklab, var(--unit-tint) 70%, #fff);
+  border: 1px solid color-mix(in oklab, var(--unit-brand) 40%, #fff);
+  box-shadow: 0 10px 26px color-mix(in oklab, var(--unit-brand) 18%, rgba(0,0,0,.16));
+  border-radius: 12px;
+  padding: .4rem 0;
+  min-width: 16.5rem;
+}
+
+/* 下層メニューのリンク */
+.c-header .submenu a{
+  display:block;
+  padding:.75rem 1rem;
+  color:#222;
+  text-decoration:none;
+  line-height:1.6;
+  white-space:nowrap;
+  border-radius:8px;
+  transition:background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+
+/* hover / focus */
+.c-header .submenu a:hover,
+.c-header .submenu a:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+  color: var(--unit-ink);
+  outline:none;
+  box-shadow: 0 4px 14px color-mix(in oklab, var(--unit-brand) 18%, rgba(0,0,0,.12));
+}
+
+/* 現在地（aria-current）は強調色だけ変更、太字はしない */
+.c-header .submenu a[aria-current="page"]{
+  color: var(--unit-ink);
+  font-weight:500;
+}
+
+/* 上段ナビの hover もトークンで統一 */
+.c-header .c-header__list-link:hover,
+.c-header .c-header__list-link:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand) 10%, #fff);
+  color: var(--unit-ink);
+  border-radius: 8px;
+  outline: none;
+}
+
+/* ===========================
+   Mobile drawer（ハンバーガー展開時）
+=========================== */
+
+/* ドロワー面そのものの色（スマホ幅で開いた時） */
+.c-hamburger-menu__input:checked ~ .c-hamburger-menu__list{
+  background: var(--unit-tint-2);
+  border-top: 1px solid color-mix(in oklab, var(--unit-brand) 20%, #fff);
+}
+
+/* モバイルでの各リンクのhover */
+.c-hamburger-menu__list .c-header__list-link:hover,
+.c-hamburger-menu__list .c-header__list-link:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand) 12%, #fff);
+  color: var(--unit-ink);
+}
+
+/* モバイルでの下層（開いたときのパネル色も統一） */
+.c-hamburger-menu__list .submenu{
+  background: color-mix(in oklab, var(--unit-tint) 70%, #fff);
+  border-color: color-mix(in oklab, var(--unit-brand) 40%, #fff);
+  box-shadow: none;           /* モバイルは影弱め */
+}
+
+/* モバイル：下層リンク hover */
+.c-hamburger-menu__list .submenu a:hover,
+.c-hamburger-menu__list .submenu a:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+  color: var(--unit-ink);
+}
+
+/* ハンバーガーの三本線の色もトークンで */
+.c-hamburger-menu__button .c-hamburger-menu__button-mark{
+  background: var(--unit-brand);
+}
+
+
+/* 1) ベース: 横幅オーバーしづらい土台 */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { width:100%; max-width:100%; overflow-x: hidden; }  /* これだけで直るケース多い */
+img, svg, video, canvas { max-width:100%; height:auto; display:block; }
+iframe { width:100% !important; max-width:100% !important; border:0; }
+table { width:100%; max-width:100%; overflow-x:auto; display:block; }
+
+/* Flex/Grid の“はみ出し”対策 */
+:where(.flex, .row, .wrap){ min-width:0; }
+:where(.flex > *, .row > *){ min-width:0; }
+:where(.grid){ grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
+
+/* 2) ガード: どうしても溢れる要素を強制クリップ（最後に評価されやすいよう長めのセレクタ） */
+html:where(:not(.allow-x-scroll)),
+body:where(:not(.allow-x-scroll)){
+  overflow-x: hidden !important;
+}
+
+/* “100vw地雷”対策（モバイルのスクロールバー分ではみ出るケース） */
+:where(.use-viewport-width){ width:100%; } /* 100vwの代わりにこのクラスを使う想定 */
+
+/* ===== Header dropdown gap fix (scoped) ===== */
+#site-header .c-header__list { position: relative; overflow: visible; }
+#site-header .c-header__list > li { position: relative; }
+
+#site-header .c-header__list > li::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:100%;
+  height:12px;   /* 必要なら 8–16pxで調整 */
+}
+
+#site-header .c-header__list > li > .submenu{
+  position:absolute;
+  left:0;
+  top:calc(100% + 12px); /* ::after と同じ値 */
+  display:none;
+  z-index:1000;
+}
+
+#site-header .c-header__list > li:hover > .submenu,
+#site-header .c-header__list > li > .submenu:hover,
+#site-header .c-header__list > li > .sub-toggle:checked ~ .submenu{
+  display:block;
+}
+
+/* 覆いかぶさり対策（必要ページのみ有効） */
+#site-header,
+#site-header .c-hamburger-menu__list{
+  overflow: visible;
+}
+
+/* サブピクセルで切れる場合のみ有効化 */
+// #site-header .c-header__list > li > .submenu{ top:calc(100% + 11px); }
+

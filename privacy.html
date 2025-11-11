@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プライバシーポリシー | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+
+  <!-- 共通スタイルを必ず読み込む（ロゴの既定サイズなどが入っている） -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* サブページはスプラッシュ演出を無効化 */
+    body{opacity:1 !important}
+    #splash{display:none !important}
+
+    /* ヘッダーロゴの最大高さを明示（共通CSSより後に記述して上書き） */
+    :root { --header-logo-height: 48px; }
+    .c-header__logo img{
+      height: var(--header-logo-height);
+      width: auto;
+      display: block;
+    }
+
+    /* 本文レイアウト（単一カラム） */
+    .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding:0 2%;}
+    .breadcrumb ol{display:flex; gap:.5em; flex-wrap:wrap; font-size:.9rem; margin:0; padding:0; list-style:none;}
+    .breadcrumb li+li::before{content:"›"; color:#9aa6af; margin:0 .5em;}
+
+    .doc{max-width:min(1100px,92vw); margin: clamp(16px,4vw,32px) auto; padding:0 2%;}
+    .doc h1{font-size:clamp(22px,3.8vw,34px); line-height:1.35; margin:.2em 0 .6em;}
+    .doc h2{font-size:1.1rem; margin:1.6em 0 .6em; color:#193528; border-left:4px solid #2f7d5b; padding-left:.6em;}
+    .doc p, .doc li{line-height:1.9;}
+    .doc ul{padding-left:1.2em;}
+    .doc a{color:#2f7d5b; text-decoration:none;}
+    .doc a:hover{text-decoration:underline;}
+    .doc small{color:#5c6a62;}
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+<div id="page">
+
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="index.html">TOP</a></li>
+        <li aria-current="page">プライバシーポリシー</li>
+      </ol>
+    </nav>
+
+    <article class="doc">
+      <h1>プライバシーポリシー</h1>
+      <p>特定非営利活動法人レスパイトハウス・ハンズ（以下「当法人」）は、個人情報の保護を重要な責務と考え、以下の方針に基づき適切に取り扱います。</p>
+
+      <h2>1. 取得する情報</h2>
+      <ul>
+        <li>お問い合わせ：氏名、メールアドレス、電話番号、相談内容 等</li>
+        <li>サービス申込・見学予約：氏名、住所、連絡先、必要事項 等</li>
+        <li>アクセス情報：IP アドレス、ブラウザ情報 等（技術的に付随して送信されるもの）</li>
+      </ul>
+
+      <h2>2. 利用目的</h2>
+      <ul>
+        <li>お問い合わせへの回答、資料送付、見学・相談の調整</li>
+        <li>サービスの提供・運営およびアフターサポート</li>
+        <li>安全管理、品質向上のための集計・分析（個人を特定しない範囲）</li>
+      </ul>
+
+      <h2>3. 法令等の遵守</h2>
+      <p>当法人は、個人情報保護法その他関連法令・ガイドラインを遵守します。</p>
+
+      <h2>4. 第三者提供</h2>
+      <p>次の場合を除き、個人情報を第三者に提供しません。</p>
+      <ul>
+        <li>本人の同意がある場合</li>
+        <li>法令に基づく場合</li>
+        <li>業務委託に伴い必要な範囲で提供する場合（委託先の適切な監督を実施）</li>
+      </ul>
+
+      <h2>5. 安全管理措置</h2>
+      <p>漏えい・滅失・毀損の防止のため、アクセス制限、暗号化、従業者教育、委託先管理等の安全管理措置を講じます。</p>
+
+      <h2>6. 開示等のご請求</h2>
+      <p>保有個人データの開示、訂正、利用停止等のご請求は、下記「お問い合わせ窓口」までご連絡ください。ご本人確認のうえ、法令に基づき対応します。</p>
+
+      <h2>7. クッキー等の利用</h2>
+      <p>本サイトは表示や動作の安定のためにクッキー等を利用する場合があります。これらはブラウザ設定で無効化できます。<strong>アクセス解析等のツールは現時点では利用していません</strong>。将来導入する場合は、本ページにツール名・提供者・取得情報・利用目的・オプトアウト方法等を追記します。</p>
+
+      <h2>8. 外部リンク</h2>
+      <p>外部サイトへのリンク先での個人情報の取扱いについて、当法人は責任を負いません。各サイトのポリシーをご確認ください。</p>
+
+      <h2>9. 改定</h2>
+      <p>本ポリシーは予告なく改定する場合があります。重要な変更は本サイト上で告知します。</p>
+
+      <h2>お問い合わせ窓口</h2>
+      <p>
+        【法人名】特定非営利活動法人レスパイトハウス・ハンズ（個人情報保護管理者：理事&nbsp;千田 雅子）<br>
+        所在地：〒021-0031&nbsp;岩手県一関市青葉二丁目6-16<br>
+        メール：<a href="mailto:hands-ma@ceres.ocn.ne.jp">hands-ma@ceres.ocn.ne.jp</a> ／
+        電話：<a href="tel:0191-31-5720">0191-31-5720</a>
+      </p>
+
+      <p><small>施行日：2025年11月1日</small></p>
+    </article>
+  </main>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+</div><!-- /#page -->
+
+<script>
+  // サブページの“常時表示”リセット
+  (function () {
+    // フェードを強制解除
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.add('page-show');            // opacity:1にするクラス
+      document.documentElement.classList.remove('no-scroll'); // スクロール封鎖を解除
+      var s = document.getElementById('splash'); 
+      if (s) s.style.display = 'none';                     // 万一あっても非表示
+    });
+  })();
+</script>
+<style>
+  /* 念のための保険（CSSでの強制表示） */
+  body { opacity: 1 !important; }
+  #splash { display: none !important; }
+</style>
+
+
+</body>
+</html>

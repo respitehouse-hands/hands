@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEWS一覧 | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* フェード/スプラッシュ無効 */
+    body{opacity:1 !important} #splash{display:none !important}
+
+    .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto;padding:0 2%;}
+    .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.9rem;margin:0;padding:0;list-style:none;}
+    .breadcrumb li+li::before{content:"›";color:#9aa6af;margin:0 .5em;}
+    .news-index{max-width:min(1100px,92vw);margin: clamp(12px,3vw,28px) auto; padding:0 2%;}
+    .news-index h1{font-size:clamp(22px,3.6vw,32px);margin:.2em 0 .6em;}
+    .news-year{margin: clamp(16px,3vw,28px) 0 8px; font-size:1rem; color:#193528; border-left:4px solid #2f7d5b; padding-left:.6em;}
+    .news-list{margin:0; padding:0; list-style:none; border-top:1px solid #eef3ef;}
+    .news-list li{border-bottom:1px solid #eef3ef;}
+    .news-list a{display:grid; grid-template-columns:110px 88px 1fr; gap:10px;
+                 padding:12px 6px; text-decoration:none; color:inherit; align-items:center;}
+    .news-date{color:#4c5a63; font-variant-numeric: tabular-nums;}
+    .news-tag{font-size:12px; background:#eaf7f1; color:#215d47; border-radius:999px; padding:2px 8px; justify-self:start;}
+    .news-title{line-height:1.6;}
+    @media (max-width:640px){
+      .news-list a{grid-template-columns:90px auto; grid-template-areas:
+        "date tag" "title title";}
+      .news-date{grid-area:date}
+      .news-tag{grid-area:tag; justify-self:end;}
+      .news-title{grid-area:title;}
+    }
+  </style>
+</head>
+<body>
+<div id="page">
+  <!-- 共通ヘッダー（既存サイトと同一） -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main id="main">
+    <!-- パンくず -->
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="index.html">TOP</a></li>
+        <li aria-current="page">NEWS</li>
+      </ol>
+    </nav>
+
+    <section class="news-index" aria-labelledby="news-index-title">
+      <h1 id="news-index-title">NEWS</h1>
+
+      <h2 class="news-year" id="y2025">2025年</h2>
+      <ul class="news-list" aria-labelledby="y2025">
+        <li>
+          <a href="news3.html">
+            <time class="news-date" datetime="2025-11-11">2025.11.11</time>
+            <span class="news-tag">お知らせ</span>
+            <span class="news-title">【新施設完成／見学会のご案内】ハンズ生活介護事業所 | わぁははクラブ</span>
+          </a>
+        </li>
+        <li>
+          <a href="news2.html">
+            <time class="news-date" datetime="2025-11-10">2025.11.10</time>
+            <span class="news-tag">お知らせ</span>
+            <span class="news-title">ホームページをリニューアルしました</span>
+          </a>
+        </li>
+        <li>
+          <a href="news1.html">
+            <time class="news-date" datetime="2025-04-01">2025.04.01</time>
+            <span class="news-tag">お知らせ</span>
+            <span class="news-title">【マイルートリンク　開設のお知らせ】</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- （将来）年が増えたら <h2 class="news-year">2024年</h2> … を追加 -->
+    </section>
+
+    <!-- 既存の電話/メールCTAを載せたいならここに <nav class="cta-bar">…</nav> -->
+  </main>
+
+  <!-- 共通フッター（既存サイトと同一） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // サブページなのでフェード封印
+  document.body.classList.add('page-show');
+  document.documentElement.classList.remove('no-scroll');
+  var s = document.getElementById('splash'); if(s) s.style.display='none';
+</script>
+</body>
+</html>

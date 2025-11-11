@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>若者サポートステーション（いちさぽ） | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ページ専用CSS（軽量リンクハブ） -->
+  <style>
+    :root{
+      --unit-brand:#2563eb;
+      --unit-ink:#0b2b6b;
+      --unit-tint:#eef4ff;
+      --unit-tint-2:#f7faff;
+      --my-line:#e5e7eb;
+      --my-radius:14px;
+      --my-max:1120px;
+    }
+    .page{ padding-inline:min(4vw,24px); }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    /* ヒーロー：軽量・明るめ */
+    .unit-hero{
+      margin:2.2rem 0 2.4rem;
+      background:
+        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line);
+      border-radius:20px;
+      box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+    .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+
+    /* ===== ここが“ひとかたまり”：左にマーク、右にタイトル＋リード ===== */
+    .unit-hero__head{
+      display:grid;
+      grid-template-columns: clamp(64px,7vw,80px) 1fr;
+      gap: clamp(12px,2vw,20px);
+      align-items:center;                 /* ← 右ブロックの“真ん中”にマークを合わせる */
+      margin-bottom: clamp(12px,2vw,30px);
+    }
+    .unit-hero__emblem{
+      width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
+      display:grid; place-items:center; border-radius:50%;
+      background: radial-gradient(120% 120% at 30% 20%, #fff, #eaf1ff 70%);
+      border: 3px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+      box-shadow: 0 6px 20px rgba(37,99,235,.18);
+      color: var(--unit-brand);
+    }
+    .unit-hero__emblem svg{ width:60%; height:60%; fill: currentColor; }
+    .unit-hero__title{
+      margin:0; color:var(--unit-ink);
+      font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+    }
+    .unit-hero__lead{ margin:.75rem 0 2rem; color:#1f2937; }
+
+    /* チェック付き（“ひとかたまり”の下に独立配置） */
+    .unit-hero__points{ margin-top: .8rem; }
+    .points{
+      display:grid; gap:.6rem; margin:0; padding:0; list-style:none;
+    }
+    .points li{
+      position:relative; padding-left:1.35em; line-height:1.9; font-size:.95rem;
+    }
+    .points li::before{
+      content:""; position:absolute; left:0; top:.6em; width:.75em; height:.75em; border-radius:50%;
+      background: var(--unit-brand);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
+    }
+
+    /* リンクカード */
+    .links{ display:grid; gap:clamp(12px,2vw,16px); margin-top:1.2rem; }
+    .linkcard{
+      display:flex; align-items:center; gap:.8rem;
+      padding:1rem 1.1rem; border:1px solid var(--my-line); border-radius:var(--my-radius);
+      background:#fff; text-decoration:none; color:#111;
+      transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+    }
+    .linkcard:hover{
+      border-color: color-mix(in oklab, var(--unit-brand) 45%, #fff);
+      box-shadow:0 10px 24px rgba(37,99,235,.12);
+      transform: translateY(-1px);
+    }
+    .linkcard__icon{
+      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+      background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+      border:1px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
+      color: var(--unit-brand);
+    }
+    .linkcard__icon svg{ width:22px; height:22px; fill: currentColor; }
+    .linkcard__body{ display:grid; gap:.2rem; }
+    .linkcard__title{ font-weight:700; }
+    .linkcard__url{ font-size:.92rem; color:#4b5563; }
+
+    /* サブナビ（ページ内） */
+    .subnav{ position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--my-line);
+      margin:0 auto; max-width:var(--my-max); padding:.75rem min(4vw,24px); }
+    .subnav__list{ display:flex; flex-wrap:wrap; gap:.6rem .95rem; align-items:center; justify-content:center; }
+    .subnav__list a{
+      display:inline-block; padding:.6em 1.1em; border:1px solid var(--my-line);
+      border-radius:999px; background:#fafafa; color:#111; font-weight:500; line-height:1; text-decoration:none;
+      transition:background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+    }
+    .subnav__list a:hover{
+      background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+      border-color: color-mix(in oklab, var(--unit-brand) 60%, #fff);
+      color: var(--unit-ink);
+      box-shadow:0 4px 14px rgba(37,99,235,.14);
+      transform: translateY(-1px);
+    }
+
+    /* セクション見出し */
+    .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
+    .section__title{
+      font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 1.2rem;
+      padding-left:.5rem; border-left:6px solid var(--unit-brand);
+    }
+
+    /* ヘッダー/フッターの色をほんのり青系に（このページだけ） */
+    #site-header.c-header{ background: var(--unit-tint-2); }
+    .site-footer{ background: var(--unit-tint-2); }
+    .site-footer .footer__group h3{ color: var(--unit-ink); }
+
+    /* 色統一（いちさぽ） */
+    .page-ichisapo #site-header .submenu{
+      background:#f5f8ff;
+      border:1px solid color-mix(in oklab, var(--unit-brand) 32%, #fff);
+      box-shadow:0 10px 26px rgba(37,99,235,.10);
+    }
+    .page-ichisapo #site-header .submenu a{ color:#1f2937; }
+    .page-ichisapo #site-header .submenu a:hover,
+    .page-ichisapo #site-header .submenu a:focus-visible{
+      background: color-mix(in oklab, var(--unit-brand) 18%, #fff);
+      color: var(--unit-ink);
+      outline: none;
+    }
+
+    li.c-header__list-item{ background:#f7faff; }
+
+    .page-ichisapo, .page-ichisapo body, .page-ichisapo #page { background:#fff; }
+    .page-ichisapo body{ background-image:none !important; }
+
+    .page-ichisapo :root{ --btt-ring-active:#2563eb; --btt-center:#eef3ff; }
+    .page-ichisapo #backToTop.btt--ring .btt__ring{ border-color: var(--btt-ring-active) !important; }
+    .page-ichisapo #backToTop.btt--ring .btt__inner{ background: var(--btt-center) !important; }
+    .page-ichisapo #backToTop .btt__icon{ fill:#2563eb; }
+
+    /* パンくず */
+    .page-ichisapo .breadcrumb{
+      max-width: var(--my-max, 1120px);
+      margin: 0 auto 1rem;
+      padding: 1.2rem min(4vw,24px) 0;
+    }
+    .page-ichisapo .breadcrumb ol{
+      display:flex; flex-wrap:wrap; gap:.5rem .75rem;
+      list-style:none; padding:0; margin:0; color:#6b7280; font-size:.95rem;
+    }
+    .page-ichisapo .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .page-ichisapo .breadcrumb a{ color:#2563eb; text-decoration:none; font-weight:500; }
+    .page-ichisapo .breadcrumb a:hover{ text-decoration:underline; }
+    .page-ichisapo .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+
+.unit-hero ul > li {
+
+margin: 0;
+
+}
+
+/* ===== BackToTop：wahahaと同デザインで色だけichisapoの青に ===== */
+:root{
+  --btt-ring-active:#2563eb;  /* リングの色（青） */
+  --btt-center:#eef3ff;       /* 中央の淡色 */
+}
+
+/* ラベルや矢印のインク色（共通CSSで参照している場合） */
+body.page-ichisapo{ --btt-ink:#0b2b6b; }
+
+
+  </style>
+</head>
+
+<body class="page-ichisapo">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくず">
+    <ol>
+      <li><a href="index.html">TOP</a></li>
+      <li><a href="office.html">事業所紹介</a></li>
+      <li aria-current="page">いちのせき若者サポートステーション</li>
+    </ol>
+  </nav>
+
+  <!-- メイン -->
+  <main id="main" class="l-main page">
+    <section class="wrap" aria-labelledby="title">
+
+
+      <!-- ヒーロー（アイコン＋タイトル＋リード＝ひとかたまり / その下にチェック） -->
+      <section id="about" class="unit-hero" aria-labelledby="unit-hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
+              </svg>
+            </div>
+            <div class="unit-hero__titlewrap">
+              <h1 id="unit-hero-title" class="unit-hero__title">いちのせき若者サポートステーション（いちさぽ）</h1>
+              <p class="unit-hero__lead">
+                働くことに悩みを抱えている15歳～49歳までの方の就労を支援しています。専門の相談員が就労支援を行います。
+              </p>
+            </div>
+          </div>
+
+          <!-- “ひとかたまり”の下に置くチェック付き -->
+          <div class="unit-hero__points">
+            <ul class="points">
+              <li>ご本人・ご家族・関係機関、どなたでも相談OK。</li>
+              <li>個別相談・セミナー・職場体験など。</li>
+              <li>15歳から60歳までの方を対象とした就労移行支援事業「ワークブリッジいちのせき」のご利用もこちらから。</li>
+            </ul>
+          </div>
+
+          <!-- 公式リンク（従来どおり） -->
+          <div class="links" id="links" aria-label="公式リンク">
+            <a class="linkcard" href="https://ichisapo.jp/" target="_blank" rel="noopener noreferrer external">
+              <span class="linkcard__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z"/>
+                </svg>
+              </span>
+              <span class="linkcard__body">
+                <span class="linkcard__title">公式サイトへ</span>
+                <span class="linkcard__url">ichisapo.jp（新しいタブで開きます）</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 注意書き -->
+      <section id="note" class="section" aria-labelledby="note-title">
+        <h2 id="note-title" class="section__title">ご確認ください</h2>
+        <p class="small">
+          このページでは、いちさぽの概要と公式サイトへの導線のみをご案内しています。<br>
+          最新の開催情報・予約方法・アクセス等は、<a href="https://ichisapo.jp/" target="_blank" rel="noopener noreferrer">公式サイト</a>をご確認ください。
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>いちのせき市民活動センター | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- citizen 専用CSS（紺系） -->
+  <style>
+    :root{
+      --unit-brand:#0b2b6b;   /* 基調：深紺 */
+      --unit-ink:#0b2b6b;     /* 見出しの濃紺 */
+      --unit-tint:#eef2ff;    /* うっすら青 */
+      --unit-tint-2:#f7f9ff;  /* ごく薄い青 */
+      --my-line:#e5e7eb;
+      --my-radius:14px;
+      --my-max:1120px;
+    }
+
+    /* ページ骨格 */
+    .page{ padding-inline:min(4vw,24px); }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    /* ===== ヘッダー/フッターは淡い紺トーン ===== */
+    body.page-citizen #site-header.c-header{ background: var(--unit-tint-2) !important; }
+    .site-footer{ background: var(--unit-tint-2); }
+    .site-footer .footer__group h3{ color: var(--unit-ink); }
+
+    /* ===== メインの地は白系で固定 ===== */
+    body.page-citizen .l-main{ background:#fff; }
+    body.page-citizen .page{ background:#fff; }
+
+    /* ===== ドロップダウン（紺系） ===== */
+    body.page-citizen #site-header .submenu{
+      background:#f2f6ff;
+      border:1px solid color-mix(in oklab, var(--unit-brand) 32%, #fff);
+      box-shadow:0 12px 28px rgba(11,43,107,.10);
+      border-radius:12px;
+      padding:.4rem 0;
+      min-width:16rem;
+    }
+    body.page-citizen #site-header .submenu a{
+      display:block; padding:.7rem 1rem; color:#0f1f3a; text-decoration:none; white-space:nowrap;
+      border-radius:8px; background:transparent;
+    }
+    body.page-citizen #site-header .submenu a:hover,
+    body.page-citizen #site-header .submenu a:focus-visible{
+      background: color-mix(in oklab, var(--unit-brand) 18%, #fff);
+      color: var(--unit-ink); outline: none;
+    }
+
+    /* ===== モバイル（ハンバーガー） ===== */
+    @media (max-width:1024px){
+      body.page-citizen #site-header .c-hamburger-menu__bg{
+        background: rgba(11,43,107,.45) !important; backdrop-filter: blur(2px);
+      }
+      body.page-citizen #hamburger:checked ~ .c-hamburger-menu__list{
+        background: #ffffff !important;
+        border: 1px solid color-mix(in oklab, var(--unit-brand) 18%, #fff);
+        box-shadow: 0 14px 36px rgba(11,43,107,.16); z-index: 1001;
+      }
+      body.page-citizen #hamburger:checked ~ .c-hamburger-menu__list > .c-header__list-item{
+        background: #ffffff !important; border-bottom: 1px solid #eef1f5;
+      }
+      body.page-citizen #site-header .submenu{
+        background:#ffffff !important;
+        border:1px solid color-mix(in oklab, var(--unit-brand) 22%, #fff);
+        box-shadow:0 10px 28px rgba(11,43,107,.12);
+      }
+      body.page-citizen #site-header .submenu a{
+        background: transparent !important; color: #0f1f3a;
+      }
+      body.page-citizen #site-header .submenu a:hover,
+      body.page-citizen #site-header .submenu a:focus-visible{
+        background: color-mix(in oklab, var(--unit-brand) 12%, #fff) !important; color: var(--unit-ink);
+      }
+      .c-header .sub-caret{ cursor:pointer; }
+    }
+
+    /* ===== ヒーロー ===== */
+    .unit-hero{
+      margin:2.2rem 0 2.4rem;
+      background:
+        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line);
+      border-radius:20px;
+      box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+    .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+    .unit-hero__head{
+      display:grid; grid-template-columns: clamp(64px,7vw,80px) 1fr;
+      gap: clamp(12px,2vw,20px); align-items:center; margin-bottom: clamp(12px,2vw,16px);
+    }
+    .unit-hero__emblem{
+      width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
+      display:grid; place-items:center; border-radius:50%;
+      background: radial-gradient(120% 120% at 30% 20%, #fff, #eaf0ff 70%);
+      border: 3px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+      box-shadow: 0 6px 20px rgba(11,43,107,.18);
+      color: var(--unit-brand);
+    }
+    .unit-hero__emblem svg{ width:60%; height:60%; display:block; }
+    .unit-hero__title{
+      margin:0; color:var(--unit-ink);
+      font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+    }
+    .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2937; }
+
+    /* チェックポイント */
+    .unit-hero__points{ margin-top:.8rem; }
+    .points{ display:grid; gap:.6rem; margin:0; padding:0; list-style:none; }
+    .points li{ position:relative; padding-left:.3em; line-height:1.9; }
+    .points li::before{
+      content:""; position:absolute; left:0; top:.58em; width:.75em; height:.75em; border-radius:50%;
+      background: var(--unit-brand); box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
+    }
+
+    /* 外部リンクカード */
+    .links{ display:grid; gap:clamp(12px,2vw,16px); margin-top:1.2rem; }
+    .linkcard{
+      display:flex; align-items:center; gap:.8rem;
+      padding:1rem 1.1rem; border:1px solid var(--my-line); border-radius:var(--my-radius);
+      background:#fff; text-decoration:none; color:#111;
+      transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+    }
+    .linkcard:hover{
+      border-color: color-mix(in oklab, var(--unit-brand) 45%, #fff);
+      box-shadow:0 10px 24px rgba(11,43,107,.12);
+      transform: translateY(-1px);
+    }
+    .linkcard__icon{
+      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+      background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+      border:1px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
+      color: var(--unit-brand);
+    }
+    .linkcard__icon svg{ width:22px; height:22px; display:block; }
+    .linkcard__body{ display:grid; gap:.2rem; }
+    .linkcard__title{ font-weight:700; }
+    .linkcard__url{ font-size:.92rem; color:#4b5563; }
+
+    /* セクション見出し */
+    .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
+    .section__title{
+      font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 1.2rem;
+      padding-left:.5rem; border-left:6px solid var(--unit-brand);
+    }
+
+    /* パンくず */
+    .breadcrumb{
+      max-width: var(--my-max);
+      margin: 0 auto 1rem;
+      padding: 1.2rem min(4vw,24px) 0;
+    }
+    .breadcrumb ol{
+      display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:0; margin:0;
+      color:#6b7280; font-size:.95rem;
+    }
+    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .breadcrumb a{ color: color-mix(in oklab, var(--unit-brand) 70%, #000); text-decoration:none; font-weight:500; }
+    .breadcrumb a:hover{ text-decoration:underline; }
+    .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+
+    /* ===== BTT（上へ戻る）リング：紺トーン＆進捗連動 ===== */
+    body.page-citizen{
+      --btt-ring-active:#0b2b6b;   /* リング色（深紺） */
+      --btt-center:#f1f6ff;        /* 中央の淡色 */
+      --scroll-progress: 0;         /* 0〜1 をJSで更新 */
+    }
+    body.page-citizen #backToTop .btt__icon{ fill: var(--unit-brand); }
+
+    /* conic-gradient で 0%→100% を描画（1turn=360degを使うと安全） */
+    body.page-citizen #backToTop.btt--ring .btt__ring{
+      background:
+        radial-gradient(circle at 50% 50%, var(--btt-center) 0 46%, transparent 47%),
+        conic-gradient( var(--btt-ring-active) 0 calc(var(--scroll-progress) * 1turn),
+                        transparent 0 1turn ) !important;
+      transition: background 60ms linear;
+    }
+
+/* ===== citizen: 背景の緑帯を無効化して白系に統一 ===== */
+body.page-citizen {
+  /* 進捗リングとトーンも紺系に */
+  --btt-ring-active:#0b2b6b;
+  --btt-center:#eef2ff;
+}
+
+/* ページ本体の背景を白で固定 */
+body.page-citizen #page,
+body.page-citizen .page,
+body.page-citizen main.l-main,
+body.page-citizen .l-main {
+  background:#fff !important;
+}
+
+/* 共通の装飾帯（擬似要素）を無効化 */
+body.page-citizen .l-main::before,
+body.page-citizen .l-main::after,
+body.page-citizen main.l-main::before,
+body.page-citizen main.l-main::after {
+  content:none !important;
+}
+
+/* ゼブラ背景（偶数セクション等）があれば白で上書き */
+body.page-citizen .page > section:nth-of-type(even),
+body.page-citizen .section.section--alt,
+body.page-citizen .section.is-alt {
+  background:#fff !important;
+  box-shadow:none !important; /* 帯状に見えるシャドウがある場合の保険 */
+}
+
+/* ヒーロー直下に敷く薄色帯を使っている場合は紺系の極薄で統一（任意） */
+body.page-citizen .unit-hero {
+  background:
+    radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+    radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+    linear-gradient(#fff,#fff) !important;
+}
+
+
+  </style>
+</head>
+
+<body class="page-citizen">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくず">
+    <ol>
+      <li><a href="index.html">TOP</a></li>
+      <li><a href="office.html">事業所紹介</a></li>
+      <li aria-current="page">いちのせき市民活動センター</li>
+    </ol>
+  </nav>
+
+  <!-- メイン -->
+  <main id="main" class="l-main page">
+    <section class="wrap" aria-labelledby="title">
+
+      <!-- ヒーロー -->
+      <section id="about" class="unit-hero" aria-labelledby="unit-hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem" aria-hidden="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true" role="img">
+                <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                  <path d="M3 20.5h18"/>
+                  <path d="M5.5 20.5V10.5l5-1.8v11.8"/>
+                  <path d="M12.5 20.5V5.5l6 1.8v13.2"/>
+                </g>
+                <g fill="currentColor">
+                  <rect x="7.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                  <rect x="7.1" y="15.0" width="1.4" height="1.4" rx=".15"/>
+                  <rect x="14.1" y="9.8"  width="1.4" height="1.4" rx=".15"/>
+                  <rect x="14.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                  <rect x="16.5" y="14.8" width="1.4" height="1.4" rx=".15"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="unit-hero__titlewrap">
+              <h1 id="unit-hero-title" class="unit-hero__title">いちのせき市民活動センター</h1>
+              <p class="unit-hero__lead">
+                市民活動を通じて、地域を盛り上げる市民の皆様を支援します。
+              </p>
+            </div>
+          </div>
+
+          <!-- ポイント -->
+          <div class="unit-hero__points">
+            <ul class="points">
+              <li>地域協働体・自治会による地域づくりや、個人・任意団体などによる幅広い市民活動をサポートします。</li>
+              <li>市民活動の活性化を推進し、話し合いをスムーズに行うための支援を行います。</li>
+              <li>旧東磐井地域を拠点とした<strong>せんまやサテライト</strong>もご利用ください。</li>
+            </ul>
+          </div>
+
+          <!-- 公式リンク -->
+          <div class="links" id="links" aria-label="公式リンク">
+            <a class="linkcard" href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer external">
+              <span class="linkcard__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="linkcard__body">
+                <span class="linkcard__title">いちのせき市民活動センター 公式サイトへ</span>
+                <span class="linkcard__url">（新しいタブで開きます）</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 注意書き -->
+      <section id="note" class="section" aria-labelledby="note-title">
+        <h2 id="note-title" class="section__title">ご確認ください</h2>
+        <p class="small">
+          このページでは、センターの概要と公式サイトへの導線のみをご案内しています。<br>
+          最新情報・お問い合わせ等は、<a href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer">公式サイト</a>をご確認ください。
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html" aria-current="page">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div>
+
+<!-- 共通JS -->
+<script src="js/site.js"></script>
+
+<!-- サブメニューの＋／－トグル -->
+<script>
+  document.addEventListener('click', function (e) {
+    const caret = e.target.closest('.sub-caret');
+    if (!caret) return;
+    e.preventDefault(); e.stopPropagation();
+    const li = caret.closest('.has-sub');
+    const toggle = li && li.querySelector('.sub-toggle');
+    if (toggle) toggle.checked = !toggle.checked;
+  }, { capture: true });
+
+  document.addEventListener('keydown', function (e) {
+    if (!e.target.matches('.sub-caret')) return;
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    const li = e.target.closest('.has-sub');
+    const toggle = li && li.querySelector('.sub-toggle');
+    if (toggle) toggle.checked = !toggle.checked;
+  });
+</script>
+
+<!-- BTTリング：スクロール進捗 0〜1 を更新 -->
+<script>
+(function(){
+  const docEl = document.documentElement;
+  const root  = document.body; // body.page-citizen にセットする
+
+  function calcProgress(){
+    const scrollTop = Math.max(docEl.scrollTop, window.pageYOffset || 0);
+    const max = Math.max(1, docEl.scrollHeight - docEl.clientHeight);
+    return Math.min(1, Math.max(0, scrollTop / max));
+  }
+
+  let ticking = false;
+  function update(){
+    root.style.setProperty('--scroll-progress', calcProgress());
+    ticking = false;
+  }
+
+  function onScroll(){
+    if (!ticking){ requestAnimationFrame(update); ticking = true; }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll, { passive:true });
+  update(); // 初期化
+})();
+</script>
+</body>
+</html>

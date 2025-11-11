@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>さくらなみき | レスパイトハウス・ハンズ</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- 共通CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    :root{ --ink:#17222f; --ink-2:#425466; --line:#e6edf2; --surface:#fff; --radius:14px; --max:1120px; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0; color:var(--ink);
+      font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:
+        radial-gradient(1200px 220px at 15% -8%, #fff7fb 30%, transparent 60%),
+        radial-gradient(1000px 200px at 85% -10%, #fff3f8 25%, transparent 60%),
+        #ffffff;
+    }
+    .wrap{ max-width:var(--max); margin-inline:auto; padding-inline:min(4vw,24px); }
+
+    /* -------- ページ専用（桜）トークン -------- */
+    .unit-sakura{
+      --brand:#F48FB1;             /* ピンク */
+      --brand-ink:#6E2142;         /* 濃色 */
+      --brand-weak:#FFF0F5;        /* 薄い面色 */
+      --chip-line: color-mix(in oklab, var(--brand) 40%, #fff);
+      --header-bg:#FDE7EF;
+      --menu-border:color-mix(in oklab, var(--brand) 28%, #fff);
+      --menu-divider:color-mix(in oklab, var(--brand) 16%, #fff);
+      --nav-text:#6E2142;
+      --nav-hover-bg:#FFE6EF;
+    }
+
+    /* ヘッダー色上書き（構造は共通のまま） */
+    body.unit-sakura #site-header.c-header{ background:var(--header-bg); border-bottom:1px solid var(--menu-border); }
+    body.unit-sakura .submenu{
+      background:#fff; border:1px solid var(--menu-border); box-shadow:0 12px 28px rgba(110,33,66,.10);
+    }
+    body.unit-sakura .submenu li + li{ border-top:1px solid var(--menu-divider); }
+    body.unit-sakura .submenu a{ color:var(--nav-text); }
+    body.unit-sakura .submenu a:hover, body.unit-sakura .submenu a:focus{ background:var(--nav-hover-bg); color:var(--nav-text); }
+
+
+    /* フッター配色（このページ限定） */
+    .unit-sakura .site-footer{ background:#FFF0F5; border-top:1px solid var(--menu-border); }
+    .unit-sakura .site-footer .footer__bar{ background:#FDE7EF; border-top:1px solid var(--menu-border); }
+    .unit-sakura .site-footer h3, .unit-sakura .site-footer a{ color:var(--brand-ink); }
+
+    /* ========== ヒーローバンド（マイルート型） ========== */
+    .unit-hero{
+      margin:1.2rem 0 1.8rem; border-radius:20px; border:1px solid var(--line);
+      background:
+        radial-gradient(900px 240px at 15% -12%, #fff5f9, transparent 60%),
+        radial-gradient(640px 200px at 90% -25%, #fff0f6, transparent 60%),
+        linear-gradient(180deg,#fff,#fff);
+      box-shadow:0 18px 48px rgba(110,33,66,.06);
+    }
+    .unit-hero__inner{ padding:clamp(18px,3.2vw,36px) clamp(18px,3.6vw,40px); }
+    .unit-hero__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,2vw,20px); align-items:center; margin-bottom:clamp(12px,2vw,18px); }
+    .unit-hero__emblem{
+      width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
+      display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #ffeaf2 70%);
+      border:3px solid color-mix(in oklab, var(--brand) 55%, #fff); box-shadow:0 8px 22px rgba(244,143,177,.18);
+    }
+    .unit-hero__emblem svg{ width:62%; height:62%; fill:var(--brand); }
+    .unit-hero__title{ margin:0 0 .1rem; font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; color:var(--brand-ink); }
+    .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
+    .unit-hero__grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:1.55fr .95fr; }
+    @media (max-width:920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
+    .unit-hero__points ul{ margin:.2rem 0 0; padding:0 0 0 1.2em; }
+    .unit-hero__points li{ margin:.45rem 0; line-height:1.9; }
+
+    .unit-hero__callout{
+      border:1px solid color-mix(in oklab, var(--brand) 28%, #fff);
+      border-radius:14px; background:#fff;
+      box-shadow:0 18px 48px rgba(110,33,66,.06), inset 0 0 0 6px var(--brand-weak);
+      padding:clamp(16px,2.4vw,22px);
+    }
+    .unit-hero__callout h3{ margin:.2rem 0 .6rem; color:var(--brand-ink); font-weight:700; }
+    .unit-hero__cta{ display:grid; gap:.8rem; margin:.6rem 0; }
+    .unit-hero__small{ color:#657b8f; font-size:.92rem; }
+
+    /* ---- フォールバック：このページ限定のボタン体裁（共通 .btn が無い場合でも形になる） ---- */
+    .unit-sakura .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      text-decoration:none; font-weight:700;
+      padding:.72em 1.2em; border-radius:999px;
+      border:1.5px solid color-mix(in oklab, var(--brand) 55%, #fff);
+      background:#fff; color:var(--brand-ink);
+      transition:background .18s ease, border-color .18s ease, transform .03s ease;
+      box-shadow:0 2px 0 rgba(0,0,0,.02);
+    }
+    .unit-sakura .btn.ghost:hover{ background:var(--brand-weak); }
+    .unit-sakura .btn:active{ transform:translateY(1px); }
+
+    /* セクション共通見出し */
+    .sec-title{
+      font:700 clamp(1.25rem, 2vw, 1.5rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui;
+      margin: clamp(28px, 4.5vw, 44px) 0 clamp(16px, 2.4vw, 32px);
+      padding-left:.72rem; border-left:5px solid var(--brand); color:var(--brand-ink);
+    }
+
+    .card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+      padding:clamp(14px,2.2vw,20px) clamp(16px,2.6vw,24px); box-shadow:0 10px 30px rgba(23,34,47,.05); }
+    .grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+    @media (min-width:880px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+    .info-table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    .info-table th, .info-table td{ padding:12px 14px; vertical-align:top; text-align:left; border-bottom:1px solid #f6e6ee; }
+    .info-table th{ width:34%; background:var(--brand-weak); color:var(--brand-ink); font-weight:600; }
+    .info-table tr:last-child th, .info-table tr:last-child td{ border-bottom:none; }
+
+    .map{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff7fb; min-height:260px; }
+    .map iframe{ width:100%; height:350px; border:0; display:block; }
+
+    /* 上へ戻るピンク系 */
+    .unit-sakura #backToTop.btt.btt--ring{
+      --btt-bg:#F48FB1; --btt-bg-h:#EC6A95; --btt-fg:#fff;
+      --btt-ring:rgba(244,143,177,.35); --btt-ring-h:rgba(244,143,177,.55); --btt-focus:#fed1e1;
+    }
+    .unit-sakura #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
+    .unit-sakura #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
+    .unit-sakura #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
+    .unit-sakura #backToTop .btt__label{ color:var(--btt-fg); }
+    .unit-sakura #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
+    .unit-sakura #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
+    .unit-sakura #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
+
+    :root { --sticky-offset: 120px; }
+    section{ scroll-margin-top: var(--sticky-offset); }
+
+/* ── さくらアイコンの色味（このページだけ） ───────────────── */
+.unit-sakura{
+
+  --sakura-ring: #F6B3C9;   /* エンブレム外枠の線色 */
+  --sakura-bg:   #FFF1F6;   /* エンブレムの内側の淡いピンク */
+}
+
+.unit-hero__emblem{
+  /* 内側の淡いピンク＆やわらかい陰影に変更 */
+  background:
+    radial-gradient(120% 120% at 30% 20%, #fff, var(--sakura-bg) 70%);
+  border-color: var(--sakura-ring);
+  box-shadow: 0 8px 22px rgba(232, 93, 153, .12); /* ピンク系の薄影 */
+}
+
+/* SVGを桜色に。共通CSSがfill指定していても勝てるよう保険も足す */
+.unit-hero__emblem svg{ color: var(--sakura-icon); }
+.unit-hero__emblem svg *{ fill: var(--sakura-icon) !important; }
+
+/* ✔ をネイティブのマーカーとして描く（互換性◎） */
+.checklist{
+  /* 既定の箇条書き機能を使うので、list-style は消さない */
+  margin:.2rem 0 0;
+  padding-left: 1.3em;              /* 文字とマーカーの間 */
+}
+.checklist li{
+  list-style: disc;                  /* 何でもOK。::markerで上書きされる */
+  list-style-position: outside;      /* 行頭に出す */
+}
+.checklist li::marker{
+  content: "✔  ";                   /* ← マーカーをチェックに置き換え */
+  color: var(--brand);               /* 桜ページのピンクに合わせる */
+  font-weight: 700;
+  font-size: 1.05em;                 /* 少しだけ大きく見せる */
+}
+
+li.c-header__list-item {
+
+background: #fde7ef;
+
+}
+
+/* ▼ さくらページ用：上へ戻るボタンのリング色をピンクに */
+.unit-sakura #backToTop.btt.btt--ring{
+  --btt-ring-active: #F48FB1;  /* 進捗の“動く”部分（今は緑） */
+  --btt-ring-base:   #FFE6EF;  /* 残りのトラック（薄ピンク） */
+}
+
+/* 念のため、縁取りもピンク系に寄せる（任意） */
+.unit-sakura #backToTop .btt__ring{
+  border-color: rgba(244,143,177,.35);
+  box-shadow: 0 4px 16px rgba(244,143,177,.35);
+}
+
+    /* パンくず */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+/* さくら（ピンク）：CTA配色 */
+body.unit-sakura{
+  --cta-bg: #F48FB1;          /* 面色（ピンク） */
+  --cta-border: #F48FB1;      /* 枠もピンク */
+  --cta-ink: #fff;            /* 文字は白 */
+  --cta-bg-hover: #EC6A95;    /* ホバー時の濃いピンク */
+  --cta-border-hover: #EC6A95;
+  /* 幅を少し広めにしたければ：--cta-min: 17rem; などもOK */
+}
+
+/* さくらページ内：緑チェック（::before）を殺して、::marker だけ表示 */
+.unit-sakura .checklist li::before{
+  content: none !important;
+  display: none !important;
+}
+
+
+  </style>
+</head>
+
+<body class="unit-sakura">
+  <a id="top" class="visually-hidden">top</a>
+
+  <!-- 共通ヘッダー -->
+ <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+  <main class="wrap" id="main">
+      <!-- パンくず -->
+      <nav class="myroot-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="office.html">事業所紹介</a></li>
+          <li aria-current="page">さくらなみき</li>
+        </ol>
+      </nav>
+    <!-- ========= ヒーローバンド：さくらなみき ========= -->
+    <section class="unit-hero" aria-labelledby="unit-hero-title">
+      <div class="unit-hero__inner">
+        <div class="unit-hero__head">
+          <div class="unit-hero__emblem" aria-hidden="true">
+           
+<!-- 桜アイコン（5枚花弁＋中央） -->
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <defs>
+    <!-- 1枚の花びら（しずく形）を定義。中心(12,12)で回す前提 -->
+    <path id="sakura-petal"
+          d="M12 3.6
+             c 1.9 0 3.4 1.5 3.4 3.4
+             c 0 2.6 -3.4 5.5 -3.4 5.5
+             s -3.4 -2.9 -3.4 -5.5
+             c 0 -1.9 1.5 -3.4 3.4 -3.4z" />
+  </defs>
+  <g fill="currentColor">
+    <!-- 5枚の花びらを中心(12,12)で回転配置 -->
+    <use href="#sakura-petal"/>
+    <use href="#sakura-petal" transform="rotate(72 12 12)"/>
+    <use href="#sakura-petal" transform="rotate(144 12 12)"/>
+    <use href="#sakura-petal" transform="rotate(216 12 12)"/>
+    <use href="#sakura-petal" transform="rotate(288 12 12)"/>
+    <!-- おしべの中心 -->
+    <circle cx="12" cy="12" r="2.1"/>
+  </g>
+</svg>
+
+          </div>
+          <div class="unit-hero__titlewrap">
+            <h2 id="unit-hero-title" class="unit-hero__title">さくらなみき</h2>
+            <p class="unit-hero__lead">
+              　障がいのある方の就労を支援する事業所です。<br>
+              「就労継続支援B型事業」や「中間的就労支援作業」など、幅広い活動を展開しています。
+            </p>
+          </div>
+        </div>
+
+        <div class="unit-hero__grid">
+          <div class="unit-hero__points">
+            <ul class="checklist">
+              <li>障がいや難病により働くことが困難な方に、就労の場と支援を提供します。</li>
+              <li>作業の様子など見学も可能です。お気軽にお問い合わせください。</li>
+              <li>対象地域：一関・平泉／送迎あり</li>
+            </ul>
+          </div>
+
+          <!-- 右コールアウト：ボタン化 -->
+          <aside class="unit-hero__callout" aria-label="お問い合わせはこちら">
+            <h3>お問い合わせはこちら</h3>
+            <div class="unit-hero__cta">
+              <a class="btn ghost" href="tel:0191483622">電話で相談（0191-48-3622）</a>
+              <a class="btn ghost" href="mailto:hands.sakura@gmail.com">メールで問い合わせ（hands.sakura@gmail.com）</a>
+            </div>
+            <p class="unit-hero__small">※状況により電話対応が難しい場合がございます。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 基本情報 -->
+    <section id="basic" aria-labelledby="basic-title">
+      <h2 id="basic-title" class="sec-title">基本情報</h2>
+      <div class="card">
+        <table class="info-table">
+          <tbody>
+            <tr><th>定員</th><td>20名（就労継続支援B型）</td></tr>
+            <tr><th>作業内容</th><td>弁当の製造等</td></tr>
+            <tr><th>開所日</th><td>月曜～金曜、土曜（不定期）</td></tr>
+            <tr><th>開所時間</th><td>09:00～17:00</td></tr>
+            <tr><th>利用可能地域</th><td>一関、平泉</td></tr>
+            <tr><th>送迎</th><td>あり</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 概要・アクセス -->
+    <section id="outline" aria-labelledby="outline-title">
+      <h2 id="outline-title" class="sec-title">事業所概要・アクセス</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>事業所概要</h3>
+          <p>〒021-0021<br>一関市中央町１丁目１-４</p>
+          <p>
+            TEL：<a href="tel:0191483622">0191-48-3622</a><br>
+            FAX：0191-48-3623<br>
+            MAIL：<a href="mailto:hands.sakura@gmail.com">hands.sakura@gmail.com</a>
+          </p>
+        </div>
+        <div class="card">
+          <h3>アクセス</h3>
+          <p>
+            お車・・・JR「一ノ関駅」より約５分<br>
+            バス・・・岩手県交通「一関市役所前」にて降車後、徒歩３分
+          </p>
+          <div class="map" aria-label="Googleマップ">
+            <iframe title="さくらなみき 周辺地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1%E4%B8%81%E7%9B%AE1-4&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- CTA（本文幅に揃える2ボタン） -->
+<nav class="cta-bar" aria-label="主要導線">
+  <a class="cta" href="tel:0191-48-3622" aria-label="電話で相談">
+    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    電話で相談
+  </a>
+  <a class="cta" href="mailto:hands.sakura@gmail.com" aria-label="メールで問い合わせ">
+    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    メールで問い合わせ
+  </a>
+</nav>
+
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html" aria-current="page">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+  <!-- 共通JS -->
+  <script src="js/site.js"></script>
+</body>
+</html>

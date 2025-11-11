@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ハンズのあゆみ | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- ===== このページ専用CSS（他ページに影響しないように完全スコープ） ===== -->
+  <style>
+    :root{
+      /* アクセントカラー：ハンズの緑（必要なら差し替え） */
+      --history-accent: #009688;
+      --history-ink: #333;
+      --history-ink-2: #555;
+      --history-line: #e5e7eb;
+      --history-surface: #fff;
+      --history-tag-bg: #f6f7f8;
+      --history-tag-bd: #e5e7eb;
+      --history-radius: 14px;
+      --history-gap: 1rem;
+    }
+
+    /* ---------- ベース：このページ範囲のみ ---------- */
+    .history-page{ padding-inline: min(4vw, 24px); }
+    .history-container{ max-width: 1040px; margin-inline: auto; }
+
+    /* パンくず（左揃え） */
+    .history-breadcrumb{ margin: 0 0 1.5rem; }
+    .history-breadcrumb ol{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
+    .history-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    /* ページ見出し */
+    .history-eyebrow{ font:500 .95rem/1 "Noto Sans JP",system-ui,sans-serif; color:var(--history-ink-2); letter-spacing:.04em; }
+    .history-title{ font:700 clamp(1.6rem, 2.4vw, 2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; color:var(--history-ink); margin:1em 0 2em; }
+    .history-lead{ color:#444; margin:.6rem 0 1.2rem; }
+
+    /* 年代インデックス（ページ内ジャンプ） */
+    .history-decade{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; margin:0 0 1.25rem; }
+    .history-decade a{
+      display:inline-block; padding:.45em .8em; border-radius:999px;
+      border:1px solid var(--history-line); background:#fafafa; color:#111;
+      text-decoration:none;
+    }
+    .history-decade a:hover{ background:#fff; box-shadow:0 0 0 2px #00000008; }
+
+    /* ===== 年カード（1年＝1カード） ===== */
+    .history-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.5vw, 28px);
+      margin: 1rem 0 2rem;
+    }
+    @media (max-width: 900px){
+      .history-grid{ grid-template-columns: 1fr; }
+    }
+
+    .history-card{
+      position:relative;
+      background: var(--history-surface);
+      border: 1px solid var(--history-line);
+      border-radius: var(--history-radius);
+      padding: 1rem 1rem 1rem 1.1rem;
+      box-shadow: 0 1px 0 #00000006;
+      overflow: hidden;
+    }
+    /* 左のアクセントバー */
+    .history-card::before{
+      content:"";
+      position:absolute; inset:0 auto 0 0;
+      width: 6px;
+      background: var(--history-accent);
+      border-top-left-radius: var(--history-radius);
+      border-bottom-left-radius: var(--history-radius);
+    }
+
+    /* 見出し（1999（平成11）） */
+    .history-year{
+      display:flex; align-items:baseline; gap:.5rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--history-ink);
+      margin: .25rem 0 1rem  .25rem; /* 左にほんの少し寄せる */
+    }
+    .history-year .y{
+      font-weight: 800;
+      font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+      line-height: 1.1;
+      letter-spacing: .02em;
+    }
+    .history-year .era{
+      color: var(--history-ink-2);
+      font-size: .98rem;
+    }
+    .history-year .era::before{ content:"("; }
+    .history-year .era::after{ content:")"; }
+
+    /* 出来事リスト（シンプルな箇条書き） */
+    .history-list{
+      margin: .2rem 0 0 .25rem;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: .5rem;
+    }
+    .history-item{
+      display:flex; gap:.6rem;       line-height: 1.8;
+    }
+    /* 小さな角丸ラベル（任意） */
+    .history-tag{
+      display:inline-flex; align-items:center; gap:.4em;
+      padding:.28em .6em; border-radius: 999px;
+      border:1px solid var(--history-tag-bd); background: var(--history-tag-bg);
+      font: 500 .82rem/1 "Noto Sans JP",system-ui,sans-serif; color:#111;
+      white-space: nowrap; flex: 0 0 auto;
+    }
+    .history-tag::before{
+      content:""; width:.5em; height:.5em; border-radius:50%; background:#374151;
+    }
+    .history-tag.is-est::before{ background:#2f9e44; }   /* 設立 */
+    .history-tag.is-open::before{ background:#0ea5e9; }  /* 開所 */
+    .history-tag.is-close::before{ background:#2563eb; } /* 閉所 */
+    .history-tag.is-biz::before{ background:#6b7280; }   /* 事業 */
+    .history-tag.is-rename::before{ background:#a16207;} /* 名称変更 */
+    .history-tag.is-split::before{ background:#7c3aed;}  /* 独立分離 */
+    .history-tag.is-other::before{ background:#cbd5e1; } /* その他 */
+
+    .history-text{ margin:0; color: var(--history-ink); }
+
+    /* セクション見出し（年代ブロック） */
+    .history-block-title{
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #111;
+      margin: 2rem 0 2rem;
+      padding-left: .5rem;
+      border-left: 4px solid var(--history-accent);
+    }
+
+/* アンカーへスムーススクロール */
+html{ scroll-behavior:smooth; }
+
+/* 端末設定で「動きを減らす」の人には瞬間移動に戻す */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+}
+
+/* ジャンプ先がヘッダーに隠れないようオフセット（見出しの上に余白を確保） */
+:root{ --history-anchor-offset: 80px; } /* ヘッダー＋余白ぶん。好みで調整 */
+.history-block-title{ scroll-margin-top: var(--history-anchor-offset); }
+
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+ <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <!-- メイン -->
+  <main id="main" class="l-main history-page">
+    <section class="history-container" aria-labelledby="page-title">
+
+      <!-- パンくず -->
+      <nav class="history-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="corp.html">法人概要</a></li>
+          <li aria-current="page">ハンズのあゆみ</li>
+        </ol>
+      </nav>
+
+      <!-- 見出し -->
+      <header>
+
+        <h1 id="page-title" class="history-title">ハンズのあゆみ</h1>
+
+      </header>
+
+      <!-- 年代ジャンプ -->
+      <nav class="history-decade" aria-label="年代へジャンプ">
+        <a href="#d1990">1990s</a>
+        <a href="#d2000">2000s</a>
+        <a href="#d2010">2010s</a>
+        <a href="#d2020">2020s</a>
+      </nav>
+<p class="history-caption" id="decade-help">⇧年代を選ぶと該当年代へスクロールします。</p>
+      <!-- ===== 1990s ===== -->
+      <h2 id="d1990" class="history-block-title">1990s</h2>
+      <section class="history-grid" aria-label="1990年代">
+        <!-- 1999 -->
+        <article class="history-card" id="y1999" aria-labelledby="y1999-title">
+          <h3 class="history-year" id="y1999-title">
+            <span class="y">1999</span><span class="era">平成11</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+              <span class="history-tag is-est">設立</span>
+              <p class="history-text">　　任意団体 設立</p>
+            </li>
+            <li class="history-item">
+              <p class="history-text">　　　　　　 レスパイトサービス　開始</p>
+            </li>
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　福祉作業所わぁははクラブ　開所</p>
+            </li>
+
+          </ul>
+        </article>
+      </section>
+
+ <!-- ===== 2000s ===== -->
+      <h2 id="d2000" class="history-block-title">2000s</h2>
+      <section class="history-grid" aria-label="2000年代">
+
+        <!-- 2000 -->
+        <article class="history-card" id="y2000" aria-labelledby="y2000-title">
+          <h3 class="history-year" id="y2000-title">
+            <span class="y">2000</span><span class="era">平成12</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+            <span class="history-tag is-other">その他</span>
+              <p class="history-text">　一関市重度障害児一時介護制度　開始</p>
+            </li>
+                      </ul>
+        </article>
+
+     
+        <!-- 2001 -->
+        <article class="history-card" id="y2001" aria-labelledby="y2001-title">
+          <h3 class="history-year" id="y2001-title">
+            <span class="y">2001</span><span class="era">平成13</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-est">設立</span>
+              <p class="history-text">　　特定非営利活動法人認証／設立</p>
+                          </li>
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　障がい児対応放課後児童クラブ　開所</p>
+
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2002 -->
+        <article class="history-card" id="y2002" aria-labelledby="y2002-title">
+          <h3 class="history-year" id="y2002-title">
+            <span class="y">2002</span><span class="era">平成14</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　基本型福祉作業所わぁははクラブ　開所</p>
+                          </li>
+            <li class="history-item">
+              <span class="history-tag is-other">その他</span>
+              <p class="history-text">　法人事務所　青葉移転</p>
+
+            </li>
+          </ul>
+        </article>
+      
+        <!-- 2004 -->
+        <article class="history-card" id="y2004" aria-labelledby="y2004-title">
+          <h3 class="history-year" id="y2004-title">
+            <span class="y">2004</span><span class="era">平成16</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-est">設立</span>
+              <p class="history-text">　　いちのせきNPO活動推進会議「インアーチ」設立</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　NPO中間支援　開始</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　居宅介護(ヘルパー)事業　開始</p>
+                          </li>
+          </ul>
+        </article>
+
+        <!-- 2005 -->
+        <article class="history-card" id="y2005" aria-labelledby="y2005-title">
+          <h3 class="history-year" id="y2005-title">
+            <span class="y">2005</span><span class="era">平成17</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　きらめきサポートステーション一関委託事業　開始</p>
+                          </li>
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　北上市児童デイサービス「リトルグラス」　開所</p>
+                          </li>
+          </ul>
+        </article>
+
+        <!-- 2006 -->
+        <article class="history-card" id="y2006" aria-labelledby="y2006-title">
+          <h3 class="history-year" id="y2006-title">
+            <span class="y">2006</span><span class="era">平成18</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　日中一時支援／移動支援事業(市町村地域生活支援事業)</p>
+                          </li>
+            <li class="history-item">
+              <p class="history-text">　　　　 　　行動援護／短期入所／指定相談支援事業　開始</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　障害者自立支援法　施行</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　いちのせき市民活動促進会議「インアーチ」名称変更</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　インアーチスクエア2006(いちのせき市民フェスタ)開催</p>
+                          </li>
+          </ul>
+        </article>
+
+        <!-- 2007 -->
+        <article class="history-card" id="y2007" aria-labelledby="y2007-title">
+          <h3 class="history-year" id="y2007-title">
+            <span class="y">2007</span><span class="era">平成19</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　児童デイ／ハンズ一関療育センター　開所</p>
+                          </li>
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　地域活動支援センターわぁはは　開所</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　児童デイ「リトルグラス」　独立分離</p>
+                          </li>
+          </ul>
+        </article>
+
+        <!-- 2008 -->
+        <article class="history-card" id="y2008" aria-labelledby="y2008-title">
+          <h3 class="history-year" id="y2008-title">
+            <span class="y">2008</span><span class="era">平成20</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　いちのせき市民活動センター　開所</p>
+                          </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　地域活動支援センターわぁはは　増築</p>
+                          </li>
+          </ul>
+        </article>
+
+        <!-- 2009 -->
+        <article class="history-card" id="y2009" aria-labelledby="y2009-title">
+          <h3 class="history-year" id="y2009-title">
+            <span class="y">2009</span><span class="era">平成21</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　ハンズ生活介護事業所わぁははクラブ　開所</p>
+                          </li>
+          </ul>
+        </article>
+
+      </section>
+
+      <!-- ===== 2010s ===== -->
+      <h2 id="d2010" class="history-block-title">2010s</h2>
+      <section class="history-grid" aria-label="2010年代">
+        <!-- 2010 -->
+        <article class="history-card" id="y2010" aria-labelledby="y2010-title">
+          <h3 class="history-year" id="y2010-title">
+            <span class="y">2010</span><span class="era">平成22</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　中心市街地多目的スペース／街中カフェおおまちポイント１　開設</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2011 -->
+        <article class="history-card" id="y2011" aria-labelledby="y2011-title">
+          <h3 class="history-year" id="y2011-title">
+            <span class="y">2011</span><span class="era">平成23</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　いちのせき市民活動センターせんまやサテライト　開所</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2012 -->
+        <article class="history-card" id="y2012" aria-labelledby="y2012-title">
+          <h3 class="history-year" id="y2012-title">
+            <span class="y">2012</span><span class="era">平成24</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　陸前高田まちづくり協働センター　開所</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　Cafe&Gallery「さくらなみき」オープン</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　自閉症美術館　オープン</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2013 -->
+        <article class="history-card" id="y2013" aria-labelledby="y2013-title">
+          <h3 class="history-year" id="y2013-title">
+            <span class="y">2013</span><span class="era">平成25</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　ハンズ生活介護事業所「さくらなみき」事業開始</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　障害者総合支援法　施行</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2014 -->
+        <article class="history-card" id="y2014" aria-labelledby="y2014-title">
+          <h3 class="history-year" id="y2014-title">
+            <span class="y">2014</span><span class="era">平成26</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　陸前高田まちづくり協働センター　独立分離</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2015 -->
+        <article class="history-card" id="y2015" aria-labelledby="y2015-title">
+          <h3 class="history-year" id="y2015-title">
+            <span class="y">2015</span><span class="era">平成27</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　いちのせき若者サポートステーション　事業開始</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　さくらなみきしごと交流館ラァーチ　開所</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2016 -->
+        <article class="history-card" id="y2016" aria-labelledby="y2016-title">
+          <h3 class="history-year" id="y2016-title">
+            <span class="y">2016</span><span class="era">平成28</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　就労継続支援B型事業所「さくらなみき」　事業開始</p>
+            </li>
+          </ul>
+        </article>
+
+      </section>
+
+      <!-- ===== 2020s ===== -->
+      <h2 id="d2020" class="history-block-title">2020s</h2>
+      <section class="history-grid" aria-label="2020年代">
+
+        <!-- 2021 -->
+        <article class="history-card" id="y2021" aria-labelledby="y2021-title">
+          <h3 class="history-year" id="y2021-title">
+            <span class="y">2021</span><span class="era">令和３</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　一ノ関就職氷河期世代就労訓練事業「ネクストリー」　事業開始</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2023 -->
+        <article class="history-card" id="y2023" aria-labelledby="y2023-title">
+          <h3 class="history-year" id="y2023-title">
+            <span class="y">2023</span><span class="era">令和５</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　ジョブカフェ一関　運営事業開始</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2024 -->
+        <article class="history-card" id="y2024" aria-labelledby="y2024-title">
+          <h3 class="history-year" id="y2024-title">
+            <span class="y">2024</span><span class="era">令和６</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+               <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　シェアハウス・ハンズ(才天)　開所</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 2025 -->
+        <article class="history-card" id="y2025" aria-labelledby="y2025-title">
+          <h3 class="history-year" id="y2025-title">
+            <span class="y">2025</span><span class="era">令和７</span>
+          </h3>
+          <ul class="history-list">
+            <li class="history-item">
+              <span class="history-tag is-biz">事業</span>
+              <p class="history-text">　　一関市就労移行支援事業「ワークブリッジいちのせき」事業開始</p>
+            </li>
+            <li class="history-item">
+              <span class="history-tag is-open">開所</span>
+              <p class="history-text">　　いちのせき広域障がい者就業・生活支援センター<br>　　「マイルートリンク」開所</p>
+            </li>
+            <li class="history-item">
+               <span class="history-tag is-other">その他</span>
+              <p class="history-text">　ハンズ生活介護事業所わぁははクラブ　新施設完成</p>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+          </section>
+<nav class="cta-bar" aria-label="主要導線">
+  <a class="cta" href="tel:0191-31-5720">
+    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <!-- Phone (outline) -->
+      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    電話で相談
+  </a>
+
+  <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <!-- Mail (outline) -->
+      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    メールで問い合わせ
+  </a>
+</nav>
+
+  </main>
+
+ 
+  <!-- 上へ戻る（スクロール進捗リング） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+      </svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- フッター（共通） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html" aria-current="page">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div><!-- /#page -->
+
+<script src="js/site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>リトルハンズ | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- ページ専用CSS（※ヘッダー/ナビは上書きしない：style.cssに統一） -->
+  <style>
+    :root{
+      --my-max:1120px;
+      --my-line:#e5e7eb;
+      --my-surface:#fff;
+      --my-radius:14px;
+
+      /* ==== Little Hands theme (pop yellow) ==== */
+      --unit-brand:#f59e0b;     /* オレンジ寄りの黄色 */
+      --unit-ink:#7a3e00;       /* 文字の濃色 */
+      --unit-tint:#fff7e6;      /* うすいクリーム */
+      --unit-tint-2:#fffaf1;    /* さらに淡い面 */
+
+      /* Back-to-top ring（ページ変数のみで色変更） */
+      --btt-ring-active:#f59e0b;
+      --btt-center:#fff4df;
+    }
+
+    .page{ padding-inline:min(4vw,24px); }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    /* breadcrumb */
+    .breadcrumb{ margin:0 0 1rem; }
+    .breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.4em 0; margin:0; }
+    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    /* ===== hero ===== */
+    .unit-hero{
+      /* 下マージンは付けない（マージンの食い合い防止。余白は .subnav で付与） */
+      margin:2.2rem 0 0;
+      background:
+        radial-gradient(1200px 280px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 82% -28%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line);
+      border-radius:20px;
+      box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+    .unit-hero__inner{ padding:clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+    .unit-hero__head{
+      display:grid; grid-template-columns:clamp(72px, 8vw, 92px) 1fr;
+      gap: clamp(12px,2vw,20px); align-items:center; margin-bottom: clamp(12px,2vw,18px);
+    }
+    .unit-hero__emblem{
+      width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
+      border-radius:50%; display:grid; place-items:center;
+      background: radial-gradient(120% 120% at 28% 18%, #ffffff, #fff2d7 70%);
+      border:3px solid color-mix(in oklab, var(--unit-brand) 60%, #fff);
+      box-shadow:0 6px 20px rgba(245,158,11,.18);
+      color: var(--unit-brand);
+    }
+    .unit-hero__emblem svg{ width:58%; height:58%; }
+    .unit-hero__title{
+      margin:0 0 .1rem;
+      font:700 clamp(1.25rem,2.4vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+      color:var(--unit-ink);
+    }
+    .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2937; }
+    .unit-hero__grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns: minmax(0,1.6fr) minmax(0,.9fr); }
+    @media (max-width:920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
+
+    /* playful list (round marker) */
+    .starlist{ list-style:none; margin:.6rem 0 0; padding:0; }
+    .starlist li{ position:relative; padding-left:.3em; margin:.42rem 0; line-height:1.9; }
+    .starlist li::before{
+      content:""; position:absolute; left:0; top:.4em; width:1rem; height:1rem; border-radius:50%;
+      background: var(--unit-brand);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
+    }
+
+    /* callout on right */
+    .callout{
+      background:#fff; border:1px solid color-mix(in oklab, var(--unit-brand) 40%, #e5e7eb);
+      border-left:6px solid var(--unit-brand);
+      border-radius:14px; padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
+      box-shadow:0 8px 26px rgba(245,158,11,.10);
+    }
+    .callout h3{ margin:.1rem 0 .4rem; font-weight:700; color:var(--unit-ink); }
+    .small{ font-size:.92rem; } .muted{ color:#6b7280; }
+
+    /* ===== subnav（丸いタブ）をヘッダー直下に貼り付け ===== */
+    .subnav{
+      position: sticky;
+      top: 0;                 /* 固定ヘッダーがあるならここをその高さに調整 */
+      z-index: 60;
+      background:#fff;        /* 透け防止 */
+      border-bottom:1px solid var(--my-line);
+      margin:2.6rem auto 0;   /* ← ヒーロー下の余白はここで確保 */
+      max-width:var(--my-max);
+      padding:.75rem min(4vw,24px);
+      display: flow-root;     /* マージンの食い合い抑止 */
+    }
+    .subnav__list{ display:flex; flex-wrap:wrap; gap:.6rem .95rem; align-items:center; justify-content:center; }
+    .subnav__list a{
+      display:inline-block; padding:.65em 1.15em; border:1px solid var(--my-line); border-radius:999px;
+      background:#fffaf6; color:#111; font-weight:500; text-decoration:none; line-height:1;
+      transition:.18s ease;
+    }
+    .subnav__list a:hover{
+      background: color-mix(in oklab, var(--unit-tint) 55%, #fff);
+      border-color: color-mix(in oklab, var(--unit-brand) 60%, #fff);
+      color: var(--unit-ink);
+      box-shadow:0 4px 14px rgba(245,158,11,.16);
+      transform: translateY(-1px);
+    }
+    .subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
+
+    .section{ scroll-margin-top:120px; margin:1.25rem 0 1.7rem; }
+    .section__title{
+      font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); margin:3rem 0 3rem; color:#111;
+      padding-left:.5rem; border-left:6px solid var(--unit-brand); line-height:1.2;
+    }
+
+    /* cards & grid */
+    .card{
+      background:#fff; border:1px solid var(--my-line); border-radius:var(--my-radius);
+      box-shadow:0 1px 0 #00000008; padding:1rem 1.1rem;
+    }
+    .grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr); align-items:start; }
+    @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
+
+    /* flow steps */
+    .steps{ display:grid; gap:12px; }
+    .step{
+      background:#fff; border:1px solid var(--my-line); border-radius:12px; padding:.85rem 1rem;
+      display:grid; grid-template-columns:2.2rem 1fr; column-gap:.6rem; align-items:start;
+    }
+    .step__num{
+      width:1.9rem; height:1.9rem; border-radius:999px; display:grid; place-items:center;
+      background:var(--unit-brand); color:#fff; font-weight:700;
+    }
+    .step h3{ margin:0; font-weight:700; }
+    .step p{ margin:.2rem 0 0; }
+
+    /* facts */
+    .facts{ display:grid; gap:.5rem; grid-template-columns:1fr 2fr; border:1px solid var(--my-line); border-radius:12px; padding:.8rem 1rem; background:#fff; }
+    .facts dt{ color:#555; } .facts dd{ margin:0; }
+    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
+
+    /* map */
+    .map{ height:100%; min-height:300px; border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
+    .map iframe{ width:100%; height:100%; border:0; display:block; }
+    @media (max-width:920px){
+      .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
+      @supports not (aspect-ratio: 1){ .map{ padding-top:75%; min-height:0; position:relative; } .map iframe{ position:absolute; inset:0; } }
+    }
+
+    /* CTA bottom */
+    .cta-bar{ max-width:var(--my-max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px); display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+    .cta{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; padding:.95em 1.2em; border-radius:12px; text-decoration:none; font-weight:700; min-width:16rem; }
+    .cta .cta__icon{ width:1.1em; height:1.1em; }
+    .cta .cta__icon path{ stroke:currentColor; fill:none; }
+    .cta{ background:#fff4df; border:2px solid color-mix(in oklab, var(--unit-brand) 40%, #fff); color:var(--unit-ink); }
+    .cta:hover{ background:#ffecc6; border-color: color-mix(in oklab, var(--unit-brand) 60%, #fff); box-shadow:0 8px 20px rgba(245,158,11,.14); transform:translateY(-1px); }
+    @media (max-width:680px){ .cta{ width:100%; min-width:0; } }
+
+    /* step見出し/説明を2列目固定（装飾番号は1列目） */
+    .step > h3,
+    .step > p { grid-column: 2; }
+
+    /* リトルハンズ：特徴の行頭マーカー */
+    .lh-points{
+      margin: .2rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .lh-points li{
+      position: relative;
+      padding-left: 1.6em;
+      margin: .55rem 0;
+      line-height: 1.9;
+    }
+    .lh-points li::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .55em;
+      width: .9em;
+      height: .9em;
+      border-radius: 50%;
+      background: #ffb52e;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
+    }
+
+    /* ===== submenu の色調整（省略：元のまま） ===== */
+    body.page-little #site-header .submenu{ border:0; box-shadow:none; }
+    #site-header .has-sub:hover> .submenu,
+    #site-header .has-sub:focus-within> .submenu{
+      border:1px solid color-mix(in oklab, var(--unit-brand) 40%, #fff);
+      box-shadow:0 10px 26px rgba(245,158,11,.14);
+      background:#fff9f0;
+    }
+    @media (max-width:960px){
+      #site-header .sub-toggle:checked ~ .submenu{
+        border:1px solid color-mix(in oklab, var(--unit-brand) 40%, #fff);
+        box-shadow:0 10px 26px rgba(245,158,11,.14);
+        background:#fff9f0;
+      }
+    }
+
+    /* ==== 影・背景のページ固有調整（元のまま） ==== */
+    :root{ --shadow-lg:0 20px 50px rgba(0,0,0,.06); --shadow-md:0 12px 30px rgba(0,0,0,.06); --panel-bg:#fff; }
+    body.page-little .subnav, body.page-little .grid>.card, body.page-little .card,
+    body.page-little .facts, body.page-little .map{
+      background:var(--panel-bg); border:1px solid var(--my-line); border-radius:16px; box-shadow:var(--shadow-md);
+    }
+    body.page-little .cta-bar{ background:var(--panel-bg); border:1px solid #eef1f3; border-radius:16px; box-shadow:var(--shadow-md); padding-block:.8rem; }
+    body.page-little .step{ box-shadow:none; }
+    @media (max-width:920px){
+      body.page-little .subnav, body.page-little .grid>.card, body.page-little .card,
+      body.page-little .facts, body.page-little .map, body.page-little .cta-bar{
+        box-shadow:0 10px 24px rgba(0,0,0,.05); border-radius:14px;
+      }
+    }
+
+    /* 背景のグラデ消し・白基調 */
+    body.page-little, body.page-little #page, body.page-little .l-main, body.page-little .page{ background:#fff !important; }
+    body.page-little #page::before, body.page-little #page::after,
+    body.page-little .l-main::before, body.page-little .l-main::after{ content:none !important; display:none !important; }
+
+    /* フッター（ページ限定配色） */
+    body.page-little .site-footer{ background:#fff4df !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
+    body.page-little .site-footer .footer__bar{ background:#fff0d5 !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
+    body.page-little .site-footer h3, body.page-little .site-footer a{ color:var(--unit-ink); }
+
+/* PC基準のオフセット（今までの値） */
+.section{
+  scroll-margin-top: 120px;
+}
+
+/* スマホはヘッダー＋サブナビが高いので上乗せ */
+@media (max-width: 960px){
+  .section{
+    /* だいたい 160–180px が目安。まずは 168px で様子見 */
+    scroll-margin-top: calc(168px + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* --- little：下層メニューのホバー色を黄色系で固定（PC＋SP） --- */
+body.page-little #site-header .submenu a:hover,
+body.page-little #site-header .submenu a:focus-visible,
+body.page-little .c-hamburger-menu__list .submenu a:hover,
+body.page-little .c-hamburger-menu__list .submenu a:focus-visible{
+  background: color-mix(in oklab, var(--unit-brand, #f59e0b) 18%, #fff) !important;
+  color: var(--unit-ink, #7a3e00) !important;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* サブメニュー“箱”自体の背景もページ色で（開いた時） */
+body.page-little #site-header .has-sub:hover > .submenu,
+body.page-little #site-header .has-sub:focus-within > .submenu,
+@media (max-width:960px){
+  body.page-little #site-header .sub-toggle:checked ~ .submenu{
+    background: #fff9f0 !important;
+    border: 1px solid color-mix(in oklab, var(--unit-brand, #f59e0b) 40%, #fff) !important;
+    box-shadow: 0 10px 26px rgba(245,158,11,.14) !important;
+  }
+}
+
+/* 念のため：下層リンクの既定色もこげ茶に */
+body.page-little #site-header .submenu a{
+  color: var(--unit-ink, #7a3e00);
+}
+
+/* ===== access（page版）横スク抑止 ===== */
+#page,
+.l-main.page,
+.wrap,
+#access.section,
+#access.section .grid,
+#access.section .map {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip; /* hiddenでもOK */
+}
+
+/* Gridの横伸び封じ：中身に引っ張られない列定義 */
+#access.section .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: var(--gap, 16px);
+}
+
+/* Mapのiframeを完全レスポンシブ化 */
+#access.section .map iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9; /* 必要なら比率調整OK */
+  border: 0;
+}
+
+/* 念のためラッパーでもクリップ */
+#access.section .map { overflow: hidden; }
+
+/* ===== access（page版）横スク抑止 ===== */
+/* はみ出し防止のみ。列定義は触らない */
+#page,
+.l-main.page,
+.wrap,
+#access.section,
+#access.section .map {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip; /* hiddenでもOK */
+}
+
+/* ここで .grid の列定義は上書きしない
+   （上の .grid { ... } と @media の1カラム化をそのまま活かす） */
+
+/* Mapのiframeをレスポンシブ化 */
+#access.section .map iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* 念のためラッパーでもクリップ */
+#access.section .map { overflow: hidden; }
+
+/* 保険：スマホは必ず1カラム（他ページの干渉対策） */
+@media (max-width: 920px){
+  .grid { grid-template-columns: 1fr !important; }
+}
+
+.wrap { max-width: var(--my-max) !important; }
+
+
+  </style>
+</head>
+
+<body class="page-little">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <!-- 共通ヘッダー（style.css準拠・下層あり） -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html" aria-current="page">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <!-- メイン -->
+  <main id="main" class="l-main page">
+    <section class="wrap" aria-labelledby="page-title">
+
+      <!-- パンくず -->
+      <nav class="breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="office.html">事業所紹介</a></li>
+          <li aria-current="page">リトルハンズ</li>
+        </ol>
+      </nav>
+
+      <!-- ヒーロー -->
+      <section class="unit-hero" aria-labelledby="hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem" aria-hidden="true">
+              <!-- 風船スター -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l2.1 4.26 4.7.68-3.4 3.31.8 4.65L12 13.9 7.8 15.9l.8-4.65L5.2 7.94l4.7-.68L12 3z"/>
+                  <path d="M12 16c0 2-1.2 3-3 3"/>
+                  <path d="M9 19c0 1.5 1.2 2.5 3 2.5"/>
+                </g>
+              </svg>
+            </div>
+            <div>
+              <h2 id="hero-title" class="unit-hero__title">リトルハンズ</h2>
+              <p class="unit-hero__lead">
+                障がい児放課後等デイサービス「リトルハンズ」は、
+                お子さんが安心して過ごせる放課後・休日の活動の場です。
+              </p>
+            </div>
+          </div>
+
+          <div class="unit-hero__grid">
+            <div>
+              <ul class="starlist">
+                <li>お子さんの興味・関心に合わせた個別の活動支援・学習サポート・生活訓練。</li>
+                <li>音楽リズム、調理実習、創作活動、季節の行事など多彩なプログラム。</li>
+                <li>天気の良い日は近隣の公園へウォーキング。</li>
+              </ul>
+            </div>
+
+            <aside class="callout" aria-label="連絡先">
+              <h3>お問い合わせ・見学</h3>
+              <div style="display:flex;gap:.6rem .8rem;flex-wrap:wrap;justify-content:center;">
+                <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
+                  <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72l.6 2.5a2 2 0 0 1-.45 2.11L7 9.5a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45l2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  電話する
+                </a>
+                <a class="cta" href="mailto:hands.guitar@ocn.ne.jp" aria-label="メールで問い合わせ">
+                  <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  メールで相談
+                </a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- サブナビ -->
+      <nav class="subnav" aria-label="このページ内のメニュー">
+        <div class="subnav__list">
+          <a href="#features">特徴</a>
+          <a href="#programs">プログラム</a>
+          <a href="#schedule">スケジュール</a>
+          <a href="#access">アクセス</a>
+        </div>
+        <p class="subnav__help muted small">クリックすると各セクションへ移動します。</p>
+      </nav>
+
+      <!-- 特徴 -->
+      <section id="features" class="section" aria-labelledby="features-title">
+        <h2 id="features-title" class="section__title">リトルハンズの特徴</h2>
+        <div class="card">
+          <ul class="lh-points">
+            <li>お子さんひとりひとりに<strong>寄り添う支援。</strong></li>
+            <li><strong>安心・安全</strong>を最優先に。</li>
+            <li><strong>「楽しい！」</strong>を大切に。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- プログラム -->
+      <section id="programs" class="section" aria-labelledby="programs-title">
+        <h2 id="programs-title" class="section__title">放課後利用プログラム</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="steps">
+              <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3><p class="small muted">※下校時間に合わせて学校までお迎えします。</p></div>
+              <div class="step"><div class="step__num">2</div><h3>自由遊び</h3></div>
+              <div class="step"><div class="step__num">3</div><h3>おやつ</h3></div>
+              <div class="step"><div class="step__num">4</div><h3>集団・個別の設定活動</h3></div>
+              <div class="step"><div class="step__num">5</div><h3>自由遊び／順次降所</h3></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スケジュール -->
+      <section id="schedule" class="section" aria-labelledby="schedule-title">
+        <h2 id="schedule-title" class="section__title">一日利用プログラム（休日・長期休暇）</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="steps">
+              <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3></div>
+              <div class="step"><div class="step__num">2</div><h3>学習タイム</h3></div>
+              <div class="step"><div class="step__num">3</div><h3>自由遊び</h3></div>
+              <div class="step"><div class="step__num">4</div><h3>昼食</h3></div>
+              <div class="step"><div class="step__num">5</div><h3>ゆっくりタイム</h3></div>
+              <div class="step"><div class="step__num">6</div><h3>集団・個別の設定活動</h3></div>
+              <div class="step"><div class="step__num">7</div><h3>おやつ</h3></div>
+              <div class="step"><div class="step__num">8</div><h3>自由遊び／順次降所</h3></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin:.1rem 0 .6rem;font-weight:700;">開所日・時間</h3>
+            <dl class="facts">
+              <div><dt>放課後利用</dt><dd>月〜金 13:00–18:00</dd></div>
+              <div><dt>一日利用</dt><dd>土日・祝日／学校の長期休暇 09:00–18:00</dd></div>
+              <div><dt>TEL</dt><dd><a href="tel:0191-31-5720">0191-31-5720</a>（常時受付）</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- アクセス -->
+      <section id="access" class="section" aria-labelledby="access-title">
+        <h2 id="access-title" class="section__title">アクセス</h2>
+        <div class="grid">
+          <div class="card">
+            <dl class="facts">
+              <div><dt>所在地</dt><dd>〒021-0041　一関市赤萩字上袋75-5</dd></div>
+              <div><dt>お車</dt><dd>JR「一ノ関駅」より約15分</dd></div>
+              <div><dt>バス</dt><dd>岩手県交通：現鼻尖・瑞山線・須川温泉線「中道」下車 徒歩5分</dd></div>
+            </dl>
+          </div>
+          <div class="map" aria-label="リトルハンズ 地図">
+            <iframe
+              title="リトルハンズ 周辺地図"
+              src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E8%B5%A4%E8%90%A9%E5%AD%97%E4%B8%8A%E8%A2%8B75-5&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <!-- CTA（本文幅に揃える） -->
+  <nav class="cta-bar" aria-label="主要導線">
+    <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72l.6 2.5a2 2 0 0 1-.45 2.11L7 9.5a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45l2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      電話で相談
+    </a>
+    <a class="cta" href="mailto:hands.guitar@ocn.ne.jp" aria-label="メールで問い合わせ">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      メールで問い合わせ
+    </a>
+  </nav>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- フッター（共通） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html" aria-current="page">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div>
+
+<!-- 共通JS -->
+<script src="js/site.js"></script>
+</body>
+</html>

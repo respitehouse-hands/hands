@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>事業所紹介 | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- ページ専用CSS（他ページに干渉しないようにスコープ） -->
+  <style>
+    :root{
+      --office-accent:#009688;
+      --office-line:#e5e7eb;
+      --office-ink:#333;
+      --office-ink-2:#555;
+      --office-surface:#fff;
+      --office-radius:14px;
+
+        --office-accent:#009688;      /* 既定=障がい福祉(緑) */
+  /* 追加：分野別アクセント */
+  --office-work:#f59e0b;        /* 就労支援=アンバー系 */
+  --office-community:#0b2b6b;   /* 地域づくり=深紺 */
+
+  /* 追加：カードの「詳しく見る →」専用色（固定） */
+  --office-link:#222222;
+
+    }
+
+    html{ scroll-behavior:smooth; }
+    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+    .office-page{ padding-inline:min(4vw,24px); }
+    .office-wrap{ max-width:1040px; margin-inline:auto; }
+
+    /* パンくず */
+    .office-breadcrumb{ margin:0 0 1.25rem; }
+    .office-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:2rem 0; margin:0; flex-wrap:wrap; }
+    .office-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+
+    /* 見出し */
+    .office-title{ font:700 clamp(1.6rem,2.4vw,2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; margin:2rem 0 1rem; color:var(--office-ink); }
+    .office-lead{ color:#444; margin:2rem 0 2rem; }
+
+    /* =============================
+       finder.html のカードUIを流用（スコープ化）
+       ============================= */
+    .office-cats{ display:grid; grid-template-columns:1fr; gap:1rem; margin:1.1rem 0 1.6rem; }
+    @media (min-width:760px){ .office-cats{ grid-template-columns:repeat(3,1fr); } }
+
+    .of-cat{
+      --ink:#0f172a; --ink2:#475569; --line:#e5e7eb; --surface:#fff;
+      --shadow:0 8px 24px rgba(0,0,0,.08);
+      background:var(--surface); border:1px solid var(--line); border-radius:22px; overflow:hidden;
+      box-shadow:var(--shadow); display:flex; flex-direction:column; padding:1rem;
+      transition:transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .of-cat:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.12); border-color:#dbe3ea; }
+    .of-cat__icon{ width:56px; height:56px; border-radius:14px; background:#e9f4f2; display:grid; place-items:center; margin-bottom:.6rem; }
+    .of-cat__title{ font:700 1.1rem/1.3 "Zen Maru Gothic","Noto Sans JP"; color:var(--ink); margin:.2rem 0; }
+    .of-cat__desc{ color:var(--ink2); margin:0 0 .8rem; }
+    .of-cat__cta{ margin-top:auto; display:flex; justify-content:flex-end; gap:.4rem; }
+
+    .of-btn{
+      appearance:none; border:1px solid transparent; background:#009688; color:#fff;
+      border-radius:12px; padding:.65rem .9rem; font-weight:700; cursor:pointer; text-decoration:none;
+      transition:background .2s ease, transform .06s ease, filter .15s ease;
+    }
+    .of-btn:hover{ filter:brightness(.96); }
+    .of-btn:active{ transform:translateY(1px); }
+
+    /* アイコン枠（finder の svc-mark を流用） */
+    .svc-mark{
+      --accent:#16a34a;
+      inline-size:56px; block-size:56px; border-radius:14px;
+      display:grid; place-items:center;
+      background: color-mix(in oklab, var(--accent) 8%, #fff);
+      border:1px solid color-mix(in oklab, var(--accent) 28%, #fff);
+      box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+    .svc-mark svg{ width:26px; height:26px; color:var(--accent); }
+    .svc--work{ --accent:#f59e0b; }
+    .svc--community{ --accent:#0b2b6b; }
+
+    /* カード全体をアンカー化するためのリンクスタイル */
+    .of-cardlink{ display:block; text-decoration:none; color:inherit; }
+    .of-cardlink:focus-visible{ outline:3px solid #94a3b8; outline-offset:3px; border-radius:18px; }
+
+    /* セクション見出し */
+    .office-section{ scroll-margin-top:2px; }
+    .office-section__title{
+      font-weight:700; font-size:1.4rem; color:#111; margin:2rem 0 2rem;
+      padding-left:.5rem; border-left:4px solid var(--office-accent);
+    }
+
+    /* カードグリッド（下の一覧） */
+    .office-grid{
+      display:grid; gap: clamp(16px,2.4vw,24px);
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      margin-bottom:1.75rem;
+    }
+    @media (max-width:900px){ .office-grid{ grid-template-columns:1fr; } }
+
+    .office-card{
+      position:relative; background:var(--office-surface);
+      border:1px solid var(--office-line); border-radius:var(--office-radius);
+      box-shadow:0 1px 0 #00000008; padding:1rem 1.1rem;
+      color:inherit; text-decoration:none; display:block;
+    }
+    .office-card::before{
+      content:""; position:absolute; inset:0 auto 0 0; width:6px;
+      background:var(--office-accent);
+      border-top-left-radius:var(--office-radius); border-bottom-left-radius:var(--office-radius);
+    }
+    .office-card:hover{ box-shadow:0 6px 24px #00000010; transform:translateY(-1px); transition:.2s; }
+
+    .office-card__eyebrow{ color:#666; font:500 .86rem "Noto Sans JP",system-ui,sans-serif; margin:0 0 .1rem .25rem; }
+    .office-card__title{ font-weight:700; font-size:1.1rem; margin:.1rem 0 .35rem .25rem; color:#111; }
+    .office-card__desc{ margin:0 0 0 .25rem; color:#444; line-height:1.7; }
+    .office-card__more{ margin:.6rem 0 0 .25rem; color:var(--office-accent); font-weight:500; text-decoration:none; display:inline-block; }
+    .office-card__more:hover{ text-decoration:underline; }
+
+/* 分野ごとに --office-accent を上書き */
+.office-section--work{      --office-accent: var(--office-work); }
+.office-section--community{ --office-accent: var(--office-community); }
+
+.office-card__more{
+  margin:.6rem 0 0 .25rem;
+  color: var(--office-link);    /* ← ここだけ変更 */
+  font-weight:500;
+  text-decoration:none;
+  display:inline-block;
+}
+
+
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+ <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+  <!-- メイン -->
+  <main id="main" class="l-main office-page">
+    <section class="office-wrap" aria-labelledby="office-title">
+      <!-- パンくず -->
+      <nav class="office-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li aria-current="page">事業所紹介</li>
+        </ol>
+      </nav>
+
+      <!-- 見出し -->
+      <header>
+        <h1 id="office-title" class="office-title">事業所紹介</h1>
+        <p class="office-lead">私たちは、「障がい福祉」「就労支援」「地域づくり」という３つの面から、様々な取り組みを行っています。まずは分野をお選びください。</p>
+      </header>
+
+      <!-- ▼ 分野カード（finder.html 流用） -->
+      <section class="office-cats" aria-label="分野から選ぶ">
+        <a class="of-cardlink" href="#cat-care">
+          <article class="of-cat">
+            <div class="of-cat__icon">
+              <span class="svc-mark">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <h2 class="of-cat__title">障がい福祉</h2>
+            <p class="of-cat__desc">介護・福祉サービスのご相談、計画相談、放課後等デイなど。</p>
+            <div class="of-cat__cta">
+              <span class="of-btn" aria-hidden="true">この分野を見る</span>
+            </div>
+          </article>
+        </a>
+
+        <a class="of-cardlink" href="#cat-work">
+          <article class="of-cat">
+            <div class="of-cat__icon">
+              <span class="svc-mark svc--work">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="7" width="18" height="12" rx="2" ry="2" stroke="currentColor" stroke-width="1.9" fill="none"/>
+                  <path d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.9" fill="none"/>
+                  <path d="M3 12h18" stroke="currentColor" stroke-width="1.9" fill="none"/>
+                  <circle cx="12" cy="12" r="1.1" fill="currentColor"/>
+                </svg>
+              </span>
+            </div>
+            <h2 class="of-cat__title">就労支援</h2>
+            <p class="of-cat__desc">就労相談、就労準備、職場定着支援、若者の就労支援など。</p>
+            <div class="of-cat__cta">
+              <span class="of-btn" aria-hidden="true">この分野を見る</span>
+            </div>
+          </article>
+        </a>
+
+        <a class="of-cardlink" href="#cat-community">
+          <article class="of-cat">
+            <div class="of-cat__icon">
+              <span class="svc-mark svc--community">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+                    <path d="M3 20.5h18"/>
+                    <path d="M5.5 20.5V10.5l5-1.8v11.8"/>
+                    <path d="M12.5 20.5V5.5l6 1.8v13.2"/>
+                  </g>
+                  <g fill="currentColor">
+                    <rect x="7.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                    <rect x="7.1" y="15.0" width="1.4" height="1.4" rx=".15"/>
+                    <rect x="14.1" y="9.8"  width="1.4" height="1.4" rx=".15"/>
+                    <rect x="14.1" y="12.4" width="1.4" height="1.4" rx=".15"/>
+                    <rect x="16.5" y="14.8" width="1.4" height="1.4" rx=".15"/>
+                  </g>
+                </svg>
+              </span>
+            </div>
+            <h2 class="of-cat__title">地域づくり</h2>
+            <p class="of-cat__desc">市民活動の相談、自治会・地域協働体サポートなど。</p>
+            <div class="of-cat__cta">
+              <span class="of-btn" aria-hidden="true">この分野を見る</span>
+            </div>
+          </article>
+        </a>
+      </section>
+      <!-- ▲ 分野カードここまで -->
+
+      <!-- ========= 障がい福祉 ========= -->
+      <section id="cat-care" class="office-section" aria-labelledby="cat-care-title">
+        <h2 id="cat-care-title" class="office-section__title">障がい福祉</h2>
+        <div class="office-grid">
+          <a class="office-card" href="wahaha.html">
+            <p class="office-card__eyebrow">生活介護</p>
+            <h3 class="office-card__title">生活介護事業所 わぁははクラブ</h3>
+            <p class="office-card__desc">日中活動や生活支援を提供します。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="residence.html">
+            <p class="office-card__eyebrow">居宅介護</p>
+            <h3 class="office-card__title">ハンズ居宅介護事業所</h3>
+            <p class="office-card__desc">自宅でのサポート（身体介護・家事援助など）。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="soudan.html">
+            <p class="office-card__eyebrow">相談支援</p>
+            <h3 class="office-card__title">ハンズ相談支援事業所</h3>
+            <p class="office-card__desc">計画相談・福祉サービス利用の相談窓口。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="little.html">
+            <p class="office-card__eyebrow">放課後等デイサービス</p>
+            <h3 class="office-card__title">放課後等デイサービス リトルハンズ</h3>
+            <p class="office-card__desc">放課後・長期休暇の支援や学習・体験活動。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="sakura.html">
+            <p class="office-card__eyebrow">就労継続支援B型</p>
+            <h3 class="office-card__title">就労継続支援B型事業所 さくらなみき</h3>
+            <p class="office-card__desc">生産活動の機会提供や生活リズムづくり。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ========= 就労支援 ========= -->
+      <section id="cat-work" class="office-section office-section--work" aria-labelledby="cat-work-title">
+        <h2 id="cat-work-title" class="office-section__title">就労支援</h2>
+        <div class="office-grid">
+          <a class="office-card" href="myroot.html">
+            <p class="office-card__eyebrow">障がい者就業・生活支援</p>
+            <h3 class="office-card__title">いちのせき広域障がい者就業・生活支援センター マイルートリンク</h3>
+            <p class="office-card__desc">就業と生活を一体で支える総合支援。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="ichisapo.html">
+            <p class="office-card__eyebrow">若者の就労支援</p>
+            <h3 class="office-card__title">いちのせき若者サポートステーション</h3>
+            <p class="office-card__desc">15〜49歳の就労をサポート。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+
+          <a class="office-card" href="jobcafe.html">
+            <p class="office-card__eyebrow">就職支援</p>
+            <h3 class="office-card__title">ジョブカフェ一関</h3>
+            <p class="office-card__desc">キャリア相談・セミナー・求人情報の提供。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ========= 地域づくり ========= -->
+      <section id="cat-community" class="office-section office-section--community" aria-labelledby="cat-community-title">
+        <h2 id="cat-community-title" class="office-section__title">地域づくり</h2>
+        <div class="office-grid">
+          <a class="office-card" href="citizen.html">
+            <p class="office-card__eyebrow">市民活動／地域連携</p>
+            <h3 class="office-card__title">いちのせき市民活動センター／せんまやサテライト</h3>
+            <p class="office-card__desc">地域協働支援、市民活動支援など。</p>
+            <span class="office-card__more" aria-hidden="true">詳しく見る →</span>
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- 主要導線（2ボタン想定） -->
+  <nav class="cta-bar" aria-label="主要導線">
+    <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      電話で相談
+    </a>
+    <a class="cta" href="mailto:hands.guitar@ocn.ne.jp" aria-label="メールで問い合わせ">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      メールで問い合わせ
+    </a>
+  </nav>
+
+  <!-- 上へ戻る（スクロール進捗リング） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+      </svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- フッター（共通） -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div><!-- /#page -->
+
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お問い合わせ | レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ページ専用の軽量CSS：フォームUIだけ -->
+  <style>
+    :root{
+      --c-brand:#2563eb;         /* 強調（ボタン） */
+      --c-ink:#111827;           /* 文字 */
+      --c-sub:#6b7280;           /* 補助 */
+      --c-line:#e5e7eb;          /* 罫線 */
+      --c-bg:#ffffff;            /* 面 */
+      --radius:14px;
+      --max:1000px;
+    }
+
+    /* ページの背景は既存に合わせて白系 */
+    body.page-contact { background:#fff; }
+
+    .wrap { max-width:var(--max); margin-inline:auto; padding: clamp(18px,4vw,28px); }
+
+    /* ヒーロー（見出し） */
+    .hero-compact{
+      margin: 18px 0 6px;
+      background:
+        radial-gradient(1000px 260px at 12% -20%, #f8fafc, transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, #f9fafb, transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--c-line);
+      border-radius:20px;
+      box-shadow:0 18px 40px rgba(0,0,0,.06);
+    }
+    .hero-compact__inner{ padding: clamp(18px,2.6vw,28px) clamp(18px,3.2vw,34px); }
+    .hero-compact h1{
+      margin:0 0 .25rem;
+      font:700 clamp(1.18rem,2.2vw,1.5rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+      color:var(--c-ink);
+    }
+    .hero-compact p{ margin:2rem 0 0; color:var(--c-sub); }
+
+    /* フォーム全体 */
+    .contact{
+      margin-top: clamp(14px,2.4vw,20px);
+      background:var(--c-bg);
+      border:1px solid var(--c-line);
+      border-radius:20px;
+      box-shadow:0 16px 36px rgba(0,0,0,.05);
+    }
+    .contact__inner{ padding: clamp(18px,2.8vw,26px) clamp(18px,3.2vw,32px); display:grid; gap: clamp(14px,2vw,18px); }
+
+    .field{ display:grid; gap:.5rem; }
+    .field__label{ font-weight:700; color:var(--c-ink); }
+    .req{ color:#ef4444; font-weight:700; margin-left:.25em; }
+
+    /* セグメントボタン（分野） */
+    .seg{
+      display:grid; grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: .6rem;
+    }
+    @media (min-width:640px){ .seg{ grid-template-columns: repeat(4, minmax(0,1fr)); } }
+
+    .seg input{ position:absolute; opacity:0; pointer-events:none; }
+    .seg label{
+      border:1px solid var(--c-line);
+      border-radius:999px;
+      padding:.85em 1em;
+      background:#fafafa;
+      color:#1f2937;
+      text-align:center; font-weight:600; cursor:pointer;
+      transition: background .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease, color .18s ease;
+      user-select:none;
+    }
+    .seg input:checked + label{
+      background: color-mix(in oklab, var(--c-brand) 12%, #fff);
+      border-color: color-mix(in oklab, var(--c-brand) 55%, #fff);
+      color:#0b2a6b;
+      box-shadow: 0 8px 22px rgba(37,99,235,.16);
+      transform: translateY(-1px);
+    }
+    .seg label:hover{ transform: translateY(-1px); }
+
+    /* テキスト系 */
+    .ctrl{
+      width:100%; border:1px solid var(--c-line); border-radius:12px;
+      padding:.9em 1em; font:inherit; color:var(--c-ink); background:#fff;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .ctrl:focus{ outline:none; border-color: color-mix(in oklab, var(--c-brand) 55%, #fff); box-shadow:0 0 0 4px color-mix(in oklab, var(--c-brand) 22%, #fff); }
+
+    textarea.ctrl{ min-height: 10rem; resize: vertical; }
+
+    /* ボタン */
+    .actions{ display:flex; gap:.6rem; align-items:center; justify-content:flex-end; margin-top:.5rem; }
+    .btn{
+      display:inline-grid; place-items:center; gap:.4rem;
+      padding:.9em 1.1em; border-radius:12px; border:1px solid color-mix(in oklab, var(--c-brand) 55%, #fff);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--c-brand) 4%, #fff), color-mix(in oklab, var(--c-brand) 16%, #fff));
+      color:#0b2a6b; font-weight:700; cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow:0 10px 26px rgba(37,99,235,.16); }
+    .btn:active{ transform: translateY(0); box-shadow:none; }
+    .btn--ghost{
+      background:#fff; color:#1f2937; border-color:var(--c-line);
+    }
+
+    .small-note{ color:var(--c-sub); font-size:.92rem; }
+
+    /* メッセージ */
+    .alert{
+      display:none; padding:.9em 1em; border-radius:10px; border:1px solid;
+    }
+    .alert--ok{ background:#ecfdf5; border-color:#34d399; color:#065f46; }
+    .alert--ng{ background:#fef2f2; border-color:#fca5a5; color:#7f1d1d; }
+    .alert.is-show{ display:block; }
+
+    /* ハニーポット（視覚的に隠す） */
+    .hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+/* 分野セグメントの内側余白を広くする */
+.contact .seg,           /* セグメント全体の並び */
+.field--category .seg {  /* クラス名が違っても拾えるように */
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* それぞれのボタン（pill）の当たり判定と余白を拡大 */
+.contact .seg label,
+.field--category .seg label {
+
+  min-height: 30px;          /* 高さの下限（好みで 56〜72px 程度） */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  font-size: 1.05rem;        /* 文字も少しだけ大きく（任意） */
+  border-radius: 999px;      /* pill 感を保つ */
+}
+
+/* 選択時／ホバー時の影や枠が食い込んで見える場合の調整（任意） */
+.contact .seg input:checked + label,
+.field--category .seg input:checked + label {
+  box-shadow: 0 4px 16px rgba(30, 64, 175, .12);
+}
+
+@media (max-width: 560px) {
+  /* モバイルは列幅を少し狭める */
+  .contact .seg,
+  .field--category .seg {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .contact .seg label,
+  .field--category .seg label {
+    padding: .95rem 1.4rem;
+    min-height: 56px;
+  }
+}
+
+/* ===== contact：モバイルではみ出さないための基本 ===== */
+
+/* フォーム全体はクリップ。安全な左右余白も足す */
+body.page-contact .contact,
+body.page-contact .contact__inner{
+  overflow-x: clip;
+  padding-inline: clamp(16px, 5vw, 28px);
+}
+
+/* ラッパーがflex/gridの場合に中身がはみ出さない保険 */
+body.page-contact .contact__inner,
+body.page-contact .field,
+body.page-contact .seg{
+  min-width: 0;   /* ← これが効く */
+}
+
+/* ラベル＋入力の横並びがあっても折り返せるように */
+body.page-contact .field{
+  display: grid;
+  grid-template-columns: 1fr; /* モバイルは縦積み */
+  row-gap: .5rem;
+}
+
+/* 入力系の共通：幅は親に合わせる・箱の計算はborder-box */
+body.page-contact .ctrl{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  /* 長文・長URL・長いメールでも改行させる */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* テキストエリアは高さだけ確保 */
+body.page-contact textarea.ctrl{
+  min-height: 9rem;
+  resize: vertical;
+}
+
+/* 小さな注意書きなども折り返し */
+body.page-contact .small-note{
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.7;
+  margin-top: .25rem;
+}
+
+/* 送信ボタン行：折り返し前提で並べる */
+body.page-contact .actions{
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+body.page-contact .actions .btn,
+body.page-contact .actions button,
+body.page-contact .actions input[type="submit"]{
+  max-width: 100%;
+}
+
+/* 画面が広いときだけラベル左右に並べる（任意） */
+@media (min-width: 720px){
+  body.page-contact .field{
+    grid-template-columns: 12rem 1fr; /* ラベル幅 / 入力 */
+    align-items: center;
+    column-gap: 1rem;
+  }
+  body.page-contact .field .field__label{
+    margin: 0;
+  }
+}
+
+/* --- 分野セグメント：横一列（PC） --- */
+.field > .seg{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important; /* SPは2列 */
+  gap: .8rem !important;
+  align-items: stretch;
+  justify-items: stretch;
+  min-width: 0;
+}
+@media (min-width: 640px){
+  .field > .seg{
+    grid-template-columns: repeat(4, 1fr) !important; /* PCは4つ横並び */
+  }
+}
+
+/* ボタン（pill）を中央寄せ＆横書き固定 */
+.field > .seg input{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.field > .seg label{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: .85em 1em;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  background: #fafafa;
+  font-weight: 600;
+  text-align: center;
+  writing-mode: horizontal-tb; /* 念のため縦書き化を防止 */
+  white-space: nowrap;        /* 長文でなければ中央を維持 */
+}
+.field > .seg input:checked + label{
+  background: color-mix(in oklab, var(--c-brand) 12%, #fff);
+  border-color: color-mix(in oklab, var(--c-brand) 55%, #fff);
+  color:#0b2a6b;
+  box-shadow: 0 8px 22px rgba(37,99,235,.16);
+  transform: translateY(-1px);
+}
+
+
+
+  </style>
+</head>
+
+<body class="page-contact page-show">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+ <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main id="main" class="wrap">
+    <!-- ヒーロー -->
+    <section class="hero-compact" aria-label="お問い合わせ">
+      <div class="hero-compact__inner">
+        <h1>お問い合わせ</h1>
+        <p>内容に応じて担当がご連絡します。分野がわからない場合は「総合窓口」をお選びください。</p>
+      </div>
+    </section>
+
+    <!-- フォーム -->
+    <section class="contact" aria-label="お問い合わせフォーム">
+      <div class="contact__inner">
+        <div id="alertOk" class="alert alert--ok" role="status" aria-live="polite">送信を受け付けました。担当より折り返します。ありがとうございました。</div>
+        <div id="alertNg" class="alert alert--ng" role="alert" aria-live="assertive">送信に失敗しました。時間をおいて再度お試しください。</div>
+
+        <form id="contactForm" novalidate>
+          <!-- ハニーポット -->
+          <div class="hp">
+            <label for="nickname">ニックネーム</label>
+            <input id="nickname" type="text" name="nickname" autocomplete="off">
+          </div>
+
+          <!-- 1. 分野 -->
+          <fieldset class="field">
+            <legend class="field__label">1．分野をお選びください <span class="req">必須</span></legend>
+            <div class="seg" role="radiogroup" aria-label="分野を選択">
+              <input type="radio" id="cat1" name="category" value="障がい福祉" required>
+              <label for="cat1">障がい福祉</label>
+
+              <input type="radio" id="cat2" name="category" value="就労支援">
+              <label for="cat2">就労支援</label>
+
+              <input type="radio" id="cat3" name="category" value="地域づくり">
+              <label for="cat3">地域づくり</label>
+
+              <input type="radio" id="cat4" name="category" value="総合窓口" checked>
+              <label for="cat4">総合窓口</label>
+            </div>
+          </fieldset>
+
+          <!-- 2. お名前 -->
+          <div class="field">
+            <label for="name" class="field__label">2．お名前（団体名） <span class="req">必須</span></label>
+            <input id="name" name="name" type="text" class="ctrl" autocomplete="name" required placeholder="例）一関 太郎 ">
+          </div>
+
+          <!-- 3. メール -->
+          <div class="field">
+            <label for="email" class="field__label">3．メールアドレス <span class="req">必須</span></label>
+            <input id="email" name="email" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
+            <p class="small-note">※ 迷惑メール設定で受信拒否にならないようご確認ください。</p>
+          </div>
+
+          <!-- 4. 内容 -->
+          <div class="field">
+            <label for="message" class="field__label">4．内容 <span class="req">必須</span></label>
+            <textarea id="message" name="message" class="ctrl" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="reset" class="btn btn--ghost">クリア</button>
+            <button type="submit" class="btn">送信する</button>
+          </div>
+        </form>
+
+        <p class="small-note">※ お急ぎの際は <a href="tel:0191-31-5720">0191-31-5720</a> までお電話ください。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 上へ戻る（共通） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div>
+
+<!-- 共通JS（使っているなら読み込み） -->
+<script src="js/site.js"></script>
+
+<!-- ページ専用：送信処理（簡易） -->
+<script>
+  (function(){
+    const FORM_ENDPOINT = ""; // ← 後でサーバのURLを入れる場合ここに（POST想定）
+    const form = document.getElementById('contactForm');
+    const ok = document.getElementById('alertOk');
+    const ng = document.getElementById('alertNg');
+
+    const show = (el)=>{ el.classList.add('is-show'); setTimeout(()=>el.classList.remove('is-show'), 8000); };
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      // ハニーポット
+      if (form.nickname && form.nickname.value.trim() !== "") return;
+
+      // 必須チェック（ブラウザのネイティブ検証も使う）
+      if(!form.reportValidity()){ return; }
+
+      const data = {
+        category: form.category.value,
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      // 実サーバが無ければ mailto フォールバック
+      if(!FORM_ENDPOINT){
+        const to = "hands.guitar@ocn.ne.jp";
+        const subject = encodeURIComponent(`[お問い合わせ] ${data.category}／${data.name} 様`);
+        const body =
+          `分野: ${data.category}\n` +
+          `お名前(団体名): ${data.name}\n` +
+          `メール: ${data.email}\n\n` +
+          `内容:\n${data.message}\n`;
+        const href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(body)}`;
+        window.location.href = href;
+        show(ok);
+        form.reset();
+        return;
+      }
+
+      // サーバへ送る場合（JSON例）
+      try{
+        const res = await fetch(FORM_ENDPOINT, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body: JSON.stringify(data)
+        });
+        if(!res.ok) throw new Error('bad');
+        show(ok);
+        form.reset();
+      }catch(err){
+        console.error(err);
+        show(ng);
+      }
+    });
+  })();
+</script>
+</body>
+</html>

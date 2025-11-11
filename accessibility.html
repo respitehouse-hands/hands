@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アクセシビリティ方針 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- サブページはトップのスプラッシュ／フェードを無効化（表示保証） -->
+  <style>
+    body{opacity:1!important}
+    #splash{display:none!important}
+
+    /* ページ固有（既存デザインを壊さない最小限） */
+    .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding: 0 2%;}
+    .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.92rem;margin:0;padding:0;list-style:none}
+    .breadcrumb li::after{content:"›";margin:0 .5em;color:#9aa6af}
+    .breadcrumb li:last-child::after{content:none}
+    .breadcrumb a{text-decoration:none;color:#1d4ed8}
+
+    .policy{max-width:min(1100px,92vw);margin: clamp(16px,4vw,40px) auto; padding: 0 2%;}
+    .policy__title{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;font-size:clamp(22px,3.6vw,32px);line-height:1.3;margin:.2em 0 .6em}
+    .policy__lead{color:#2f3e33;margin:0 0 1.2em;line-height:1.9}
+    .policy h2{font-size:1.1rem;margin:1.6em 0 .5em;color:#193528;border-left:4px solid #2f7d5b;padding-left:.6em}
+    .policy p{margin:.2em 0 1em;line-height:1.9}
+    .policy ul{margin:.2em 0 1.2em; padding-left:1.2em; line-height:1.9}
+    .policy__contact a{text-decoration:none}
+    .policy__meta{color:#66776f;font-size:.95rem;margin-top:1.2em}
+  </style>
+</head>
+
+<body>
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+
+  <!-- 共通ヘッダー -->
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+  </header>
+
+  <main id="main">
+
+    <!-- パンくず -->
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="index.html">TOP</a></li>
+        <li aria-current="page">アクセシビリティ方針</li>
+      </ol>
+    </nav>
+
+    <!-- 本文 -->
+    <section class="policy" aria-labelledby="policy-title">
+      <h1 id="policy-title" class="policy__title">アクセシビリティ方針</h1>
+      <p class="policy__lead">
+        特定非営利活動法人レスパイトハウス・ハンズは、年齢や障がいの有無に関わらず、誰もが利用しやすいウェブサイトを目指します。
+      </p>
+
+      <h2>対象範囲</h2>
+      <p>当法人が管理する <code>hands-（予定の独自ドメイン）</code> 配下のページを対象とします（外部サービス上のページは対象外となる場合があります）。</p>
+
+      <h2>目標と基準</h2>
+      <ul>
+        <li>日本工業規格 <strong>JIS X 8341-3:2016</strong> の適合レベル <strong>AA</strong> を目標とします。</li>
+        <li>国際ガイドライン <strong>WCAG 2.1</strong> に整合する形で改善を継続します。</li>
+      </ul>
+
+      <h2>取り組み</h2>
+      <ul>
+        <li>適切な見出し構造・ランドマーク（<code>header</code>/<code>main</code>/<code>nav</code>/<code>footer</code> 等）の付与</li>
+        <li>テキストと背景のコントラスト確保（AA 以上を目安）</li>
+        <li>キーボード操作での利用（フォーカス可視化・順序の最適化）</li>
+        <li>画像の代替テキスト、装飾画像の空 <code>alt</code> 対応</li>
+        <li>フォームのラベル・エラー表示の明確化</li>
+        <li>動画/音声のキャプション・代替手段（該当する場合）</li>
+        <li>動きの軽減設定（<code>prefers-reduced-motion</code>）の尊重</li>
+      </ul>
+
+      <h2>試験結果</h2>
+      <p>実施日・対象ページ・達成状況（AA 達成等）については、整備完了後に本ページで公開します。</p>
+
+      <h2>例外事項</h2>
+      <p>一部のコンテンツや外部サービスについては、技術的・運用上の理由により対応が困難な場合があります。可能な範囲で順次改善に努めます。</p>
+
+      <h2>ご意見・ご連絡先</h2>
+      <p class="policy__contact">
+        アクセシビリティに関するご意見・ご要望は以下までお寄せください。<br>
+        メール：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a> ／
+        電話：<a href="tel:0191-31-5720">0191-31-5720</a>
+      </p>
+
+      <p class="policy__meta">策定日：2025年11月1日／ 最終更新日：2025年11月1日</p>
+    </section>
+
+    <!-- 電話／メール CTA（共通デザイン） -->
+    <nav class="cta-bar" aria-label="主要導線">
+      <a class="cta" href="tel:0191-31-5720">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        電話で相談
+      </a>
+      <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        メールで問い合わせ
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- 共通フッター -->
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html" aria-current="page">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+
+</div><!-- /#page -->
+
+<!-- サブページの“常時表示”リセット（トップのスプラッシュ対策） -->
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    var s = document.getElementById('splash'); if(s) s.style.display='none';
+  });
+</script>
+</body>
+</html>
