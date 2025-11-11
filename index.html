@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- 初期ガタつき防止 -->
+  <!-- すぐスクロールを止めて初期ガタつき防止 -->
+  <script>document.documentElement.classList.add('no-scroll');</script>
   <script>document.documentElement.classList.add('no-scroll');</script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- ▼ triad（circle.webp）の最終版CSS：中央寄せを強制・重複排除 -->
+  <!-- ▼ triad（circle.webp）の最終版CSS：重複を排除 -->
   <style>
     /* ヒーロー見出し（既存） */
     .hero__title{font:700 clamp(22px,4vw,34px)/1.35 "Zen Maru Gothic","Noto Sans JP",sans-serif}
@@ -20,7 +21,7 @@
     .hero__title .em2{color:#efc94a}
     .hero__figure{max-width:100%;height:auto;object-fit:contain}
 
-    /* ===== 三つの視点（circle.webp＋説明） ===== */
+    /* ===== 三つの視点（circle.webp＋説明）決定版 ===== */
     .triad-visual{ padding: clamp(24px, 5vw, 56px) 0; }
 
     .triad-visual__inner{
@@ -30,25 +31,23 @@
       box-sizing: border-box;
       display: grid;
       grid-template-columns: minmax(280px, 520px) 1fr;
-      gap: clamp(40px, 3vw, 100px);   /* 最小, 推奨, 最大 */
+      /* 最小, 推奨, 最大の順に修正 */
+      gap: clamp(40px, 3vw, 100px);
       align-items: center;
     }
 
     /* 画像側 */
-    .triad-visual__figure{
-      margin: 0;
-    }
+    .triad-visual__figure{ margin: 0; }
     .triad-visual__img{
       display: block;
       width: 100%;
       height: auto;
-      margin: 0 auto;                /* 念押しの中央寄せ */
     }
 
     /* テキスト側 */
     .triad-copy{
       max-width: 56ch;
-      margin-inline: auto 0;         /* PC時は左寄せ */
+      margin-inline: auto 0;   /* PC時は左寄せ */
       text-align: left;
     }
     .triad-copy::before{ display: none; }
@@ -69,28 +68,86 @@
       word-break: keep-all;
     }
 
-    /* ▼ スマホ最適化：1カラム＋“物理的中央寄せ”を強制（これ1本に整理） */
+    /* スマホ最適化：1カラム＋画像を物理的に中央寄せ */
     @media (max-width: 900px){
       .triad-visual__inner{
         grid-template-columns: 1fr;
-        place-items: center;           /* 水平・垂直とも中央 */
-        text-align: center;            /* 画像以外の揃えも保険で中央 */
+        justify-items: center;         /* 画像・テキストを中央へ */
       }
       .triad-visual__figure{
-        width: clamp(240px, 80vw, 440px); /* 少し小さめに表示 */
+        width: min(520px, 92vw);       /* 画像枠を画面幅に合わせて中央配置 */
         margin: 0 auto;
         justify-self: center;
       }
       .triad-visual__img{
         width: 100%;
         height: auto;
-        margin: 0 auto;                /* 念押し */
       }
       .triad-copy{
-        margin-inline: 0;              /* 左寄せバイアス解除 */
-        text-align: left;              /* 文章は左揃えのままに戻す */
+        margin-inline: 0;              /* 下段テキストの左右余白をリセット */
       }
     }
+
+    /* 任意：もう少しだけ余白を広げたいとき
+    .cta-slab{ margin-bottom: clamp(24px, 5vw, 56px); }
+    */
+
+/* ▼ スマホ時：画像を小さめに */
+@media (max-width: 900px){
+  .triad-visual__figure{
+    /* 以前の: width: min(520px, 92vw); を置き換え */
+    width: clamp(260px, 82vw, 460px);
+    /*      最小 , 推奨 , 最大  */
+  }
+  .triad-visual__img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px){
+  .triad-visual__figure{ width: clamp(240px, 78vw, 420px); }
+}
+
+/* ===== 画像の右はみ出し修正：vwをやめて容器基準に ===== */
+html, body { margin: 0; overflow-x: hidden; }  /* 念のための横はみ出し抑止 */
+
+.triad-visual{ overflow-x: clip; }             /* 一部ブラウザでは hidden でもOK */
+
+@media (max-width: 900px){
+  .triad-visual__inner{
+    max-width: 100%;                           /* ← 画面幅に合わせる */
+    padding-inline: clamp(12px, 5vw, 24px);    /* 左右対称の内側余白 */
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  /* ★ここが核心：figureの幅は“親の内側幅”基準にする */
+  .triad-visual__figure{
+    width: min(520px, 100%) !important;        /* ← 以前の 82vw / 92vw を上書き */
+    margin-inline: auto;
+    justify-self: center;
+  }
+
+  .triad-visual__img{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .triad-copy{
+    margin-inline: 0;
+    text-align: left;
+  }
+}
+
+/* さらに極小幅の微調整（任意） */
+@media (max-width: 480px){
+  .triad-visual__figure{ width: min(420px, 100%) !important; }
+}
+
+
   </style>
   <!-- ▲ triad 完了 -->
 </head>
