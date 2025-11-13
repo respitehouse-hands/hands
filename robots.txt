@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://handsnpo.jp/sitemap.xml
