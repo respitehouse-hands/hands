@@ -544,67 +544,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
 <!-- 共通JS（使っているなら読み込み） -->
 <script src="js/site.js"></script>
 
-<!-- ページ専用：送信処理（簡易） -->
-<script>
-  (function(){
-    const FORM_ENDPOINT = ""; // ← 後でサーバのURLを入れる場合ここに（POST想定）
-    const form = document.getElementById('contactForm');
-    const ok = document.getElementById('alertOk');
-    const ng = document.getElementById('alertNg');
-
-    const show = (el)=>{ el.classList.add('is-show'); setTimeout(()=>el.classList.remove('is-show'), 8000); };
-
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-
-      // ハニーポット
-      if (form.nickname && form.nickname.value.trim() !== "") return;
-
-      // 必須チェック（ブラウザのネイティブ検証も使う）
-      if(!form.reportValidity()){ return; }
-
-      const data = {
-        category: form.category.value,
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim()
-      };
-
-      // 実サーバが無ければ mailto フォールバック
-      if(!FORM_ENDPOINT){
-        const to = "hands.guitar@ocn.ne.jp";
-        const subject = encodeURIComponent(`[お問い合わせ] ${data.category}／${data.name} 様`);
-        const body =
-          `分野: ${data.category}\n` +
-          `お名前(団体名): ${data.name}\n` +
-          `メール: ${data.email}\n\n` +
-          `内容:\n${data.message}\n`;
-        const href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(body)}`;
-        window.location.href = href;
-        show(ok);
-        form.reset();
-        return;
-      }
-
-      // サーバへ送る場合（JSON例）
-      try{
-        const res = await fetch(FORM_ENDPOINT, {
-          method:"POST",
-          headers:{ "Content-Type":"application/json" },
-          body: JSON.stringify(data)
-        });
-        if(!res.ok) throw new Error('bad');
-        show(ok);
-        form.reset();
-      }catch(err){
-        console.error(err);
-        show(ng);
-      }
-    });
-  })();
-</script>
 </body>
 </html>
+
 
 
 
