@@ -424,29 +424,43 @@ body.page-contact .actions input[type="submit"]{
           </div>
         </form>
 
-        <script>
+       <script>
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const form = e.target;
   const data = new FormData(form);
 
-  const res = await fetch(form.action, {
-    method: "POST",
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  });
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
 
-  if (res.ok) {
-    document.getElementById('alertOk').style.display = 'block';
-    document.getElementById('alertNg').style.display = 'none';
-    form.reset();
-  } else {
+    const json = await res.json();
+
+    // ------- 成功判定 -------
+    // Formspree の仕様：成功時 { ok: true }
+    if (json.ok) {
+      document.getElementById('alertOk').style.display = 'block';
+      document.getElementById('alertNg').style.display = 'none';
+      form.reset();
+      return;
+    }
+
+    // ------- スパム or バリデーションエラー -------
+    document.getElementById('alertOk').style.display = 'none';
+    document.getElementById('alertNg').style.display = 'block';
+
+  } catch (error) {
+    // ------- 通信エラー -------
     document.getElementById('alertOk').style.display = 'none';
     document.getElementById('alertNg').style.display = 'block';
   }
 });
 </script>
+
 
         
         <p class="small-note">※ お急ぎの際は <a href="tel:0191-31-5720">0191-31-5720</a> までお電話ください。</p>
@@ -539,6 +553,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
 
 </body>
 </html>
+
 
 
 
