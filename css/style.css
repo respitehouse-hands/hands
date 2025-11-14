@@ -2877,12 +2877,6 @@ body:where(:not(.allow-x-scroll)){
 /* 全要素を border-box に統一（幅計算ブレ防止） */
 *, *::before, *::after { box-sizing: border-box; }
 
-@media (prefers-reduced-motion: reduce){
-  #splash img{
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
+
 
 
