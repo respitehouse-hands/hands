@@ -378,7 +378,10 @@ body.page-contact .actions input[type="submit"]{
         <div id="alertOk" class="alert alert--ok" role="status" aria-live="polite">送信を受け付けました。担当より折り返します。ありがとうございました。</div>
         <div id="alertNg" class="alert alert--ng" role="alert" aria-live="assertive">送信に失敗しました。時間をおいて再度お試しください。</div>
 
-        <form id="contactForm" novalidate>
+        <form id="contactForm" 
+      action="https://formspree.io/f/xldaggll" 
+      method="POST"
+      novalidate>
           <!-- ハニーポット -->
           <div class="hp">
             <label for="nickname">ニックネーム</label>
@@ -577,6 +580,7 @@ body.page-contact .actions input[type="submit"]{
 </script>
 </body>
 </html>
+
 
 
 
