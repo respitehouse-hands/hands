@@ -98,43 +98,7 @@
   on();
 })();
 
-// =========================
-// 4) myroot 系サブナビのスムーススクロール（wahaha など）
-// =========================
-(() => {
-  const subnav = document.querySelector('.myroot-subnav');
-  if (!subnav) return; // サブナビのないページでは何もしない
 
-  const header = document.getElementById('site-header');
-  const headerHeight = header ? header.offsetHeight : 0;
-  const subnavHeight = subnav.offsetHeight || 0;
-  const offset = headerHeight + subnavHeight + 8; // ちょい余裕
-
-  const prefersReduce =
-    window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  subnav.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href.charAt(0) !== '#') return;
-
-      const id = href.slice(1);
-      const target = document.getElementById(id);
-      if (!target) return;
-
-      e.preventDefault();
-
-      const rect = target.getBoundingClientRect();
-      const targetY = window.pageYOffset + rect.top - offset;
-
-      window.scrollTo({
-        top: targetY,
-        behavior: prefersReduce ? 'auto' : 'smooth'
-      });
-    });
-  });
-})();
 
 
 
