@@ -1163,50 +1163,9 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 <!-- 共通JS -->
 <script src="js/site.js"></script>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // ヘッダーの高さぶんだけズラす（被り防止用）
-    var header = document.getElementById('site-header');
-    var headerHeight = header ? header.offsetHeight : 0;
-
-    // このページ内メニュー（#overview / #services / #access）
-    var links = document.querySelectorAll('.myroot-subnav a[href^="#"]');
-
-    links.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        var targetId = this.getAttribute('href').slice(1);
-        var target = document.getElementById(targetId);
-        if (!target) return;
-
-        var rect = target.getBoundingClientRect();
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // ヘッダー分だけちょっと上に余白を残してスクロール
-        var offset = rect.top + scrollTop - (headerHeight + 16);
-
-        window.scrollTo({
-          top: offset,
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // フッターの「▲ TOP」もなめらかにしたい場合 ↓ も追加
-    var footerTop = document.querySelector('.footer__top[href="#top"]');
-    if (footerTop) {
-      footerTop.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
-  });
-</script>
+ 
 </body>
 </html>
+
 
 
