@@ -831,6 +831,16 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 
 .myroot-wrap { max-width: var(--my-max) !important; }
 
+/* スマホ幅のときだけ改行を有効にする */
+.u-br--sp{
+  display: none;
+}
+
+@media (max-width: 600px){
+  .u-br--sp{
+    display: block;
+  }
+}
 
   </style>
 </head>
@@ -924,7 +934,9 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
               </svg>
             </div>
             <div class="unit-hero__titlewrap">
-              <h2 id="unit-hero-title" class="unit-hero__title">ハンズ生活介護事業所｜わぁははクラブ</h2>
+              <h2 id="unit-hero-title" class="unit-hero__title">
+  ハンズ生活介護事業所｜<br class="u-br--sp">わぁははクラブ
+</h2>
               <p class="unit-hero__lead">
                 ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
                 日中活動・生活支援を提供します。              </p>
@@ -1169,6 +1181,7 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
  
 </body>
 </html>
+
 
 
 
