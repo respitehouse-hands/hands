@@ -213,9 +213,12 @@
     .small{ font-size:.92rem; }
     .strong{ font-weight:700; }
 
-    /* スムーススクロール（共通と被ってもOK） */
-    html{ scroll-behavior:smooth; }
-    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+    /* わぁははページだけ：確実にスムーススクロール＋見出しが隠れないようにする */
+    html{
+      scroll-behavior: smooth !important;
+      scroll-padding-top: 140px;  /* ヘッダー＋サブナビ分のオフセット */
+    }
+
 
 /* ===== わぁははクラブ（このページだけ） ヘッダー/フッター配色 ===== */
 :root{
@@ -1166,6 +1169,7 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
  
 </body>
 </html>
+
 
 
 
