@@ -223,6 +223,13 @@ body.page-citizen .unit-hero {
     linear-gradient(#fff,#fff) !important;
 }
 
+/* スマホ幅のときはタイトルを少し小さくして1行に収める */
+@media (max-width: 480px){
+  .unit-hero__title{
+    font-size: 1.05rem;   /* もとの1.2remからちょいダウン */
+    letter-spacing: -0.01em; /* ほんの少しだけ詰める（なくてもOK） */
+  }
+}
 
   </style>
 </head>
@@ -502,5 +509,6 @@ body.page-citizen .unit-hero {
 </script>
 </body>
 </html>
+
 
 
