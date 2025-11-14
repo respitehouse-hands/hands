@@ -97,3 +97,42 @@
   window.addEventListener('scroll', on, {passive:true});
   on();
 })();
+
+// =========================
+// ページ内リンク用スムーススクロール
+// （wahaha.html のサブナビなど共通で使える）
+// =========================
+(function () {
+  // #から始まるリンク（同一ページ内のみ）
+  const anchors = document.querySelectorAll('a[href^="#"]');
+  if (!anchors.length) return;
+
+  // ヘッダー＋サブナビのぶんだけ少し上に余裕を持たせる
+  const HEADER_OFFSET = 120; // 好みで 80〜140 くらいに調整してOK
+
+  anchors.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      // 同一ページ内リンクだけ対象にする（外部への #付きリンクは無視）
+      if (location.pathname !== link.pathname || location.hostname !== link.hostname) {
+        return;
+      }
+
+      e.preventDefault();
+
+      const rect = target.getBoundingClientRect();
+      const y = rect.top + window.pageYOffset - HEADER_OFFSET;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    });
+  });
+})();
