@@ -255,12 +255,15 @@ html,body{ margin:0; overflow-x:hidden; }
 
 /* スマホ時だけ triad の改行を「そのまま使う」強制モードにする */
 @media (max-width: 600px){
-  .triad-copy__lead {
-    white-space: pre-line !important;
-    text-wrap: normal !important;
-    line-break: auto !important;
-  }
+.triad-copy__lead {
+  white-space: pre-line !important;
+  text-wrap: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  line-break: auto !important;
 }
+}
+
 
 
 
@@ -593,6 +596,7 @@ html,body{ margin:0; overflow-x:hidden; }
 
 </body>
 </html>
+
 
 
 
