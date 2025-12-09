@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ハンズ生活介護事業所わぁははクラブ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="ハンズ生活介護事業所『わぁははクラブ』は、日中の活動や余暇の支援を通して、安心して過ごせる居場所づくりを大切にしています。一人ひとりのペースを尊重し、生活面のサポートなどを支援します。">
-
+  <title>わぁははクラブ | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- Google Fonts（マイルートリンクと同様） -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,11 +65,11 @@
       margin-bottom: clamp(14px,2vw,18px);
     }
     .unit-hero__emblem{
-      width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
+
       display: grid; place-items: center;
       border-radius: 50%;
       background: radial-gradient(120% 120% at 30% 20%, #ffffff, #fff1e0 70%);
-      border: 3px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+
       box-shadow: 0 6px 20px color-mix(in oklab, var(--unit-brand) 18%, #0000);
     }
     .unit-hero__emblem svg{ width: 58%; height: 58%; fill: var(--unit-brand); }
@@ -151,7 +149,7 @@
     .myroot-subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
 
     /* セクション見出しなど */
-    .myroot-section{ scroll-margin-top:140px; margin:1.25rem 0 1.5rem; }
+    .myroot-section{ scroll-margin-top:120px; margin:1.25rem 0 1.5rem; }
     .myroot-section__title{
       font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 3rem;
       padding-left:.5rem; border-left:6px solid var(--my-accent);
@@ -215,12 +213,9 @@
     .small{ font-size:.92rem; }
     .strong{ font-weight:700; }
 
-    /* わぁははページだけ：確実にスムーススクロール＋見出しが隠れないようにする */
-    html{
-      scroll-behavior: smooth !important;
-      scroll-padding-top: 140px;  /* ヘッダー＋サブナビ分のオフセット */
-    }
-
+    /* スムーススクロール（共通と被ってもOK） */
+    html{ scroll-behavior:smooth; }
+    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
 /* ===== わぁははクラブ（このページだけ） ヘッダー/フッター配色 ===== */
 :root{
@@ -833,16 +828,47 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 
 .myroot-wrap { max-width: var(--my-max) !important; }
 
-/* スマホ幅のときだけ改行を有効にする */
-.u-br--sp{
-  display: none;
+.unit-hero__emblem {
+  border: 1.5px solid #e5e5e5;
 }
 
-@media (max-width: 600px){
-  .u-br--sp{
-    display: block;
+/* セクション見出しのアンカー位置調整 */
+h2[id]{
+  scroll-margin-top: 96px; /* PC時のヘッダー高さに合わせる */
+}
+
+/* スマホ時の調整（必要なら） */
+@media(max-width: 767px){
+  h2[id]{
+    scroll-margin-top: 72px;
   }
 }
+
+#services {
+  scroll-margin-top: 20px;
+}
+
+#overview-title {
+  scroll-margin-top: 20px;
+}
+
+#overview {
+  scroll-margin-top: 20px;
+}
+
+#access {
+  scroll-margin-top: 20px;
+}
+
+/* 右カード内CTAボタンの横幅を揃える */
+.unit-hero__cta a.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 15rem; /* 好みで14〜16rem程度に調整 */
+  text-align: center;
+}
+
 
   </style>
 </head>
@@ -874,7 +900,7 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -922,52 +948,44 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
         </ol>
       </nav>
 
-      <!-- ========= ヒーローバンド：わぁははクラブ ========= -->
-      <section class="unit-hero" aria-labelledby="unit-hero-title">
-        <div class="unit-hero__inner">
-          <div class="unit-hero__head">
-            <div class="unit-hero__emblem" aria-hidden="true">
-              <!-- 任意のアイコン（笑顔風） -->
-              <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                <circle cx="12" cy="12" r="9"></circle>
-                <circle cx="9" cy="10" r="1.4" fill="#fff"></circle>
-                <circle cx="15" cy="10" r="1.4" fill="#fff"></circle>
-                <path d="M8 14a4 4 0 0 0 8 0" fill="#fff"></path>
-              </svg>
-            </div>
-            <div class="unit-hero__titlewrap">
-              <h2 id="unit-hero-title" class="unit-hero__title">
-  ハンズ生活介護事業所｜<br class="u-br--sp">わぁははクラブ
-</h2>
-              <p class="unit-hero__lead">
-                ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
-                日中活動・生活支援を提供します。              </p>
+     <!-- ========= ヒーローバンド：わぁははクラブ ========= -->
+<section class="unit-hero" aria-labelledby="unit-hero-title">
+  <div class="unit-hero__inner">
+    <div class="unit-hero__head">
+      <div class="unit-hero__emblem" aria-hidden="true">
+        <img src="img/wahaha_logo.webp" alt="" class="wahaha-logo">
+      </div>
 
-              </ul>
-            </div>
-          </div>
+      <div class="unit-hero__titlewrap">
+        <h2 id="unit-hero-title" class="unit-hero__title">ハンズ生活介護事業所｜わぁははクラブ</h2>
+        <p class="unit-hero__lead">
+          ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
+          日中活動・生活支援を提供します。
+        </p>
+      </div>
+    </div>
 
-          <div class="unit-hero__grid">
-           <div class="unit-hero__points">
-  <ul class="checklist checklist--hero">
-    <li>わぁははクラブは、学校卒業後の日中活動を支援する場として、平成21年4月よりスタートした生活介護事業所です。</li>
-    <li>ひとりひとりの個性を大切にし、みんなで協力しあい、様々な活動を行っています。</li>
-    <li>ご家族とともに生きがいを持った毎日を送れるようお手伝いいたします。</li>
-  </ul>
-</div>
+    <div class="unit-hero__grid">
+      <div class="unit-hero__points">
+        <ul class="checklist checklist--hero">
+          <li>わぁははクラブは、学校卒業後の日中活動を支援する場として、平成21年4月よりスタートした生活介護事業所です。</li>
+          <li>ひとりひとりの個性を大切にし、みんなで協力しあい、様々な活動を行っています。</li>
+          <li>ご家族とともに生きがいを持った毎日を送れるようお手伝いいたします。</li>
+        </ul>
+      </div>
 
-            <aside class="unit-hero__callout" aria-label="見学・ご相談">
-              <h3>見学・ご相談はこちら</h3>
-              <div class="unit-hero__cta">
-                <a class="btn ghost" href="tel:0191315720">電話する（0191-31-5720）</a>
-                <a class="btn ghost" href="mailto:hands-ma@ceres.ocn.ne.jp">メールで相談</a>
-              </div>
-              <p class="unit-hero__small">開所日：月〜土 10:00–16:00</p>
-
-            </aside>
-          </div>
+      <aside class="unit-hero__callout" aria-label="見学・ご相談">
+        <h3>見学・ご相談はこちら</h3>
+        <div class="unit-hero__cta">
+          <a class="btn ghost" href="tel:0191315720">電話する（0191-31-5720）</a>
+          <a class="btn ghost" href="mailto:hands-ma@ceres.ocn.ne.jp">メールで相談</a>
         </div>
-      </section>
+        <p class="unit-hero__small">開所日：月〜土 10:00–16:00</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
 
       <!-- サブナビ（ページ内） -->
       <nav class="myroot-subnav" aria-label="このページ内のメニュー">
@@ -1009,8 +1027,8 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
       </section>
 
       <!-- サービス内容 -->
-      <section id="services" class="myroot-section" aria-labelledby="services-title">
-        <h2 id="services-title" class="myroot-section__title">サービス内容</h2>
+      <section id="services-section" class="myroot-section" aria-labelledby="services-title">
+  <h2 id="services" class="myroot-section__title">サービス内容</h2>
 
         <div class="myroot-grid">
           <div class="myroot-card">
@@ -1179,15 +1197,5 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 
 <!-- 共通JS -->
 <script src="js/site.js"></script>
-
- 
 </body>
 </html>
-
-
-
-
-
-
-
-
