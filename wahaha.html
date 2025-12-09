@@ -875,12 +875,16 @@ h2[id]{
   }
 }
 
-    @media (max-width: 600px){
-  .unit-hero__titlewrap,
-  .unit-hero__title{
+@media (max-width: 600px){
+  h2.unit-title,
+  .unit-hero__title,
+  .unit-hero__titlewrap h2 {
     white-space: normal !important;
+    line-break: strict;
+    overflow-wrap: anywhere;
   }
 }
+
 
   </style>
 </head>
@@ -1211,6 +1215,7 @@ h2[id]{
 <script src="js/site.js"></script>
 </body>
 </html>
+
 
 
 
