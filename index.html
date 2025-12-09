@@ -253,6 +253,14 @@ img, svg, video{ max-width:100%; height:auto; display:block; }  /* 横伸び防�
 *,*::before,*::after{ box-sizing:border-box; }
 html,body{ margin:0; overflow-x:hidden; }
 
+/* スマホ時だけ triad の改行を「そのまま使う」強制モードにする */
+@media (max-width: 600px){
+  .triad-copy__lead {
+    white-space: pre-line !important;
+    text-wrap: normal !important;
+    line-break: auto !important;
+  }
+}
 
 
 
@@ -361,8 +369,8 @@ html,body{ margin:0; overflow-x:hidden; }
       <p class="triad-copy__kicker">ABOUT HANDS</p>
       <p class="triad-copy__lead">
         私たちレスパイトハウス・ハンズは、<br>
-        <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で、<br>
-        子どもから大人までの暮らしに寄り添う、<br>
+        <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で<br>
+        子どもから大人までの暮らしに寄り添う<br>
         このまちのNPO法人です。
       </p>
     </div>
@@ -588,6 +596,7 @@ html,body{ margin:0; overflow-x:hidden; }
 
 </body>
 </html>
+
 
 
 
