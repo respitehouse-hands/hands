@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>さくらなみき | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-<meta name="description" content="就労継続支援B型事業所 さくらなみきは、障がいのある方の就労を支援する事業所です。中間的就労支援作業などにも対応しております。">
+  <title>さくらなみき | レスパイトハウス・ハンズ</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,8 +67,7 @@
     .unit-hero__emblem{
       width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
       display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #ffeaf2 70%);
-      border:3px solid color-mix(in oklab, var(--brand) 55%, #fff); box-shadow:0 8px 22px rgba(244,143,177,.18);
-    }
+     }
     .unit-hero__emblem svg{ width:62%; height:62%; fill:var(--brand); }
     .unit-hero__title{ margin:0 0 .1rem; font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; color:var(--brand-ink); }
     .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
@@ -212,6 +210,17 @@ body.unit-sakura{
   display: none !important;
 }
 
+.unit-hero__emblem img{
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.unit-hero__emblem{
+  width:clamp(80px,10vw,100px);
+  height:clamp(80px,10vw,100px);
+}
+
 
   </style>
 </head>
@@ -243,7 +252,7 @@ body.unit-sakura{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -292,37 +301,15 @@ body.unit-sakura{
     <section class="unit-hero" aria-labelledby="unit-hero-title">
       <div class="unit-hero__inner">
         <div class="unit-hero__head">
-          <div class="unit-hero__emblem" aria-hidden="true">
-           
-<!-- 桜アイコン（5枚花弁＋中央） -->
-<svg viewBox="0 0 24 24" aria-hidden="true">
-  <defs>
-    <!-- 1枚の花びら（しずく形）を定義。中心(12,12)で回す前提 -->
-    <path id="sakura-petal"
-          d="M12 3.6
-             c 1.9 0 3.4 1.5 3.4 3.4
-             c 0 2.6 -3.4 5.5 -3.4 5.5
-             s -3.4 -2.9 -3.4 -5.5
-             c 0 -1.9 1.5 -3.4 3.4 -3.4z" />
-  </defs>
-  <g fill="currentColor">
-    <!-- 5枚の花びらを中心(12,12)で回転配置 -->
-    <use href="#sakura-petal"/>
-    <use href="#sakura-petal" transform="rotate(72 12 12)"/>
-    <use href="#sakura-petal" transform="rotate(144 12 12)"/>
-    <use href="#sakura-petal" transform="rotate(216 12 12)"/>
-    <use href="#sakura-petal" transform="rotate(288 12 12)"/>
-    <!-- おしべの中心 -->
-    <circle cx="12" cy="12" r="2.1"/>
-  </g>
-</svg>
+<div class="unit-hero__emblem" aria-hidden="true">
+  <img src="img/sakura_logo.webp" alt="さくらなみき ロゴ">
+</div>
 
-          </div>
           <div class="unit-hero__titlewrap">
             <h2 id="unit-hero-title" class="unit-hero__title">さくらなみき</h2>
             <p class="unit-hero__lead">
-              　障がいのある方の就労を支援する事業所です。<br>
-              「就労継続支援B型事業」や「中間的就労支援作業」など、幅広い活動を展開しています。
+              　障がいをお持ちの方へ「働く機会」や「訓練」を提供する就労支援事業所です。<br>
+              	「就労継続支援B型事業」や「中間的就労支援作業」などがございます。
             </p>
           </div>
         </div>
@@ -495,6 +482,3 @@ body.unit-sakura{
   <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
