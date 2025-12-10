@@ -386,7 +386,7 @@ body.page-contact .actions input[type="submit"]{
       <input type="hidden" name="_subject" value="【ハンズHP】お問い合わせを受信しました">
       <input type="hidden" name="_intro" value="ハンズホームページより以下のお問い合わせを受信しました。">
       <!-- ▼★ 追加：返信先としてユーザーの email を使う指定 -->
-      <input type="hidden" name="_replyto" value="email">
+     
 
       <!-- ハニーポット -->
       <div class="hp">
@@ -421,7 +421,7 @@ body.page-contact .actions input[type="submit"]{
       <!-- 3. メール -->
       <div class="field">
         <label for="email" class="field__label">3．メールアドレス <span class="req">必須</span></label>
-        <input id="email" name="email" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
+        <input id="email" name="_replyto" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
         <p class="small-note">※ 迷惑メール設定で受信拒否にならないようご確認ください。</p>
       </div>
 
@@ -564,6 +564,7 @@ body.page-contact .actions input[type="submit"]{
 
 </body>
 </html>
+
 
 
 
