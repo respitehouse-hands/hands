@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ハンズ居宅介護事業所 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-<meta name="description" content="ハンズ居宅介護事業所では、身体介護・家事援助・移動支援などを通じて、自宅での安心した生活をサポートします。">
+  <title>ハンズ居宅介護事業所 | レスパイトハウス・ハンズ</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,8 +98,7 @@
     .emblem{
       width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
       display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #e6f4ff 70%);
-      
-      box-shadow:0 8px 22px rgba(88,182,242,.18);
+           box-shadow:0 8px 22px rgba(88,182,242,.18);
     }
     .emblem svg{ width:58%; height:58%; fill:var(--brand); }
     .hero-title{
@@ -330,6 +328,32 @@ body.unit-sky .cta-bar .cta{
   }
 }
 
+#services,
+#flow,
+#city,
+#access,
+#overview {
+  scroll-margin-top: 20px;
+}
+
+/* residence：ロゴ画像が自前で円背景を持っているため、外側の円は消す */
+.page-residence .unit-hero__emblem {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+
+
+.emblem {
+  width: 100px !important;
+  height: 100px !important;
+}
+.emblem img {
+  width: 100px !important;
+  height: auto !important;
+}
+
 
   </style>
 </head>
@@ -360,7 +384,7 @@ body.unit-sky .cta-bar .cta{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -411,9 +435,10 @@ body.unit-sky .cta-bar .cta{
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-head">
-<div class="emblem">
+<div class="emblem unit-hero__emblem">
   <img src="img/residence_logo.webp" alt="居宅介護事業所のロゴ">
 </div>
+
           <div>
             <h1 id="hero-title" class="hero-title">ハンズ居宅介護事業所</h1>
             <p class="hero-lead">
@@ -630,8 +655,3 @@ body.unit-sky .cta-bar .cta{
   <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
-
-
