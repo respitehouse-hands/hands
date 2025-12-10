@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ハンズ相談支援事業所 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="ハンズ相談支援事業所では、障がいのある方やご家族の不安や悩みに寄り添い、福祉サービスの利用計画づくりをサポートします。相談からサービス調整までの支援を行っています。">
-
+  <title>相談支援 | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- Google Fonts（共通） -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,8 +59,7 @@
       width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
       display:grid; place-items:center; border-radius:50%;
       background: radial-gradient(120% 120% at 30% 20%, #ffffff, #f1fbf8 70%);
-      border: 3px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
-      box-shadow: 0 6px 20px rgba(47,125,109,.18);
+          box-shadow: 0 6px 20px rgba(47,125,109,.18);
       /* ← currentColor をアイコンに渡す */
       color: var(--unit-brand);
     }
@@ -450,6 +447,19 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 .wrap { max-width: var(--my-max) !important; margin-inline: auto !important; }
 
 
+
+.page-soudan .unit-hero__emblem {
+  width: auto !important;   /* 好きなサイズに変更可：100〜120推奨 */
+  height: auto !important;
+
+}
+
+.page-soudan .unit-hero__emblem img {
+  width:  auto !important;
+  height: auto !important;
+}
+
+
   </style>
 </head>
 
@@ -480,7 +490,7 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -532,17 +542,10 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
       <section class="unit-hero" aria-labelledby="unit-hero-title">
         <div class="unit-hero__inner">
           <div class="unit-hero__head">
-            <div class="unit-hero__emblem" aria-hidden="true">
-              <!-- C. 手続き：チェック付きクリップボード（色はcurrentColor= --unit-brand） -->
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="6.5" width="14" height="13" rx="2"/>
-                  <path d="M9 6.5V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/>
-                  <path d="M8.5 12l2 2 4-4"/>
-                  <path d="M8 16h6"/>
-                </g>
-              </svg>
-            </div>
+<div class="unit-hero__emblem" aria-hidden="true">
+  <img src="img/soudan_logo.webp" alt="相談支援事業所のロゴ" class="emblem__img">
+</div>
+
             <div class="unit-hero__titlewrap">
               <h2 id="unit-hero-title" class="unit-hero__title">ハンズ相談支援事業所</h2>
               <p class="unit-hero__lead">
@@ -752,6 +755,3 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
