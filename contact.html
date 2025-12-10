@@ -367,107 +367,116 @@ body.page-contact .actions input[type="submit"]{
 
 
 
-    <!-- フォーム -->
-    <section class="contact" aria-label="お問い合わせフォーム">
-      <div class="contact__inner">
-        <div id="alertOk" class="alert alert--ok" role="status" aria-live="polite">送信を受け付けました。担当より折り返します。ありがとうございました。</div>
-        <div id="alertNg" class="alert alert--ng" role="alert" aria-live="assertive">送信に失敗しました。時間をおいて再度お試しください。</div>
+<!-- フォーム -->
+<section class="contact" aria-label="お問い合わせフォーム">
+  <div class="contact__inner">
+    <div id="alertOk" class="alert alert--ok" role="status" aria-live="polite">
+      送信を受け付けました。担当より折り返します。ありがとうございました。
+    </div>
+    <div id="alertNg" class="alert alert--ng" role="alert" aria-live="assertive">
+      送信に失敗しました。時間をおいて再度お試しください。
+    </div>
 
-        <form id="contactForm" 
-      action="https://formspree.io/f/xldaggll" 
+    <form id="contactForm"
+      action="https://formspree.io/f/xldaggll"
       method="POST"
       novalidate>
-          <!-- ハニーポット -->
-          <div class="hp">
-            <label for="nickname">ニックネーム</label>
-            <input id="nickname" type="text" name="_gotcha" autocomplete="off">
-          </div>
 
-          <!-- 1. 分野 -->
-          <fieldset class="field">
-            <legend class="field__label">1．分野をお選びください <span class="req">必須</span></legend>
-            <div class="seg" role="radiogroup" aria-label="分野を選択">
-              <input type="radio" id="cat1" name="category" value="障がい福祉" required>
-              <label for="cat1">障がい福祉</label>
+      <!-- ▼★ 追加：Formspree 通知メールを日本語化する hidden 要素 -->
+      <input type="hidden" name="_subject" value="【ハンズHP】お問い合わせを受信しました">
+      <input type="hidden" name="_intro" value="ハンズホームページより以下のお問い合わせを受信しました。">
+      <!-- ▼★ 追加：返信先としてユーザーの email を使う指定 -->
+      <input type="hidden" name="_replyto" value="email">
 
-              <input type="radio" id="cat2" name="category" value="就労支援">
-              <label for="cat2">就労支援</label>
-
-              <input type="radio" id="cat3" name="category" value="地域づくり">
-              <label for="cat3">地域づくり</label>
-
-              <input type="radio" id="cat4" name="category" value="総合窓口" checked>
-              <label for="cat4">総合窓口</label>
-            </div>
-          </fieldset>
-
-          <!-- 2. お名前 -->
-          <div class="field">
-            <label for="name" class="field__label">2．お名前（団体名） <span class="req">必須</span></label>
-            <input id="name" name="name" type="text" class="ctrl" autocomplete="name" required placeholder="例）一関 太郎 ">
-          </div>
-
-          <!-- 3. メール -->
-          <div class="field">
-            <label for="email" class="field__label">3．メールアドレス <span class="req">必須</span></label>
-            <input id="email" name="email" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
-            <p class="small-note">※ 迷惑メール設定で受信拒否にならないようご確認ください。</p>
-          </div>
-
-          <!-- 4. 内容 -->
-          <div class="field">
-            <label for="message" class="field__label">4．内容 <span class="req">必須</span></label>
-            <textarea id="message" name="message" class="ctrl" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
-          </div>
-
-          <div class="actions">
-            <button type="reset" class="btn btn--ghost">クリア</button>
-            <button type="submit" class="btn">送信する</button>
-          </div>
-        </form>
-
-       <script>
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const data = new FormData(form);
-
-  try {
-    const res = await fetch(form.action, {
-      method: "POST",
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    const json = await res.json();
-
-    // ------- 成功判定 -------
-    // Formspree の仕様：成功時 { ok: true }
-    if (json.ok) {
-      document.getElementById('alertOk').style.display = 'block';
-      document.getElementById('alertNg').style.display = 'none';
-      form.reset();
-      return;
-    }
-
-    // ------- スパム or バリデーションエラー -------
-    document.getElementById('alertOk').style.display = 'none';
-    document.getElementById('alertNg').style.display = 'block';
-
-  } catch (error) {
-    // ------- 通信エラー -------
-    document.getElementById('alertOk').style.display = 'none';
-    document.getElementById('alertNg').style.display = 'block';
-  }
-});
-</script>
-
-
-        
-        <p class="small-note">※ お急ぎの際は <a href="tel:0191-31-5720">0191-31-5720</a> までお電話ください。</p>
+      <!-- ハニーポット -->
+      <div class="hp">
+        <label for="nickname">ニックネーム</label>
+        <input id="nickname" type="text" name="_gotcha" autocomplete="off">
       </div>
-    </section>
+
+      <!-- 1. 分野 -->
+      <fieldset class="field">
+        <legend class="field__label">1．分野をお選びください <span class="req">必須</span></legend>
+        <div class="seg" role="radiogroup" aria-label="分野を選択">
+          <input type="radio" id="cat1" name="category" value="障がい福祉" required>
+          <label for="cat1">障がい福祉</label>
+
+          <input type="radio" id="cat2" name="category" value="就労支援">
+          <label for="cat2">就労支援</label>
+
+          <input type="radio" id="cat3" name="category" value="地域づくり">
+          <label for="cat3">地域づくり</label>
+
+          <input type="radio" id="cat4" name="category" value="総合窓口" checked>
+          <label for="cat4">総合窓口</label>
+        </div>
+      </fieldset>
+
+      <!-- 2. お名前 -->
+      <div class="field">
+        <label for="name" class="field__label">2．お名前（団体名） <span class="req">必須</span></label>
+        <input id="name" name="name" type="text" class="ctrl" autocomplete="name" required placeholder="例）一関 太郎 ">
+      </div>
+
+      <!-- 3. メール -->
+      <div class="field">
+        <label for="email" class="field__label">3．メールアドレス <span class="req">必須</span></label>
+        <input id="email" name="email" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
+        <p class="small-note">※ 迷惑メール設定で受信拒否にならないようご確認ください。</p>
+      </div>
+
+      <!-- 4. 内容 -->
+      <div class="field">
+        <label for="message" class="field__label">4．内容 <span class="req">必須</span></label>
+        <textarea id="message" name="message" class="ctrl" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="reset" class="btn btn--ghost">クリア</button>
+        <button type="submit" class="btn">送信する</button>
+      </div>
+    </form>
+
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          const json = await res.json();
+
+          // ------- 成功判定 -------
+          if (json.ok) {
+            document.getElementById('alertOk').style.display = 'block';
+            document.getElementById('alertNg').style.display = 'none';
+            form.reset();
+            return;
+          }
+
+          // ------- スパム or バリデーションエラー -------
+          document.getElementById('alertOk').style.display = 'none';
+          document.getElementById('alertNg').style.display = 'block';
+
+        } catch (error) {
+          // ------- 通信エラー -------
+          document.getElementById('alertOk').style.display = 'none';
+          document.getElementById('alertNg').style.display = 'block';
+        }
+      });
+    </script>
+
+    <p class="small-note">※ お急ぎの際は <a href="tel:0191-31-5720">0191-31-5720</a> までお電話ください。</p>
+  </div>
+</section>
+
   </main>
 
   <!-- 上へ戻る（共通） -->
@@ -555,6 +564,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
 
 </body>
 </html>
+
 
 
 
