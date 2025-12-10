@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>リトルハンズ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="放課後等デイサービス リトルハンズは、 お子さんが安心して過ごせる放課後・休日の活動の場です。不安に寄り添い、お子さま一人ひとりに合わせたサポートを提供します。">
-
+  <title>リトルハンズ | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +57,7 @@
       width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
       border-radius:50%; display:grid; place-items:center;
       background: radial-gradient(120% 120% at 28% 18%, #ffffff, #fff2d7 70%);
-      border:3px solid color-mix(in oklab, var(--unit-brand) 60%, #fff);
+
       box-shadow:0 6px 20px rgba(245,158,11,.18);
       color: var(--unit-brand);
     }
@@ -344,6 +342,21 @@ body.page-little #site-header .submenu a{
 
 .wrap { max-width: var(--my-max) !important; }
 
+.page-little .unit-hero__emblem img {
+  width: auto;   /* もとの SVG と同じ感覚に */
+  height: auto;
+  display: block;
+}
+
+/* Little Hands ロゴのサイズ調整（スマホ対策） */
+.page-little .unit-hero__emblem{
+  width: clamp(70px, 12vw, 90px);
+  height: clamp(70px, 12vw, 90px);
+}
+
+.section {
+  scroll-margin-top: 10px;
+}
 
   </style>
 </head>
@@ -375,7 +388,7 @@ body.page-little #site-header .submenu a{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -429,15 +442,10 @@ body.page-little #site-header .submenu a{
         <div class="unit-hero__inner">
           <div class="unit-hero__head">
             <div class="unit-hero__emblem" aria-hidden="true">
-              <!-- 風船スター -->
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3l2.1 4.26 4.7.68-3.4 3.31.8 4.65L12 13.9 7.8 15.9l.8-4.65L5.2 7.94l4.7-.68L12 3z"/>
-                  <path d="M12 16c0 2-1.2 3-3 3"/>
-                  <path d="M9 19c0 1.5 1.2 2.5 3 2.5"/>
-                </g>
-              </svg>
-            </div>
+
+  <img src="img/little_logo.webp" alt="リトルハンズのロゴ">
+</div>
+
             <div>
               <h2 id="hero-title" class="unit-hero__title">リトルハンズ</h2>
               <p class="unit-hero__lead">
@@ -477,8 +485,8 @@ body.page-little #site-header .submenu a{
       <nav class="subnav" aria-label="このページ内のメニュー">
         <div class="subnav__list">
           <a href="#features">特徴</a>
-          <a href="#programs">プログラム</a>
-          <a href="#schedule">スケジュール</a>
+          <a href="#programs">放課後利用プログラム</a>
+          <a href="#schedule">一日利用プログラム</a>
           <a href="#access">アクセス</a>
         </div>
         <p class="subnav__help muted small">クリックすると各セクションへ移動します。</p>
@@ -659,6 +667,3 @@ body.page-little #site-header .submenu a{
 <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
