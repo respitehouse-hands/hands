@@ -1111,18 +1111,23 @@ body.page-show #page{
 
 /* === Finder 主役ボタン：アウトライン→塗りつぶしで明確に変化 === */
 .btn--finder{
-  /* サイズ感 */
   font-size: clamp(16px, 1.15vw, 20px);
   padding: clamp(14px, 1.2vw, 18px) clamp(24px, 2.6vw, 34px);
   min-width: clamp(240px, 28vw, 340px);
   border-radius: 999px;
 
-  /* 配色（通常はアウトライン） */
-  color: var(--accent, #2f7d5b);
-  background: #fff;
-  border: 2px solid var(--accent, #2f7d5b);
+  /* ほんのり立体感をつける */
+  background: linear-gradient(
+    180deg,
+    #2f7d5b 0%,
+    #2a6f51 100%
+  );
+  color: #fff;
+  border: 2px solid #2f7d5b;
 
-  /* 文字・レイアウト */
+  /* 影：軽く浮かせるイメージ */
+  box-shadow: 0 3px 8px rgba(47, 125, 91, .22);
+
   letter-spacing: .02em;
   text-align: center;
   display: inline-flex;
@@ -1130,7 +1135,6 @@ body.page-show #page{
   justify-content: center;
   gap: .5em;
 
-  /* エフェクト準備 */
   position: relative;
   overflow: hidden;
   transition:
@@ -1140,6 +1144,7 @@ body.page-show #page{
     box-shadow .18s ease,
     transform .12s ease;
 }
+
 
 /* 右の矢印（通常は同色） */
 .btn--finder::after{
@@ -1152,17 +1157,21 @@ body.page-show #page{
 
 /* ホバー：はっきり “塗りつぶし” になる */
 .btn--finder:hover{
-  color: #fff;
-  border-color: transparent;
-  background: linear-gradient(180deg,
-              var(--accent-2, #5ba789) 0%,
-              var(--accent,   #2f7d5b) 100%);
-  box-shadow: 0 10px 26px rgba(47,125,91,.22);
+  /* 色をガッツリ反転（白背景 → 深緑に） */
+  background: #ffffff;
+  color: var(--accent, #2f7d5b);
+  border-color: var(--accent, #2f7d5b);
+
+  /* 影も弱める → 「押してない状態に戻る」視覚効果 */
+  box-shadow: 0 2px 6px rgba(47,125,91,.18);
+
   transform: translateY(-1px);
 }
+
 .btn--finder:hover::after{
+  /* 矢印は深緑にして自然に */
+  color: var(--accent, #2f7d5b);
   transform: translateX(4px);
-  color: #fff;
 }
 
 /* クリック時は少し沈む */
@@ -1194,6 +1203,8 @@ body.page-show #page{
 .btn--finder:hover{
   animation: finderGlow 1.6s ease-in-out infinite;
 }
+
+
 @keyframes finderGlow {
   0%,100% { box-shadow: 0 10px 26px rgba(47,125,91,.18); }
   50%     { box-shadow: 0 14px 32px rgba(47,125,91,.28); }
@@ -2879,7 +2890,6 @@ body:where(:not(.allow-x-scroll)){
 
 /* 全要素を border-box に統一（幅計算ブレ防止） */
 *, *::before, *::after { box-sizing: border-box; }
-
 
 
 
