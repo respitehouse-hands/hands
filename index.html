@@ -306,6 +306,19 @@ html,body{ margin:0; overflow-x:hidden; }
   overflow: hidden;
 }
 
+/* スマホ用：トップのキャッチコピーの余白調整 */
+@media (max-width: 640px){
+  /* トップページのヒーローエリア */
+  .page-home .hero--home{
+    padding-top: 64px;   /* 上にゆったり余白 */
+    padding-bottom: 40px;/* 下も少し広げる */
+  }
+
+  /* キャッチコピーとその下の文章・ボタンの間 */
+  .page-home .hero--home .hero__title{
+    margin-bottom: 24px;
+  }
+}
 
 
 
@@ -645,6 +658,7 @@ html,body{ margin:0; overflow-x:hidden; }
 
 </body>
 </html>
+
 
 
 
