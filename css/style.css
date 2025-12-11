@@ -1109,106 +1109,75 @@ body.page-show #page{
   }
 }
 
-/* === Finder 主役ボタン：アウトライン→塗りつぶしで明確に変化 === */
+/* === Finder 主役ボタン：視認性とクリック感を強化した決定版 === */
 .btn--finder{
   font-size: clamp(16px, 1.15vw, 20px);
   padding: clamp(14px, 1.2vw, 18px) clamp(24px, 2.6vw, 34px);
   min-width: clamp(240px, 28vw, 340px);
   border-radius: 999px;
 
-  /* ほんのり立体感をつける */
-  background: linear-gradient(
-    180deg,
-    #2f7d5b 0%,
-    #2a6f51 100%
-  );
-  color: #fff;
+  /* 通常：白背景＋緑文字＋アウトライン */
+  background: #ffffff;
+  color: #2f7d5b;
   border: 2px solid #2f7d5b;
+  box-shadow: 0 3px 8px rgba(47, 125, 91, .08);
 
-  /* 影：軽く浮かせるイメージ */
-  box-shadow: 0 3px 8px rgba(47, 125, 91, .22);
-
-  letter-spacing: .02em;
-  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .5em;
+  text-align: center;
+  letter-spacing: .02em;
 
-  position: relative;
-  overflow: hidden;
-  transition:
-    background-color .18s ease,
-    color .18s ease,
-    border-color .18s ease,
-    box-shadow .18s ease,
-    transform .12s ease;
+  transition: all .2s ease;
 }
 
-
-/* 右の矢印（通常は同色） */
-.btn--finder::after{
-  content: "→";
-  font-weight: 700;
-  transform: translateX(0);
-  transition: transform .18s ease, filter .18s ease, color .18s ease;
-  color: currentColor;
-}
-
-/* ホバー：はっきり “塗りつぶし” になる */
+/* ホバー：濃緑塗りつぶし＋白文字 */
 .btn--finder:hover{
-  /* 色をガッツリ反転（白背景 → 深緑に） */
-  background: #ffffff;
-  color: var(--accent, #2f7d5b);
-  border-color: var(--accent, #2f7d5b);
-
-  /* 影も弱める → 「押してない状態に戻る」視覚効果 */
-  box-shadow: 0 2px 6px rgba(47,125,91,.18);
-
+  background: #2f7d5b;
+  color: #ffffff;
+  border-color: #2f7d5b;
+  box-shadow: 0 6px 16px rgba(47,125,91,.25);
   transform: translateY(-1px);
 }
 
-.btn--finder:hover::after{
-  /* 矢印は深緑にして自然に */
-  color: var(--accent, #2f7d5b);
-  transform: translateX(4px);
+.btn--finder::after{
+  content: "→";
+  transition: transform .18s ease, color .18s ease;
 }
 
-/* クリック時は少し沈む */
+.btn--finder:hover::after{
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+
+/* active：押し込み感 */
 .btn--finder:active{
   transform: translateY(0);
-  box-shadow: 0 6px 18px rgba(47,125,91,.18);
+  box-shadow: 0 3px 8px rgba(47,125,91,.18);
 }
 
-/* フォーカスリング（キーボード操作） */
+/* フォーカスリング（アクセシビリティ対応） */
 .btn--finder:focus-visible{
   outline: 3px solid #a5d8c6;
   outline-offset: 3px;
   border-radius: 999px;
 }
 
-/* ほのかな “きらり” ライン（ホバーで左→右） */
-/* きらり差し替え：下線スライド */
-/* きらり差し替え：やさしい呼吸グロー */
-.btn--finder::before{ display:none; }  /* 旧きらりは無効化 */
+/* “きらり” ライン無効化 */
+.btn--finder::before{ display:none; }
 
-.btn--finder{
-  transition:
-    background-color .18s ease,
-    color .18s ease,
-    border-color .18s ease,
-    box-shadow .18s ease,
-    transform .12s ease;
-}
+/* hover時の呼吸グロー（自然な光） */
 .btn--finder:hover{
   animation: finderGlow 1.6s ease-in-out infinite;
 }
-
 
 @keyframes finderGlow {
   0%,100% { box-shadow: 0 10px 26px rgba(47,125,91,.18); }
   50%     { box-shadow: 0 14px 32px rgba(47,125,91,.28); }
 }
+
 @media (prefers-reduced-motion: reduce){
   .btn--finder:hover{ animation: none !important; }
 }
@@ -1218,7 +1187,7 @@ body.page-show #page{
   .btn--finder{ width: min(92%, 400px); }
 }
 
-/* 動きが苦手な設定の人に配慮 */
+/* 全体の動きに弱い人への配慮 */
 @media (prefers-reduced-motion: reduce){
   .btn--finder,
   .btn--finder::before,
@@ -1226,6 +1195,7 @@ body.page-show #page{
     transition: none !important;
   }
 }
+
 
 /* ===== Back-to-Top（進捗リング付き） ===== */
 :root{
