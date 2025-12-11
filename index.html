@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja" class="has-splash">
 <head>
@@ -212,7 +213,7 @@
 }
 
 /* === D) triad周り：画像中央固定＋本文の折返しを強制 === */
-.triad-visual{ overflow-x:hidden; }
+
 .triad-visual__inner{
   width:min(1100px,100%) !important; max-width:none !important; margin:0 auto !important;
   padding-inline:clamp(12px,5vw,24px) !important; box-sizing:border-box !important;
@@ -230,7 +231,7 @@
 }
 
 /* === E) 全体保険 === */
-img, svg, video{ max-width:100%; height:auto; display:block; }  /* 横伸び防止 */
+
 *,*::before,*::after{ box-sizing:border-box; }
 html,body{ margin:0; overflow-x:hidden; }
 
@@ -303,7 +304,7 @@ html,body{ margin:0; overflow-x:hidden; }
 
 .topview {
   position: relative;
-  overflow: hidden;
+
 }
 
 /* スマホ用：トップのキャッチコピーの余白調整 */
@@ -349,6 +350,45 @@ html,body{ margin:0; overflow-x:hidden; }
     gap: 20px !important; /* 図形と文章の間も少しだけ詰める */
   }
 }
+
+/* === E) 全体保険（修正版） === */
+img, video{
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* SVG は高さをちゃんと持たせる */
+svg{
+  display:block;
+}
+
+/* 波線専用 */
+
+
+/* ==== 波線を“絶対に”表示させるおまじない ==== */
+
+/* topview からはみ出してる部分も見えるようにする */
+.topview{
+  position: relative;
+  overflow: visible !important;  /* ← ここで overflow:hidden を完全に無効化 */
+}
+
+/* ===== 波のセパレーター（シンプル版） ===== */
+.wave-separator{
+  width: 100%;
+  height: 80px;   /* 波の厚み */
+  display: block;
+}
+
+
+/* ===== 波のセパレーター（細め） ===== */
+.wave-separator{
+  width: 100%;
+  height: 40px;   /* ← さっきよりだいぶ薄くする（24〜40pxくらいが目安） */
+  display: block;
+}
+
 
 
   </style>
@@ -448,11 +488,17 @@ html,body{ margin:0; overflow-x:hidden; }
       </div>
     </section>
 
-  <svg class="curve" viewBox="0 0 1440 120" preserveAspectRatio="none">
-    <path d="M0,0 C480,120 960,0 1440,120 L1440,0 L0,0 Z" fill="#e8f8ff"/>
-  </svg>
-
 </div> <!-- class名topview -->
+
+<svg class="wave-separator"
+     viewBox="0 0 1440 40"
+     preserveAspectRatio="none"
+     aria-hidden="true">
+  <path
+    d="M0,0 L1440,0 L1440,40 C960,28 480,28 0,40 Z"
+    fill="#e0faff" />
+</svg>
+
 
 
 <!-- ▼ 三つの視点（circle.webp＋説明文） -->
