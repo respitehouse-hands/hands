@@ -320,7 +320,17 @@ html,body{ margin:0; overflow-x:hidden; }
   }
 }
 
+.nowrap{
+  white-space: nowrap;
+}
 
+@media (max-width: 640px){
+  .triad-copy{
+    margin-left: clamp(16px, 6vw, 24px);  /* ← 左余白を自然に調整 */
+    margin-right: clamp(16px, 6vw, 24px); /* ← 右にも余白 */
+    text-align: left;                    /* ← 文章は左揃えのまま */
+  }
+}
 
 
   </style>
@@ -441,7 +451,7 @@ html,body{ margin:0; overflow-x:hidden; }
     <div class="triad-copy">
       <p class="triad-copy__kicker">ABOUT HANDS</p>
       <p class="triad-copy__lead">
-        私たちレスパイトハウス・ハンズは、<br>
+        私たち<span class="nowrap">レスパイトハウス・ハンズ</span>は、<br>
         <strong>障がい福祉・就労支援・地域づくり</strong><br>という三つの視点で、子どもから<br>大人までの暮らしに寄り添う<br>このまちのNPO法人です。
       </p>
     </div>
@@ -658,7 +668,6 @@ html,body{ margin:0; overflow-x:hidden; }
 
 </body>
 </html>
-
 
 
 
