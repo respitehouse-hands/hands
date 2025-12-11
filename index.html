@@ -1,38 +1,19 @@
 <!doctype html>
-<html lang="ja"  class="has-splash">
+<html lang="ja" class="has-splash">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- ★ここを追加：検索結果に出したい説明文 -->
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズは、岩手県一関市で障がい福祉・就労・地域づくりなどの支援を行うNPO法人です。">
-
   <link rel="canonical" href="https://handsnpo.jp/">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="/favicon.ico">
   <title>特定非営利活動法人レスパイトハウス・ハンズ</title>
+
   <!-- すぐスクロールを止めて初期ガタつき防止 -->
   <script>document.documentElement.classList.add('no-scroll');</script>
-  <script>
-    // 初期表示はスクロール封鎖
-    document.documentElement.classList.add('no-scroll');
-  </script>
-  <!-- head内：Google Fonts -->
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-
-  <!-- OGP 基本設定 -->
-<meta property="og:title" content="特定非営利活動法人レスパイトハウス・ハンズ">
-<meta property="og:description" content="岩手県一関市で、障がい福祉・就労支援・地域づくりを行うNPO法人です。よりそう支援、つながる安心をお届けします。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://handsnpo.jp/">
-<meta property="og:image" content="https://handsnpo.jp/img/ogp.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-<!-- Twitterカード -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://handsnpo.jp/img/ogp.jpg">
-
 
   <!-- ▼ 追加：circle.webp 専用の極小CSS（他には影響しません） -->
   <style>
@@ -253,45 +234,87 @@ img, svg, video{ max-width:100%; height:auto; display:block; }  /* 横伸び防�
 *,*::before,*::after{ box-sizing:border-box; }
 html,body{ margin:0; overflow-x:hidden; }
 
-/* スマホ時だけ triad の改行を「そのまま使う」強制モードにする */
-@media (max-width: 600px){
-.triad-copy__lead {
-  white-space: pre-line !important;
-  text-wrap: nowrap !important;
-  overflow-wrap: normal !important;
-  word-break: normal !important;
-  line-break: auto !important;
-}
+
+    .hero__inner {
+      position: relative;
+      z-index: 2; /* グラデーションより手前へ */
+      text-align: center;
+    }
+
+    .hero__title {
+      font: 700 clamp(26px, 4.8vw, 40px)/1.4 "Zen Maru Gothic","Noto Sans JP",sans-serif;
+      margin: 0;
+      color: #333;
+      text-wrap: balance;
+    }
+    .hero__title .em1{ color:#4338ca; }
+    .hero__title .em2{ color:#efc94a; }
+
+.cta-slab__about {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.75;
+  margin: 0 auto 1.6rem;
+  text-align: center;        /* ← 中央揃えにする */
+  color: var(--ink-2);
+  max-width: 48ch;           /* ← 適切な読書幅に制限 */
+  text-wrap: balance;
 }
 
-@media (max-width: 600px){
-  .triad-copy{
-    margin-inline: 0 auto !important;
-  }
+.cta-slab__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* ← ボタンを中央に寄せる */
+  gap: 1rem;
 }
 
-@media (max-width: 600px){
-  .triad-copy__lead{
-    padding-left: 1.2rem;
-    padding-right: 1.2rem;
-  }
- /* "ABOUT HANDS" の左右余白と位置を補正 */
-  .triad-copy__kicker{
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 1.2rem;
-    padding-right: 1.2rem;
-    max-width: 56ch;
-    display: block;
-  }
+.cta-slab__about {
+  line-height: 1.9;
+  letter-spacing: 0.01em;
 }
+
+.cta-slab__about {
+  max-width: 48ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-slab__about {
+  color: #444; /* または #4a4a4a */
+}
+
+/* ===== topview ブロックの背景デザイン ===== */
+
+
+
+.topview .cta-slab {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+.topview {
+  background: linear-gradient(
+    180deg,
+    #fbfefe 0%,   /* 完全な白より境界が自然 */
+    #f3fbff 35%,  /* ほんのり薄緑の兆し */
+    #e0faff 100% /* ブランドカラー */
+  );
+  padding-bottom: 48px;
+}
+
+.topview {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
 
 
   </style>
   <!-- ▲ ここまで追加 -->
 </head>
 
-<body>
+<body class="page-home">
 
 <!-- ページ先頭へのリンク用 -->
 <a id="top" class="visually-hidden">top</a>
@@ -361,8 +384,10 @@ html,body{ margin:0; overflow-x:hidden; }
 
 
   <main id="main">
+<div class="topview">
     <!-- ヒーロー：キャッチコピーを主役で -->
-    <section class="hero hero--simple" aria-label="紹介">
+   <section class="hero hero--home hero-decor" aria-label="紹介">
+
       <div class="hero__inner">
 <h1 class="hero__title">
   よりそう<span class="em1">支援</span>、つながる<span class="em2">安心</span>。
@@ -373,9 +398,21 @@ html,body{ margin:0; overflow-x:hidden; }
     <!-- CTAスラブ：別ブロックとして独立 -->
     <section class="cta-slab" aria-label="ご相談・お問い合わせ">
       <div class="cta-slab__inner">
+<p class="cta-slab__about">
+ レスパイトハウス・ハンズは、「障がい福祉・就労支援・地域づくり」という視点から支援を行うNPO法人です。<br>
+
+</p>
+
         <a class="btn btn--finder" href="finder.html">あなたに合う支援をさがす</a>
       </div>
     </section>
+
+  <svg class="curve" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,0 C480,120 960,0 1440,120 L1440,0 L0,0 Z" fill="#e8f8ff"/>
+  </svg>
+
+</div> <!-- class名topview -->
+
 
 <!-- ▼ 三つの視点（circle.webp＋説明文） -->
 <section class="triad-visual" aria-label="三つの視点">
@@ -391,12 +428,15 @@ html,body{ margin:0; overflow-x:hidden; }
     <div class="triad-copy">
       <p class="triad-copy__kicker">ABOUT HANDS</p>
       <p class="triad-copy__lead">
-        私たちレスパイトハウス・ハンズは、<br><strong>障がい福祉・就労支援・地域づくり</strong><br>という三つの視点で、子どもから<br>大人までの暮らしに寄り添う<br>このまちのNPO法人です。
+        私たちレスパイトハウス・ハンズは、<br>
+        <strong>障がい福祉・就労支援・地域づくり</strong>の三つの視点で、<br>
+        子どもから大人までの暮らしに寄り添う、<br>
+        このまちのNPO法人です。
       </p>
     </div>
   </div>
 </section>
-<!-- ▲ 三つの視点ここまで -->
+
 
     <!-- NEWS -->
    <section class="news" aria-labelledby="news-title">
@@ -407,15 +447,6 @@ html,body{ margin:0; overflow-x:hidden; }
 
   <ul class="news__list">
     <!-- ここに入れる -->
-
-        <li class="news__item">
-      <a href="news4.html">
-        <time datetime="2025-11-27" class="news__date">2025.11.27</time>
-        <span class="news__tag">お知らせ</span>
-        <span class="news__title">ハンズ生活介護事業所 | わぁははクラブ竣工式　開催報告</span>
-      </a>
-    </li>
-    
     <li class="news__item">
       <a href="news3.html">
         <time datetime="2025-11-11" class="news__date">2025.11.11</time>
@@ -616,21 +647,6 @@ html,body{ margin:0; overflow-x:hidden; }
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
