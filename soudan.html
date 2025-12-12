@@ -514,7 +514,12 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
   top: .7em; /* 数値は少しずつ調整 */
 }
 
-
+@media (max-width: 680px){
+  #access .grid{
+    grid-template-columns: 1fr !important;
+  }
+}
+    
   </style>
 </head>
 
@@ -810,5 +815,6 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 <script src="js/site.js"></script>
 </body>
 </html>
+
 
 
