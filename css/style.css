@@ -2861,6 +2861,14 @@ body:where(:not(.allow-x-scroll)){
 /* 全要素を border-box に統一（幅計算ブレ防止） */
 *, *::before, *::after { box-sizing: border-box; }
 
+@media (min-width: 960px){
+  .footer__nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.3fr;
+    column-gap: 3rem;
+    row-gap: 2rem;
+  }
+}
 
 
 
