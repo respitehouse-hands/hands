@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ハンズの理念 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの理念をまとめたページです。">
-
+  <title>ハンズの理念 | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
 <!-- head内：Google Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+
 
 <style>
   /* ページ共通の左右余白・最大幅（historyと同設計） */
@@ -56,6 +56,213 @@ margin: auto;
   }
 }
 
+/* ===== 理念文：面で見せる強調ブロック ===== */
+.lead-block--panel{
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  padding: clamp(1.6rem, 4vw, 2.4rem);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+
+.lead-block--panel blockquote{
+  margin: 0;
+  padding: 0;
+}
+
+.lead-block--panel p{
+  margin: 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+  line-height: 1.9;
+  color: #17222f;
+}
+
+
+
+
+.lead-block--panel{
+  background: color-mix(in srgb, var(--unit-brand, #2ea6a0) 6%, #ffffff);
+  border-radius: 24px;
+  box-shadow: none;
+}
+
+/* ===== 理念文：軒下（案①） ===== */
+.lead-block--eaves{
+  /* 幅と余白は今までの“読みやすさ”を踏襲 */
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  padding: clamp(1.7rem, 4vw, 2.5rem);
+  border-radius: 20px;
+
+  /* “箱”にしない：輪郭は作らず、空気だけ作る */
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  /* 下を閉じない：影は弱く、しかも“上に重心” */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.06),
+    0 1px 0 rgba(255,255,255,.7) inset;
+
+  position: relative;
+  overflow: visible; /* ←ここがポイント（下に“余韻”を出す） */
+}
+
+/* “軒（のき）”＝上だけに存在する薄い庇 */
+.lead-block--eaves::before{
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: -10px;
+  height: 14px;
+  border-radius: 999px;
+
+  /* ブランド色の気配だけ（強い線じゃない） */
+  background: linear-gradient(
+    90deg,
+    rgba(46,166,160,.00),
+    rgba(46,166,160,.18),
+    rgba(46,166,160,.00)
+  );
+}
+
+/* “柱”っぽい気配：左右にごく薄い縦の空気（囲み感を消しつつ支える） */
+.lead-block--eaves::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18px;
+  bottom: 18px;
+  border-radius: 20px;
+
+  /* 枠線じゃなく、内側のグラデで“支え”を作る */
+  background:
+    linear-gradient(90deg,
+      rgba(46,166,160,.10) 0%,
+      rgba(46,166,160,.00) 12%,
+      rgba(46,166,160,.00) 88%,
+      rgba(46,166,160,.10) 100%
+    );
+  pointer-events: none;
+  opacity: .7;
+}
+
+/* 中身（文章）の扱いは綺麗めに */
+.lead-block--eaves blockquote{ margin:0; padding:0; }
+.lead-block--eaves p{
+  margin: 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+  line-height: 1.9;
+  color: #17222f;
+  letter-spacing: .02em;
+}
+
+/* 会社PCの“色出なさ”対策：彩度じゃなくコントラストを少し上げる */
+@media (prefers-contrast: more){
+  .lead-block--eaves{
+    background: rgba(255,255,255,.86);
+    box-shadow: 0 12px 34px rgba(0,0,0,.10);
+  }
+  .lead-block--eaves::before{ opacity: 1; }
+}
+
+/* モバイル：余白は詰めるけど“守られ感”は残す */
+@media (max-width: 600px){
+  .lead-block--eaves{
+    padding: 1.35rem 1.25rem;
+    border-radius: 18px;
+  }
+  .lead-block--eaves::before{
+    left: 14px; right: 14px;
+    top: -9px; height: 12px;
+  }
+}
+
+/* 理念文：まず“浮かせる”のをやめる */
+.lead-block--eaves{
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* 代わりに余白で語らせる */
+.lead-block--eaves p{
+  max-width: 42em;
+  margin: 0 auto;
+  padding: 1.8rem 2rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.15rem);
+  line-height: 2;
+}
+
+.philosophy-lead{
+  margin: clamp(3.5rem, 8vw, 5.5rem) auto;
+  padding-inline: min(6vw, 24px);
+}
+
+/* 囲みの正体は「薄いレイヤー」 */
+.philosophy-lead__panel{
+  max-width: 48em;
+  margin: 0 auto;
+  padding: clamp(1.8rem, 4vw, 2.6rem);
+
+  /* 色で囲まない */
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--unit-brand,#2ea6a0) 6%, #fff) 0%,
+      #ffffff 100%
+    );
+
+  border-radius: 28px;
+}
+
+/* 本文 */
+.philosophy-lead__text{
+  margin: 0;
+  font-size: clamp(1.08rem, 1.6vw, 1.2rem);
+  line-height: 2.05;
+  color: #17222f;
+}
+
+/* タイトル直下を詰める */
+.hero--page .hero__inner{
+  padding-block: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+/* 理念ブロック全体の余白を圧縮 */
+.philosophy-lead{
+  margin: clamp(1.8rem, 4vw, 2.6rem) auto
+          clamp(3rem, 6vw, 4.5rem);
+}
+
+.philosophy-lead__panel{
+  border-radius: 28px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(46,166,160,.10) 0%,
+      rgba(255,255,255,.95) 28%,
+      #ffffff 100%
+    );
+}
+
+.ph-photo__caption{
+
+text-align: center;
+
+}
+
+background: linear-gradient(
+  180deg,
+  rgba(46,166,160,0.08),
+  rgba(46,166,160,0.02)
+);
+
+
 
 </style>
 
@@ -90,7 +297,7 @@ margin: auto;
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -159,14 +366,29 @@ margin: auto;
 <section class="section section--narrow" aria-labelledby="philosophy-title">
 
 
-  <figure class="lead-block lead-block--accent">
-    <blockquote>
-      <p>
-        私たち「レスパイトハウス・ハンズ」は、しょうがいを持つ方々とその家族が、地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、利用する人に合わせたサービスを提供します。
-      </p>
-    </blockquote>
+<section class="philosophy-lead" aria-labelledby="page-title">
+  <div class="philosophy-lead__panel">
+    <p class="philosophy-lead__text">
+      私たち「レスパイトハウス・ハンズ」は、しょうがいを持つ方々とその家族が、
+      地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、
+      利用する人に合わせたサービスを提供します。
+    </p>
+  </div>
+</section>
+
+
+</section>
+
+<!-- 理念ページ：外観写真 -->
+<section class="section section--narrow philosophy-photo" aria-label="ハンズの外観写真">
+  <figure class="ph-photo">
+    <img src="img/topimage.webp" alt="レスパイトハウス・ハンズ 外観">
+    <figcaption class="ph-photo__caption">
+      令和７年12月よりスタートしたハンズの新拠点「生活介護事業所 わぁははクラブ」
+    </figcaption>
   </figure>
 </section>
+
 
 <!-- 3つの支援（カード） -->
 <section class="section section--narrow" aria-labelledby="pillars-title">
@@ -333,6 +555,3 @@ margin: auto;
 
 </body>
 </html>
-
-
-
