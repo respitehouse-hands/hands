@@ -3,63 +3,326 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの理念ページです。">
-
   <title>ハンズの理念 | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
 <!-- head内：Google Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
 
 <style>
-  /* ページ共通の左右余白・最大幅（historyと同設計） */
-  .ph-page{ padding-inline: min(4vw, 24px); }
-  .ph-container{ max-width: 1040px; margin-inline: auto; }
+/* ==============================
+   philosophy.html – override（修正版）
+   目的：共通CSSに負けない + 線を確実に表示 + スマホは幅広め
+   ============================== */
 
-  /* 念のため：パンくずを横並び・同じ余白に */
-  .ph-breadcrumb{ margin: 0 0 1.5rem; }
-  .ph-breadcrumb ol{
-    display:flex; flex-wrap:wrap; gap:.5rem .75rem;
-    list-style:none; padding:1.5em 0; margin:0;
+/* ※ --unit-brand が「46,166,160」みたいなRGB想定 */
+:root{
+  --ph-accent-rgb: var(--unit-brand, 46,166,160);
+  --ph-accent: rgb(var(--ph-accent-rgb));
+
+  --ph-ink: #17222f;
+  --ph-ink2:#425466;
+  --ph-line:#e6edf2;
+  --ph-radius: 18px;
+}
+
+/* ---------- 基本レイアウト ---------- */
+.ph-page{ padding-inline: min(4vw, 24px); }
+.ph-container{ max-width: 980px; margin-inline: auto; }
+
+/* ---------- パンくず ---------- */
+.ph-breadcrumb{ margin: 0 0 1.75rem; }
+.ph-breadcrumb ol{
+  display:flex; flex-wrap:wrap; gap:.5rem .75rem;
+  list-style:none; padding:1.2em 0; margin:0;
+  font-size:.9rem;
+}
+.ph-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem; }
+.ph-breadcrumb a{ color: var(--ph-ink2); text-decoration:none; }
+.ph-breadcrumb a:hover{ text-decoration:underline; }
+
+/* ---------- ページタイトル（強め指定） ---------- */
+.hero.hero--page .hero__inner{
+  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
+  text-align: center;
+}
+.hero.hero--page .hero__title{
+  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.3;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+}
+
+/* タイトル下：明るめ帯（確実に色が出る） */
+.hero.hero--page .hero__title::after{
+  content:"";
+  display:block;
+  width: 76px;
+  height: 6px;
+  margin: .55rem auto 0;
+  border-radius: 999px;
+  background: rgba(var(--ph-accent-rgb), .80);
+}
+
+/* うっすら光（任意：弱め） */
+.hero.hero--page .hero__title::before{
+  content:"";
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 92px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(var(--ph-accent-rgb), .25);
+  filter: blur(10px);
+  pointer-events:none;
+}
+
+/* ==============================
+   理念文：縦線だけ（枠・面・影なし）
+   ============================== */
+.lead-block.lead-block--accent{
+  margin: clamp(2.2rem, 6vw, 3.4rem) auto;
+}
+.lead-block.lead-block--accent blockquote{
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: relative;
+
+  max-width: 46em;
+  margin-inline: auto;
+  padding-left: 1.25em; /* 縦線分 */
+}
+.lead-block.lead-block--accent blockquote::before{
+  content:"";
+  position:absolute;
+  left: 0;
+  top: .15em;
+  bottom: .15em;
+  width: 4px;
+  border-radius: 999px;
+  background: rgba(var(--ph-accent-rgb), .78); /* ←明るく見える */
+}
+.lead-block.lead-block--accent blockquote > p{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 2;
+  color: var(--ph-ink);
+}
+
+/* ==============================
+   理念直下の事務所写真：装飾なし（角丸だけ）
+   ============================== */
+.philosophy-photo{
+  margin: clamp(2.2rem, 6vw, 3.6rem) auto;
+}
+.ph-photo{
+  max-width: 860px;
+  margin-inline: auto;
+}
+.ph-photo img{
+  width: 100%;
+  display: block;
+  border-radius: var(--ph-radius);
+}
+.ph-photo__caption{
+  margin-top: .6rem;
+  font-size: .9rem;
+  color: var(--ph-ink2);
+  text-align: center;
+}
+
+/* ==============================
+   セクション見出し
+   ============================== */
+.section__header{
+  margin: clamp(3rem, 7vw, 4.5rem) 0 1.6rem;
+}
+.section__header h2{
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* ==============================
+   3つの支援カード
+   ============================== */
+.cards--pillars{
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 2rem);
+}
+@media (min-width: 720px){
+  .cards--pillars{ grid-template-columns: repeat(3, 1fr); }
+}
+.card.pillar{
+  background:#fff;
+  border: 1px solid var(--ph-line);
+  border-radius: 16px;
+  padding: 1.6rem 1.4rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card.pillar:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+}
+.pillar__icon{
+  width: 40px;
+  height: 40px;
+  margin-bottom: .8rem;
+  color: rgba(var(--ph-accent-rgb), .95);
+}
+.pillar__icon svg{ width:100%; height:100%; fill: currentColor; }
+.card__title{ font-size: 1.05rem; margin: .2rem 0 .6rem; color: var(--ph-ink); }
+.card__text{ font-size: .95rem; line-height: 1.8; color: var(--ph-ink2); }
+
+/* ==============================
+   スマホ最適化：幅をもっと使う
+   ============================== */
+@media (max-width: 600px){
+  .ph-container{ max-width: none; }
+
+  /* 全体の余白は少しだけ減らす */
+  .ph-page{ padding-inline: 16px; }
+
+  .hero.hero--page .hero__title{ font-size: 1.5rem; }
+  .hero.hero--page .hero__title::after{ width: 70px; height: 6px; }
+
+  /* 理念文は読みやすさ残しつつ、幅を使う */
+  .lead-block.lead-block--accent blockquote{
+    max-width: none;
+    margin-inline: 0;
+    padding-left: 1.0em;
   }
-  .ph-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
-  .ph-breadcrumb a{ color: var(--unit-brand, #0b2b6b); text-decoration:none; }
-  .ph-breadcrumb a:hover{ text-decoration: underline; }
+  .lead-block.lead-block--accent blockquote::before{
+    width: 3px;
+    background: rgba(var(--ph-accent-rgb), .78);
+  }
+  .lead-block.lead-block--accent blockquote > p{
+    line-height: 1.9;
+    font-size: 1.05rem;
+  }
 
+  /* 写真だけ“ほぼ全幅”にする（左右を引っ張る） */
+  .philosophy-photo{ margin-inline: -16px; }
+  .ph-photo{ max-width: none; }
+  .ph-photo img{ border-radius: 14px; }
 
+  /* キャプション中央 */
+  .ph-photo__caption{
+    padding: .5rem 1rem 0;
+    font-size: .85rem;
+    text-align: center;
+  }
 
-.lead-block--accent blockquote {
+  .section__header{ margin-top: 2.5rem; }
+  .card.pillar{ padding: 1.4rem 1.2rem; }
+}
 
-margin: auto; 
+/* ===== 線が出ない問題の強制修正（最後に追記） ===== */
+:root{
+  /* ハンズのメイン緑を直指定（変数事故を避ける） */
+  --ph-accent: #2ea6a0;
+}
 
+/* タイトル下の横線：強制表示 */
+.hero.hero--page .hero__title{
+  position: relative !important;
+}
+
+.hero.hero--page .hero__title::after{
+  content: "" !important;
+  display: block !important;
+  width: 76px !important;
+  height: 6px !important;
+  margin: .55rem auto 0 !important;
+  border-radius: 999px !important;
+  background: var(--ph-accent) !important;
+  opacity: .85 !important;
+}
+
+/* 理念文の縦線：強制表示 */
+.lead-block.lead-block--accent blockquote{
+  position: relative !important;
+  padding-left: 1.25em !important;
+}
+
+.lead-block.lead-block--accent blockquote::before{
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: .15em !important;
+  bottom: .15em !important;
+  width: 4px !important;
+  border-radius: 999px !important;
+  background: var(--ph-accent) !important;
+  opacity: .75 !important;
+}
+
+.br-sm{ display:none; }
+.nowrap{ white-space:nowrap; }
+
+@media (max-width: 600px){
+  .br-sm{ display:block; }
+}
+
+/* 例：ハンズの緑を一発で効かせる（rgbは実値に合わせてね） */
+:root{
+  --ph-accent: #2ea6a0;
+  --ph-accent-rgb: 46,166,160;
+}
+
+.pillar__icon{
+  width:40px; height:40px;
+  display:grid; place-items:center;
+  border-radius:12px;
+
+  color: var(--ph-accent);
+  background: rgba(var(--ph-accent-rgb), .14);
+  border: 1px solid rgba(var(--ph-accent-rgb), .18);
+}
+
+.pillar__icon svg{
+  width:22px; height:22px;
+  fill: currentColor;
+}
+
+/* タイトル下の“ぼんやり光”を消す（原因は ::before） */
+.hero.hero--page .hero__title::before{
+  content: none !important;
+  display: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* 念のため：横線自体にも影が付いてたら消す */
+.hero.hero--page .hero__title::after{
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 @media (max-width: 600px){
-  /* ① ページタイトル「ハンズの理念」 */
-  .hero__title{
-    /* 少し大きめに調整 */
-    font-size: clamp(1.20rem, 5vw, 1.50rem);
-    line-height: 1.28;
-  }
-
-  /* ② リード文「私たち…」 */
-  .lead-block blockquote p{
-    font-size: clamp(1.02rem, 4.4vw, 1.15rem);
-    line-height: 1.8;   /* 詰まり過ぎなら 1.85 に戻す */
-  }
-
-  /* ③ 見出し「ハンズが大切にする…」 */
-  #pillars-title,
-  .section__header h2{
-    font-size: clamp(1.10rem, 4.8vw, 1.35rem);
-    line-height: 1.35;
+  .hero.hero--page .hero__title::after{
+    width: 56px !important;
+    height: 4px !important;
+    margin-top: .5rem !important;
+    opacity: .75 !important;
   }
 }
 
 
 </style>
+
+
 
 
 
@@ -164,16 +427,27 @@ margin: auto;
   <figure class="lead-block lead-block--accent">
     <blockquote>
       <p>
-        私たち「レスパイトハウス・ハンズ」は、しょうがいを持つ方々とその家族が、地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、利用する人に合わせたサービスを提供します。
+        私たちレスパイトハウス・ハンズは、しょうがいを持つ方々とその家族が、地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、利用する人に合わせたサービスを提供します。
       </p>
     </blockquote>
   </figure>
 </section>
 
+<!-- 理念の背景：事務所写真 -->
+<section class="philosophy-photo" aria-label="ハンズの事務所">
+  <figure class="ph-photo">
+    <img src="img/topimage.webp" alt="レスパイトハウス・ハンズ 事務所外観">
+    <figcaption class="ph-photo__caption">
+      ハンズ生活介護事業所 わぁははクラブ
+    </figcaption>
+  </figure>
+</section>
+
+
 <!-- 3つの支援（カード） -->
 <section class="section section--narrow" aria-labelledby="pillars-title">
   <div class="section__header">
-    <h2 id="pillars-title">ハンズが大切にする3つの支援</h2>
+    <h2 id="pillars-title">ハンズが大切にしている<br class="br-sm"><span class="nowrap">3つのこと</span></h2>
   </div>
 
   <div class="cards cards--pillars">
@@ -185,7 +459,7 @@ margin: auto;
           <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2-8 4.5V20h16v-1.5C20 16 16.42 14 12 14Z"/>
         </svg>
       </div>
-      <h3 class="card__title">一人一人の個性の支援</h3>
+      <h3 class="card__title">ひとりひとりが持つ“個性”</h3>
       <p class="card__text">本人の希望を尊重し、<br>いろいろな体験ができるように。</p>
 
     </article>
@@ -198,8 +472,8 @@ margin: auto;
           <path d="M12 21s-6.5-4.35-9-7.5A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9 7.5C18.5 16.65 12 21 12 21Z"/>
         </svg>
       </div>
-      <h3 class="card__title">ご家族のための支援</h3>
-      <p class="card__text">家族みんなの時間が有意義になるように。</p>
+      <h3 class="card__title">支えあう“家族”</h3>
+      <p class="card__text">家族みんなの時間が、<br>穏やかで有意義になるように。</p>
 
     </article>
 
@@ -211,7 +485,7 @@ margin: auto;
           <path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4Zm-8 7v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c0 2.21-3.58 4-8 4s-8-1.79-8-4Zm0 5v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c-1.69 1.65-4.94 2.74-8 2.74S5.69 16.65 4 15Z"/>
         </svg>
       </div>
-      <h3 class="card__title">リーズナブルな支援</h3>
+      <h3 class="card__title">安心して選べる“手軽さ”</h3>
       <p class="card__text">いつでも、気軽に、自由に。</p>
 
     </article>
