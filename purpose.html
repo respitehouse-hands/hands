@@ -1,81 +1,216 @@
 <!doctype html>
-<html lang="ja"  class="has-splash">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/style.css">
-  <title>設立趣旨 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立趣旨をまとめたページです。">
-  <!-- すぐスクロールを止めて初期ガタつき防止 -->
-  <script>document.documentElement.classList.add('no-scroll');</script>
-<script>
-  // 初期表示はスクロール封鎖
-  document.documentElement.classList.add('no-scroll');
-</script>
-<!-- head内：Google Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
+  <!-- head内：Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-.hero__inner {
+  <style>
+    /* ===============================
+       purpose.html – stable / modern
+       （共通CSSでの非表示対策込み）
+       =============================== */
 
-padding: 0;
- 
+    body.page-purpose{
+      background:#fff;
+    }
+
+    /* 共通CSSで「has-splash前提の非表示」が入ってても、このページは必ず表示する */
+    body.page-purpose{
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* パンくず */
+    .page-purpose .breadcrumb{
+      padding: 1rem min(4vw,24px) 0;
+      margin-bottom: 2.2rem;
+    }
+
+    /* タイトル */
+    .purpose-title{
+      text-align:center;
+      margin: 0 0 3.2rem;
+      padding: 0 min(6vw,32px);
+    }
+    .purpose-title h1{
+      font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+      font-weight:700;
+      letter-spacing:.08em;
+      margin:0;
+      line-height:1.2;
+    }
+
+    /* レイアウト */
+    .purpose-container{
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 min(6vw,32px);
+    }
+
+    /* 冒頭の要約（短い強調） */
+    .purpose-lead{
+      margin: 0 auto 3.2rem;
+      max-width: 720px;
+      text-align:center;
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+      line-height: 2;
+      font-weight:500;
+      color:#0f172a;
+    }
+
+    /* 本文 */
+    .purpose-body p{
+      margin: 2.1rem 0;
+      line-height: 2;
+      color:#1f2937;
+    }
+
+    /* 結び */
+    .purpose-conclusion{
+      margin-top: 4.2rem;
+      text-align:center;
+      font-weight:500;
+      line-height:2;
+      color:#0f172a;
+    }
+
+    /* 署名 */
+    .purpose-signature{
+      margin-top: 3.6rem;
+      text-align:right;
+      font-size:.95rem;
+      color:#475569;
+      line-height:1.9;
+    }
+
+    @media (max-width:600px){
+      .purpose-title{ margin-bottom:2.4rem; }
+      .purpose-lead{ margin-bottom:2.6rem; }
+      .purpose-body p{ margin: 1.8rem 0; }
+    }
+
+/* 冒頭リード文：囲まない・余白で格上げ */
+.purpose-lead{
+  max-width: 720px;
+  margin: 0 auto 3.6rem; /* ← 下だけしっかり空ける */
+  text-align: center;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 2.1;
+  font-weight: 500;
+  color: #0f172a;
+
+  /* 装飾は一切しない */
+  background: none;
+  padding: 0;
+  border: none;
 }
 
-/* ===== purpose.html 専用の余白調整 ===== */
-.page-purpose .breadcrumb{
-  /* 上を少し詰め、下もコンパクトに */
-  padding: .6rem min(4vw,24px) 0;
-  margin: 0 auto .8rem;
+.purpose-title{
+  text-align: center;
+  margin: 0 0 3.2rem;
+  padding: 0 min(6vw,32px);
 }
 
-.page-purpose .hero--page{
-  /* ヒーローブロック自体の下余白を圧縮 */
-  margin: 0 0 .8rem;
-  border: 0;              /* もし線があれば消す */
-  box-shadow: none;       /* 影があれば消す */
-}
-
-.page-purpose .hero--page .hero__inner{
-  /* 内側パディング最小限（モバイルでも詰まりすぎない程度） */
-  padding: .4rem min(3vw,16px);
-}
-
-.page-purpose .hero--page .hero__title{
-  /* 見出し自体の上下余白を詰める */
+.purpose-title h1{
+  font-family: "Zen Maru Gothic","Noto Sans JP",sans-serif;
+  font-weight: 700;
+  letter-spacing: .08em;
   margin: 0;
-  padding: .2rem 0 .1rem;
-  line-height: 1.25;
+  line-height: 1.2;
+  position: relative;
 }
 
-/* 本文セクションの上余白も少しだけ詰める */
-.page-purpose .section--narrow{
-  margin-top: .6rem;      /* 既定より小さく */
+/* 装飾ライン */
+.purpose-title h1::after{
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 1.2rem auto 0;
+  background-color: var(--unit-brand, #2EA6F0);
+  opacity: .7;
+  border-radius: 1px;
 }
 
-/* 印刷時に詰まりすぎないよう微調整（任意） */
-@media print{
-  .page-purpose .breadcrumb{ margin-bottom: .4rem; }
-  .page-purpose .hero--page{ margin-bottom: .4rem; }
+/* ---------- ページタイトル（強め指定） ---------- */
+.hero.hero--page .hero__inner{
+  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
+  text-align: center;
+}
+.hero.hero--page .hero__title{
+  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.3;
+  margin: 0;
+  display: inline-block;
+  position: relative;
 }
 
-/* ヒーロー直後の .section の上マージンを圧縮 */
-.hero--page + .section {
-  margin-top: 1rem; /* いつもより小さめ。お好みで 0.8rem～1.2rem */
+/* タイトル下：明るめ帯（確実に色が出る） */
+.hero.hero--page .hero__title::after{
+  content:"";
+  display:block;
+  width: 76px;
+  height: 6px;
+  margin: .55rem auto 0;
+  border-radius: 999px;
+  background: rgba(var(--ph-accent-rgb), .80);
 }
 
-/* その .section 内の .section__header の“上側”だけカット */
-.hero--page + .section .section__header {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;            /* もし区切り線を入れてたら消す */
+/* うっすら光（任意：弱め） */
+.hero.hero--page .hero__title::before{
+  content:"";
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 92px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(var(--ph-accent-rgb), .25);
+  filter: blur(10px);
+  pointer-events:none;
+}
+
+/* ===== 下層ページ共通：ページタイトル装飾 ===== */
+.hero.hero--page .hero__inner{
+  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
+  text-align: center;
+}
+
+.hero.hero--page .hero__title{
+  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.3;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+}
+
+.hero.hero--page .hero__title::after{
+  content:"";
+  display:block;
+  width: 76px;
+  height: 6px;
+  margin: .55rem auto 0;
+  border-radius: 999px;
+  background: var(--ph-accent, #2ea6a0);
+}
+
+@media (max-width: 600px){
+  .hero.hero--page .hero__title::after{
+    width: 56px;
+    height: 4px;
+  }
 }
 
 
-</style>
-
+  </style>
 </head>
 
 <body class="page-purpose">
@@ -84,9 +219,9 @@ padding: 0;
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- ← ヘッダーからフッターまで**全部**ここに入れる -->
+  <!-- ← ヘッダーからフッターまで全部ここに入れる -->
 
-  <!-- 共通ヘッダー -->
+  <!-- 共通ヘッダー（あなたの実コード：省略なし） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -109,7 +244,7 @@ padding: 0;
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -125,7 +260,6 @@ padding: 0;
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
@@ -146,67 +280,65 @@ padding: 0;
     </label>
   </header>
 
-<nav class="breadcrumb" aria-label="パンくずリスト">
-  <ol>
-    <li><a href="index.html">TOP</a></li>
-    <li><a href="corp.html">法人概要</a></li>
-    <li aria-current="page">設立趣旨</li>
-  </ol>
-</nav>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="index.html">TOP</a></li>
+      <li><a href="corp.html">法人概要</a></li>
+      <li aria-current="page">設立趣旨</li>
+    </ol>
+  </nav>
 
-
-<!-- ページ見出し -->
+  <!-- タイトル -->
 <section class="hero hero--page" aria-label="ページタイトル">
   <div class="hero__inner">
     <h1 class="hero__title">設立趣旨</h1>
   </div>
 </section>
 
+  <!-- 本文 -->
+  <main class="purpose-container">
 
-<!-- 本文 -->
-<section class="section section--narrow" aria-labelledby="purpose-body">
-  <div class="section__header">
-    <h2 id="purpose-body" class="visually-hidden">本文</h2>
-  </div>
 
-  <div class="prose prose--tint">
-    <p>私たちは、自分の生まれ育った地域で生活することを望むしょうがいを持つ方々の支援と、このまちの新たな社会福祉の資源となるべく、平成11年4月に障害者地域生活支援サービス団体を立ち上げました。</p>
-    <p>一関市を中心に活動を開始し、現在利用登録会員は約100名、一関市をはじめ両磐地区に生活するしょうがいを持つ方々に、幅広く利用していただいています。しょうがいを持つ方々がいつでも、気軽に、自由に利用できるレスパイトサービスを立ち上げ、現在は障害者総合支援法によるサービスを複合的に実施しています。</p>
-    <p>一方では平成17年より、市民活動センターの運営を行い、市民活動団体支援、地域づくり、協働等の中間支援を行っています。福祉、市民活動の両面から豊かに、安心して暮らせる地域づくりを目指し、しょうがいを持つ方々及びその家族が地域で安心して生活できる社会の実現を図り、また、老若男女問わず、みんながまちづくりに参加し、つくりあげる一関市の未来に向かい、自分たちができることを考え、取り組んでいきたいと思います。</p>
-    <p>また東日本大震災後は、いわて連携復興センターの団体会員として、また独自に陸前高田市のミニ商店街再生にかかわり、陸前高田市のまちづくり、市民活動団体の連携をはかるべく、陸前高田市に陸前高田まちづくり協働センターを設置しています。</p>
-    <p>私たちハンズは、県内の福祉の向上と一方では、さまざまな分野の市民活動を支え、連携するという両面の取り組みの中で、社会的に弱い立場の人たちや障害を持つ人たちと地域の人たちがいっしょに、元気で、豊かな地域をつくっていくこと（インクルージョン）を、広域的なエリアにおいて実現していきたいと思っています。</p>
 
-    <footer class="signature">
-      <p>平成13年1月17日<br>
+    <section class="purpose-body" aria-label="本文">
+
+      <p>私たちレスパイトハウス・ハンズは、自分の生まれ育った地域での生活を望むしょうがいを持つ方々の支援と、このまちにおける新たな社会福祉の資源となることを目指し、平成11年4月に障害者地域生活支援サービス団体として活動を開始しました。</p>
+      <p>一関市を中心に事業を展開し、現在では利用登録会員は約100名となり、一関市をはじめ両磐地区に暮らすしょうがいを持つ方々に、幅広くご利用いただいております。しょうがいを持つ方々が、いつでも気軽に利用できるレスパイトサービスの提供を出発点とし、現在は障害者総合支援法に基づく各種サービスを複合的に実施しています。</p>
+      <p>また、平成17年よりいちのせき市民活動センターの運営を開始し、市民活動団体の支援や地域づくり、協働の推進など、中間支援にも取り組んでまいりました。福祉と市民活動の両面から、誰もが豊かに、安心して暮らせる地域づくりを目指し、しょうがいを持つ方々およびそのご家族が、地域の中で安心して生活できる社会の実現を図っています。あわせて、老若男女を問わず、みんながまちづくりに参加し作り上げていく一関市の未来に向けて、私たちにできることを考え、取り組んでまいります。</p>
+      <p>東日本大震災後は、いわて連携復興センターの団体会員としての活動に加え、独自に陸前高田市のミニ商店街再生に携わってきました。さらに、陸前高田市におけるまちづくりや市民活動団体の連携を支えるため、陸前高田まちづくり協働センターを設置し、地域の再生と人と人とのつながりを支える役割を担っています。</p>
+      <p>私たちハンズは、県内の福祉の向上にとどまらず、さまざまな分野の市民活動を支え、連携しながら、社会的に弱い立場にある人たちやしょうがいを持つ人たちと地域が一体となり、元気で豊かな地域をつくっていくこと――インクルージョンの実現を、これからも目指してまいります。</p>
+    </section>
+
+
+
+    <div class="purpose-signature">
+      平成13年1月17日<br>
       特定非営利活動法人レスパイトハウス・ハンズ<br>
-      理事　小野　仁志</p>
-    </footer>
-  </div>
-</section>
+      理事　小野　仁志
+    </div>
+  </main>
 
+  <!-- 上へ戻る（スクロール進捗リング付き） -->
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+      </svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
 
-<!-- 上へ戻る（スクロール進捗リング付き） -->
-<button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
-  <span class="btt__ring" aria-hidden="true"></span>
-  <span class="btt__inner" aria-hidden="true">
-    <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
-      <path d="M12 5l-6 6h4v7h4v-7h4z"/>
-    </svg>
-    <span class="btt__label">TOP</span>
-  </span>
-</button>
-
-
+  <!-- フッター（あなたの実コード：省略なし） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
-      <!-- 左：ロゴ＋連絡先 -->
       <section class="footer__brand">
         <a href="/" class="footer__logo">
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
@@ -216,7 +348,6 @@ padding: 0;
         <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
-      <!-- 右：ナビ -->
       <nav class="footer__nav" aria-label="フッターナビゲーション">
         <div class="footer__group">
           <h3>法人概要</h3>
@@ -263,43 +394,22 @@ padding: 0;
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
 </div><!-- /#page -->
 
-<!-- スプラッシュ：完全な白板でロゴを見せる -->
-<div id="splash" aria-hidden="true">
-  <img src="img/logo.png" alt="">
-</div>
-
 <script>
-  window.addEventListener('load', function () {
-    const hold   = 1700;                         // 見せておく時間
-    const fadeMs = 700;                          // フェードアウト時間( CSSと合わせる )
-    const html   = document.documentElement;
+  /* 下層ページは強制的に表示状態にする（共通CSSのhas-splash前提を無効化） */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('page-show');
+    const html = document.documentElement;
+    html.classList.remove('no-scroll');
+    html.classList.remove('has-splash');
+    html.style.overflowY = 'auto';
+
     const splash = document.getElementById('splash');
-
-    // 安全策：念のため封鎖クラスを付けておく
-    html.classList.add('no-scroll');
-
-    setTimeout(() => {
-      // ページをフェードイン
-      document.body.classList.add('page-show');
-
-      // スクロール解放（強制上書きも入れる）
-      html.classList.remove('no-scroll');
-      html.style.overflowY = 'auto';
-
-      // スプラッシュをフェードアウト開始（pointer-eventsはCSS側で無効化）
-      splash.classList.add('splash-hide');
-
-      // フェードが終わったらDOMから実質退場
-      setTimeout(() => {
-        splash.style.display = 'none';
-      }, fadeMs + 50);
-    }, hold);
+    if (splash) splash.remove();
   });
 </script>
 
@@ -308,7 +418,7 @@ padding: 0;
     const btn = document.getElementById('backToTop');
     if(!btn) return;
 
-    const showAt = 200; // 200px超で表示
+    const showAt = 200;
     const ring = btn.querySelector('.btt__ring');
 
     const update = () => {
@@ -318,14 +428,10 @@ padding: 0;
       const deg = Math.round(ratio * 360) + 'deg';
       ring && ring.style.setProperty('--btt-progress', deg);
 
-      if (scrollTop > showAt) {
-        btn.classList.add('is-visible');
-      } else {
-        btn.classList.remove('is-visible');
-      }
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
     };
 
-    // クリックで先頭へ
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -338,23 +444,5 @@ padding: 0;
   })();
 </script>
 
-<script>
-  // サブページは常に表示・スクロール可にする
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('page-show');
-    const html = document.documentElement;
-    html.classList.remove('no-scroll');
-    html.style.overflowY = 'auto';
-    // 誤って入っていたらスプラッシュDOMを除去
-    const splash = document.getElementById('splash');
-    if (splash) splash.remove();
-  });
-</script>
-
-
 </body>
 </html>
-
-
-
-
