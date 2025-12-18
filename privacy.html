@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズのプライバシーポリシーをまとめたページです。">
+
   <!-- 共通スタイルを必ず読み込む（ロゴの既定サイズなどが入っている） -->
   <link rel="stylesheet" href="css/style.css">
 
@@ -13,13 +13,7 @@
     body{opacity:1 !important}
     #splash{display:none !important}
 
-    /* ヘッダーロゴの最大高さを明示（共通CSSより後に記述して上書き） */
-    :root { --header-logo-height: 48px; }
-    .c-header__logo img{
-      height: var(--header-logo-height);
-      width: auto;
-      display: block;
-    }
+
 
     /* 本文レイアウト（単一カラム） */
     .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding:0 2%;}
@@ -34,6 +28,11 @@
     .doc a{color:#2f7d5b; text-decoration:none;}
     .doc a:hover{text-decoration:underline;}
     .doc small{color:#5c6a62;}
+
+
+
+
+
   </style>
 </head>
 
@@ -41,7 +40,7 @@
 <a id="top" class="visually-hidden">top</a>
 <div id="page">
 
-  <!-- 共通ヘッダー -->
+   <!-- 共通ヘッダー（そのまま） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -80,13 +79,13 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="access.html">アクセス一覧</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="faq.html" aria-current="page">FAQ</a></li>
         </ul>
       </li>
 
@@ -256,4 +255,3 @@
 
 </body>
 </html>
-
