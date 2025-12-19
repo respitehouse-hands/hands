@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -395,6 +396,11 @@ body.page-access #site-header .submenu a:h
 .page-access .spot__body{ padding: 1.1rem 1.2rem; }
 
 
+/* トップページ：サブメニュー背景を白に */
+.page-access .submenu{
+  background: #fff;
+}
+
   </style>
 </head>
 
@@ -442,7 +448,7 @@ body.page-access #site-header .submenu a:h
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-howto" class="sub-toggle" checked>
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
