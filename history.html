@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ハンズのあゆみ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立から現在までの歩みをご紹介します。地域に寄り添い、支援を広げてきた歴史をまとめています。">
-
+ <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立から現在までの歩みをご紹介します。地域に寄り添い、支援を広げてきた歴史をまとめています。">
+  <title>ハンズのあゆみ | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,10 +152,16 @@ html{ scroll-behavior:smooth; }
 :root{ --history-anchor-offset: 20px; } /* ヘッダー＋余白ぶん。好みで調整 */
 .history-block-title{ scroll-margin-top: var(--history-anchor-offset); }
 
+/* トップページ：サブメニュー背景を白に */
+.page-history .submenu{
+  background: #fff;
+}
+
   </style>
 </head>
 
-<body>
+<body class="page-history">
+
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
@@ -732,8 +737,3 @@ html{ scroll-behavior:smooth; }
 
 </body>
 </html>
-
-
-
-
-
