@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -5,94 +6,509 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの、支援内容やご利用方法に関するよくある質問をまとめたページです。">
   <title>FAQ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+
+  <!-- 共通CSS -->
   <link rel="stylesheet" href="css/style.css" />
+
   <!-- Google Fonts（他ページと統一） -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- ページ専用CSS（ヘッダー/ナビは上書きしない） -->
   <style>
     :root{
-      /* 「初めての方へ」配下は青アクセント */
+      /* 初めての方へ（青系） */
       --unit-brand:#4C8CF5;
       --unit-ink:#123567;
       --unit-tint:#eef5ff;
       --unit-tint-2:#f8fbff;
+
+      /* FAQ専用トーン */
+      --faq-ink:#0f172a;
+      --faq-sub:#334155;
+      --faq-line:#e5e7eb;
+      --faq-surface:#ffffff;
+      --faq-soft: color-mix(in oklab, var(--unit-tint) 35%, #fff);
+
+      --faq-radius:18px;
+      --faq-shadow: 0 12px 32px #00000012;
+      --faq-shadow-sm: 0 2px 10px #0000000a;
     }
 
-    .page{ padding-inline:min(4vw,24px); }
+    /* ====== 重要：ハンバーガーの透明オーバーレイがクリックを奪うのを防ぐ ======
+       input#hamburger の直後が .c-hamburger-menu__bg なので隣接セレクタで確実に制御 */
+    #hamburger:not(:checked) + .c-hamburger-menu__bg{
+      pointer-events: none;   /* 閉じてる時はクリックを通す */
+    }
+    #hamburger:checked + .c-hamburger-menu__bg{
+      pointer-events: auto;   /* 開いてる時だけ背景タップで閉じられる */
+    }
+
+    /* ====== レイアウト ====== */
+    .page{ padding-inline:min(3vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
-    /* パンくず */
-    .breadcrumb{ margin:0 0 1rem; }
-    .breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.2em 0; margin:0; }
-    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
-
-    /* 見出し */
-    .section{ scroll-margin-top:120px; margin:1.25rem 0 2rem; }
-    .section__title{
-      font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); margin:2.2rem 0 1.2rem; color:var(--unit-ink);
-      padding-left:.5rem; border-left:6px solid var(--unit-brand); line-height:1.2;
-    }
-    .lead{
-      margin:.25rem 0 2rem; color:#334155; font-size:.98rem;
-    }
-
-    /* FAQ（details/summary） */
-    .faq{ display:grid; gap:16px; }
-    .faq-item{
-      border:1px solid #e5e7eb; border-radius:14px; background:#fff;
-      box-shadow:0 1px 0 #00000008; overflow:hidden;
-    }
-    .faq-item[open]{ box-shadow:0 8px 28px #0000000e; border-color:#e6eefc; }
-    .faq-item summary{
-      list-style:none; cursor:pointer; padding:1rem 1.1rem;
-      display:flex; align-items:flex-start; gap:.75rem; outline:none;
+    /* ヒーロー */
+    .faq2-hero{
+      margin: 30px 0 30px;
+      border-radius: calc(var(--faq-radius) + 6px);
+      border: 1px solid color-mix(in oklab, var(--unit-brand) 18%, var(--faq-line));
       background:
-        radial-gradient(900px 220px at 82% -40%, var(--unit-tint-2), transparent 60%),
+        radial-gradient(900px 280px at 78% -30%, color-mix(in oklab, var(--unit-brand) 20%, #fff), transparent 60%),
+        radial-gradient(700px 240px at 8% 120%, color-mix(in oklab, var(--unit-brand) 12%, #fff), transparent 62%),
+        linear-gradient(180deg, #fff, var(--faq-soft));
+      box-shadow: var(--faq-shadow-sm);
+      overflow: hidden;
+      position: relative;
+    }
+    .faq2-hero::after{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        linear-gradient(135deg, transparent 0 55%, color-mix(in oklab, var(--unit-brand) 10%, transparent) 55% 100%);
+      pointer-events:none;
+    }
+    .faq2-hero__inner{
+      padding: clamp(18px, 2.4vw, 28px);
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .faq2-title{
+      margin:0;
+      font-family: "Zen Maru Gothic","Noto Sans JP",system-ui,-apple-system,sans-serif;
+      font-weight:700;
+      letter-spacing:.02em;
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      color: var(--unit-ink);
+      line-height: 1.25;
+    }
+    .faq2-lead{
+      margin: 1.6rem 0 0;
+      color: var(--faq-sub);
+      line-height: 1.9;
+      font-size: .98rem;
+    }
+    .faq2-lead a{ color: inherit; text-underline-offset: .18em; }
+    .faq2-hero__meta{
+      display:grid;
+      gap: 10px;
+      justify-items: end;
+      text-align:right;
+    }
+    .faq2-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      border-radius: 999px;
+      padding: .55rem .85rem;
+      background: #fff;
+      border: 1px solid color-mix(in oklab, var(--unit-brand) 18%, var(--faq-line));
+      box-shadow: 0 8px 20px #00000008;
+      color: var(--faq-ink);
+      font-size: .92rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .faq2-chip svg{ width: 18px; height: 18px; opacity:.9; fill: currentColor; }
+    .faq2-chip a{ color: inherit; text-decoration: none; }
+    .faq2-chip a:hover{ text-decoration: underline; text-underline-offset: .18em; }
+
+    /* パンくず */
+    .breadcrumb{ margin:0 0 .2rem; }
+    .breadcrumb ol{
+      display:flex; flex-wrap:wrap;
+      gap:.45rem .75rem;
+      list-style:none;
+      padding: .9rem 0 0;
+      margin:0;
+      font-size:.92rem;
+      color:#475569;
+    }
+    .breadcrumb li+li::before{ content:"›"; color:#94a3b8; margin:0 .25rem 0 .1rem; }
+    .breadcrumb a{ color:inherit; text-decoration:none; }
+    .breadcrumb a:hover{ text-decoration: underline; text-underline-offset: .18em; }
+
+    /* 本体2カラム（PC） */
+    .faq2-grid{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      align-items: start;
+      margin: 18px 0 34px;
+    }
+
+    /* 目次（左） */
+    .faq2-toc{
+      position: sticky;
+      top: 96px;
+      border-radius: var(--faq-radius);
+      border:1px solid var(--faq-line);
+      background: #fff;
+      box-shadow: var(--faq-shadow-sm);
+      overflow:hidden;
+    }
+    .faq2-toc__head{
+      padding: 14px 14px 12px;
+      background: linear-gradient(180deg, var(--faq-soft), #fff);
+      border-bottom:1px solid var(--faq-line);
+    }
+    .faq2-toc__title{
+      margin:0;
+      font-weight:700;
+      color: var(--faq-ink);
+      font-size: 1rem;
+      letter-spacing:.02em;
+    }
+    .faq2-toc__list{
+      list-style:none;
+      padding: 10px 10px 12px;
+      margin:0;
+      display:grid;
+      gap: 6px;
+    }
+    .faq2-toc__list a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      color: #1f2937;
+      text-decoration:none;
+      border: 1px solid transparent;
+    }
+    .faq2-toc__list a:hover{
+      background: var(--faq-soft);
+      border-color: color-mix(in oklab, var(--unit-brand) 14%, var(--faq-line));
+    }
+    .faq2-dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: color-mix(in oklab, var(--unit-brand) 55%, #fff);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--unit-brand) 12%, #fff);
+      flex: 0 0 auto;
+    }
+
+    .faq2-content{ min-width:0; position:relative; z-index:1; }
+
+    .faq2-section{
+      margin: 0 0 18px;
+      scroll-margin-top: 120px;
+    }
+    .faq2-h2{
+      margin: 10px 0 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--unit-ink);
+      font-weight: 700;
+      font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+      letter-spacing:.02em;
+    }
+    .faq2-h2::before{
+      content:"";
+      width: 10px; height: 24px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, color-mix(in oklab, var(--unit-brand) 75%, #fff), var(--unit-brand));
+      box-shadow: 0 8px 20px color-mix(in oklab, var(--unit-brand) 22%, transparent);
+      flex: 0 0 auto;
+    }
+
+    /* ====== アコーディオン（CSS + JS保険） ====== */
+    .faq2-list{ display:grid; gap: 12px; }
+    .faq2-item{
+      border-radius: var(--faq-radius);
+      border: 1px solid var(--faq-line);
+      background: var(--faq-surface);
+      box-shadow: var(--faq-shadow-sm);
+      overflow:hidden;
+      position: relative; /* ← 重要：中のabsolute要素の基準を固定 */
+    }
+
+    .faq2-toggle{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+      inset: 0 auto auto 0; /* 位置を確定（ブラウザ差の安定化） */
+      width:1px; height:1px;
+    }
+
+    .faq2-q{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      padding: 16px 16px;
+      cursor:pointer;
+      user-select:none;
+      background:
+        radial-gradient(900px 240px at 82% -45%, var(--unit-tint-2), transparent 60%),
         linear-gradient(#fff,#fff);
     }
-    .faq-item summary::-webkit-details-marker{ display:none; }
-    .faq-q{
-      flex:1 1 auto; font-weight:700; color:#0f172a; line-height:1.6;
+    .faq2-q:hover{
+      background:
+        radial-gradient(900px 240px at 82% -45%, var(--unit-tint), transparent 60%),
+        linear-gradient(#fff,#fff);
     }
-    .faq-badge{
-      flex:0 0 auto; translate:0 .1rem;
-      display:inline-grid; place-content:center;
-      width:1.6rem; height:1.6rem; border-radius:999px;
-      background:color-mix(in oklab, var(--unit-brand) 14%, #fff);
-      color:var(--unit-ink); font-weight:700; font-size:.9rem;
-      border:1px solid color-mix(in oklab, var(--unit-brand) 42%, #fff);
+    .faq2-badge{
+      flex: 0 0 auto;
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      font-weight:700;
+      color: var(--unit-ink);
+      background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
+      border: 1px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
+      box-shadow: 0 10px 22px #00000008;
+      translate: 0 .12rem;
     }
-    .faq-a{
-      padding:0 1.1rem 1.1rem; color:#334155; line-height:1.9;
+    .faq2-qtext{
+      flex: 1 1 auto;
+      margin:0;
+      color: var(--faq-ink);
+      font-weight:700;
+      line-height: 1.5;
+      font-size: 1rem;
     }
-    .faq-a p{ margin:.75rem 0; }
-    .faq-a ul{ margin:.5rem 0 .5rem 1.2rem; }
-    .faq-a strong{ color:#0f172a; }
+    .faq2-caret{
+      flex: 0 0 auto;
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      border:1px solid var(--faq-line);
+      background:#fff;
+      transition: transform .18s ease, background .18s ease;
+      margin-left: 6px;
+    }
+    .faq2-caret svg{ width: 18px; height: 18px; fill: #334155; }
 
-    /* サイド目次（任意） */
-    .faq-nav{
-      margin:1.25rem 0 2.25rem; padding:.8rem 1rem; border:1px dashed #e5e7eb; border-radius:12px;
-      background: color-mix(in oklab, var(--unit-tint) 60%, #fff);
-      font-size:.95rem; color:#475569;
+    .faq2-a{
+      padding: 0 16px 16px;
+      color: var(--faq-sub);
+      line-height: 1.95;
+      font-size: .98rem;
     }
-    .faq-nav ol{ display:flex; flex-wrap:wrap; gap:.5rem 1rem; padding-left:1.2rem; margin:.4rem 0 0; }
-    .faq-nav a{ color:inherit; text-underline-offset:.18em; }
+    .faq2-a p{ margin:.75rem 0; }
+    .faq2-a ul{ margin:.5rem 0 .5rem 1.2rem; }
+    .faq2-a ol{ margin:.5rem 0 .5rem 1.2rem; }
+    .faq2-a strong{ color: var(--faq-ink); }
+    .faq2-a a{ color: inherit; text-underline-offset: .18em; }
 
-    /* アンカー停止位置（ヘッダー固定対策） */
+    .faq2-toggle + label + .faq2-a{ display:none; }
+    .faq2-toggle:checked + label + .faq2-a{ display:block; }
+    .faq2-toggle:checked + label .faq2-caret{
+      transform: rotate(180deg);
+      background: var(--faq-soft);
+    }
+
+    .faq2-q:focus-visible{
+      outline: 3px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
+      outline-offset: 3px;
+      border-radius: 14px;
+    }
+
     .anchor{ position:relative; }
     .anchor::before{
       content:""; display:block; height:120px; margin-top:-120px; visibility:hidden;
     }
 
-    @media (max-width:720px){
-      .faq{ gap:14px; }
-      .faq-item summary{ padding:.9rem 1rem; }
-      .faq-a{ padding:0 1rem 1rem; }
-      .faq-nav{ font-size:.92rem; }
+    @media (max-width: 960px){
+      .faq2-hero__inner{ grid-template-columns: 1fr; }
+      .faq2-hero__meta{ justify-items: start; text-align:left; }
+      .faq2-grid{ grid-template-columns: 1fr; }
+      .faq2-toc{ position: relative; top: 0; }
+      .faq2-toc__list{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 560px){
+      .faq2-toc__list{ grid-template-columns: 1fr; }
+      .faq2-q{ padding: 14px 14px; }
+      .faq2-a{ padding: 0 14px 14px; }
       .anchor::before{ height:96px; margin-top:-96px; }
     }
+    @media (prefers-reduced-motion: reduce){
+      .faq2-caret{ transition:none; }
+    }
+
+/* ハンバーガー背景オーバーレイ：閉じてる時はクリックを通す */
+#site-header label.c-hamburger-menu__bg{
+  pointer-events: none;
+  display: none;
+}
+
+/* 開いてる時だけ有効化 */
+#site-header #hamburger:checked ~ label.c-hamburger-menu__bg{
+  display: block;
+  pointer-events: auto;
+}
+
+.anchor{
+  pointer-events: none;
+}
+
+.anchor::before{
+  height: 0px;
+  margin-top: 0px;
+}
+
+
+/* ==============================
+   ヘッダー：サブメニューの選択色を白系に
+   ============================== */
+
+/* サブメニュー全体 */
+.c-header .submenu{
+  background: #ffffff;
+}
+
+/* サブメニューのリンク */
+.c-header .submenu a{
+  color: #17222f;
+}
+
+/* ホバー・フォーカス時（←ここが本命） */
+.c-header .submenu a:hover,
+.c-header .submenu a:focus-visible{
+  background: #f5f7f6;   /* ほぼ白 */
+  color: #17222f;
+}
+
+/* 現在ページ */
+.c-header .submenu a[aria-current="page"]{
+  background: #ffffff;
+  font-weight: 500;
+}
+
+
+/* ==== 強制テスト：サブメニュー選択色 ==== */
+#site-header .submenu a{
+  background: #fff !important;
+}
+
+#site-header .submenu a:hover,
+#site-header .submenu a:focus-visible{
+  background: #eef5ff !important;
+  color: #123567 !important;
+}
+
+.faq-action{
+  display: grid;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.faq-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.4;
+  transition: background .15s ease, box-shadow .15s ease, transform .05s ease;
+}
+
+.faq-action-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: .9rem;
+}
+
+/* ボタン共通 */
+.faq-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 10px;   /* ← 高さを下げた */
+  border-radius: 14px;  /* ← 少しだけシャープに */
+
+  font-weight: 600;     /* ← 圧を下げる */
+  font-size: .95rem;
+  text-decoration: none;
+  text-align: center;
+
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    box-shadow .15s ease;
+}
+
+/* 白＋青枠 */
+.faq-btn--outline{
+  background: #ffffff;
+  color: #123567;
+  border: 1.5px solid #c7dbff;
+}
+
+/* hover */
+.faq-btn--outline:hover{
+  background: #f5f8ff;
+  border-color: #9bbcff;
+  box-shadow: 0 4px 14px rgba(76,140,245,.15);
+}
+
+/* スマホ */
+@media (max-width: 520px){
+  .faq-action-row{
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq2-chip a{
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+
+  padding: .55rem .85rem;
+  margin: -.55rem -.85rem; /* ← 親のpaddingを相殺 */
+  border-radius: 999px;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+/* チップ全体がホバーされたとき */
+.faq2-chip:has(a:hover){
+  background: color-mix(in oklab, var(--unit-brand) 8%, #fff);
+  box-shadow: 0 6px 18px rgba(76,140,245,.18);
+  transform: translateY(-1px);
+}
+
+.faq2-chip a:hover{
+  text-decoration: none;
+}
+
+.faq2-chip:has(a:hover){
+  background: #ffffff; /* ← 青くしない */
+  border-color: color-mix(in oklab, var(--unit-brand) 45%, var(--faq-line));
+  box-shadow:
+    0 8px 22px rgba(76,140,245,.22),
+    0 0 0 1px color-mix(in oklab, var(--unit-brand) 22%, transparent);
+  transform: translateY(-1px);
+}
+
+.faq2-chip:has(a:hover) svg{
+  color: var(--unit-brand);
+  opacity: 1;
+}
+
+.faq2-section{
+  margin: 0 0 32px; /* ← 18px → 32px */
+}
+
+body.page-faq{
+  background: color-mix(in oklab, var(--mint) 20%, #fff);
+}
+
+@media (max-width: 520px){
+  .faq2-qtext{
+    font-size: 0.9rem;
+  }
+}
+
+
+
   </style>
 </head>
 
@@ -100,7 +516,7 @@
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- 共通ヘッダー -->
+  <!-- 共通ヘッダー（そのまま） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -140,7 +556,7 @@
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-howto" class="sub-toggle" checked>
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
@@ -162,6 +578,7 @@
   <!-- メイン -->
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="page-title">
+
       <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -170,9 +587,335 @@
         </ol>
       </nav>
 
-      <h1 id="page-title" class="section__title">現在準備中です。しばらくお待ちください。</h1>
+      <div class="faq2-hero">
+        <div class="faq2-hero__inner">
+          <div>
+            <h1 id="page-title" class="faq2-title">よくある質問（FAQ）</h1>
+            <p class="faq2-lead">
+              レスパイトハウス・ハンズのご利用に関して、よくいただく質問をまとめました。<br>
+              FAQをご覧いただいても分からない場合は、<a href="contact.html" target="_blank">お問い合わせフォーム</a>もしくはお電話（<a href="tel:0191-31-5720">0191-31-5720</a>）にて直接ご連絡ください。
+            </p>
+          </div>
 
+          <div class="faq2-hero__meta" aria-label="問い合わせ導線">
+            <span class="faq2-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.3.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.2 2.47.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/></svg>
+              <a href="tel:0191-31-5720">電話：0191-31-5720</a>
+            </span>
+            <span class="faq2-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+              <a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+            </span>
+            <span class="faq2-chip">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+              <a href="contact.html" target="_blank">お問い合わせフォーム</a>
+            </span>
+          </div>
+        </div>
       </div>
+
+      <div class="faq2-grid">
+        <!-- 目次 -->
+        <aside class="faq2-toc" aria-label="このページの内容">
+          <div class="faq2-toc__head">
+            <p class="faq2-toc__title">このページの内容</p>
+          </div>
+          <ul class="faq2-toc__list">
+            <li><a href="#start"><span class="faq2-dot" aria-hidden="true"></span>はじめの相談</a></li>
+            <li><a href="#eligibility"><span class="faq2-dot" aria-hidden="true"></span>対象・条件</a></li>
+            <li><a href="#cost"><span class="faq2-dot" aria-hidden="true"></span>費用</a></li>
+            <li><a href="#tour"><span class="faq2-dot" aria-hidden="true"></span>見学</a></li>
+            <li><a href="#flow"><span class="faq2-dot" aria-hidden="true"></span>ご利用の流れ</a></li>
+         
+            <li><a href="#privacy"><span class="faq2-dot" aria-hidden="true"></span>個人情報</a></li>
+        
+          </ul>
+        </aside>
+
+        <!-- FAQ本体 -->
+        <div class="faq2-content">
+
+          <!-- はじめの相談 -->
+          <div class="anchor" id="start" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-start">
+            <h2 id="sec-start" class="faq2-h2">はじめの相談</h2>
+<p class="faq2-hint" role="note">
+  ※ 質問をクリック（タップ）すると、回答が表示されます。
+</p>
+
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q1">
+                <label class="faq2-q" for="q1" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">事業所が多くてどこに相談すればいいか分かりません。</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    まずは <a href="finder.html" target="_blank"><b>あなたに合う支援をさがす</b></a>から分野をお選びいただき、お探しの事業所ページをご覧ください。各事業所の概要を確認いただけます。
+                    それでも迷う場合は、お電話で状況を伺い、必要に応じて担当にお繋ぎします。
+                  </p>
+<div class="faq-action-row">
+<a href="finder.html"
+   class="faq-btn faq-btn--outline"
+   target="_blank"
+   rel="noopener">
+  “あなたに合う支援をさがす”ページへ
+</a>
+
+
+  <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">
+    電話で相談する
+  </a>
+</div>
+
+
+                </div>
+              </div>
+
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q2">
+                <label class="faq2-q" for="q2" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">相談だけでも大丈夫ですか？お金はかかりますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    はい、<strong>相談だけでも大丈夫です（無料）</strong>。
+                    「利用するかまだ決めていない」「まずは話を聞いてほしい」という段階でもかまいません。
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q3">
+                <label class="faq2-q" for="q3" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">まず家族だけで相談したいのですが、可能ですか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    はい、可能です。ご本人が同席できない場合や、まずはご家族だけで状況整理をしたいという場合も、遠慮なくご相談ください。
+                  </p>
+                </div>
+              </div>
+
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q4">
+                <label class="faq2-q" for="q4" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">企業から相談することはできますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    はい、事業内容によっては可能です（例：障がい者就業に関する相談など）。
+                    内容を伺った上で担当にお繋ぎする形になりますので、まずはお問い合わせください。
+                  </p>
+<div class="faq-action-row">
+<a href="contact.html"
+   class="faq-btn faq-btn--outline"
+   target="_blank"
+   rel="noopener">
+  お問い合わせフォームへ
+</a>
+</div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 対象・条件 -->
+          <div class="anchor" id="eligibility" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-eligibility">
+            <h2 id="sec-eligibility" class="faq2-h2">対象・条件</h2>
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q5">
+                <label class="faq2-q" for="q5" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">障がい者手帳がなくても相談することはできますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    はい、相談できます。手帳のことや受けられる福祉サービスについて不安がある場合は、まず<a href="soudan.html" target="_blank"><b>「ハンズ相談支援事業所」</b></a>へご相談ください。状況に応じて、手続きの流れや利用できる制度について一緒に整理します。
+                  </p>
+<div class="faq-action-row">
+<a href="soudan.html"
+   class="faq-btn faq-btn--outline"
+   target="_blank"
+   rel="noopener">
+  ハンズ相談支援事業所ページへ
+</a>
+</div>
+                </div>
+              </div>
+
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q6">
+                <label class="faq2-q" for="q6" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">年齢制限はありますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    対象年齢は<strong>事業によって異なります</strong>。
+                    例として、放課後等デイサービス「リトルハンズ」は6歳（小学校入学）から18歳のお子さまが対象となりますが、生活介護事業所「わぁははクラブ」などは幅広い年齢の方にご利用いただいております。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 費用 -->
+          <div class="anchor" id="cost" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-cost">
+            <h2 id="sec-cost" class="faq2-h2">費用</h2>
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q7">
+                <label class="faq2-q" for="q7" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">利用料金はどれくらいかかりますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    利用者負担の有無や金額は、制度・サービス内容・状況によって異なります。まずは無料相談で状況を伺い、
+                    必要な支援や手続きの見通しを一緒に確認します。
+                  </p>
+                 
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 見学 -->
+          <div class="anchor" id="tour" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-tour">
+            <h2 id="sec-tour" class="faq2-h2">見学</h2>
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q8">
+                <label class="faq2-q" for="q8" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">サービスを利用する前に一度見学したいです。予約は必要ですか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    はい、見学可能です。<strong>事前に日程調整が必要</strong>になりますので
+                    「今日すぐに見学」という形は難しい場合があります。まずはご連絡ください。
+                  </p>
+
+<div class="faq-action-row">
+<a href="contact.html"
+   class="faq-btn faq-btn--outline"
+   target="_blank"
+   rel="noopener">
+  問い合わせフォーム
+</a>
+
+
+  <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">
+    電話で相談する
+  </a>
+</div>
+
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 流れ -->
+          <div class="anchor" id="flow" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-flow">
+            <h2 id="sec-flow" class="faq2-h2">ご相談〜利用開始までの流れ</h2>
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q9">
+                <label class="faq2-q" for="q9" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">問い合わせをした後は、どんな流れになりますか？</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>目安としては、次の流れになります。</p>
+                  <ol>
+                    <li>相談（状況の確認）</li>
+                    <li>必要に応じて見学・面談</li>
+                    <li>手続き（制度利用が必要な場合）</li>
+                    <li>利用開始</li>
+                  </ol>
+                  <p>
+                    詳しい流れは事業所ごとに異なるため、各事業所ページの案内もあわせてご確認ください。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+          <!-- 個人情報 -->
+          <div class="anchor" id="privacy" aria-hidden="true"></div>
+          <section class="faq2-section" aria-labelledby="sec-privacy">
+            <h2 id="sec-privacy" class="faq2-h2">個人情報</h2>
+
+            <div class="faq2-list" role="list">
+              <div class="faq2-item" role="listitem">
+                <input class="faq2-toggle" type="checkbox" id="q11">
+                <label class="faq2-q" for="q11" tabindex="0">
+                  <span class="faq2-badge" aria-hidden="true">Q</span>
+                  <p class="faq2-qtext">個人情報や相談内容の扱いについて教えてください</p>
+                  <span class="faq2-caret" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                  </span>
+                </label>
+                <div class="faq2-a">
+                  <p>
+                    個人情報やご相談内容は、当ホームページに記載しているプライバシーポリシーに基づき、適切に管理の上で取り扱います。
+                  </p>
+                  <p>詳しくは、<a href="privacy.html" target="_blank">プライバシーポリシーページ</a>をご覧ください。</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+         
+        </div>
+      </div>
+
     </section>
   </main>
 
@@ -185,8 +928,7 @@
     </span>
   </button>
 
-
-  <!-- 共通フッター -->
+  <!-- 共通フッター（そのまま） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -195,7 +937,7 @@
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
@@ -222,7 +964,7 @@
             <li><a href="residence.html">居宅介護</a></li>
             <li><a href="soudan.html">相談支援</a></li>
             <li><a href="little.html">リトルハンズ</a></li>
-            <li><a href="sakura.html" aria-current="page">さくらなみき</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
             <li><a href="myroot.html">マイルートリンク</a></li>
             <li><a href="ichisapo.html">若者サポートステーション</a></li>
             <li><a href="jobcafe.html">ジョブカフェ</a></li>
@@ -251,46 +993,144 @@
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-
 </div>
 
-<!-- 共通JS -->
+<!-- 共通JS（必要なら。FAQのクリックは下の保険が勝つ） -->
 <script src="js/site.js"></script>
 
-<!-- FAQ構造化データ（SEO） -->
+<!-- FAQ：クリックがpreventDefaultされても必ずトグルする保険（captureで先に処理） -->
+<script>
+(() => {
+  const toggleByLabel = (label) => {
+    const id = label?.getAttribute?.('for');
+    if (!id) return;
+    const input = document.getElementById(id);
+    if (!input || input.type !== 'checkbox') return;
+    input.checked = !input.checked;
+  };
+
+  document.addEventListener('click', (e) => {
+    const label = e.target.closest('label.faq2-q');
+    if (!label) return;
+
+    // 先にこちらで確実に開閉して、他JSの干渉を止める
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    toggleByLabel(label);
+  }, true);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const label = e.target.closest('label.faq2-q');
+    if (!label) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    toggleByLabel(label);
+  }, true);
+
+  // BTT（共通JSが無い/効かない場合でも動かす）
+  const btt = document.getElementById('backToTop');
+  if (btt) {
+    btt.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+
+<!-- FAQ構造化データ（SEO）※ページ内のQ&Aと一致 -->
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"どんな人が利用できますか？",
-     "acceptedAnswer":{"@type":"Answer","text":"事業所ごとに対象が異なります。生活介護・居宅介護・放課後等デイ・就労継続支援B型・若者支援など、状況に応じてご案内します。"}},
-    {"@type":"Question","name":"まずはどこに相談すれば良いですか？",
-     "acceptedAnswer":{"@type":"Answer","text":"相談支援事業所が入口です。制度の利用可否や手続きの流れをご案内します。"}},
-    {"@type":"Question","name":"見学や体験はできますか？",
-     "acceptedAnswer":{"@type":"Answer","text":"事前予約で見学・体験が可能です。各拠点へお問い合わせください。"}},
-    {"@type":"Question","name":"利用料金はどのくらい？",
-     "acceptedAnswer":{"@type":"Answer","text":"自己負担は原則1割。世帯所得に応じた負担上限月額が適用されます。実費が別途必要な場合があります。"}},
-    {"@type":"Question","name":"送迎や駐車場はありますか？",
-     "acceptedAnswer":{"@type":"Answer","text":"対象エリア内で送迎を実施。各拠点に駐車スペースあり。"}},
-    {"@type":"Question","name":"居宅介護の内容は？",
-     "acceptedAnswer":{"@type":"Answer","text":"身体介護・家事援助・通院等介助などを提供します。"}},
-    {"@type":"Question","name":"放課後等デイの利用時間や内容は？",
-     "acceptedAnswer":{"@type":"Answer","text":"学校終了後および長期休暇中に開所し、学習・運動・社会性の活動などを行います。"}},
-    {"@type":"Question","name":"就労継続支援B型の内容と工賃は？",
-     "acceptedAnswer":{"@type":"Answer","text":"生産活動の機会を提供し、活動に応じた工賃が支給されます。"}},
-    {"@type":"Question","name":"若者サポステ/ジョブカフェでは何ができますか？",
-     "acceptedAnswer":{"@type":"Answer","text":"職業相談、就活支援、セミナー、職場体験などを無料で提供します。"}},
-    {"@type":"Question","name":"個人情報や緊急時の対応は？",
-     "acceptedAnswer":{"@type":"Answer","text":"プライバシーポリシーに基づき管理。緊急時は家族・関係機関と連携して対応します。"}}
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "事業所が多くてどこに相談すればいいか分かりません。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "まずは分野別ページから、関心のある事業所をご覧ください。各事業所の概要を確認できます。それでも迷う場合は、お電話で状況を伺い、必要に応じて担当につなぎます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "相談だけでも大丈夫ですか？お金はかかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、相談だけでも可能です。費用はかかりません。利用を決めていない段階でも問題ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "まず家族だけで相談したいのですが、可能ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、可能です。ご本人が同席できない場合や、最初にご家族だけで状況整理をしたい場合でもご相談いただけます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "企業として相談することはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、事業内容によっては可能です。障がい者就業に関する相談などについて、内容を伺った上で担当につなぎます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "障がい者手帳がなくても相談することはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、相談できます。手帳や利用できる福祉サービスについて不安がある場合は、相談支援事業所で状況を整理し、必要な手続きの流れをご案内します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "年齢制限はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "対象年齢は事業によって異なります。放課後等デイサービスは小学校入学から18歳まで、生活介護事業所などは幅広い年齢の方が対象となります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "利用料金はどれくらいかかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "利用者負担の有無や金額は、制度やサービス内容、状況によって異なります。まずは無料相談で状況を伺い、必要な支援や手続きの見通しを確認します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "見学はできますか？予約は必要ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "見学は可能ですが、事前に日程調整が必要です。当日の見学が難しい場合がありますので、事前にご連絡ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "問い合わせをした後は、どんな流れになりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "相談による状況確認の後、必要に応じて見学や面談を行い、制度利用が必要な場合は手続きを経て利用開始となります。詳しい流れは事業所ごとに異なります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "個人情報や相談内容の扱いについて教えてください。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "相談内容や個人情報は適切に管理し、本人の同意なく外部に共有することはありません。"
+      }
+    }
   ]
 }
 </script>
+
 </body>
 </html>
-
-
