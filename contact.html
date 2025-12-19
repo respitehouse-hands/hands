@@ -25,24 +25,7 @@
 
     .wrap { max-width:var(--max); margin-inline:auto; padding: clamp(18px,4vw,28px); }
 
-    /* ヒーロー（見出し） */
-    .hero-compact{
-      margin: 18px 0 6px;
-      background:
-        radial-gradient(1000px 260px at 12% -20%, #f8fafc, transparent 60%),
-        radial-gradient(900px 240px at 88% -30%, #f9fafb, transparent 60%),
-        linear-gradient(#fff,#fff);
-      border:1px solid var(--c-line);
-      border-radius:20px;
-      box-shadow:0 18px 40px rgba(0,0,0,.06);
-    }
-    .hero-compact__inner{ padding: clamp(18px,2.6vw,28px) clamp(18px,3.2vw,34px); }
-    .hero-compact h1{
-      margin:0 0 .25rem;
-      font:700 clamp(1.18rem,2.2vw,1.5rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
-      color:var(--c-ink);
-    }
-    .hero-compact p{ margin:2rem 0 0; color:var(--c-sub); }
+
 
     /* フォーム全体 */
     .contact{
@@ -288,6 +271,113 @@ body.page-contact .actions input[type="submit"]{
       line-height: 1.6;
     }
 
+/* ================================
+   contact.html：サブメニュー最終固定
+   ================================ */
+body.page-contact .submenu{
+  background:#ffffff !important;
+  border:1px solid #e5e7eb !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.08) !important;
+}
+
+/* ==========================
+   1番（分野）の幅だけ揃える
+   ========================== */
+
+/* fieldset自体はそのまま */
+body.page-contact fieldset.field{
+  border: 1px solid #9ca3af; /* 今の見た目を維持 */
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+}
+
+/* 中のセグメントを「入力欄と同じ幅」にする */
+body.page-contact fieldset.field .seg{
+  max-width: 760px;        /* 2〜4番と同じ */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* SPは全幅 */
+@media (max-width: 719px){
+  body.page-contact fieldset.field .seg{
+    max-width: 100%;
+  }
+}
+
+/* ==========================
+   フォーム内：ブロック間の余白を強制
+   1番（fieldset）と2番（.field）の間も確実に空ける
+   ========================== */
+body.page-contact #contactForm{
+  display: grid;
+  gap: 28px; /* 好みで 22〜32px */
+}
+
+/* 既存の .contact__inner の gap と二重になるのが嫌なら、こっちは少し下げる */
+body.page-contact .contact__inner{
+  gap: 16px;
+}
+
+/* =========================
+   contact：ラベルを1行固定
+   ========================= */
+body.page-contact .field__label{
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  white-space: nowrap;   /* ← 改行させない */
+}
+
+/* 「必須」を改行させない */
+body.page-contact .field__label .req{
+  white-space: nowrap;
+}
+
+/* ===== actions：スマホは中央寄せ ===== */
+@media (max-width: 719px){
+  body.page-contact .actions{
+    justify-content: center;   /* 中央寄せ */
+  }
+}
+
+@media (min-width: 720px){
+  body.page-contact .field{
+    grid-template-columns: 15rem 1fr;
+    column-gap: 1.5rem;
+  }
+
+  body.page-contact .field .ctrl{
+    max-width: 760px;
+  }
+}
+
+/* =========================
+   hero-compact：完全リセット版
+   ========================= */
+
+.hero-compact{
+  margin: 0 0 32px;
+}
+
+.hero-compact__inner{
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: clamp(18px,4vw,28px);
+}
+
+.hero-compact h1{
+  margin: 0;
+  font-family: "Zen Maru Gothic","Noto Sans JP",system-ui;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  color: var(--c-ink);
+  letter-spacing: .08em; 
+  padding: 10px 0;
+} 
+
+
+
 
   </style>
 </head>
@@ -319,7 +409,7 @@ body.page-contact .actions input[type="submit"]{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -414,7 +504,7 @@ body.page-contact .actions input[type="submit"]{
 
       <!-- 2. お名前 -->
       <div class="field">
-        <label for="name" class="field__label">2．お名前（団体名） <span class="req">必須</span></label>
+        <label for="name" class="field__label">2．お名前（団体名）<span class="req">必須</span></label>
         <input id="name" name="name" type="text" class="ctrl" autocomplete="name" required placeholder="例）一関 太郎 ">
       </div>
 
@@ -422,7 +512,7 @@ body.page-contact .actions input[type="submit"]{
       <div class="field">
         <label for="email" class="field__label">3．メールアドレス <span class="req">必須</span></label>
         <input id="email" name="_replyto" type="email" class="ctrl" autocomplete="email" inputmode="email" required placeholder="例）yourname@example.com">
-        <p class="small-note">※ 迷惑メール設定で受信拒否にならないようご確認ください。</p>
+        <p class="small-note">
       </div>
 
       <!-- 4. 内容 -->
@@ -564,6 +654,7 @@ body.page-contact .actions input[type="submit"]{
 
 </body>
 </html>
+
 
 
 
