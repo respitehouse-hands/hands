@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが大切にしている理念をご紹介します。よりそう支援とつながる安心を軸に、ハンズの考え方をお伝えします。">
+
   <title>ハンズの理念 | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css">
 <!-- head内：Google Fonts -->
@@ -145,9 +147,11 @@
 /* ==============================
    セクション見出し
    ============================== */
+
 .section__header{
   margin: clamp(3rem, 7vw, 4.5rem) 0 1.6rem;
 }
+
 .section__header h2{
   font-size: clamp(1.35rem, 2.6vw, 1.7rem);
   line-height: 1.35;
@@ -319,23 +323,24 @@
   }
 }
 
- @media (max-width: 600px){
-  /* 「ハンズが大切にしている3つのこと」周りの上下余白をスマホだけ詰める */
+
+@media (max-width: 600px){
   .section__header{
-    margin: 1.2rem 0 .8rem !important; /* 上 下 を調整 */
+    margin: 1.4rem 0 1rem !important;
   }
 }
- 
+
+/* トップページ：サブメニュー背景を白に */
+.page-philosophy .submenu{
+  background: #fff;
+}
+
 
 </style>
 
-
-
-
-
 </head>
 
-<body>
+<body class="page-philosophy">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
@@ -362,7 +367,7 @@
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
@@ -616,4 +621,3 @@
 
 </body>
 </html>
-
