@@ -401,6 +401,46 @@ svg{
 .page-home .submenu{
   background: #fff;
 }
+
+/* ===============================
+   NEWS一覧：日付/カテゴリ/タイトル/NEW を綺麗に整列
+   =============================== */
+
+/* ① 並びの行を縦中央揃え（使ってるクラス名に合わせて1つ残してOK） */
+.news-row,
+.news-meta,
+.news-list__meta,
+.news-item__meta{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+/* ② バッジ共通：高さ・中央揃え・文字基準を統一（ズレ解消） */
+.badge,
+.tag,
+.news-tag,
+.badge-new{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:28px;
+  padding:0 12px;
+  border-radius:999px;
+  line-height:1;
+  font-weight:800;
+  font-size:13px;
+}
+
+/* ③ NEWだけ目立たせる（赤寄りオレンジ） */
+.badge-new{
+  background:#ff3b30;
+  color:#fff;
+  border:0;
+  margin-left:.4rem; /* タイトルとの間隔を少し固定（不要なら消してOK） */
+}
+
+
   </style>
   <!-- ▲ ここまで追加 -->
 </head>
@@ -544,6 +584,14 @@ svg{
     <!-- ここに入れる -->
 
     <li class="news__item">
+      <a href="news6.html">
+        <time datetime="2025-12-24" class="news__date">2025.12.24</time>
+        <span class="news__tag">お知らせ</span>
+        <span class="news__title">年末年始の休業について <span class="badge-new" aria-label="新着">NEW</span></span>
+      </a>
+    </li>
+
+    <li class="news__item">
       <a href="news5.html">
         <time datetime="2025-12-19" class="news__date">2025.12.19</time>
         <span class="news__tag">お知らせ</span>
@@ -575,13 +623,7 @@ svg{
       </a>
     </li>
 
-    <li class="news__item">
-      <a href="news1.html">
-        <time datetime="2025-04-01" class="news__date">2025.04.01</time>
-        <span class="news__tag">お知らせ</span>
-        <span class="news__title">マイルートリンクがスタートしました。</span>
-      </a>
-    </li>
+
   </ul>
 </section>
 
@@ -760,7 +802,6 @@ svg{
 
 </body>
 </html>
-
 
 
 
