@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NEWS一覧 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="レスパイトハウス・ハンズからのお知らせ一覧です。事業所の最新情報や更新内容、お知らせなどをまとめて掲載しています。">
-
+  <title>NEWS一覧 | レスパイトハウス・ハンズ</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
     /* フェード/スプラッシュ無効 */
@@ -109,14 +107,14 @@
       <h2 class="news-year" id="y2025">2025年</h2>
       <ul class="news-list" aria-labelledby="y2025">
 
-                <li>
+        <li>
           <a href="news6.html">
             <time class="news-date" datetime="2025-12-24">2025.12.24</time>
             <span class="news-tag">お知らせ</span>
             <span class="news-title">年末年始の休業について</span>
           </a>
         </li>
-        
+
         <li>
           <a href="news5.html">
             <time class="news-date" datetime="2025-12-19">2025.12.19</time>
@@ -156,6 +154,7 @@
             <span class="news-title">マイルートリンク　開設のお知らせ</span>
           </a>
         </li>
+
       </ul>
 
       <!-- （将来）年が増えたら <h2 class="news-year">2024年</h2> … を追加 -->
@@ -163,6 +162,18 @@
 
     <!-- 既存の電話/メールCTAを載せたいならここに <nav class="cta-bar">…</nav> -->
   </main>
+
+<!-- 上へ戻る（スクロール進捗リング付き） -->
+<button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+  <span class="btt__ring" aria-hidden="true"></span>
+  <span class="btt__inner" aria-hidden="true">
+    <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+      <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+    </svg>
+    <span class="btt__label">TOP</span>
+  </span>
+</button>
+
 
   <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
@@ -219,7 +230,6 @@
         <div class="footer__group">
           <h3>情報公開</h3>
           <ul>
-            <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
             <li><a href="sitemap.html">サイトマップ</a></li>
@@ -242,11 +252,38 @@
   document.documentElement.classList.remove('no-scroll');
   var s = document.getElementById('splash'); if(s) s.style.display='none';
 </script>
+
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200; // 200px超で表示
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
+      const deg = Math.round(ratio * 360) + 'deg';
+      if(ring) ring.style.setProperty('--btt-progress', deg);
+
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+
 </body>
 </html>
-
-
-
-
-
-
