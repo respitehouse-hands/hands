@@ -268,6 +268,27 @@ a:hover{
   font-weight: 700;
 }
 
+.btn--ghost{display:inline-block;padding:.9em 1.4em;border:1.6px solid #1f6f59;border-radius:9999px;text-decoration:none}
+
+@media (max-width: 899px){
+  /* 段落全体は折り返してOK（はみ出し防止） */
+  .ny-lead{
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.9;
+  }
+
+  /* 「ご不便を〜」の行だけ1行にしたい */
+  .ny-lead__greet{
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis; /* どうしても入らない時は…で省略 */
+    vertical-align: bottom;
+  }
+}
+
 
 </style>
 
@@ -351,10 +372,12 @@ a:hover{
 <section class="news-body" aria-labelledby="ny-title">
   <h2 id="ny-title">年末年始の休業について</h2>
 
-<p class="ny-lead__greet">
-  年末年始の休業期間についてお知らせします。<br>
-  ご不便をおかけしますが、よろしくお願いいたします。
+<p class="ny-lead">
+  いつもレスパイトハウス・ハンズをご利用いただき、ありがとうございます。<br>
+  年末年始の休業期間についてのお知らせです。<br>
+  ご不便をおかけしますが、ご理解とご協力のほど、何卒よろしくお願いいたします。<br>　
 </p>
+
 
 
   <div class="table-wrap" role="region" aria-label="年末年始の休業期間一覧（横スクロール）">
@@ -484,6 +507,12 @@ a:hover{
   <p class="note">
     ※休業期間は変更となる場合があります。ご来所・ご相談の前に、各窓口へお問い合わせください。
   </p>
+
+      <!-- 一覧へ戻る -->
+      <nav class="article__nav">
+        <a class="btn btn--ghost" href="index.html">← TOPへ戻る</a>
+      </nav>
+
 </section>
 
 
