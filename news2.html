@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ホームページリニューアルのお知らせ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="ホームページリニューアルについてのご案内です。" />
+  <title>【新施設完成／見学会のご案内】ハンズ生活介護事業所 | わぁははクラブ – レスパイトハウス・ハンズ</title>
+  <meta name="description" content="ハンズ生活介護事業所 | わぁははクラブの新施設完成と見学会（令和7年12月15日）のご案内です。" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
@@ -143,6 +143,18 @@ body{opacity:1 !important} #splash{display:none !important}
 
   </main>
 
+<!-- 上へ戻る（スクロール進捗リング付き） -->
+<button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+  <span class="btt__ring" aria-hidden="true"></span>
+  <span class="btt__inner" aria-hidden="true">
+    <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+      <path d="M12 5l-6 6h4v7h4v-7h4z"/>
+    </svg>
+    <span class="btt__label">TOP</span>
+  </span>
+</button>
+
+
   <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
@@ -198,7 +210,6 @@ body{opacity:1 !important} #splash{display:none !important}
         <div class="footer__group">
           <h3>情報公開</h3>
           <ul>
-            <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
             <li><a href="sitemap.html">サイトマップ</a></li>
@@ -248,8 +259,37 @@ body{opacity:1 !important} #splash{display:none !important}
   var s = document.getElementById('splash'); if(s) s.style.display='none';
 </script>
 
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200; // 200px超で表示
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
+      const deg = Math.round(ratio * 360) + 'deg';
+      if(ring) ring.style.setProperty('--btt-progress', deg);
+
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
 
 </body>
 </html>
-
-
