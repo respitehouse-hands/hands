@@ -315,6 +315,9 @@
       border:0;
       margin-left:.4rem;
     }
+
+
+
   </style>
 </head>
 
@@ -581,40 +584,57 @@
   </div>
 
 <script>
-  window.addEventListener('load', function () {
-    const fadeInMs  = 80;  // ロゴが完全に見えるまで（短く）
-    const holdFull  = 1200; // 完全に見えている時間（長く）
-    const fadeOutMs = 700;  // 消える時間（CSSと一致）
+  document.addEventListener('DOMContentLoaded', () => {
+    // 調整つまみ
+    const fadeInMs   = 80;     // ロゴが見えるまで
+    const minHoldMs  = 1200;   // ロゴを“最低”キープする時間
+    const fadeOutMs  = 700;    // 消える時間（CSSと一致）
+    const maxWaitLoad = 1200;  // load待ちの最大追加時間（待ちすぎ防止）
 
     const html   = document.documentElement;
     const splash = document.getElementById('splash');
-
     if (!splash) return;
 
-    html.classList.add('no-scroll');
+    // 最初はスクロール禁止 + バー非表示
+    html.classList.add('no-scroll', 'no-scrollbar');
 
-    // フェードイン開始
-    splash.classList.add('is-show');
-
-    // フェードイン完了後に本体表示→保持→フェードアウト
-    setTimeout(() => {
+    // 表示開始
+    requestAnimationFrame(() => {
+      splash.classList.add('is-show');
       document.body.classList.add('page-show');
+    });
 
+    // 「最低表示時間」が過ぎるのを待つ
+    const minHoldPromise = new Promise(resolve => {
+      setTimeout(resolve, fadeInMs + minHoldMs);
+    });
+
+    // 「load完了」か「最大待機」を待つ（どちらか早い方）
+    const loadOrTimeoutPromise = new Promise(resolve => {
+      const done = () => resolve();
+      if (document.readyState === 'complete') return done();
+      window.addEventListener('load', done, { once: true });
+      setTimeout(done, maxWaitLoad);
+    });
+
+    Promise.all([minHoldPromise, loadOrTimeoutPromise]).then(() => {
+      // フェードアウト開始
+      splash.classList.add('splash-hide');
+
+      // ここでスクロールだけ解放（バーはまだ隠す）
       html.classList.remove('no-scroll');
-      html.style.overflowY = 'auto';
 
+      // フェードアウト完了後に完全撤去 + バー復帰
       setTimeout(() => {
-        splash.classList.add('splash-hide');
-
-        setTimeout(() => {
-          splash.style.display = 'none';
-        }, fadeOutMs + 100);
-
-      }, holdFull);
-
-    }, fadeInMs);
+        splash.style.display = 'none';
+        html.classList.remove('no-scrollbar');
+      }, fadeOutMs + 100);
+    });
   });
 </script>
+
+
+
 
 
   <!-- BackToTop（※二重登録を解消：これ1本のみ） -->
@@ -647,6 +667,13 @@
       window.addEventListener('resize', update);
       update();
     })();
+
+
+
+
   </script>
+
+
+
 </body>
 </html>
