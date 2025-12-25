@@ -580,29 +580,42 @@
     <img src="img/logo.webp" alt="">
   </div>
 
-  <script>
-    window.addEventListener('load', function () {
-      const hold   = 1700;
-      const fadeMs = 700;
-      const html   = document.documentElement;
-      const splash = document.getElementById('splash');
+<script>
+  window.addEventListener('load', function () {
+    const fadeInMs  = 80;  // ロゴが完全に見えるまで（短く）
+    const holdFull  = 1200; // 完全に見えている時間（長く）
+    const fadeOutMs = 700;  // 消える時間（CSSと一致）
 
-      html.classList.add('no-scroll');
+    const html   = document.documentElement;
+    const splash = document.getElementById('splash');
+
+    if (!splash) return;
+
+    html.classList.add('no-scroll');
+
+    // フェードイン開始
+    splash.classList.add('is-show');
+
+    // フェードイン完了後に本体表示→保持→フェードアウト
+    setTimeout(() => {
+      document.body.classList.add('page-show');
+
+      html.classList.remove('no-scroll');
+      html.style.overflowY = 'auto';
 
       setTimeout(() => {
-        document.body.classList.add('page-show');
-
-        html.classList.remove('no-scroll');
-        html.style.overflowY = 'auto';
-
         splash.classList.add('splash-hide');
 
         setTimeout(() => {
           splash.style.display = 'none';
-        }, fadeMs + 50);
-      }, hold);
-    });
-  </script>
+        }, fadeOutMs + 100);
+
+      }, holdFull);
+
+    }, fadeInMs);
+  });
+</script>
+
 
   <!-- BackToTop（※二重登録を解消：これ1本のみ） -->
   <script>
