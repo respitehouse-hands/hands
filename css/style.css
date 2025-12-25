@@ -1038,8 +1038,9 @@ html.no-scroll { overflow: hidden; }
 body.page-show #page{
   opacity: 1;
   visibility: visible;
-  transition: opacity .9s ease .90s;
+  transition: opacity .5s ease; /* delay無し */
 }
+
 
 /* 動きが苦手な人への配慮：アニメーションを即時化 */
 @media (prefers-reduced-motion: reduce){
@@ -1059,18 +1060,30 @@ body.page-show #page{
   white-space: nowrap;
 }
 
-/* ロゴをゆっくり消す */
-#splash.splash-hide{
+
+/* 初期は透明 */
+#splash{
   opacity: 0;
-  transition: opacity 1s ease; /* ← ここで速度を調整（例: 1.6秒） */
+  transition: opacity .08s ease; /* フェードインを短く */
 }
 
-/* 透明になったら操作を邪魔しない */
+/* 表示状態（JSで付与） */
+#splash.is-show{
+  opacity: 1;
+}
+
+/* 消える状態 */
 #splash.splash-hide{
   opacity: 0;
-  transition: opacity 0.9s ease; /* お好みで */
-  pointer-events: none;          /* ← これ重要 */
+  transition: opacity .7s ease; /* フェードアウト */
+  pointer-events: none;
 }
+
+@media (prefers-reduced-motion: reduce){
+  #splash{ transition:none; }
+  #splash.splash-hide{ transition:none; }
+}
+
 
 
 
