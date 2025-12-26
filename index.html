@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズは、岩手県一関市で障がい福祉・就労・地域づくりなどの支援を行うNPO法人です。">
   <link rel="canonical" href="https://handsnpo.jp/">
-
-<link rel="stylesheet" href="css/style.css">
-
-
+  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="/favicon.ico">
   <title>特定非営利活動法人レスパイトハウス・ハンズ</title>
 
@@ -18,19 +15,7 @@
   <!-- Google Fonts（軽量化） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-<link rel="preload" as="style"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Zen+Maru+Gothic:wght@700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'">
-<noscript>
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Zen+Maru+Gothic:wght@700&display=swap">
-</noscript>
-
-
-
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
 
   <style>
     /* ===============================
@@ -331,15 +316,6 @@
       margin-left:.4rem;
     }
 
-#splash img{
-  width:min(360px, 70vw) !important;
-  height:auto !important;
-}
-
-
-
-
-
 
 
   </style>
@@ -350,12 +326,7 @@
 
   <div id="page">
     <header id="site-header" class="c-header c-hamburger-menu">
-
-<a href="index.html" class="c-header__logo">
-  <img src="img/logo.webp" alt="ロゴ" width="190" height="60" decoding="async">
-</a>
-
-
+      <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
       <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
       <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
@@ -608,10 +579,9 @@
     </footer>
   </div><!-- /#page -->
 
-<div id="splash" aria-hidden="true">
-  <img src="img/logo.webp" alt="" width="320" height="120" decoding="async">
-</div>
-
+  <div id="splash" aria-hidden="true">
+    <img src="img/logo.webp" alt="">
+  </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -631,7 +601,7 @@
     // 表示開始
     requestAnimationFrame(() => {
       splash.classList.add('is-show');
- document.body.classList.add('page-show');
+      document.body.classList.add('page-show');
     });
 
     // 「最低表示時間」が過ぎるのを待つ
@@ -697,8 +667,6 @@
       window.addEventListener('resize', update);
       update();
     })();
-
-
 
 
 
