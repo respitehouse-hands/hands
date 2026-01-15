@@ -637,6 +637,37 @@ br.sp-br {
   }
 }
 
+/* =========================================
+   【修正版2】コントラスト完全合格のボタン
+   ========================================= */
+
+/* 通常時のスタイル */
+.btn.btn--finder {
+  background-color: #ffffff !important;
+  
+  /* ▼▼▼ 変更点：さらに深く、知的な緑色に変更（#007867） ▼▼▼ */
+  color: #007867 !important;
+  border: 2px solid #007867 !important;
+  
+  font-weight: 700 !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+/* ホバー時のスタイル */
+.btn.btn--finder:hover {
+  /* 背景も同じ濃い緑に */
+  background-color: #007867 !important;
+  border-color: #007867 !important;
+  
+  /* 白文字とのコントラストもしっかり確保 */
+  color: #ffffff !important;
+  
+  transform: translateY(-2px);
+  /* 影の色も合わせて調整 */
+  box-shadow: 0 6px 16px rgba(0, 120, 103, 0.3) !important; 
+}
+    
   </style>
 
   <link rel="stylesheet" href="css/style.css">
@@ -1058,3 +1089,4 @@ br.sp-br {
 
 </body>
 </html>
+
