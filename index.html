@@ -597,16 +597,46 @@
     padding: 0 1rem !important; 
   }
 
-  /* もしHTML内に <br> タグが入っている場合、スマホでは無視して自然に流す */
-  .service-footer__text br {
-    display: none !important;
+
+/* スマホ表示（幅640px以下）の微調整 */
+@media (max-width: 640px) {
+  .service-footer__text {
+    font-size: 0.9rem !important;
+    line-height: 1.8 !important;
+    padding: 0 1rem !important;
+    /* word-breakの設定は削除してもOKですが、残しておいても害はありません */
+  }
+
+  /* ▼▼▼ 修正ポイント：特定のクラスがついた改行だけは「有効」にする ▼▼▼ */
+  .service-footer__text br.sp-br {
+    display: block !important;
   }
 }
 
-    /* ドロップダウンメニューの背景を強制的に白にする */
+}
+
+
+/* ドロップダウンメニューの背景を強制的に白にする */
 .submenu {
   background-color: #ffffff !important;
-    
+} 
+
+/* =========================================
+   スマホ専用改行タグ（.sp-br）の完全制御
+   ========================================= */
+
+/* 1. 基本（PCを含む全サイズ）：まずは強制的に「隠す」 */
+br.sp-br {
+  display: none !important;
+}
+
+/* 2. スマホ（640px以下）の時だけ：「隠す」を解除して改行させる */
+@media (max-width: 640px) {
+  br.sp-br {
+    display: block !important;
+  }
+}
+
   </style>
 
   <link rel="stylesheet" href="css/style.css">
@@ -768,14 +798,17 @@
     </a>
   </div> 
 <div class="service-footer">
-    <p class="service-footer__text">
-      レスパイトハウス・ハンズは、この他にも様々な支援を行っています。<br class="u-mobile">
-      お困りごとや目的に合わせて、最適な事業所をお探しいただけます。
-    </p>
-    <a href="finder.html" class="btn btn--finder">
-      あなたに合う支援をさがす
-    </a>
-  </div>
+  <p class="service-footer__text">
+    レスパイトハウス・ハンズは、<br class="sp-br">
+    この他にも様々な支援を行っています。<br class="sp-br">
+    お困りごとや目的に合わせて、<br class="sp-br">
+    最適な事業所をお探しいただけます。
+  </p>
+  
+  <a href="finder.html" class="btn btn--finder">
+    あなたに合う支援をさがす
+  </a>
+</div>
   </section>
       <!-- ▲▲ 追加ここまで ▲▲ -->
 
@@ -1025,5 +1058,3 @@
 
 </body>
 </html>
-
-
