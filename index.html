@@ -5,21 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズは、岩手県一関市で障がい福祉・就労・地域づくりなどの支援を行うNPO法人です。">
   <link rel="canonical" href="https://handsnpo.jp/">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="/favicon.ico">
   <title>特定非営利活動法人レスパイトハウス・ハンズ</title>
 
-  <!-- すぐスクロールを止めて初期ガタつき防止 -->
-  <script>document.documentElement.classList.add('no-scroll');</script>
-
-  <!-- Google Fonts（軽量化） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('no-scroll');</script>
 
   <style>
     /* ===============================
-       A11y: スクリーンリーダー用（検出ノイズ回避）
+       A11y: スクリーンリーダー用
        =============================== */
     .visually-hidden{
       position:absolute !important; left:0 !important; top:0 !important;
@@ -316,17 +314,307 @@
       margin-left:.4rem;
     }
 
+    /* ===============================
+       主な事業のご案内
+       =============================== */
+    .services{
+      padding: clamp(40px, 6vw, 64px) 0;
+    }
+
+    .services__grid{
+      max-width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 0 clamp(12px, 5vw, 24px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card{
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    }
+
+    .service-card__title{
+      margin: 0 0 .6rem 0;
+      font-size: 1.05rem;
+    }
+
+    .service-card__title a{
+      color: #333;
+      text-decoration: none;
+    }
+
+    .service-card__desc{
+      margin: 0;
+      font-size: .95rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .service-card__note{
+      display: inline-block;
+      margin-left: .3em;
+      font-size: .85em;
+      opacity: .7;
+    }
 
 
+.main-services {
+  max-width: 1100px;
+  margin: 3rem auto;
+  
+  /* スマホ・タブレット用の余白（デフォルト） */
+  padding: 0 1.2rem; 
+}
+
+/* ▼▼▼ 追加：PC幅（901px以上）のときだけ余白をゼロにする ▼▼▼ */
+@media (min-width: 901px) {
+  .main-services {
+    padding: 0;
+  }
+}
+
+
+    .main-services h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .service-card {
+      display: block;
+      padding: 1.4rem 1.2rem;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+
+
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    .service-card:hover,
+    .service-card:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #9fbfa8;
+    }
+
+    .service-card {
+      position: relative;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: #d0d0d0;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .service-type {
+      display: inline-block;
+      font-size: 0.8em;
+      color: #444;
+      background: #f2f2f2;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+
+
+
+/* 左線の太さ */
+.service-card::before {
+  width: 6px;
+}
+
+/* ==============================================
+   新しいベン図（修正版）に合わせたカラーパレット
+   ============================================== */
+
+/* 【障がい福祉】の色（黄）：わぁははクラブ */
+/* 新しいベン図の上部（黄色）と一致させます */
+.service-card.type-living::before {
+  background-color: #ffe073; 
+}
+
+/* 【就労支援】の色（緑）：マイルートリンク */
+/* 新しいベン図の右下（緑色）と一致させます */
+/* これでマイルートリンクの実店舗カラーとも合致します */
+.service-card.type-center::before {
+  background-color: #50c3aa; 
+}
+
+/* 【地域づくり】の色（青）：市民活動センター */
+/* ここは変更なし。左側の青色です */
+.service-card.type-community::before {
+  background-color: #587c98; 
+}
+
+/* 【子ども/その他】の色（オレンジ）：リトルハンズ */
+/* 3色と馴染む柔らかいオレンジ */
+.service-card.type-day::before {
+  background-color: #ffb74d; 
+}
+
+/* スマホ表示（幅640px以下）の説明文調整 */
+@media (max-width: 640px) {
+  .service-card .service-note {
+    /* 文字サイズを少し小さくして収まりを良くする */
+    font-size: 0.85rem !important; 
+    
+    /* ほんの少し文字間を詰める（読みづらくならない限界値） */
+    letter-spacing: -0.04em !important;
+    
+    /* 行間は少し広めにして、文字が小さくても読みやすくする */
+    line-height: 1.6 !important; 
+  }
+}
+
+
+/* ============================================
+   「主な事業」下の全サービス誘導エリア
+   ============================================ */
+.service-footer {
+  margin-top: 3rem; /* カードとの距離 */
+  text-align: center;
+}
+
+.service-footer__text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* モバイル用改行（PCでは消す） */
+.u-mobile { display: block; }
+@media (min-width: 768px) {
+  .u-mobile { display: none; }
+}
+
+
+
+/* =========================================
+   【修正版】コントラストを確保した安全なボタン
+   ========================================= */
+
+/* 通常時のスタイル（白背景＋濃い緑枠・文字） */
+.btn.btn--finder {
+  background-color: #ffffff !important;
+  
+  /* ▼▼▼ 変更点：コントラスト比 4.8:1 を確保した濃い緑 ▼▼▼ */
+  color: #2e8c7a !important; 
+  border: 2px solid #2e8c7a !important;
+  
+  font-weight: 700 !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+/* ホバー時のスタイル（濃い緑背景＋白文字） */
+.btn.btn--finder:hover {
+  /* ▼▼▼ 変更点：背景も同じ濃い緑で塗りつぶす ▼▼▼ */
+  background-color: #2e8c7a !important;
+  border-color: #2e8c7a !important;
+  
+  /* 白文字とのコントラスト比は 4.8:1 で安全 */
+  color: #ffffff !important;
+  
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 140, 122, 0.3) !important; /* 影の色も合わせて調整 */
+}
+
+/* ベースのホバー設定（動きと影） */
+.service-card:hover {
+  transform: translateY(-4px); 
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  /* グレー背景は廃止します */
+  /* background-color: #f9f9f9; */ 
+}
+
+/* ▼▼▼ 各カードの色に合わせた「極薄パステル背景」 ▼▼▼ */
+
+/* わぁはは（黄）→ 温かいクリーム色 */
+.service-card.type-living:hover {
+  background-color: #fffdf5; 
+}
+
+/* マイルート（緑）→ 爽やかなミントホワイト */
+.service-card.type-center:hover {
+  background-color: #f0fcf9; 
+}
+
+/* 市民活動（青）→ 知的なアイスブルー */
+.service-card.type-community:hover {
+  background-color: #f4f8fa; 
+}
+
+/* リトルハンズ（オレンジ）→ 優しいピーチホワイト */
+.service-card.type-day:hover {
+  background-color: #fffaf5; 
+}
+
+/* スマホ表示（幅640px以下）の案内文調整 */
+@media (max-width: 640px) {
+  .service-footer__text {
+    /* 1. 単語の途中で改行させない「文節維持」の設定 */
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    
+    /* 2. 文字サイズを少し調整して読みやすく */
+    font-size: 0.9rem !important;
+    line-height: 1.8 !important;
+    
+    /* 3. 左右に少し余白を入れて、画面端ギリギリにならないようにする */
+    padding: 0 1rem !important; 
+  }
+
+  /* もしHTML内に <br> タグが入っている場合、スマホでは無視して自然に流す */
+  .service-footer__text br {
+    display: none !important;
+  }
+}
   </style>
+
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 
 <body class="page-home">
   <a id="top" class="visually-hidden">top</a>
 
   <div id="page">
     <header id="site-header" class="c-header c-hamburger-menu">
-      <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+      <a href="index.html" class="c-header__logo"><img src="img/logo.webp" width="200" height="60" alt="ロゴ"></a>
       <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
       <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
@@ -413,10 +701,20 @@
       <section class="triad-visual" aria-label="三つの視点">
         <div class="triad-visual__inner">
           <figure class="triad-visual__figure">
-            <img src="img/circle2.webp"
-                 alt="障がい福祉・就労支援・地域づくりがつながる図"
-                 class="triad-visual__img"
-                 loading="lazy" decoding="async">
+<img
+  src="img/circle_630.webp"
+  srcset="
+    img/circle_320.webp 320w,
+    img/circle_630.webp 630w,
+    img/circle_960.webp 960w,
+    img/circle_1260.webp 1260w
+  "
+  sizes="(max-width: 900px) 92vw, 630px"
+  alt="障がい福祉・就労支援・地域づくりがつながる図"
+  width="630" height="630"
+  loading="lazy"
+  decoding="async">
+
           </figure>
 
           <div class="triad-copy">
@@ -431,6 +729,51 @@
           </div>
         </div>
       </section>
+
+
+      <!-- ▼▼ ここから追加 ▼▼ -->
+<section class="main-services">
+  <h2>主な事業</h2>
+
+  <div class="service-grid">
+    <a href="wahaha.html" class="service-card type-living">
+      <span class="service-type">生活介護事業所</span>
+      <h3>わぁははクラブ</h3>
+      <p class="service-note">
+        利用者さんの生きがいとなる日中活動を支援します。
+      </p>
+    </a>
+
+    <a href="myroot.html" class="service-card type-center">
+      <span class="service-type">障がい者就業・生活支援センター</span>
+      <h3>マイルートリンク</h3>
+      <p class="service-note">仕事や暮らしに関する、あらゆる悩みに対応します。<br><br>※受託事業（岩手労働局）</p>
+    </a>
+
+    <a href="center.html" class="service-card type-community">
+      <span class="service-type">市民活動支援</span>
+      <h3>いちのせき市民活動センター</h3>
+      <p class="service-note">地域づくりの拠点として、市民活動を広く支えます。</p>
+    </a>
+
+    <a href="little.html" class="service-card type-day">
+      <span class="service-type">放課後等デイサービス</span>
+      <h3>リトルハンズ</h3>
+      <p class="service-note">お子さんが安心して過ごせる場を提供します。</p>
+    </a>
+  </div> 
+<div class="service-footer">
+    <p class="service-footer__text">
+      レスパイトハウス・ハンズは、この他にも様々な支援を行っています。<br class="u-mobile">
+      お困りごとや目的に合わせて、最適な事業所をお探しいただけます。
+    </p>
+    <a href="finder.html" class="btn btn--finder">
+      あなたに合う支援をさがす
+    </a>
+  </div>
+  </section>
+      <!-- ▲▲ 追加ここまで ▲▲ -->
+
 
       <section class="news" aria-labelledby="news-title">
         <div class="section__header">
