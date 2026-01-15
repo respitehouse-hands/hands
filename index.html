@@ -1003,17 +1003,36 @@ br.sp-br {
     <img src="img/logo.webp" alt="">
   </div>
 
+
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 調整つまみ
-    const fadeInMs   = 80;     // ロゴが見えるまで
-    const minHoldMs  = 1200;   // ロゴを“最低”キープする時間
-    const fadeOutMs  = 700;    // 消える時間（CSSと一致）
-    const maxWaitLoad = 1200;  // load待ちの最大追加時間（待ちすぎ防止）
+    // ▼▼▼ 設定 ▼▼▼
+    const fadeInMs    = 80;    // ロゴが見えるまで
+    const minHoldMs   = 1200;  // ロゴを“最低”キープする時間
+    const fadeOutMs   = 700;   // 消える時間（CSSと一致）
+    const maxWaitLoad = 1200;  // load待ちの最大追加時間
 
-    const html   = document.documentElement;
+    // ▼▼▼ セッションストレージで「初回かどうか」を判定 ▼▼▼
+    const key = 'hands_splash_seen'; // 合言葉
     const splash = document.getElementById('splash');
+    const html = document.documentElement;
+
     if (!splash) return;
+
+    // もし「すでに見たよ（true）」という記録があれば、アニメなしで終了
+    if (sessionStorage.getItem(key)) {
+      splash.style.display = 'none'; // 即座に隠す
+      splash.classList.add('splash-hide');
+      document.body.classList.add('page-show');
+      html.classList.remove('no-scroll', 'no-scrollbar');
+      return; // ここで処理を終える
+    }
+
+    // --- 以下は「初めての人（記録がない人）」への処理 ---
+
+    // 「今見たよ」と記録に残す（ブラウザを閉じるまで有効）
+    sessionStorage.setItem(key, 'true');
 
     // 最初はスクロール禁止 + バー非表示
     html.classList.add('no-scroll', 'no-scrollbar');
@@ -1024,12 +1043,12 @@ br.sp-br {
       document.body.classList.add('page-show');
     });
 
-    // 「最低表示時間」が過ぎるのを待つ
+    // 「最低表示時間」を待つ
     const minHoldPromise = new Promise(resolve => {
       setTimeout(resolve, fadeInMs + minHoldMs);
     });
 
-    // 「load完了」か「最大待機」を待つ（どちらか早い方）
+    // 「load完了」か「最大待機」を待つ
     const loadOrTimeoutPromise = new Promise(resolve => {
       const done = () => resolve();
       if (document.readyState === 'complete') return done();
@@ -1037,14 +1056,11 @@ br.sp-br {
       setTimeout(done, maxWaitLoad);
     });
 
+    // 両方終わったらフェードアウト
     Promise.all([minHoldPromise, loadOrTimeoutPromise]).then(() => {
-      // フェードアウト開始
       splash.classList.add('splash-hide');
-
-      // ここでスクロールだけ解放（バーはまだ隠す）
-      html.classList.remove('no-scroll');
-
-      // フェードアウト完了後に完全撤去 + バー復帰
+      html.classList.remove('no-scroll'); // スクロール解禁
+      
       setTimeout(() => {
         splash.style.display = 'none';
         html.classList.remove('no-scrollbar');
@@ -1052,7 +1068,6 @@ br.sp-br {
     });
   });
 </script>
-
 
 
 
