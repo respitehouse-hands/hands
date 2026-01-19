@@ -1,31 +1,28 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの、支援内容やご利用方法に関するよくある質問をまとめたページです。">
-  
+   
   <title>FAQ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
 
-  <!-- 共通CSS -->
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Google Fonts（他ページと統一） -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <style>
     :root{
@@ -47,13 +44,12 @@
       --faq-shadow-sm: 0 2px 10px #0000000a;
     }
 
-    /* ====== 重要：ハンバーガーの透明オーバーレイがクリックを奪うのを防ぐ ======
-       input#hamburger の直後が .c-hamburger-menu__bg なので隣接セレクタで確実に制御 */
+    /* ====== 重要：ハンバーガーの透明オーバーレイがクリックを奪うのを防ぐ ====== */
     #hamburger:not(:checked) + .c-hamburger-menu__bg{
-      pointer-events: none;   /* 閉じてる時はクリックを通す */
+      pointer-events: none;
     }
     #hamburger:checked + .c-hamburger-menu__bg{
-      pointer-events: auto;   /* 開いてる時だけ背景タップで閉じられる */
+      pointer-events: auto;
     }
 
     /* ====== レイアウト ====== */
@@ -204,7 +200,7 @@
     .faq2-content{ min-width:0; position:relative; z-index:1; }
 
     .faq2-section{
-      margin: 0 0 18px;
+      margin: 0 0 32px;
       scroll-margin-top: 120px;
     }
     .faq2-h2{
@@ -234,14 +230,14 @@
       background: var(--faq-surface);
       box-shadow: var(--faq-shadow-sm);
       overflow:hidden;
-      position: relative; /* ← 重要：中のabsolute要素の基準を固定 */
+      position: relative;
     }
 
     .faq2-toggle{
       position:absolute;
       opacity:0;
       pointer-events:none;
-      inset: 0 auto auto 0; /* 位置を確定（ブラウザ差の安定化） */
+      inset: 0 auto auto 0;
       width:1px; height:1px;
     }
 
@@ -318,7 +314,7 @@
       border-radius: 14px;
     }
 
-    .anchor{ position:relative; }
+    .anchor{ position:relative; pointer-events: none; }
     .anchor::before{
       content:""; display:block; height:120px; margin-top:-120px; visibility:hidden;
     }
@@ -335,193 +331,94 @@
       .faq2-q{ padding: 14px 14px; }
       .faq2-a{ padding: 0 14px 14px; }
       .anchor::before{ height:96px; margin-top:-96px; }
+      .faq2-qtext{ font-size: 0.9rem; }
     }
     @media (prefers-reduced-motion: reduce){
       .faq2-caret{ transition:none; }
     }
 
-/* ハンバーガー背景オーバーレイ：閉じてる時はクリックを通す */
-#site-header label.c-hamburger-menu__bg{
-  pointer-events: none;
-  display: none;
-}
+    /* ハンバーガー背景オーバーレイ */
+    #site-header label.c-hamburger-menu__bg{
+      pointer-events: none;
+      display: none;
+    }
+    #site-header #hamburger:checked ~ label.c-hamburger-menu__bg{
+      display: block;
+      pointer-events: auto;
+    }
 
-/* 開いてる時だけ有効化 */
-#site-header #hamburger:checked ~ label.c-hamburger-menu__bg{
-  display: block;
-  pointer-events: auto;
-}
+    /* ヘッダー：サブメニューの選択色を白系に */
+    .c-header .submenu{ background: #ffffff; }
+    .c-header .submenu a{ color: #17222f; }
+    .c-header .submenu a:hover,
+    .c-header .submenu a:focus-visible{
+      background: #f5f7f6;
+      color: #17222f;
+    }
+    .c-header .submenu a[aria-current="page"]{
+      background: #ffffff;
+      font-weight: 500;
+    }
 
-.anchor{
-  pointer-events: none;
-}
+    /* 内部リンク用ボタン */
+    .faq-action-row{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: .9rem;
+    }
+    .faq-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 10px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      text-align: center;
+      line-height: 1.4;
+      transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .faq-btn--outline{
+      background: #ffffff;
+      color: #123567;
+      border: 1.5px solid #c7dbff;
+    }
+    .faq-btn--outline:hover{
+      background: #f5f8ff;
+      border-color: #9bbcff;
+      box-shadow: 0 4px 14px rgba(76,140,245,.15);
+    }
+    @media (max-width: 520px){
+      .faq-action-row{ grid-template-columns: 1fr; }
+    }
 
-.anchor::before{
-  height: 0px;
-  margin-top: 0px;
-}
+    /* チップのリンクスタイル */
+    .faq2-chip a{
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .55rem .85rem;
+      margin: -.55rem -.85rem;
+      border-radius: 999px;
+      color: inherit;
+      text-decoration: none;
+    }
+    .faq2-chip:has(a:hover){
+      background: #ffffff;
+      border-color: color-mix(in oklab, var(--unit-brand) 45%, var(--faq-line));
+      box-shadow: 0 8px 22px rgba(76,140,245,.22), 0 0 0 1px color-mix(in oklab, var(--unit-brand) 22%, transparent);
+      transform: translateY(-1px);
+    }
+    .faq2-chip:has(a:hover) svg{
+      color: var(--unit-brand);
+      opacity: 1;
+    }
 
-
-/* ==============================
-   ヘッダー：サブメニューの選択色を白系に
-   ============================== */
-
-/* サブメニュー全体 */
-.c-header .submenu{
-  background: #ffffff;
-}
-
-/* サブメニューのリンク */
-.c-header .submenu a{
-  color: #17222f;
-}
-
-/* ホバー・フォーカス時（←ここが本命） */
-.c-header .submenu a:hover,
-.c-header .submenu a:focus-visible{
-  background: #f5f7f6;   /* ほぼ白 */
-  color: #17222f;
-}
-
-/* 現在ページ */
-.c-header .submenu a[aria-current="page"]{
-  background: #ffffff;
-  font-weight: 500;
-}
-
-
-/* ==== 強制テスト：サブメニュー選択色 ==== */
-#site-header .submenu a{
-  background: #fff !important;
-}
-
-#site-header .submenu a:hover,
-#site-header .submenu a:focus-visible{
-  background: #eef5ff !important;
-  color: #123567 !important;
-}
-
-.faq-action{
-  display: grid;
-  gap: 12px;
-  margin-top: 1rem;
-}
-
-.faq-btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 16px;
-  border-radius: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-  line-height: 1.4;
-  transition: background .15s ease, box-shadow .15s ease, transform .05s ease;
-}
-
-.faq-action-row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: .9rem;
-}
-
-/* ボタン共通 */
-.faq-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 12px 10px;   /* ← 高さを下げた */
-  border-radius: 14px;  /* ← 少しだけシャープに */
-
-  font-weight: 600;     /* ← 圧を下げる */
-  font-size: .95rem;
-  text-decoration: none;
-  text-align: center;
-
-  transition:
-    background .15s ease,
-    border-color .15s ease,
-    box-shadow .15s ease;
-}
-
-/* 白＋青枠 */
-.faq-btn--outline{
-  background: #ffffff;
-  color: #123567;
-  border: 1.5px solid #c7dbff;
-}
-
-/* hover */
-.faq-btn--outline:hover{
-  background: #f5f8ff;
-  border-color: #9bbcff;
-  box-shadow: 0 4px 14px rgba(76,140,245,.15);
-}
-
-/* スマホ */
-@media (max-width: 520px){
-  .faq-action-row{
-    grid-template-columns: 1fr;
-  }
-}
-
-.faq2-chip a{
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-
-  padding: .55rem .85rem;
-  margin: -.55rem -.85rem; /* ← 親のpaddingを相殺 */
-  border-radius: 999px;
-
-  color: inherit;
-  text-decoration: none;
-}
-
-/* チップ全体がホバーされたとき */
-.faq2-chip:has(a:hover){
-  background: color-mix(in oklab, var(--unit-brand) 8%, #fff);
-  box-shadow: 0 6px 18px rgba(76,140,245,.18);
-  transform: translateY(-1px);
-}
-
-.faq2-chip a:hover{
-  text-decoration: none;
-}
-
-.faq2-chip:has(a:hover){
-  background: #ffffff; /* ← 青くしない */
-  border-color: color-mix(in oklab, var(--unit-brand) 45%, var(--faq-line));
-  box-shadow:
-    0 8px 22px rgba(76,140,245,.22),
-    0 0 0 1px color-mix(in oklab, var(--unit-brand) 22%, transparent);
-  transform: translateY(-1px);
-}
-
-.faq2-chip:has(a:hover) svg{
-  color: var(--unit-brand);
-  opacity: 1;
-}
-
-.faq2-section{
-  margin: 0 0 32px; /* ← 18px → 32px */
-}
-
-body.page-faq{
-  background: color-mix(in oklab, var(--mint) 20%, #fff);
-}
-
-@media (max-width: 520px){
-  .faq2-qtext{
-    font-size: 0.9rem;
-  }
-}
-
-
-
+    body.page-faq{
+      background: color-mix(in oklab, #eef5ff 20%, #fff);
+    }
   </style>
 </head>
 
@@ -529,7 +426,6 @@ body.page-faq{
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- 共通ヘッダー（そのまま） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -588,7 +484,6 @@ body.page-faq{
     </label>
   </header>
 
-  <!-- メイン -->
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="page-title">
 
@@ -628,7 +523,6 @@ body.page-faq{
       </div>
 
       <div class="faq2-grid">
-        <!-- 目次 -->
         <aside class="faq2-toc" aria-label="このページの内容">
           <div class="faq2-toc__head">
             <p class="faq2-toc__title">このページの内容</p>
@@ -639,25 +533,16 @@ body.page-faq{
             <li><a href="#cost"><span class="faq2-dot" aria-hidden="true"></span>費用</a></li>
             <li><a href="#tour"><span class="faq2-dot" aria-hidden="true"></span>見学</a></li>
             <li><a href="#flow"><span class="faq2-dot" aria-hidden="true"></span>ご利用の流れ</a></li>
-         
             <li><a href="#privacy"><span class="faq2-dot" aria-hidden="true"></span>個人情報</a></li>
-        
           </ul>
         </aside>
 
-        <!-- FAQ本体 -->
         <div class="faq2-content">
-
-<p class="faq2-hint" role="note">
-  ※ 質問をクリック（タップ）すると、回答が表示されます。
-</p>
+          <p class="faq2-hint" role="note">※ 質問をクリック（タップ）すると、回答が表示されます。</p>
           
-          <!-- はじめの相談 -->
           <div class="anchor" id="start" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-start">
             <h2 id="sec-start" class="faq2-h2">はじめの相談</h2>
-
-
 
             <div class="faq2-list" role="list">
               <div class="faq2-item" role="listitem">
@@ -674,21 +559,10 @@ body.page-faq{
                     まずは <a href="finder.html" target="_blank"><b>あなたに合う支援をさがす</b></a>から分野をお選びいただき、お探しの事業所ページをご覧ください。各事業所の概要を確認いただけます。
                     それでも迷う場合は、お電話で状況を伺い、必要に応じて担当にお繋ぎします。
                   </p>
-<div class="faq-action-row">
-<a href="finder.html"
-   class="faq-btn faq-btn--outline"
-   target="_blank"
-   rel="noopener">
-  “あなたに合う支援をさがす”ページへ
-</a>
-
-
-  <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">
-    電話で相談する
-  </a>
-</div>
-
-
+                  <div class="faq-action-row">
+                    <a href="finder.html" class="faq-btn faq-btn--outline" target="_blank" rel="noopener">“あなたに合う支援をさがす”ページへ</a>
+                    <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">電話で相談する</a>
+                  </div>
                 </div>
               </div>
 
@@ -739,21 +613,14 @@ body.page-faq{
                     はい、事業内容によっては可能です（例：障がい者就業に関する相談など）。
                     内容を伺った上で担当にお繋ぎする形になりますので、まずはお問い合わせください。
                   </p>
-<div class="faq-action-row">
-<a href="contact.html"
-   class="faq-btn faq-btn--outline"
-   target="_blank"
-   rel="noopener">
-  お問い合わせフォームへ
-</a>
-</div>
-
+                  <div class="faq-action-row">
+                    <a href="contact.html" class="faq-btn faq-btn--outline" target="_blank" rel="noopener">お問い合わせフォームへ</a>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- 対象・条件 -->
           <div class="anchor" id="eligibility" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-eligibility">
             <h2 id="sec-eligibility" class="faq2-h2">対象・条件</h2>
@@ -772,14 +639,9 @@ body.page-faq{
                   <p>
                     はい、相談できます。手帳のことや受けられる福祉サービスについて不安がある場合は、まず<a href="soudan.html" target="_blank"><b>「ハンズ相談支援事業所」</b></a>へご相談ください。状況に応じて、手続きの流れや利用できる制度について一緒に整理します。
                   </p>
-<div class="faq-action-row">
-<a href="soudan.html"
-   class="faq-btn faq-btn--outline"
-   target="_blank"
-   rel="noopener">
-  ハンズ相談支援事業所ページへ
-</a>
-</div>
+                  <div class="faq-action-row">
+                    <a href="soudan.html" class="faq-btn faq-btn--outline" target="_blank" rel="noopener">ハンズ相談支援事業所ページへ</a>
+                  </div>
                 </div>
               </div>
 
@@ -802,7 +664,6 @@ body.page-faq{
             </div>
           </section>
 
-          <!-- 費用 -->
           <div class="anchor" id="cost" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-cost">
             <h2 id="sec-cost" class="faq2-h2">費用</h2>
@@ -822,13 +683,11 @@ body.page-faq{
                     利用者負担の有無や金額は、制度・サービス内容・状況によって異なります。まずは無料相談で状況を伺い、
                     必要な支援や手続きの見通しを一緒に確認します。
                   </p>
-                 
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- 見学 -->
           <div class="anchor" id="tour" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-tour">
             <h2 id="sec-tour" class="faq2-h2">見学</h2>
@@ -848,28 +707,15 @@ body.page-faq{
                     はい、見学可能です。<strong>事前に日程調整が必要</strong>になりますので
                     「今日すぐに見学」という形は難しい場合があります。まずはご連絡ください。
                   </p>
-
-<div class="faq-action-row">
-<a href="contact.html"
-   class="faq-btn faq-btn--outline"
-   target="_blank"
-   rel="noopener">
-  問い合わせフォーム
-</a>
-
-
-  <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">
-    電話で相談する
-  </a>
-</div>
-
-
+                  <div class="faq-action-row">
+                    <a href="contact.html" class="faq-btn faq-btn--outline" target="_blank" rel="noopener">問い合わせフォーム</a>
+                    <a href="tel:0191-31-5720" class="faq-btn faq-btn--outline">電話で相談する</a>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- 流れ -->
           <div class="anchor" id="flow" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-flow">
             <h2 id="sec-flow" class="faq2-h2">ご相談〜利用開始までの流れ</h2>
@@ -900,9 +746,6 @@ body.page-faq{
             </div>
           </section>
 
-
-
-          <!-- 個人情報 -->
           <div class="anchor" id="privacy" aria-hidden="true"></div>
           <section class="faq2-section" aria-labelledby="sec-privacy">
             <h2 id="sec-privacy" class="faq2-h2">個人情報</h2>
@@ -927,14 +770,12 @@ body.page-faq{
             </div>
           </section>
 
-         
         </div>
       </div>
 
     </section>
   </main>
 
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -943,7 +784,6 @@ body.page-faq{
     </span>
   </button>
 
-  <!-- 共通フッター（そのまま） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -959,7 +799,7 @@ body.page-faq{
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉2-6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -1014,10 +854,8 @@ body.page-faq{
   </footer>
 </div>
 
-<!-- 共通JS（必要なら。FAQのクリックは下の保険が勝つ） -->
 <script src="js/site.js"></script>
 
-<!-- FAQ：クリックがpreventDefaultされても必ずトグルする保険（captureで先に処理） -->
 <script>
 (() => {
   const toggleByLabel = (label) => {
@@ -1058,7 +896,6 @@ body.page-faq{
 })();
 </script>
 
-<!-- FAQ構造化データ（SEO）※ページ内のQ&Aと一致 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1150,7 +987,3 @@ body.page-faq{
 
 </body>
 </html>
-
-
-
-
