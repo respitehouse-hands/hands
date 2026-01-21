@@ -6,21 +6,21 @@
   <title>あなたに合う支援をさがす | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズの支援を分野から探せるページです。障がい福祉、就労支援、地域づくりの中から目的に合わせてご案内します。">
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css">
   
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <style>
     :root{
@@ -79,7 +79,7 @@
     @media (min-width:760px){ .fd-subgrid{ grid-template-columns:repeat(2,1fr); } }
     @media (min-width:1080px){ .fd-subgrid{ grid-template-columns:repeat(3,1fr); } }
 
-    /* STEP2カード：中身ごとアンカーにして全体クリック */
+    /* STEP2カード */
     .fd-item{
       background:#fff; border:1px solid var(--fd-line); border-radius:18px; overflow:hidden;
       box-shadow:var(--fd-shadow); transition:transform .12s ease, border-color .2s ease, box-shadow .2s ease;
@@ -88,7 +88,7 @@
     .fd-cardlink{
       display:block; padding:1rem; text-decoration:none; color:inherit;
     }
-    .fd-cardlink h3{ font:700 1.05rem/1.35 "Zen Maru Gothic","Noto Sans JP"; margin:.2rem 0 .2rem; color:var(--fd-ink); }
+    .fd-cardlink h3{ font:700 1.05rem/1.35 "Zen Maru Gothic","Noto Sans JP"; margin:.2rem 0 1.2rem; color:var(--fd-ink); }
     .fd-cardlink p{ color:#475569; margin:0 0 .7rem; }
     .fd-cta{
       margin-top:auto; display:inline-flex; align-items:center; gap:.4rem;
@@ -100,7 +100,7 @@
     details.fd-brief summary::-webkit-details-marker{ display:none; }
     details.fd-brief[open]{ background:#e9f6f3; }
 
-    /* 相談CTA：直下の余白も含めページ背景に統一 */
+    /* 相談CTA */
     .fd-help{ margin:1.6rem 0 2rem; background: var(--fd-bg); }
     .fd-help__inner{
       background:#fff; color:#0b3b36; border:1px solid #dbe3ea; border-radius:16px;
@@ -126,16 +126,31 @@
       .fd-call,.fd-mail{ width:100%; }
     }
 
+    /* 戻るボタン */
+    :root{
+      --fd-back-strong-bg: #10b981;
+      --fd-back-strong-ink: #fff;
+    }
     .fd-back{
       display:inline-flex; align-items:center; gap:.5rem;
       padding:.55rem .9rem; font-weight:700; color:#475569; background:#fff;
       border:1px solid #e5e7eb; border-radius:12px; text-decoration:none;
-      box-shadow:0 1px 0 #00000008; transition:border-color .2s ease, background .2s ease, color .2s ease;
+      box-shadow:0 1px 0 #00000008; 
+      transition: color .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
     }
-    .fd-back svg{ width:16px; height:16px; transition: transform .15s ease; }
-    .fd-back:hover{ background:#f9fafb; border-color:#d1d5db; color:#334155; }
-    .fd-back:hover svg{ transform: translateX(-2px); }
-    .fd-back:focus-visible{ outline:2px solid #94a3b8; outline-offset:2px; }
+    .fd-back svg{ width:16px; height:16px; transition: transform .15s ease, color .15s ease; }
+    .fd-back:hover, .fd-back:focus-visible{
+      background: var(--fd-back-strong-bg);
+      color: var(--fd-back-strong-ink);
+      border-color: var(--fd-back-strong-bg);
+      box-shadow: 0 6px 16px rgba(16,185,129,.25);
+      outline:none;
+    }
+    .fd-back:hover svg, .fd-back:focus-visible svg{
+      color: currentColor;
+      transform: translateX(-2px);
+    }
+    .fd-back:active{ transform: translateY(1px); box-shadow: 0 3px 10px rgba(16,185,129,.25); }
 
     .svc-mark{
       --accent:#16a34a;
@@ -149,88 +164,14 @@
     .svc--work{ --accent:#f59e0b; }
     .svc--community{ --accent: var(--community-brand); }
 
-.fd-cardlink h3 {
-
-
-margin: .2rem 0 1.2rem;
-
-}
-
-/* ← 分野を選び直す：ホバー時をはっきり */
-:root{
-  --fd-back-hover-bg: color-mix(in oklab, var(--fd-accent) 16%, #fff);
-  --fd-back-hover-border: color-mix(in oklab, var(--fd-accent) 42%, #fff);
-  --fd-back-hover-ink: color-mix(in oklab, var(--fd-accent) 72%, #0f172a);
-}
-
-/* 既存の .fd-back はそのまま。以下を追記（上書き） */
-.fd-back:hover,
-.fd-back:focus-visible{
-  background: var(--fd-back-hover-bg);
-  border-color: var(--fd-back-hover-border);
-  color: var(--fd-back-hover-ink);
-}
-
-/* 矢印も一緒に色と動き */
-.fd-back:hover svg,
-.fd-back:focus-visible svg{
-  transform: translateX(-2px);
-  color: currentColor;
-}
-
-/* アニメ控えめ派への配慮 */
-@media (prefers-reduced-motion: reduce){
-  .fd-back svg{ transition: none; }
-}
-
-/* ← 分野を選び直す：ホバーで“電話ボタン風”に反転 */
-:root{
-  --fd-back-strong-bg: #10b981;   /* コールボタンと同じ緑 */
-  --fd-back-strong-ink: #fff;     /* 文字・アイコンは白 */
-}
-
-/* 通常は今までどおり薄め */
-.fd-back{
-  transition:
-    color .15s ease,
-    background-color .15s ease,
-    border-color .15s ease,
-    box-shadow .15s ease;
-}
-
-/* ホバー／フォーカス時に反転（背景=緑・文字=白） */
-.fd-back:hover,
-.fd-back:focus-visible{
-  background: var(--fd-back-strong-bg);
-  color: var(--fd-back-strong-ink);
-  border-color: var(--fd-back-strong-bg);
-  box-shadow: 0 6px 16px rgba(16,185,129,.25);
-  text-decoration: none;
-}
-
-/* 矢印アイコンも白に＆ほんの少しだけ動く */
-.fd-back svg{
-  transition: transform .15s ease, color .15s ease;
-}
-.fd-back:hover svg,
-.fd-back:focus-visible svg{
-  color: currentColor;         /* = 白 */
-  transform: translateX(-2px); /* 左へ2px（戻る感） */
-}
-
-/* クリック時の押し込み感 */
-.fd-back:active{
-  transform: translateY(1px);
-  box-shadow: 0 3px 10px rgba(16,185,129,.25);
-}
-
-/* 動きが苦手な人へ配慮 */
-@media (prefers-reduced-motion: reduce){
-  .fd-back,
-  .fd-back svg{ transition: none; }
-}
-
-
+    /* ============================================
+       【重要】ヘッダーのサブメニューを常に「白」にする
+       ============================================ */
+    #site-header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
+    }
   </style>
 </head>
 
@@ -238,7 +179,6 @@ margin: .2rem 0 1.2rem;
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -260,13 +200,13 @@ margin: .2rem 0 1.2rem;
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -277,12 +217,12 @@ margin: .2rem 0 1.2rem;
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html" aria-current="page">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -317,7 +257,6 @@ margin: .2rem 0 1.2rem;
         </div>
       </header>
 
-      <!-- STEP 1 -->
       <section id="step1" class="fd-cats" aria-label="分野から選ぶ">
         <article class="fd-cat" data-cat="npo">
           <div class="fd-cat__icon"><span class="svc-mark"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
@@ -356,7 +295,6 @@ margin: .2rem 0 1.2rem;
         </article>
       </section>
 
-      <!-- STEP 2：障がい福祉 -->
       <section id="sub-npo" class="fd-sub" aria-label="障がい福祉の選択肢">
         <div class="fd-sub__head">
           <h2 class="fd-sub__title">障がい福祉</h2>
@@ -404,7 +342,6 @@ margin: .2rem 0 1.2rem;
         </div>
       </section>
 
-      <!-- STEP 2：就労支援 -->
       <section id="sub-work" class="fd-sub" aria-label="就労支援の選択肢">
         <div class="fd-sub__head">
           <h2 class="fd-sub__title">就労支援</h2>
@@ -438,7 +375,6 @@ margin: .2rem 0 1.2rem;
         </div>
       </section>
 
-      <!-- STEP 2：地域づくり -->
       <section id="sub-community" class="fd-sub" aria-label="地域づくりの選択肢">
         <div class="fd-sub__head">
           <h2 class="fd-sub__title">地域づくり</h2>
@@ -452,14 +388,12 @@ margin: .2rem 0 1.2rem;
             <a class="fd-cardlink" href="citizen.html">
               <h3>市民活動の相談・協働支援</h3>
               <p>いちのせき市民活動センター</p>
- 
               <span class="fd-cta">詳しくみる →</span>
             </a>
           </article>
         </div>
       </section>
 
-      <!-- 相談CTA（白箱／周囲はページ色） -->
       <div class="fd-help" aria-label="お急ぎの方はこちら">
         <div class="fd-help__inner">
           <div class="fd-help__text">
@@ -498,7 +432,7 @@ margin: .2rem 0 1.2rem;
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
@@ -555,22 +489,12 @@ margin: .2rem 0 1.2rem;
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const html = document.documentElement;
-    document.body.classList.add('page-show');
-    html.classList.remove('no-scroll');
-    html.style.overflowY = 'auto';
-    const splash = document.getElementById('splash');
-    if (splash) splash.remove();
-  });
-</script>
+<script src="js/site.js"></script>
 
 <script>
 (function(){
@@ -610,24 +534,5 @@ margin: .2rem 0 1.2rem;
 })();
 </script>
 
-<script>
-(function(){
-  const btn = document.getElementById('backToTop'); if(!btn) return;
-  const showAt = 200, ring = btn.querySelector('.btt__ring');
-  const update = () => {
-    const y = window.scrollY || document.documentElement.scrollTop;
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const ratio = docH > 0 ? Math.min(y / docH, 1) : 0;
-    ring && ring.style.setProperty('--btt-progress', Math.round(ratio * 360)+'deg');
-    btn.classList.toggle('is-visible', y > showAt);
-  };
-  btn.addEventListener('click', e=>{ e.preventDefault(); window.scrollTo({ top:0, behavior:'smooth' }); });
-  window.addEventListener('scroll', update, { passive:true });
-  window.addEventListener('resize', update); update();
-})();
-</script>
 </body>
 </html>
-
-
-
