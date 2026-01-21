@@ -419,6 +419,16 @@
     body.page-faq{
       background: color-mix(in oklab, #eef5ff 20%, #fff);
     }
+
+    /* ▼▼▼ 追加修正：サブメニュー内の文字の太さをリセット ▼▼▼ */
+    /* 親メニュー(is-current)の影響で太字になるのを防ぐ */
+    #site-header .submenu a {
+      font-weight: 500 !important; /* 標準の太さ */
+    }
+    /* 現在地だけ太字にする */
+    #site-header .submenu a[aria-current="page"] {
+      font-weight: 700 !important;
+    }
   </style>
 </head>
 
@@ -469,6 +479,7 @@
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html" aria-current="page">FAQ</a></li>
         </ul>
