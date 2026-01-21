@@ -5,24 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>いちのせき若者サポートステーション | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="いちのせき若者サポートステーションの概要と外部リンクをまとめたページです。支援内容や詳細は公式サイトをご確認ください。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- ページ専用CSS（軽量リンクハブ） -->
   <style>
     :root{
       --unit-brand:#2563eb;
@@ -141,9 +142,10 @@
 
     /* 色統一（いちさぽ） */
     .page-ichisapo #site-header .submenu{
-      background:#f5f8ff;
-      border:1px solid color-mix(in oklab, var(--unit-brand) 32%, #fff);
-      box-shadow:0 10px 26px rgba(37,99,235,.10);
+      /* サブメニューは白背景・グレー枠線で統一 */
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
     }
     .page-ichisapo #site-header .submenu a{ color:#1f2937; }
     .page-ichisapo #site-header .submenu a:hover,
@@ -178,30 +180,14 @@
     .page-ichisapo .breadcrumb a:hover{ text-decoration:underline; }
     .page-ichisapo .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
 
-.unit-hero ul > li {
+    /* ===== BackToTop：wahahaと同デザインで色だけichisapoの青に ===== */
+    :root{
+      --btt-ring-active:#2563eb;  /* リングの色（青） */
+      --btt-center:#eef3ff;       /* 中央の淡色 */
+    }
 
-margin: 0;
-
-}
-
-/* ===== BackToTop：wahahaと同デザインで色だけichisapoの青に ===== */
-:root{
-  --btt-ring-active:#2563eb;  /* リングの色（青） */
-  --btt-center:#eef3ff;       /* 中央の淡色 */
-}
-
-/* ラベルや矢印のインク色（共通CSSで参照している場合） */
-body.page-ichisapo{ --btt-ink:#0b2b6b; }
-
-/* ================================
-   ichisapo.html：サブメニュー最終指定
-   ================================ */
-body .submenu{
-  background: #fff !important;
-  border: 1px solid #e5e7eb !important;
-  box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
-}
-
+    /* ラベルや矢印のインク色 */
+    body.page-ichisapo{ --btt-ink:#0b2b6b; }
 
   </style>
 </head>
@@ -210,7 +196,6 @@ body .submenu{
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -238,23 +223,23 @@ body .submenu{
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
-          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="ichisapo.html" aria-current="page">若者サポートステーション</a></li>
           <li><a href="jobcafe.html">ジョブカフェ</a></li>
           <li><a href="citizen.html">市民活動センター</a></li>
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -270,7 +255,6 @@ body .submenu{
     </label>
   </header>
 
-  <!-- パンくず -->
   <nav class="breadcrumb" aria-label="パンくず">
     <ol>
       <li><a href="index.html">TOP</a></li>
@@ -279,12 +263,10 @@ body .submenu{
     </ol>
   </nav>
 
-  <!-- メイン -->
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="title">
 
 
-      <!-- ヒーロー（アイコン＋タイトル＋リード＝ひとかたまり / その下にチェック） -->
       <section id="about" class="unit-hero" aria-labelledby="unit-hero-title">
         <div class="unit-hero__inner">
           <div class="unit-hero__head">
@@ -301,7 +283,6 @@ body .submenu{
             </div>
           </div>
 
-          <!-- “ひとかたまり”の下に置くチェック付き -->
           <div class="unit-hero__points">
             <ul class="points">
               <li>ご本人・ご家族・関係機関、どなたでも相談OK。</li>
@@ -310,7 +291,6 @@ body .submenu{
             </ul>
           </div>
 
-          <!-- 公式リンク（従来どおり） -->
           <div class="links" id="links" aria-label="公式リンク">
             <a class="linkcard" href="https://ichisapo.jp/" target="_blank" rel="noopener noreferrer external">
               <span class="linkcard__icon" aria-hidden="true">
@@ -327,7 +307,6 @@ body .submenu{
         </div>
       </section>
 
-      <!-- 注意書き -->
       <section id="note" class="section" aria-labelledby="note-title">
         <h2 id="note-title" class="section__title">ご確認ください</h2>
         <p class="small">
@@ -338,7 +317,6 @@ body .submenu{
     </section>
   </main>
 
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -347,7 +325,6 @@ body .submenu{
     </span>
   </button>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -356,14 +333,14 @@ body .submenu{
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -423,8 +400,3 @@ body .submenu{
 <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
-
-
