@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>アクセシビリティ方針 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズのアクセシビリティ方針です。すべての方が安心して情報にアクセスできるよう、読みやすさや操作性に配慮したウェブサイトづくりに取り組んでいます。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <link rel="stylesheet" href="css/style.css" />
-  <!-- サブページはトップのスプラッシュ／フェードを無効化（表示保証） -->
+  
   <style>
     body{opacity:1!important}
     #splash{display:none!important}
 
-/* ▼▼▼ パンくず修正：access.htmlと統一 ▼▼▼ */
+    /* ▼▼▼ パンくず修正：access.htmlと統一 ▼▼▼ */
     .breadcrumb{ 
       max-width: min(1100px, 92vw);
       margin: 0 auto 1rem;      /* 上のマージンを削除、下だけ確保 */
@@ -47,9 +47,7 @@
       color: #9ca3af; 
       margin: 0 .25rem 0 .2rem; 
     }
-    /* 「後ろ」につける古い記述は削除 */
     .breadcrumb a{ text-decoration: none; color: #1d4ed8; }
-    /* ▲▲▲ 修正ここまで ▲▲▲ */
 
     .policy{max-width:min(1100px,92vw);margin: clamp(16px,4vw,40px) auto; padding: 0 2%;}
     .policy__title{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;font-size:clamp(22px,3.6vw,32px);line-height:1.3;margin:.2em 0 .6em}
@@ -60,8 +58,12 @@
     .policy__contact a{text-decoration:none}
     .policy__meta{color:#66776f;font-size:.95rem;margin-top:1.2em}
 
-
-
+    /* ▼▼▼ 追加修正：ドロップダウンメニューの背景を白にする ▼▼▼ */
+    #site-header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
+    }
   </style>
 </head>
 
@@ -70,7 +72,6 @@
 
 <div id="page">
 
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -132,7 +133,6 @@
 
   <main id="main">
 
-    <!-- パンくず -->
     <nav class="breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
@@ -140,7 +140,6 @@
       </ol>
     </nav>
 
-    <!-- 本文 -->
     <section class="policy" aria-labelledby="policy-title">
       <h1 id="policy-title" class="policy__title">アクセシビリティ方針</h1>
       <p class="policy__lead">
@@ -183,7 +182,6 @@
       <p class="policy__meta">策定日：2025年11月1日／ 最終更新日：2025年11月1日</p>
     </section>
 
-    <!-- 電話／メール CTA（共通デザイン） -->
     <nav class="cta-bar" aria-label="主要導線">
       <a class="cta" href="tel:0191-31-5720">
         <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -210,7 +208,6 @@
     </span>
   </button>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -279,10 +276,7 @@
     </div>
   </footer>
 
-</div><!-- /#page -->
-
-<!-- サブページの“常時表示”リセット（トップのスプラッシュ対策） -->
-<script>
+</div><script>
   document.addEventListener('DOMContentLoaded', function(){
     document.body.classList.add('page-show');
     document.documentElement.classList.remove('no-scroll');
@@ -294,5 +288,3 @@
 
 </body>
 </html>
-
-
