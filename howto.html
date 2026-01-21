@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立から現在までの歩みをご紹介します。地域に寄り添い、支援を広げてきた歴史をまとめています。">
-  <title>ハンズのあゆみ | レスパイトハウス・ハンズ</title>
+  <title>初めての方へ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <meta name="description" content="レスパイトハウス・ハンズをはじめてご利用される方へ向けた、トップページから目的ページまでの流れをまとめたガイドページです。">
   
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
   
   <link rel="stylesheet" href="css/style.css">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -23,159 +23,127 @@
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   </noscript>
-
+  
   <style>
     :root{
-      /* アクセントカラー：ハンズの緑 */
-      --history-accent: #009688;
-      --history-ink: #333;
-      --history-ink-2: #555;
-      --history-line: #e5e7eb;
-      --history-surface: #fff;
-      --history-tag-bg: #f6f7f8;
-      --history-tag-bd: #e5e7eb;
-      --history-radius: 14px;
-      --history-gap: 1rem;
+      --unit-brand:#2f7d5b; --unit-ink:#193528; --unit-tint:#eaf7f1; --unit-tint-2:#f5fbf8;
+      --accent:#4C8CF5; --accent-ink:#123567;
+      --accent-bg-weak: color-mix(in oklab, var(--accent) 10%, #fff);
+      --accent-border:  color-mix(in oklab, var(--accent) 40%, #fff);
+      --my-line:#e6edf2; --my-radius:14px; --my-max:1120px;
+    }
+    body.page-howto #site-header.c-header{ background: var(--unit-tint-2); }
+    .page{ padding-inline:min(4vw,24px); }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+
+    .breadcrumb{ max-width: var(--my-max); margin: 0 auto; padding: .9rem min(4vw,24px) 0; }
+    .breadcrumb ol{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:0; margin:0; color:#6b7280; font-size:.95rem; }
+    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .breadcrumb a{ color: color-mix(in oklab, var(--unit-brand) 70%, #000); text-decoration:none; font-weight:500; }
+    .breadcrumb a:hover{ text-decoration:underline; }
+    .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+
+    .unit-hero{
+      margin:2.2rem 0 2.4rem;
+      background:
+        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,.06);
+    }
+    .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+    .unit-hero__head{
+      display:grid; grid-template-columns: clamp(72px,8vw,92px) 1fr;
+      gap: clamp(12px,2.2vw,22px); align-items:center; margin-bottom: clamp(12px,2vw,26px);
+    }
+    .unit-hero__emblem{ width: 100%; height: clamp(72px,8vw,92px); border-radius:10px; overflow:hidden; background:transparent; border:0; box-shadow:none; display:grid; place-items:center; }
+    .unit-hero__emblem img{ width:100%; height:100%; object-fit:contain; image-rendering:-webkit-optimize-contrast; }
+    .unit-hero__title{ margin:0; color:var(--unit-ink); font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; }
+    .unit-hero__lead{ margin:.8rem 0 0; color:#1f2937; }
+
+    .note{ background: color-mix(in oklab, var(--unit-brand) 8%, #fff); border:1px solid color-mix(in oklab, var(--unit-brand) 25%, #fff); border-radius:10px; padding:10px 12px; color:#143957; }
+
+    .toc{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; padding:16px 18px; margin: 0 0 22px; }
+    .toc h2{ margin:.2rem 0 .6rem; font-size:1.05rem; }
+    .toc ol{ margin:0; padding-left:1.2rem; line-height:1.9; }
+    .toc a{ text-decoration:none; color:#1f6a4d; }
+    .toc a:hover{ text-decoration:underline; }
+
+    .flow{ display:grid; gap:20px; }
+    .step{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; box-shadow:0 1px 0 #0000000a; padding:16px; }
+    .step__head{ display:flex; align-items:center; gap:10px; padding-bottom:.55rem; border-bottom:1px solid color-mix(in oklab, var(--unit-brand) 22%, #fff); margin-bottom:1rem; }
+    .badge{ display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background: var(--accent-bg-weak); color: var(--accent-ink); border:1px solid var(--accent-border); font-weight:700; letter-spacing:-0.01em; }
+    .step h3{ margin:0; font-size:1.1rem; color:#111; }
+    .step__body{ display:grid; gap:12px; }
+
+    @media (min-width:900px){
+      .step{ padding:18px 20px; }
+      .step__body{ grid-template-columns: 1.2fr 1fr; align-items:start; }
     }
 
-    /* ---------- ベース：このページ範囲のみ ---------- */
-    .history-page{ padding-inline: min(4vw, 24px); }
-    .history-container{ max-width: 1040px; margin-inline: auto; }
+    .figure{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
+    .figure img{ display:block; width:100%; height:auto; cursor:zoom-in; }
+    .figure figcaption{ --figure-cap-bg:#ffffff; --figure-cap-border:#e7eeea; --figure-cap-ink:#44515d; padding:10px 12px; font-size:.95rem; color:var(--figure-cap-ink); background:var(--figure-cap-bg); border-top:1px solid var(--figure-cap-border); }
 
-    /* パンくず（左揃え） */
-    .history-breadcrumb{ margin: 0 0 1.5rem; }
-    .history-breadcrumb ol{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
-    .history-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .nextprev{ display:flex; gap:10px; justify-content:space-between; margin-top:10px; }
+    .np-btn{ display:inline-flex; align-items:center; gap:.4em; padding:.6em .9em; border-radius:999px; text-decoration:none; border:1px solid var(--accent-border); background:#fff; color:var(--accent-ink); transition: box-shadow .18s ease, transform .18s ease; }
+    .np-btn:hover{ box-shadow:0 8px 18px rgba(0,0,0,.08); transform: translateY(-1px); }
 
-    /* ページ見出し */
-    .history-eyebrow{ font:500 .95rem/1 "Noto Sans JP",system-ui,sans-serif; color:var(--history-ink-2); letter-spacing:.04em; }
-    .history-title{ font:700 clamp(1.6rem, 2.4vw, 2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; color:var(--history-ink); margin:1em 0 2em; }
-    .history-lead{ color:#444; margin:.6rem 0 1.2rem; }
+    .lb{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; place-items:center; z-index:9999; }
+    .lb__img{ max-width:92vw; max-height:90vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.4); }
+    .lb[aria-hidden="false"]{ display:grid; }
 
-    /* 年代インデックス（ページ内ジャンプ） */
-    .history-decade{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; margin:0 0 1.25rem; }
-    .history-decade a{
-      display:inline-block; padding:.45em .8em; border-radius:999px;
-      border:1px solid var(--history-line); background:#fafafa; color:#111;
+    .page-howto{ --btt-ring-active:#2f7d5b; --btt-center:#eef8f3; }
+
+    @media print{
+      .figure figcaption:after{ content:"  画像: " attr(data-src); display:block; color:#666; font-size:.85em; margin-top:.2em; }
+    }
+
+    /* 右の図版を少し広げる版 */
+    @media (min-width: 900px){
+      .step--wide .step__body{ grid-template-columns: 1fr 1.6fr; gap: clamp(16px, 2.4vw, 28px); align-items: start; }
+      .step--wide .figure{ max-width: min(720px, 100%); margin-left: auto; }
+    }
+    .step--wide .figure img{ width: 100%; height: auto; display: block; }
+
+    /* howto：右下のナビ（次へと同じポジション） */
+    .howto-stepnav{
+      display:flex;
+      justify-content:flex-end;
+      margin-top: 1.25rem;
+    }
+    .howto-btn{
+      appearance:none;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
       text-decoration:none;
+      font-weight:700;
+      padding:.85rem 1.1rem;
+      border-radius:12px;
+      border:1px solid transparent;
+      background:#009688;           /* 必要なら既存のボタン色に合わせて調整 */
+      color:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      transition: filter .15s ease, transform .06s ease;
     }
-    .history-decade a:hover{ background:#fff; box-shadow:0 0 0 2px #00000008; }
-    .history-caption{ font-size: 0.85rem; color: #666; margin-bottom: 2rem; }
-
-    /* ===== 年カード（1年＝1カード） ===== */
-    .history-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(16px, 2.5vw, 28px);
-      margin: 1rem 0 2rem;
-    }
-    @media (max-width: 900px){
-      .history-grid{ grid-template-columns: 1fr; }
-    }
-
-    .history-card{
-      position:relative;
-      background: var(--history-surface);
-      border: 1px solid var(--history-line);
-      border-radius: var(--history-radius);
-      padding: 1rem 1rem 1rem 1.1rem;
-      box-shadow: 0 1px 0 #00000006;
-      overflow: hidden;
-    }
-    /* 左のアクセントバー */
-    .history-card::before{
-      content:"";
-      position:absolute; inset:0 auto 0 0;
-      width: 6px;
-      background: var(--history-accent);
-      border-top-left-radius: var(--history-radius);
-      border-bottom-left-radius: var(--history-radius);
+    .howto-btn:hover{ filter:brightness(.96); }
+    .howto-btn:active{ transform: translateY(1px); }
+    .howto-btn svg{ width:18px; height:18px; }
+    @media (max-width:680px){
+      .howto-stepnav{ justify-content:stretch; }
+      .howto-btn{ width:100%; justify-content:center; }
     }
 
-    /* 見出し（1999（平成11）） */
-    .history-year{
-      display:flex; align-items:baseline; gap:.5rem;
-      font-variant-numeric: tabular-nums;
-      color: var(--history-ink);
-      margin: .25rem 0 1rem  .25rem; /* 左にほんの少し寄せる */
-    }
-    .history-year .y{
-      font-weight: 800;
-      font-size: clamp(1.2rem, 2.2vw, 1.45rem);
-      line-height: 1.1;
-      letter-spacing: .02em;
-    }
-    .history-year .era{
-      color: var(--history-ink-2);
-      font-size: .98rem;
-    }
-    .history-year .era::before{ content:"("; }
-    .history-year .era::after{ content:")"; }
-
-    /* 出来事リスト（シンプルな箇条書き） */
-    .history-list{
-      margin: .2rem 0 0 .25rem;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: .5rem;
-    }
-    .history-item{
-      display:flex; gap:.6rem; line-height: 1.8;
-    }
-    /* 小さな角丸ラベル */
-    .history-tag{
-      display:inline-flex; align-items:center; gap:.4em;
-      padding:.28em .6em; border-radius: 999px;
-      border:1px solid var(--history-tag-bd); background: var(--history-tag-bg);
-      font: 500 .82rem/1 "Noto Sans JP",system-ui,sans-serif; color:#111;
-      white-space: nowrap; flex: 0 0 auto;
-    }
-    .history-tag::before{
-      content:""; width:.5em; height:.5em; border-radius:50%; background:#374151;
-    }
-    .history-tag.is-est::before{ background:#2f9e44; }   /* 設立 */
-    .history-tag.is-open::before{ background:#0ea5e9; }  /* 開所 */
-    .history-tag.is-close::before{ background:#2563eb; } /* 閉所 */
-    .history-tag.is-biz::before{ background:#6b7280; }   /* 事業 */
-    .history-tag.is-rename::before{ background:#a16207;} /* 名称変更 */
-    .history-tag.is-split::before{ background:#7c3aed;}  /* 独立分離 */
-    .history-tag.is-other::before{ background:#cbd5e1; } /* その他 */
-
-    .history-text{ margin:0; color: var(--history-ink); }
-
-    /* セクション見出し（年代ブロック） */
-    .history-block-title{
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #111;
-      margin: 2rem 0 2rem;
-      padding-left: .5rem;
-      border-left: 4px solid var(--history-accent);
-    }
-
-    /* アンカーへスムーススクロール */
-    html{ scroll-behavior:smooth; }
-
-    /* 端末設定で「動きを減らす」の人には瞬間移動に戻す */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-    }
-
-    /* ジャンプ先がヘッダーに隠れないようオフセット（見出しの上に余白を確保） */
-    :root{ --history-anchor-offset: 80px; } /* ヘッダーの高さを考慮して調整 */
-    .history-block-title{ scroll-margin-top: var(--history-anchor-offset); }
-
-    /* トップページ：サブメニュー背景を白に（上書き用） */
-    .page-history .submenu{
+    /* トップページ：サブメニュー背景を白に */
+    .page-howto .submenu{
       background: #fff;
     }
 
   </style>
 </head>
 
-<body class="page-history">
-
+<body class="page-howto">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
@@ -187,14 +155,14 @@
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="purpose.html">設立趣旨</a></li>
           <li><a href="philosophy.html">ハンズの理念</a></li>
-          <li><a href="history.html" aria-current="page">ハンズのあゆみ</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
           <li><a href="teikan.html">定款</a></li>
           <li><a href="officers.html">役員</a></li>
         </ul>
@@ -217,9 +185,9 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
-        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <a href="howto.html" class="c-header__list-link" aria-current="page">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="finder.html">あなたに合う支援をさがす</a></li>
@@ -238,408 +206,121 @@
     </label>
   </header>
 
-  <main id="main" class="l-main history-page">
-    <section class="history-container" aria-labelledby="page-title">
+  <nav class="breadcrumb" aria-label="パンくず">
+    <ol>
+      <li><a href="index.html">TOP</a></li>
+      <li aria-current="page">初めての方へ</li>
+    </ol>
+  </nav>
 
-      <nav class="history-breadcrumb" aria-label="パンくず">
+  <main id="main" class="l-main page">
+    <section class="wrap">
+
+      <section class="unit-hero" aria-labelledby="hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem"><img src="img/hatena.webp" alt="案内アイコン" decoding="async" /></div>
+            <div>
+              <h1 id="hero-title" class="unit-hero__title">初めての方へ</h1>
+              <p class="unit-hero__lead">このページは、トップページから目的の情報までの「進み方」を図解でご案内します。</p>
+            </div>
+          </div>
+          <div class="note"><small>画像をタップ／クリックすると拡大できます。スマホとパソコンで配置が少し違う場合があります。</small></div>
+        </div>
+      </section>
+
+      <nav class="toc" aria-label="このページの使い方">
+        <h2>目的ページまでの流れ</h2>
         <ol>
-          <li><a href="index.html">TOP</a></li>
-          <li><a href="corp.html">法人概要</a></li>
-          <li aria-current="page">ハンズのあゆみ</li>
+          <li><a href="#step1">「あなたに合う支援をさがす」をクリック</a></li>
+          <li><a href="#step2">“分野”を選ぶ</a></li>
+          <li><a href="#step3">“事業所”を選ぶ</a></li>
+          <li><a href="#step4">事業内容の確認</a></li>
+          <li><a href="#step5">お問い合わせ</a></li>
         </ol>
       </nav>
 
-      <header>
-        <h1 id="page-title" class="history-title">ハンズのあゆみ</h1>
-      </header>
+      <div class="flow">
+        <section id="step1" class="step step--wide" aria-labelledby="s1">
+          <div class="step__head"><span class="badge">1</span><h3 id="s1">「あなたに合う支援をさがす」をクリック</h3></div>
+          <div class="step__body">
+            <div><p>①の「あなたに合う支援をさがす」をクリックすると、各事業所の分野をお選びいただけます。</p></div>
+            <figure class="figure" data-src="img/howto/top-01.png">
+              <img src="img/flow1.webp" alt="トップページのスクリーンショット（①：事業所紹介）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：トップページ。①をクリック（タップ）。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><span></span><a class="np-btn" href="#step2">②へ →</a></div>
+        </section>
 
-      <nav class="history-decade" aria-label="年代へジャンプ">
-        <a href="#d1990">1990s</a>
-        <a href="#d2000">2000s</a>
-        <a href="#d2010">2010s</a>
-        <a href="#d2020">2020s</a>
-      </nav>
-      <p class="history-caption" id="decade-help">⇧年代を選ぶと該当年代へスクロールします。</p>
+        <section id="step2" class="step step--wide" aria-labelledby="s2">
+          <div class="step__head"><span class="badge">2</span><h3 id="s2">“分野”を選ぶ</h3></div>
+          <div class="step__body">
+            <div><p>一覧から目的の分野を選びます。<br>例では「障がい福祉」をクリックします。</p></div>
+            <figure class="figure" data-src="img/howto/top-02.png">
+              <img src="img/flow2.webp" alt="分野の例（障がい福祉）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：分野一覧。「障がい福祉」を選びます。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step1">← 戻る</a><a class="np-btn" href="#step3">③へ →</a></div>
+        </section>
 
-      <h2 id="d1990" class="history-block-title">1990s</h2>
-      <section class="history-grid" aria-label="1990年代">
-        <article class="history-card" id="y1999" aria-labelledby="y1999-title">
-          <h3 class="history-year" id="y1999-title">
-            <span class="y">1999</span><span class="era">平成11</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-              <span class="history-tag is-est">設立</span>
-              <p class="history-text">　　任意団体 設立</p>
-            </li>
-            <li class="history-item">
-              <p class="history-text">　　　　　　 レスパイトサービス　開始</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　福祉作業所わぁははクラブ　開所</p>
-            </li>
-          </ul>
-        </article>
-      </section>
+        <section id="step3" class="step step--wide" aria-labelledby="s3">
+          <div class="step__head"><span class="badge">3</span><h3 id="s3">“事業所”を選ぶ</h3></div>
+          <div class="step__body">
+            <div><p>一覧から目的の事業所を選びます。<br>例では「わぁははクラブ」をクリックします。</p></div>
+            <figure class="figure" data-src="img/howto/top-03.png">
+              <img src="img/flow3.webp" alt="事業所の例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：事業所一覧。「わぁははクラブ」を選びます。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step2">← 戻る</a><a class="np-btn" href="#step4">④へ →</a></div>
+        </section>
 
-      <h2 id="d2000" class="history-block-title">2000s</h2>
-      <section class="history-grid" aria-label="2000年代">
+        <section id="step4" class="step step--wide" aria-labelledby="s4">
+          <div class="step__head"><span class="badge">4</span><h3 id="s4">事業内容を確認</h3></div>
+          <div class="step__body">
+            <div>
+              <p>事業内容をご確認ください。より詳しく知りたい場合、下部にあるボタン(※)をクリックしてご確認ください。他の事業所ページを見たい場合は、②まで戻り同様の手順でご覧ください。</p>
+              
+            </div>
+            <figure class="figure" data-src="img/howto/office-01.png">
+              <img src="img/flow4.webp" alt="事業所ページ例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：わぁははクラブの事業所ページ。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step3">← 戻る</a><a class="np-btn" href="#step5">⑤へ →</a></div>
+        </section>
 
-        <article class="history-card" id="y2000" aria-labelledby="y2000-title">
-          <h3 class="history-year" id="y2000-title">
-            <span class="y">2000</span><span class="era">平成12</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-              <span class="history-tag is-other">その他</span>
-              <p class="history-text">　一関市重度障害児一時介護制度　開始</p>
-            </li>
-          </ul>
-        </article>
-      
-        <article class="history-card" id="y2001" aria-labelledby="y2001-title">
-          <h3 class="history-year" id="y2001-title">
-            <span class="y">2001</span><span class="era">平成13</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-              <span class="history-tag is-est">設立</span>
-              <p class="history-text">　　特定非営利活動法人認証／設立</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　障がい児対応放課後児童クラブ　開所</p>
-            </li>
-          </ul>
-        </article>
+        <section id="step5" class="step step--wide" aria-labelledby="s5">
+          <div class="step__head"><span class="badge">5</span><h3 id="s5">お問い合わせ</h3></div>
+          <div class="step__body">
+            <div>
+              <p>ページ右上の「お問い合わせ」から、必要事項をご記入のうえ送信してください。</p>
+              <p>各事業所ページ内のメール／電話からの問い合わせも可能です。</p>
+            </div>
+            <figure class="figure" data-src="img/howto/contact-01.png">
+              <img src="img/flow5.webp" alt="お問い合わせページ例" loading="lazy" onclick="openLb(this)">
+              <figcaption>例：お問い合わせページ。</figcaption>
+            </figure>
+          </div>
+          <div class="nextprev"><a class="np-btn" href="#step4">← 戻る</a><a class="np-btn" href="index.html">TOPへ →</a></div>
+        </section>
+      </div>
 
-        <article class="history-card" id="y2002" aria-labelledby="y2002-title">
-          <h3 class="history-year" id="y2002-title">
-            <span class="y">2002</span><span class="era">平成14</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　基本型福祉作業所わぁははクラブ　開所</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-other">その他</span>
-              <p class="history-text">　法人事務所　青葉移転</p>
-            </li>
-          </ul>
-        </article>
-       
-        <article class="history-card" id="y2004" aria-labelledby="y2004-title">
-          <h3 class="history-year" id="y2004-title">
-            <span class="y">2004</span><span class="era">平成16</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-est">設立</span>
-              <p class="history-text">　　いちのせきNPO活動推進会議「インアーチ」設立</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　NPO中間支援　開始</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　居宅介護(ヘルパー)事業　開始</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2005" aria-labelledby="y2005-title">
-          <h3 class="history-year" id="y2005-title">
-            <span class="y">2005</span><span class="era">平成17</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　きらめきサポートステーション一関委託事業　開始</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　北上市児童デイサービス「リトルグラス」　開所</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2006" aria-labelledby="y2006-title">
-          <h3 class="history-year" id="y2006-title">
-            <span class="y">2006</span><span class="era">平成18</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　日中一時支援／移動支援事業(市町村地域生活支援事業)</p>
-            </li>
-            <li class="history-item">
-              <p class="history-text">　　　　 　　行動援護／短期入所／指定相談支援事業　開始</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　障害者自立支援法　施行</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　いちのせき市民活動促進会議「インアーチ」名称変更</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　インアーチスクエア2006(いちのせき市民フェスタ)開催</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2007" aria-labelledby="y2007-title">
-          <h3 class="history-year" id="y2007-title">
-            <span class="y">2007</span><span class="era">平成19</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　児童デイ／ハンズ一関療育センター　開所</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　地域活動支援センターわぁはは　開所</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　児童デイ「リトルグラス」　独立分離</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2008" aria-labelledby="y2008-title">
-          <h3 class="history-year" id="y2008-title">
-            <span class="y">2008</span><span class="era">平成20</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　いちのせき市民活動センター　開所</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　地域活動支援センターわぁはは　増築</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2009" aria-labelledby="y2009-title">
-          <h3 class="history-year" id="y2009-title">
-            <span class="y">2009</span><span class="era">平成21</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　ハンズ生活介護事業所わぁははクラブ　開所</p>
-            </li>
-          </ul>
-        </article>
-
-      </section>
-
-      <h2 id="d2010" class="history-block-title">2010s</h2>
-      <section class="history-grid" aria-label="2010年代">
-        <article class="history-card" id="y2010" aria-labelledby="y2010-title">
-          <h3 class="history-year" id="y2010-title">
-            <span class="y">2010</span><span class="era">平成22</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　中心市街地多目的スペース／街中カフェおおまちポイント１　開設</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2011" aria-labelledby="y2011-title">
-          <h3 class="history-year" id="y2011-title">
-            <span class="y">2011</span><span class="era">平成23</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　いちのせき市民活動センターせんまやサテライト　開所</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2012" aria-labelledby="y2012-title">
-          <h3 class="history-year" id="y2012-title">
-            <span class="y">2012</span><span class="era">平成24</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　陸前高田まちづくり協働センター　開所</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　Cafe&Gallery「さくらなみき」オープン</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　自閉症美術館　オープン</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2013" aria-labelledby="y2013-title">
-          <h3 class="history-year" id="y2013-title">
-            <span class="y">2013</span><span class="era">平成25</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　ハンズ生活介護事業所「さくらなみき」事業開始</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　障害者総合支援法　施行</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2014" aria-labelledby="y2014-title">
-          <h3 class="history-year" id="y2014-title">
-            <span class="y">2014</span><span class="era">平成26</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　陸前高田まちづくり協働センター　独立分離</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2015" aria-labelledby="y2015-title">
-          <h3 class="history-year" id="y2015-title">
-            <span class="y">2015</span><span class="era">平成27</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　いちのせき若者サポートステーション　事業開始</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　さくらなみきしごと交流館ラァーチ　開所</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2016" aria-labelledby="y2016-title">
-          <h3 class="history-year" id="y2016-title">
-            <span class="y">2016</span><span class="era">平成28</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　就労継続支援B型事業所「さくらなみき」　事業開始</p>
-            </li>
-          </ul>
-        </article>
-
-      </section>
-
-      <h2 id="d2020" class="history-block-title">2020s</h2>
-      <section class="history-grid" aria-label="2020年代">
-
-        <article class="history-card" id="y2021" aria-labelledby="y2021-title">
-          <h3 class="history-year" id="y2021-title">
-            <span class="y">2021</span><span class="era">令和３</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　一ノ関就職氷河期世代就労訓練事業「ネクストリー」　事業開始</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2023" aria-labelledby="y2023-title">
-          <h3 class="history-year" id="y2023-title">
-            <span class="y">2023</span><span class="era">令和５</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　ジョブカフェ一関　運営事業開始</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2024" aria-labelledby="y2024-title">
-          <h3 class="history-year" id="y2024-title">
-            <span class="y">2024</span><span class="era">令和６</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-               <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　シェアハウス・ハンズ(才天)　開所</p>
-            </li>
-          </ul>
-        </article>
-
-        <article class="history-card" id="y2025" aria-labelledby="y2025-title">
-          <h3 class="history-year" id="y2025-title">
-            <span class="y">2025</span><span class="era">令和７</span>
-          </h3>
-          <ul class="history-list">
-            <li class="history-item">
-              <span class="history-tag is-biz">事業</span>
-              <p class="history-text">　　一関市就労移行支援事業「ワークブリッジいちのせき」事業開始</p>
-            </li>
-            <li class="history-item">
-              <span class="history-tag is-open">開所</span>
-              <p class="history-text">　　いちのせき広域障がい者就業・生活支援センター<br>　　「マイルートリンク」開所</p>
-            </li>
-            <li class="history-item">
-               <span class="history-tag is-other">その他</span>
-              <p class="history-text">　ハンズ生活介護事業所わぁははクラブ　新施設完成</p>
-            </li>
-          </ul>
-        </article>
-      </section>
 
     </section>
-
-    <nav class="cta-bar" aria-label="主要導線">
-      <a class="cta" href="tel:0191-31-5720">
-        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        電話で相談
-      </a>
-
-      <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
-        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        メールで問い合わせ
-      </a>
-    </nav>
-
   </main>
 
- 
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
-      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
-        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
-      </svg>
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
       <span class="btt__label">TOP</span>
     </span>
   </button>
 
-  <footer class="site-footer" aria-labelledby="footer-title">
+<footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
       <section class="footer__brand">
@@ -662,7 +343,7 @@
           <h3>法人概要</h3>
           <ul>
             <li><a href="philosophy.html">ハンズの理念</a></li>
-            <li><a href="history.html" aria-current="page">ハンズのあゆみ</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
             <li><a href="teikan.html">定款</a></li>
             <li><a href="officers.html">役員</a></li>
           </ul>
@@ -707,8 +388,22 @@
 
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
-  </footer>
-</div><script src="js/site.js"></script>
 
+  </footer>
+</div>
+
+<script>
+  const lb = document.createElement('div');
+  lb.className = 'lb'; lb.setAttribute('aria-hidden','true');
+  lb.innerHTML = '<img class="lb__img" alt=""><span class="visually-hidden">画像を閉じる</span>';
+  lb.addEventListener('click',()=>lb.setAttribute('aria-hidden','true'));
+  document.body.appendChild(lb);
+  function openLb(img){
+    lb.querySelector('.lb__img').src = img.src;
+    lb.setAttribute('aria-hidden','false');
+  }
+</script>
+
+<script src="js/site.js"></script>
 </body>
 </html>
