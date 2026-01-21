@@ -347,19 +347,6 @@
       pointer-events: auto;
     }
 
-    /* ヘッダー：サブメニューの選択色を白系に */
-    .c-header .submenu{ background: #ffffff; }
-    .c-header .submenu a{ color: #17222f; }
-    .c-header .submenu a:hover,
-    .c-header .submenu a:focus-visible{
-      background: #f5f7f6;
-      color: #17222f;
-    }
-    .c-header .submenu a[aria-current="page"]{
-      background: #ffffff;
-      font-weight: 500;
-    }
-
     /* 内部リンク用ボタン */
     .faq-action-row{
       display: grid;
@@ -420,11 +407,25 @@
       background: color-mix(in oklab, #eef5ff 20%, #fff);
     }
 
-    /* ▼▼▼ 追加修正：サブメニュー内の文字の太さをリセット ▼▼▼ */
-    /* 親メニュー(is-current)の影響で太字になるのを防ぐ */
-    #site-header .submenu a {
-      font-weight: 500 !important; /* 標準の太さ */
+    /* ========================================================
+       【修正】ドロップダウンのスタイル制御（テーマ色に統一）
+       ======================================================== */
+    /* 背景色を白、文字色を黒系に */
+    #site-header .submenu {
+      background: #ffffff !important;
     }
+    #site-header .submenu a {
+      color: #17222f !important;
+      font-weight: 500 !important; /* 文字の太さも標準化 */
+    }
+
+    /* ▼▼▼ 追加：ホバー時に「青系（このページのテーマ）」にする ▼▼▼ */
+    #site-header .submenu a:hover,
+    #site-header .submenu a:focus-visible {
+      background: color-mix(in oklab, var(--unit-brand) 12%, #fff) !important;
+      color: var(--unit-ink) !important;
+    }
+
     /* 現在地だけ太字にする */
     #site-header .submenu a[aria-current="page"] {
       font-weight: 700 !important;
