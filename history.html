@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
- <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立から現在までの歩みをご紹介します。地域に寄り添い、支援を広げてきた歴史をまとめています。">
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立から現在までの歩みをご紹介します。地域に寄り添い、支援を広げてきた歴史をまとめています。">
   <title>ハンズのあゆみ | レスパイトハウス・ハンズ</title>
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- ===== このページ専用CSS（他ページに影響しないように完全スコープ） ===== -->
   <style>
     :root{
-      /* アクセントカラー：ハンズの緑（必要なら差し替え） */
+      /* アクセントカラー：ハンズの緑 */
       --history-accent: #009688;
       --history-ink: #333;
       --history-ink-2: #555;
@@ -59,6 +60,7 @@
       text-decoration:none;
     }
     .history-decade a:hover{ background:#fff; box-shadow:0 0 0 2px #00000008; }
+    .history-caption{ font-size: 0.85rem; color: #666; margin-bottom: 2rem; }
 
     /* ===== 年カード（1年＝1カード） ===== */
     .history-grid{
@@ -119,9 +121,9 @@
       gap: .5rem;
     }
     .history-item{
-      display:flex; gap:.6rem;       line-height: 1.8;
+      display:flex; gap:.6rem; line-height: 1.8;
     }
-    /* 小さな角丸ラベル（任意） */
+    /* 小さな角丸ラベル */
     .history-tag{
       display:inline-flex; align-items:center; gap:.4em;
       padding:.28em .6em; border-radius: 999px;
@@ -152,22 +154,22 @@
       border-left: 4px solid var(--history-accent);
     }
 
-/* アンカーへスムーススクロール */
-html{ scroll-behavior:smooth; }
+    /* アンカーへスムーススクロール */
+    html{ scroll-behavior:smooth; }
 
-/* 端末設定で「動きを減らす」の人には瞬間移動に戻す */
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-}
+    /* 端末設定で「動きを減らす」の人には瞬間移動に戻す */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+    }
 
-/* ジャンプ先がヘッダーに隠れないようオフセット（見出しの上に余白を確保） */
-:root{ --history-anchor-offset: 20px; } /* ヘッダー＋余白ぶん。好みで調整 */
-.history-block-title{ scroll-margin-top: var(--history-anchor-offset); }
+    /* ジャンプ先がヘッダーに隠れないようオフセット（見出しの上に余白を確保） */
+    :root{ --history-anchor-offset: 80px; } /* ヘッダーの高さを考慮して調整 */
+    .history-block-title{ scroll-margin-top: var(--history-anchor-offset); }
 
-/* トップページ：サブメニュー背景を白に */
-.page-history .submenu{
-  background: #fff;
-}
+    /* トップページ：サブメニュー背景を白に（上書き用） */
+    .page-history .submenu{
+      background: #fff;
+    }
 
   </style>
 </head>
@@ -177,7 +179,6 @@ html{ scroll-behavior:smooth; }
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -186,26 +187,26 @@ html{ scroll-behavior:smooth; }
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="purpose.html">設立趣旨</a></li>
           <li><a href="philosophy.html">ハンズの理念</a></li>
-          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="history.html" aria-current="page">ハンズのあゆみ</a></li>
           <li><a href="teikan.html">定款</a></li>
           <li><a href="officers.html">役員</a></li>
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -216,12 +217,12 @@ html{ scroll-behavior:smooth; }
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -237,11 +238,9 @@ html{ scroll-behavior:smooth; }
     </label>
   </header>
 
-  <!-- メイン -->
   <main id="main" class="l-main history-page">
     <section class="history-container" aria-labelledby="page-title">
 
-      <!-- パンくず -->
       <nav class="history-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -250,25 +249,20 @@ html{ scroll-behavior:smooth; }
         </ol>
       </nav>
 
-      <!-- 見出し -->
       <header>
-
         <h1 id="page-title" class="history-title">ハンズのあゆみ</h1>
-
       </header>
 
-      <!-- 年代ジャンプ -->
       <nav class="history-decade" aria-label="年代へジャンプ">
         <a href="#d1990">1990s</a>
         <a href="#d2000">2000s</a>
         <a href="#d2010">2010s</a>
         <a href="#d2020">2020s</a>
       </nav>
-<p class="history-caption" id="decade-help">⇧年代を選ぶと該当年代へスクロールします。</p>
-      <!-- ===== 1990s ===== -->
+      <p class="history-caption" id="decade-help">⇧年代を選ぶと該当年代へスクロールします。</p>
+
       <h2 id="d1990" class="history-block-title">1990s</h2>
       <section class="history-grid" aria-label="1990年代">
-        <!-- 1999 -->
         <article class="history-card" id="y1999" aria-labelledby="y1999-title">
           <h3 class="history-year" id="y1999-title">
             <span class="y">1999</span><span class="era">平成11</span>
@@ -285,48 +279,41 @@ html{ scroll-behavior:smooth; }
               <span class="history-tag is-open">開所</span>
               <p class="history-text">　　福祉作業所わぁははクラブ　開所</p>
             </li>
-
           </ul>
         </article>
       </section>
 
- <!-- ===== 2000s ===== -->
       <h2 id="d2000" class="history-block-title">2000s</h2>
       <section class="history-grid" aria-label="2000年代">
 
-        <!-- 2000 -->
         <article class="history-card" id="y2000" aria-labelledby="y2000-title">
           <h3 class="history-year" id="y2000-title">
             <span class="y">2000</span><span class="era">平成12</span>
           </h3>
           <ul class="history-list">
             <li class="history-item">
-            <span class="history-tag is-other">その他</span>
+              <span class="history-tag is-other">その他</span>
               <p class="history-text">　一関市重度障害児一時介護制度　開始</p>
             </li>
-                      </ul>
+          </ul>
         </article>
-
-     
-        <!-- 2001 -->
+      
         <article class="history-card" id="y2001" aria-labelledby="y2001-title">
           <h3 class="history-year" id="y2001-title">
             <span class="y">2001</span><span class="era">平成13</span>
           </h3>
           <ul class="history-list">
             <li class="history-item">
-               <span class="history-tag is-est">設立</span>
+              <span class="history-tag is-est">設立</span>
               <p class="history-text">　　特定非営利活動法人認証／設立</p>
-                          </li>
+            </li>
             <li class="history-item">
               <span class="history-tag is-open">開所</span>
               <p class="history-text">　　障がい児対応放課後児童クラブ　開所</p>
-
             </li>
           </ul>
         </article>
 
-        <!-- 2002 -->
         <article class="history-card" id="y2002" aria-labelledby="y2002-title">
           <h3 class="history-year" id="y2002-title">
             <span class="y">2002</span><span class="era">平成14</span>
@@ -335,16 +322,14 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
               <span class="history-tag is-open">開所</span>
               <p class="history-text">　　基本型福祉作業所わぁははクラブ　開所</p>
-                          </li>
+            </li>
             <li class="history-item">
               <span class="history-tag is-other">その他</span>
               <p class="history-text">　法人事務所　青葉移転</p>
-
             </li>
           </ul>
         </article>
-      
-        <!-- 2004 -->
+       
         <article class="history-card" id="y2004" aria-labelledby="y2004-title">
           <h3 class="history-year" id="y2004-title">
             <span class="y">2004</span><span class="era">平成16</span>
@@ -353,7 +338,7 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-est">設立</span>
               <p class="history-text">　　いちのせきNPO活動推進会議「インアーチ」設立</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　NPO中間支援　開始</p>
@@ -361,11 +346,10 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-biz">事業</span>
               <p class="history-text">　　居宅介護(ヘルパー)事業　開始</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
-        <!-- 2005 -->
         <article class="history-card" id="y2005" aria-labelledby="y2005-title">
           <h3 class="history-year" id="y2005-title">
             <span class="y">2005</span><span class="era">平成17</span>
@@ -374,15 +358,14 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-biz">事業</span>
               <p class="history-text">　　きらめきサポートステーション一関委託事業　開始</p>
-                          </li>
+            </li>
             <li class="history-item">
               <span class="history-tag is-open">開所</span>
               <p class="history-text">　　北上市児童デイサービス「リトルグラス」　開所</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
-        <!-- 2006 -->
         <article class="history-card" id="y2006" aria-labelledby="y2006-title">
           <h3 class="history-year" id="y2006-title">
             <span class="y">2006</span><span class="era">平成18</span>
@@ -391,26 +374,25 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-biz">事業</span>
               <p class="history-text">　　日中一時支援／移動支援事業(市町村地域生活支援事業)</p>
-                          </li>
+            </li>
             <li class="history-item">
               <p class="history-text">　　　　 　　行動援護／短期入所／指定相談支援事業　開始</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　障害者自立支援法　施行</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　いちのせき市民活動促進会議「インアーチ」名称変更</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　インアーチスクエア2006(いちのせき市民フェスタ)開催</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
-        <!-- 2007 -->
         <article class="history-card" id="y2007" aria-labelledby="y2007-title">
           <h3 class="history-year" id="y2007-title">
             <span class="y">2007</span><span class="era">平成19</span>
@@ -419,19 +401,18 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-open">開所</span>
               <p class="history-text">　　児童デイ／ハンズ一関療育センター　開所</p>
-                          </li>
+            </li>
             <li class="history-item">
               <span class="history-tag is-open">開所</span>
               <p class="history-text">　　地域活動支援センターわぁはは　開所</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　児童デイ「リトルグラス」　独立分離</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
-        <!-- 2008 -->
         <article class="history-card" id="y2008" aria-labelledby="y2008-title">
           <h3 class="history-year" id="y2008-title">
             <span class="y">2008</span><span class="era">平成20</span>
@@ -440,15 +421,14 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-open">開所</span>
               <p class="history-text">　　いちのせき市民活動センター　開所</p>
-                          </li>
+            </li>
             <li class="history-item">
                <span class="history-tag is-other">その他</span>
               <p class="history-text">　地域活動支援センターわぁはは　増築</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
-        <!-- 2009 -->
         <article class="history-card" id="y2009" aria-labelledby="y2009-title">
           <h3 class="history-year" id="y2009-title">
             <span class="y">2009</span><span class="era">平成21</span>
@@ -457,16 +437,14 @@ html{ scroll-behavior:smooth; }
             <li class="history-item">
                <span class="history-tag is-open">開所</span>
               <p class="history-text">　　ハンズ生活介護事業所わぁははクラブ　開所</p>
-                          </li>
+            </li>
           </ul>
         </article>
 
       </section>
 
-      <!-- ===== 2010s ===== -->
       <h2 id="d2010" class="history-block-title">2010s</h2>
       <section class="history-grid" aria-label="2010年代">
-        <!-- 2010 -->
         <article class="history-card" id="y2010" aria-labelledby="y2010-title">
           <h3 class="history-year" id="y2010-title">
             <span class="y">2010</span><span class="era">平成22</span>
@@ -479,7 +457,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2011 -->
         <article class="history-card" id="y2011" aria-labelledby="y2011-title">
           <h3 class="history-year" id="y2011-title">
             <span class="y">2011</span><span class="era">平成23</span>
@@ -492,7 +469,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2012 -->
         <article class="history-card" id="y2012" aria-labelledby="y2012-title">
           <h3 class="history-year" id="y2012-title">
             <span class="y">2012</span><span class="era">平成24</span>
@@ -513,7 +489,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2013 -->
         <article class="history-card" id="y2013" aria-labelledby="y2013-title">
           <h3 class="history-year" id="y2013-title">
             <span class="y">2013</span><span class="era">平成25</span>
@@ -530,7 +505,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2014 -->
         <article class="history-card" id="y2014" aria-labelledby="y2014-title">
           <h3 class="history-year" id="y2014-title">
             <span class="y">2014</span><span class="era">平成26</span>
@@ -543,7 +517,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2015 -->
         <article class="history-card" id="y2015" aria-labelledby="y2015-title">
           <h3 class="history-year" id="y2015-title">
             <span class="y">2015</span><span class="era">平成27</span>
@@ -560,7 +533,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2016 -->
         <article class="history-card" id="y2016" aria-labelledby="y2016-title">
           <h3 class="history-year" id="y2016-title">
             <span class="y">2016</span><span class="era">平成28</span>
@@ -575,11 +547,9 @@ html{ scroll-behavior:smooth; }
 
       </section>
 
-      <!-- ===== 2020s ===== -->
       <h2 id="d2020" class="history-block-title">2020s</h2>
       <section class="history-grid" aria-label="2020年代">
 
-        <!-- 2021 -->
         <article class="history-card" id="y2021" aria-labelledby="y2021-title">
           <h3 class="history-year" id="y2021-title">
             <span class="y">2021</span><span class="era">令和３</span>
@@ -592,7 +562,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2023 -->
         <article class="history-card" id="y2023" aria-labelledby="y2023-title">
           <h3 class="history-year" id="y2023-title">
             <span class="y">2023</span><span class="era">令和５</span>
@@ -605,7 +574,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2024 -->
         <article class="history-card" id="y2024" aria-labelledby="y2024-title">
           <h3 class="history-year" id="y2024-title">
             <span class="y">2024</span><span class="era">令和６</span>
@@ -618,7 +586,6 @@ html{ scroll-behavior:smooth; }
           </ul>
         </article>
 
-        <!-- 2025 -->
         <article class="history-card" id="y2025" aria-labelledby="y2025-title">
           <h3 class="history-year" id="y2025-title">
             <span class="y">2025</span><span class="era">令和７</span>
@@ -640,30 +607,28 @@ html{ scroll-behavior:smooth; }
         </article>
       </section>
 
-          </section>
-<nav class="cta-bar" aria-label="主要導線">
-  <a class="cta" href="tel:0191-31-5720">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Phone (outline) -->
-      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    電話で相談
-  </a>
+    </section>
 
-  <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Mail (outline) -->
-      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    メールで問い合わせ
-  </a>
-</nav>
+    <nav class="cta-bar" aria-label="主要導線">
+      <a class="cta" href="tel:0191-31-5720">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        電話で相談
+      </a>
+
+      <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        メールで問い合わせ
+      </a>
+    </nav>
 
   </main>
 
  
-  <!-- 上へ戻る（スクロール進捗リング） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -674,7 +639,6 @@ html{ scroll-behavior:smooth; }
     </span>
   </button>
 
-  <!-- フッター（共通） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -683,14 +647,14 @@ html{ scroll-behavior:smooth; }
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -744,12 +708,7 @@ html{ scroll-behavior:smooth; }
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
-
-<script src="js/site.js"></script>
+</div><script src="js/site.js"></script>
 
 </body>
 </html>
-
-
-
