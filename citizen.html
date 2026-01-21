@@ -6,23 +6,22 @@
   <title>いちのせき市民活動センター | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="いちのせき市民活動センターの概要と外部リンクをまとめたページです。活動内容や詳細情報については公式サイトをご確認ください。">
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts（マイルートリンクと同様） -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- citizen 専用CSS（紺系） -->
   <style>
     :root{
       --unit-brand:#0b2b6b;   /* 基調：深紺 */
@@ -197,63 +196,61 @@
       transition: background 60ms linear;
     }
 
-/* ===== citizen: 背景の緑帯を無効化して白系に統一 ===== */
-body.page-citizen {
-  /* 進捗リングとトーンも紺系に */
-  --btt-ring-active:#0b2b6b;
-  --btt-center:#eef2ff;
-}
+    /* ===== citizen: 背景の緑帯を無効化して白系に統一 ===== */
+    body.page-citizen {
+      /* 進捗リングとトーンも紺系に */
+      --btt-ring-active:#0b2b6b;
+      --btt-center:#eef2ff;
+    }
 
-/* ページ本体の背景を白で固定 */
-body.page-citizen #page,
-body.page-citizen .page,
-body.page-citizen main.l-main,
-body.page-citizen .l-main {
-  background:#fff !important;
-}
+    /* ページ本体の背景を白で固定 */
+    body.page-citizen #page,
+    body.page-citizen .page,
+    body.page-citizen main.l-main,
+    body.page-citizen .l-main {
+      background:#fff !important;
+    }
 
-/* 共通の装飾帯（擬似要素）を無効化 */
-body.page-citizen .l-main::before,
-body.page-citizen .l-main::after,
-body.page-citizen main.l-main::before,
-body.page-citizen main.l-main::after {
-  content:none !important;
-}
+    /* 共通の装飾帯（擬似要素）を無効化 */
+    body.page-citizen .l-main::before,
+    body.page-citizen .l-main::after,
+    body.page-citizen main.l-main::before,
+    body.page-citizen main.l-main::after {
+      content:none !important;
+    }
 
-/* ゼブラ背景（偶数セクション等）があれば白で上書き */
-body.page-citizen .page > section:nth-of-type(even),
-body.page-citizen .section.section--alt,
-body.page-citizen .section.is-alt {
-  background:#fff !important;
-  box-shadow:none !important; /* 帯状に見えるシャドウがある場合の保険 */
-}
+    /* ゼブラ背景（偶数セクション等）があれば白で上書き */
+    body.page-citizen .page > section:nth-of-type(even),
+    body.page-citizen .section.section--alt,
+    body.page-citizen .section.is-alt {
+      background:#fff !important;
+      box-shadow:none !important; /* 帯状に見えるシャドウがある場合の保険 */
+    }
 
-/* ヒーロー直下に敷く薄色帯を使っている場合は紺系の極薄で統一（任意） */
-body.page-citizen .unit-hero {
-  background:
-    radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
-    radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
-    linear-gradient(#fff,#fff) !important;
-}
+    /* ヒーロー直下に敷く薄色帯を使っている場合は紺系の極薄で統一（任意） */
+    body.page-citizen .unit-hero {
+      background:
+        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff) !important;
+    }
 
-/* スマホ幅のときはタイトルを少し小さくして1行に収める */
-@media (max-width: 480px){
-  .unit-hero__title{
-    font-size: 1.05rem;   /* もとの1.2remからちょいダウン */
-    letter-spacing: -0.01em; /* ほんの少しだけ詰める（なくてもOK） */
-  }
-}
+    /* スマホ幅のときはタイトルを少し小さくして1行に収める */
+    @media (max-width: 480px){
+      .unit-hero__title{
+        font-size: 1.05rem;   /* もとの1.2remからちょいダウン */
+        letter-spacing: -0.01em; /* ほんの少しだけ詰める（なくてもOK） */
+      }
+    }
 
-/* ================================
-   citizen.html：サブメニュー最終固定
-   ================================ */
-body.page-citizen .submenu{
-  background:#ffffff !important;
-  border:1px solid #e5e7eb !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.08) !important;
-}
-
-
+    /* ================================
+       citizen.html：サブメニュー最終固定
+       ================================ */
+    body.page-citizen .submenu{
+      background:#ffffff !important;
+      border:1px solid #e5e7eb !important;
+      box-shadow:0 10px 24px rgba(0,0,0,.08) !important;
+    }
   </style>
 </head>
 
@@ -261,7 +258,6 @@ body.page-citizen .submenu{
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -289,23 +285,23 @@ body.page-citizen .submenu{
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
           <li><a href="ichisapo.html">若者サポートステーション</a></li>
           <li><a href="jobcafe.html">ジョブカフェ</a></li>
-          <li><a href="citizen.html">市民活動センター</a></li>
+          <li><a href="citizen.html" aria-current="page">市民活動センター</a></li>
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -321,7 +317,6 @@ body.page-citizen .submenu{
     </label>
   </header>
 
-  <!-- パンくず -->
   <nav class="breadcrumb" aria-label="パンくず">
     <ol>
       <li><a href="index.html">TOP</a></li>
@@ -330,11 +325,9 @@ body.page-citizen .submenu{
     </ol>
   </nav>
 
-  <!-- メイン -->
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="title">
 
-      <!-- ヒーロー -->
       <section id="about" class="unit-hero" aria-labelledby="unit-hero-title">
         <div class="unit-hero__inner">
           <div class="unit-hero__head">
@@ -363,7 +356,6 @@ body.page-citizen .submenu{
             </div>
           </div>
 
-          <!-- ポイント -->
           <div class="unit-hero__points">
             <ul class="points">
               <li>地域協働体・自治会による地域づくりや、個人・任意団体などによる幅広い市民活動をサポートします。</li>
@@ -372,7 +364,6 @@ body.page-citizen .submenu{
             </ul>
           </div>
 
-          <!-- 公式リンク -->
           <div class="links" id="links" aria-label="公式リンク">
             <a class="linkcard" href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer external">
               <span class="linkcard__icon" aria-hidden="true">
@@ -389,7 +380,6 @@ body.page-citizen .submenu{
         </div>
       </section>
 
-      <!-- 注意書き -->
       <section id="note" class="section" aria-labelledby="note-title">
         <h2 id="note-title" class="section__title">ご確認ください</h2>
         <p class="small">
@@ -400,7 +390,6 @@ body.page-citizen .submenu{
     </section>
   </main>
 
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -409,7 +398,6 @@ body.page-citizen .submenu{
     </span>
   </button>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -418,7 +406,7 @@ body.page-citizen .submenu{
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
@@ -480,31 +468,8 @@ body.page-citizen .submenu{
   </footer>
 </div>
 
-<!-- 共通JS -->
 <script src="js/site.js"></script>
 
-<!-- サブメニューの＋／－トグル -->
-<script>
-  document.addEventListener('click', function (e) {
-    const caret = e.target.closest('.sub-caret');
-    if (!caret) return;
-    e.preventDefault(); e.stopPropagation();
-    const li = caret.closest('.has-sub');
-    const toggle = li && li.querySelector('.sub-toggle');
-    if (toggle) toggle.checked = !toggle.checked;
-  }, { capture: true });
-
-  document.addEventListener('keydown', function (e) {
-    if (!e.target.matches('.sub-caret')) return;
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    e.preventDefault();
-    const li = e.target.closest('.has-sub');
-    const toggle = li && li.querySelector('.sub-toggle');
-    if (toggle) toggle.checked = !toggle.checked;
-  });
-</script>
-
-<!-- BTTリング：スクロール進捗 0〜1 を更新 -->
 <script>
 (function(){
   const docEl = document.documentElement;
@@ -533,10 +498,3 @@ body.page-citizen .submenu{
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
