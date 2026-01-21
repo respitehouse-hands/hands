@@ -5,39 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>法人概要 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの法人概要ページです。理念・歩み・定款・役員構成などをご覧いただけます。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
-
-<style>
-
-/* トップページ：サブメニュー背景を白に */
-.page-corp .submenu{
-  background: #fff;
-}
-</style>
-
   
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <style>
+    /* トップページ：サブメニュー背景を白に */
+    .page-corp .submenu{
+      background: #fff;
+    }
+  </style>
+</head>
 
 <body class="page-corp">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -46,7 +42,7 @@
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
@@ -59,13 +55,13 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -76,12 +72,12 @@
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -97,103 +93,89 @@
     </label>
   </header>
 
-  <!-- メイン -->
+  <main id="main" class="about-hub">
+    <section class="about-hub__container" aria-labelledby="about-title">
+      <nav class="about-hub__breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li aria-current="page">法人概要</li>
+        </ol>
+      </nav>
 
-<main id="main" class="about-hub">
-  <section class="about-hub__container" aria-labelledby="about-title">
-    <!-- パンくず -->
-    <nav class="about-hub__breadcrumb" aria-label="パンくず">
-      <ol>
-        <li><a href="index.html">TOP</a></li>
-        <li aria-current="page">法人概要</li>
-      </ol>
-    </nav>
+      <header class="about-hub__header">
+        <h1 id="about-title">法人概要</h1>
+        <p class="lead">下部のボタンから目的のページへ移動できます。</p>
+      </header>
 
-    <!-- 見出し -->
-    <header class="about-hub__header">
- 
-      <h1 id="about-title">法人概要</h1>
-      <p class="lead">下部のボタンから目的のページへ移動できます。</p>
-    </header>
+      <section class="about-hub__grid" aria-label="詳細ページ">
+        <a class="card" href="philosophy.html">
+          <h2>ハンズの理念</h2>
+          <p>大切にしている考え方と支援の軸。</p>
+        </a>
+        <a class="card" href="history.html">
+          <h2>ハンズのあゆみ</h2>
+          <p>設立から現在までの主な出来事。</p>
+        </a>
+        <a class="card" href="teikan.html">
+          <h2>定款</h2>
+          <p>目的・事業・組織体制などの基本規程。</p>
+        </a>
+        <a class="card" href="officers.html">
+          <h2>役員</h2>
+          <p>理事・監事等の構成。</p>
+        </a>
+      </section>
 
-    <!-- カードナビ（4枚） -->
-    <section class="about-hub__grid" aria-label="詳細ページ">
-      <a class="card" href="philosophy.html">
-        <h2>ハンズの理念</h2>
-        <p>大切にしている考え方と支援の軸。</p>
-      </a>
-      <a class="card" href="history.html">
-        <h2>ハンズのあゆみ</h2>
-        <p>設立から現在までの主な出来事。</p>
-      </a>
-      <a class="card" href="teikan.html">
-        <h2>定款</h2>
-        <p>目的・事業・組織体制などの基本規程。</p>
-      </a>
-      <a class="card" href="officers.html">
-        <h2>役員</h2>
-        <p>理事・監事等の構成。</p>
-      </a>
+      <section class="about-hub__facts" aria-labelledby="facts-title">
+        <h2 id="facts-title">基本情報</h2>
+        <dl class="facts">
+          <div><dt>所在地</dt><dd>岩手県一関市青葉二丁目 ６-16</dd></div>
+          <div><dt>設立</dt><dd>1999年（平成11年）</dd></div>
+          <div><dt>連絡先</dt><dd>TEL ： <a href="tel:0191-31-5720">0191-31-5720</a> <br>MAIL： <a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a></dd></div>
+        </dl>
+      </section>
+
     </section>
+  </main>
 
-    <!-- ミニ概要（at a glance） -->
-    <section class="about-hub__facts" aria-labelledby="facts-title">
-      <h2 id="facts-title">基本情報</h2>
-      <dl class="facts">
-        <div><dt>所在地</dt><dd>岩手県一関市青葉二丁目 ６-16</dd></div>
-        <div><dt>設立</dt><dd>1999年（平成11年）</dd></div>
-        <div><dt>連絡先</dt><dd>TEL  ： <a href="tel:0191-31-5720">0191-31-5720</a> <br>MAIL： <a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a></dd></div>
-      </dl>
-    </section>
+  <style>
+    .about-hub{ padding-inline:min(4vw,24px); }
+    .about-hub__container{ max-width:1040px; margin-inline:auto; }
+    .about-hub__breadcrumb ol{display:flex;gap:.5rem .75rem;list-style:none;padding:0;margin:2rem 0 2rem;}
+    .about-hub__breadcrumb li+li::before{content:"›";color:#9ca3af;margin:0 .25rem 0 .2rem;}
+    .about-hub__header .eyebrow{font:500 .95rem "Noto Sans JP",system-ui,sans-serif;color:#555;}
+    .about-hub__header h1{font:700 clamp(1.6rem,2.4vw,2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;margin:.25rem 0;}
+    .about-hub__header .lead{color:#444;margin:1.2rem 0 1.2rem;}
 
+    .about-hub__grid{
+      display:grid; gap: clamp(16px,2.4vw,24px);
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      margin: .5rem 0 1.5rem;
+    }
+    @media (max-width:800px){ .about-hub__grid{ grid-template-columns:1fr; } }
 
-  </section>
-</main>
+    .card{
+      display:block; padding:1rem 1.1rem; border:1px solid #e5e7eb; border-radius:14px;
+      background:#fff; color:inherit; text-decoration:none; box-shadow:0 1px 0 #00000008;
+    }
+    .card:hover{ box-shadow:0 4px 16px #0000000d; transform:translateY(-1px); transition:.2s; }
+    .card h2{ font-weight:700; font-size:1.1rem; margin:0 0 .2rem; }
+    .card p{ margin:.1rem 0 0; color:#444; }
 
-<!-- ページ専用CSS（このページだけに適用） -->
-<style>
-  .about-hub{ padding-inline:min(4vw,24px); }
-  .about-hub__container{ max-width:1040px; margin-inline:auto; }
-  .about-hub__breadcrumb ol{display:flex;gap:.5rem .75rem;list-style:none;padding:0;margin:2rem 0 2rem;}
-  .about-hub__breadcrumb li+li::before{content:"›";color:#9ca3af;margin:0 .25rem 0 .2rem;}
-  .about-hub__header .eyebrow{font:500 .95rem "Noto Sans JP",system-ui,sans-serif;color:#555;}
-  .about-hub__header h1{font:700 clamp(1.6rem,2.4vw,2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;margin:.25rem 0;}
-  .about-hub__header .lead{color:#444;margin:1.2rem 0 1.2rem;}
+    .about-hub__facts{ margin:1rem 0 1.25rem; }
+    .about-hub__facts h2{ font-size:1.4rem; font-weight:700; margin:4rem 0 .5rem; }
+    .facts{ display:grid; gap:.5rem; grid-template-columns: 1fr 2fr; border:1px solid #e5e7eb; border-radius:12px; padding:.8rem 1rem; background:#fff; }
+    .facts dt{ color:#555; }
+    .facts dd{ margin:0; }
+    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
 
-  .about-hub__grid{
-    display:grid; gap: clamp(16px,2.4vw,24px);
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    margin: .5rem 0 1.5rem;
-  }
-  @media (max-width:800px){ .about-hub__grid{ grid-template-columns:1fr; } }
+    .about-hub__cta{ display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0; }
+    .about-hub__cta .cta{
+      display:inline-block; padding:.6em 1em; border-radius:999px; border:1px solid #e5e7eb; background:#fafafa; text-decoration:none; color:#111;
+    }
+    .about-hub__cta .cta:hover{ background:#fff; box-shadow:0 0 0 2px #00000008; }
+  </style>
 
-  .card{
-    display:block; padding:1rem 1.1rem; border:1px solid #e5e7eb; border-radius:14px;
-    background:#fff; color:inherit; text-decoration:none; box-shadow:0 1px 0 #00000008;
-  }
-  .card:hover{ box-shadow:0 4px 16px #0000000d; transform:translateY(-1px); transition:.2s; }
-  .card h2{ font-weight:700; font-size:1.1rem; margin:0 0 .2rem; }
-  .card p{ margin:.1rem 0 0; color:#444; }
-
-  .about-hub__facts{ margin:1rem 0 1.25rem; }
-  .about-hub__facts h2{ font-size:1.4rem; font-weight:700; margin:4rem 0 .5rem; }
-  .facts{ display:grid; gap:.5rem; grid-template-columns: 1fr 2fr; border:1px solid #e5e7eb; border-radius:12px; padding:.8rem 1rem; background:#fff; }
-  .facts dt{ color:#555; }
-  .facts dd{ margin:0; }
-  @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
-
-  .about-hub__cta{ display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0; }
-  .about-hub__cta .cta{
-    display:inline-block; padding:.6em 1em; border-radius:999px; border:1px solid #e5e7eb; background:#fafafa; text-decoration:none; color:#111;
-  }
-  .about-hub__cta .cta:hover{ background:#fff; box-shadow:0 0 0 2px #00000008; }
-</style>
-
-
-       </main>
-
- 
-  <!-- 上へ戻る（スクロール進捗リング） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -204,7 +186,6 @@
     </span>
   </button>
 
-  <!-- フッター（共通） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -213,7 +194,7 @@
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
@@ -228,7 +209,7 @@
           <h3>法人概要</h3>
           <ul>
             <li><a href="philosophy.html">ハンズの理念</a></li>
-            <li><a href="history.html" aria-current="page">ハンズのあゆみ</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
             <li><a href="teikan.html">定款</a></li>
             <li><a href="officers.html">役員</a></li>
           </ul>
@@ -270,15 +251,12 @@
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
+</div>
 
 <script src="js/site.js"></script>
 
 </body>
 </html>
-
-
