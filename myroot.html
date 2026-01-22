@@ -894,6 +894,180 @@ body .submenu{
   }
 }
 
+/* 1. カード自体の内側余白を少し詰める（全体的に有効領域を広げる） */
+.myroot-card {
+  /* 以前の 1.1rem から少し減らす */
+  padding: 1rem 0.9rem; 
+}
+
+/* 2. 箇条書き（●）の左余白を大幅にカット */
+.dot-list {
+  /* マージンでの左開けを廃止 */
+  margin: .4rem 0 .2rem 0;
+  /* パディングで最低限のインデントだけ確保（1.5文字分くらい） */
+  padding-left: 1.4em; 
+}
+
+/* 3. 支援内容の番号リスト（1. 通院同行...）の余白も詰める */
+.flow--circled {
+  margin: .5rem 0;
+  /* ここも左余白を詰める */
+  padding-left: 1.4em; 
+}
+.flow--circled li {
+  /* リスト間の隙間調整 */
+  margin-bottom: .4rem;
+}
+
+/* 4. （念のため）ステップ（初めての方へ）の左余白調整 */
+.step {
+  /* グリッドの隙間を少し詰める */
+  column-gap: .5rem; 
+  /* カード自体のパディングも少し詰める */
+  padding: .85rem .8rem .9rem .8rem;
+}
+
+/* ステップカード全体：グリッドを廃止してブロック要素にする */
+.step {
+  position: relative; /* 中身の絶対配置の基準にする */
+  display: block;     /* グリッドをやめる */
+  padding: 0.8rem 0.5rem 0.9rem; /* 全体の余白 */
+  min-height: 4rem;   /* 番号の高さ分は最低限確保 */
+}
+
+/* 番号（①）：左上に強制配置 */
+.step__num {
+  position: absolute; /* 文書フローから切り離す */
+  top: 0.8rem;        /* カードの上からの位置 */
+  left: 0.5rem;       /* カードの左からの位置 */
+  
+  /* サイズ等は維持 */
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: var(--my-accent);
+  color: #fff;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+/* 見出し：番号と被らないように右へ逃がす */
+.step h3 {
+  /* 番号の幅(1.9rem) + 隙間(0.5rem) 分だけ左を空ける */
+  margin-left: 2.4rem; 
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.5; /* 番号との縦位置合わせのため微調整 */
+}
+
+/* 本文・リスト：左端（番号の下）からスタートさせる */
+.step p,
+.step li,
+.step .small,
+.step .myroot-card {
+  /* ここを「0」にすることで、左端ギリギリまで文字が入る */
+  margin-left: 0.1rem; 
+  
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ※もし「本文の1行目」が番号と重なってしまう場合は、
+   以下の設定で「本文全体」を少し下げるか、見出しの下マージンで調整します。
+   今回は見出し（h3）があるので、自然に番号の下から始まるはずです。 */
+
+/* 本文・リスト：左端の余白を少し戻す */
+.step p,
+.step li,
+.step .small {
+  /* 0.1rem → 0.4rem に変更して、少し呼吸させる */
+  margin-left: 0.4rem; 
+  
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* 持ち物リストのマージンも合わせる */
+.step .dot-list {
+  padding-left: 1.25em; 
+  /* 左マージンを 0.4rem に統一 */
+  margin: 0.3rem 0 0.3rem 0.4rem;
+}
+
+
+/* スマホ（幅600px以下）の時だけ有効になる改行タグ */
+.sp-br {
+  display: none; /* PCでは見えなくする（改行しない） */
+}
+
+@media (max-width: 600px) {
+  .sp-br {
+    display: block;      /* スマホでは改行として機能させる */
+    margin-bottom: 0.2rem; /* 改行後に少し隙間を作るとさらに見やすい */
+    content: "";         /* 念のため */
+  }
+  
+  /* 改行後の文章（2行目）を少しインデントして、項目名と差別化する場合（お好みで） */
+  /* 不要ならこの部分は削除してOK */
+  .flow li {
+    padding-left: 0; /* 必要に応じて調整 */
+  }
+}
+
+/* CTAボタン：スマホ（幅600px以下）の時は縦積みに変更 */
+@media (max-width: 600px) {
+  /* コンテナの設定を上書き */
+  .myroot-page + .cta-bar {
+    flex-direction: column; /* 縦並びにする */
+    gap: 0.8rem;            /* 上下の間隔 */
+    padding-inline: 1.5rem; /* 横の余白を確保 */
+  }
+
+  /* ボタン自体の設定を上書き */
+  .myroot-page + .cta-bar .cta {
+    width: 100%;            /* 横幅いっぱいに */
+    flex: auto;             /* サイズ計算をリセット */
+    justify-content: center; /* 中央寄せ */
+    padding: 1rem;          /* タップしやすいよう高さを出す */
+  }
+}
+
+/* ヒーローエリア内のCTAボタン（上部のボタン） */
+.unit-hero__cta .btn {
+  /* これまで min-width: 12rem でしたが、幅100%（親要素いっぱい）に変更します */
+  width: 100%; 
+  
+  /* 高さ（タップ領域）も少し増やしてリッチに */
+  padding: 0.8rem;
+  
+  /* 中央寄せを確実に */
+  justify-content: center;
+  text-align: center;
+}
+
+/* ボタンのコンテナ（親箱）の調整 */
+.unit-hero__cta {
+  /* 横並び（flex）の設定は維持しつつ、幅100%が効くように向きを縦積みに変えるのも手ですが、
+     width: 100% を指定すれば自然と縦に積み重なります */
+  flex-direction: column; /* 明示的に縦積みにする */
+  gap: 0.8rem; /* ボタン同士の間隔を少し広げる */
+}
+
+/* ヒーローエリア内の注釈テキスト */
+.unit-hero__small {
+  /* 文字サイズを 0.92rem から 0.8rem（約12.8px）に変更 */
+  font-size: 0.8rem; 
+  
+  /* これで確実に一行になります */
+  white-space: nowrap; 
+  
+  /* 色やマージンは既存のまま、あるいは微調整 */
+  color: #6b7280;
+  margin-top: 0.6rem;
+}
+
   </style>
 </head>
 
@@ -1044,23 +1218,24 @@ body .submenu{
           <article class="step">
             <div class="step__num">1</div>
             <h3>事前予約</h3>
-            <p>マイルートリンクは<span class="strong">事前予約制</span>です。電話かメールにてご予約ください。<br>ご予約がない場合、お待たせすることがあります。</p>
+            <p>マイルートリンクは<span class="strong">事前予約制</span>です。電話かメールにてご予約ください。ご予約がない場合、お待たせすることがあります。</p>
             <p class="muted small">ご理解とご協力をお願いします。</p>
           </article>
           <!-- 2 登録 -->
-          <article class="step">
-            <div class="step__num">2</div>
-            <h3>登録（約1時間）</h3>
-            <p>利用規約・個人情報の取扱いに同意いただき、登録シートをご記入いただきます。</p>
-            <div class="myroot-card" style="margin-top:.6rem">
-              <p class="myroot-card__title small">当日の持ち物（例）</p>
-              <ul class="dot-list">
-                <li>障がい者手帳、お薬手帳、年金証書、心理検査結果、診断書</li>
-                <li>履歴書、職務経歴書 など（ある範囲でOK）</li>
-              </ul>
-              <p class="small muted">※ご本人を理解する大切な情報です。可能な範囲でお持ちください。</p>
-            </div>
-          </article>
+<article class="step">
+  <div class="step__num">2</div>
+  <h3>登録（約1時間）</h3>
+  <p>利用規約・個人情報の取扱いに同意いただき、登録シートをご記入いただきます。</p>
+  
+  <p style="margin-top: 0.8rem; font-weight: 700; font-size: 0.92rem;">
+    ▼ 当日の持ち物（例）
+  </p>
+  <ul class="dot-list">
+    <li>障がい者手帳、お薬手帳、年金証書、心理検査結果、診断書</li>
+    <li>履歴書、職務経歴書 など（ある範囲でOK）</li>
+  </ul>
+  <p class="small muted">※ご本人を理解する大切な情報です。可能な範囲でお持ちください。</p>
+</article>
           <!-- 3 相談 -->
           <article class="step">
             <div class="step__num">3</div>
@@ -1107,39 +1282,56 @@ body .submenu{
       </section>
 
       <!-- 相談と支援の流れ -->
-      <section id="flow" class="myroot-section" aria-labelledby="flow-title">
-        <h2 id="flow-title" class="myroot-section__title">相談と支援内容の一例</h2>
-        <div class="flow">
-          <div class="myroot-card"><h3><span class="n">1</span>予約</h3><p>　　「初めてご利用の方へ」を参考にご予約ください。</p></div>
-          <div class="myroot-card"><h3><span class="n">2</span>初回面談</h3><p>　　職歴・健康状態・家庭状況・希望の確認。</p></div>
-          <div class="myroot-card"><h3 class="unit-subtitle"><span class="n">3</span>支援スタート</h3>
-            <ol class="flow flow--circled">
-              <li>　　1. 通院同行：</span>就職活動の留意点や疾患の状態共有</li>
-              <li>　　2. ハローワーク同行：求職相談、雇用保険手続き</li>
-              <li>　　3. 企業見学：希望求人にもとづく見学打診・同行</li>
-              <li>　　4. 企業実習：双方実習を希望した場合、実習開始(3日以上の実習で適性把握・ミスマッチ軽減)</li>
-              <li>　　5. 振り返り：良かった点や必要な支援を踏まえ応募可否、意思を確認</li>
-              <li>　　6. 求人応募：ハローワーク経由で紹介状取得</li>
-              <li>　　7. 採用面接：履歴書・身だしなみチェック</li>
-              <li>　　8. 面接同行：採否通知。採用→定着支援／不採用→再トライ</li>
-              <li>　　9. 就業前：入社書類の準備、必要な支援</li>
-              <li>　　10. 就業初日：必要に応じて同行・訪問</li>
-              <li>　　11. 職場訪問：ご本人・企業双方にヒアリング（就業面／生活面）</li>
-            </ol>
-            <p class="muted small">※上記は一例です。ご希望や状況に合わせて支援を設計します。</p>
-          </div>
-        </div>
-      </section>
+<section id="flow" class="myroot-section" aria-labelledby="flow-title">
+  <h2 id="flow-title" class="myroot-section__title">相談と支援内容の一例</h2>
+  <div class="flow">
+    <div class="myroot-card">
+      <h3><span class="n">1</span>予約</h3>
+      <p>上部にございます「初めてご利用の方へ」を参考にご予約ください。</p>
+    </div>
+
+    <div class="myroot-card">
+      <h3><span class="n">2</span>初回面談</h3>
+      <p>職歴・健康状態・家庭状況・希望の確認。</p>
+    </div>
+
+    <div class="myroot-card">
+      <h3 class="unit-subtitle"><span class="n">3</span>支援スタート</h3>
+<ol class="flow flow--circled">
+  <li>1. 通院同行：<br class="sp-br">就職活動の留意点や疾患の状態共有</li>
+  <li>2. ハローワーク同行：<br class="sp-br">求職相談、雇用保険手続き</li>
+  <li>3. 企業見学：<br class="sp-br">希望求人にもとづく見学打診・同行</li>
+  <li>4. 企業実習：<br class="sp-br">双方実習を希望した場合、実習開始(3日以上の実習で適性把握・ミスマッチ軽減)</li>
+  <li>5. 振り返り：<br class="sp-br">良かった点や必要な支援を踏まえ応募可否、意思を確認</li>
+  <li>6. 求人応募：<br class="sp-br">ハローワーク経由で紹介状取得</li>
+  <li>7. 採用面接：<br class="sp-br">履歴書・身だしなみチェック</li>
+  <li>8. 面接同行：<br class="sp-br">採否通知。採用→定着支援／不採用→再トライ</li>
+  <li>9. 就業前：<br class="sp-br">入社書類の準備、必要な支援</li>
+  <li>10. 就業初日：<br class="sp-br">必要に応じて同行・訪問</li>
+  <li>11. 職場訪問：<br class="sp-br">ご本人・企業双方にヒアリング（就業面／生活面）</li>
+</ol>
+      <p class="muted small">※上記は一例です。ご希望や状況に合わせて支援を設計します。</p>
+    </div>
+  </div>
+</section>
 
  <!-- スタッフ体制 -->
       <section id="staff" class="myroot-section" aria-labelledby="staff-title">
         <h2 id="staff-title" class="myroot-section__title">スタッフの体制</h2>
         <div class="myroot-card">
-          <ul class="dot-list">
-            <li><span class="strong">就業支援担当者：</span>就職準備支援や企業への雇用管理の助言（職場実習の斡旋、履歴書・面接支援、定着支援など）</li>
-            <li><span class="strong">生活支援担当者：</span>長く働くための日常生活・健康維持の助言（障害年金、家族関係、お金の管理、生活設計など）</li>
-          </ul>
-          <p class="muted small">必要に応じて地域の専門機関・行政と連携します。</p>
+<ul class="dot-list">
+  <li>
+    <span class="strong">就業支援担当者：</span><br class="sp-br">
+    就職準備支援や企業への雇用管理の助言（職場実習の斡旋、履歴書・面接支援、定着支援など）
+  </li>
+  <li>
+    <span class="strong">生活支援担当者：</span><br class="sp-br">
+    長く働くための日常生活・健康維持の助言（障害年金、家族関係、お金の管理、生活設計など）
+  </li>
+</ul>
+          <p class="muted small" style="font-size: 0.8rem;">
+  　※必要に応じて地域の専門機関・行政と連携します。
+</p>
         </div>
       </section>
 
