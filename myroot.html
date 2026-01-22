@@ -545,7 +545,7 @@
 /* ---- アンカーの停止位置を補正（stickyサブナビの分だけ上に余白を確保） ---- */
 :root{
   /* 初期値。JSで実測して上書きするので大体でOK */
-  --anchor-offset: 110px;
+  --anchor-offset: 10px;
 }
 
 .myroot-section{
@@ -802,6 +802,98 @@ body .submenu{
 }
 
 
+/* 情報表（リスト形式に刷新） */
+.facts-list {
+  margin: 0;
+  padding: 0;
+  /* カード内の余白を消して、端まで線が引かれるようにしたい場合は親のpaddingを調整するが、
+     今回はカードの内側にリストを入れる形にする */
+}
+
+/* 行ごとのスタイル */
+.fact-row {
+  display: flex;
+  flex-wrap: wrap; /* スマホで折り返せるように */
+  border-bottom: 1px solid var(--my-line);
+  padding: 1.1rem 0; /* 上下の余白を広げてゆったりと */
+}
+.fact-row:first-child { padding-top: 0; }
+.fact-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+/* 項目名（左側） */
+.fact-row dt {
+  width: 140px; /* 固定幅で見出しを揃える */
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--my-ink-2);
+  display: flex;
+  align-items: center; /* アイコンと文字を垂直中央揃え */
+  gap: .5rem;
+  margin: 0 0 .3rem 0; /* スマホで折り返した時用の余白 */
+}
+
+/* アイコン */
+.fact-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--my-accent); /* テーマカラーを適用 */
+  flex-shrink: 0;
+}
+
+/* 内容（右側） */
+.fact-row dd {
+  margin: 0;
+  flex: 1; /* 残りの幅を全部使う */
+  color: #111;
+  line-height: 1.7;
+}
+
+/* リンク文字 */
+.fact-link {
+  color: #111;
+  text-decoration: underline;
+  text-decoration-color: var(--my-line);
+  text-underline-offset: 3px;
+  transition: color .2s;
+}
+.fact-link:hover {
+  color: var(--my-accent);
+  text-decoration-color: var(--my-accent);
+}
+
+/* スマホ表示時の調整 */
+@media (max-width: 600px) {
+  .fact-row {
+    display: block; /* 縦積みにする */
+    padding: .9rem 0;
+  }
+  .fact-row dt {
+    width: 100%;
+    margin-bottom: .4rem;
+    color: #444;
+  }
+  .fact-row dd {
+    padding-left: 1.8rem; /* アイコン分だけ字下げして整える */
+  }
+}
+
+/* カードのパディング微調整（このリストを使うカード用） */
+.myroot-card.p-0 {
+  padding: 1.5rem 1.8rem; /* リストが綺麗に見えるよう余白再設定 */
+}
+/* スマホではカード余白を少し減らす */
+@media (max-width: 600px){
+  .myroot-card.p-0 { padding: 1.2rem; }
+}
+
+/* 事業所案内のグリッド比率を 1:1（半分半分）に変更 */
+@media (min-width: 961px) { /* PCサイズ（スマホ以外）の時だけ適用 */
+  #access .myroot-grid {
+    /* minmax(0, 1fr) を2つ並べて、等幅かつはみ出し防止 */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
   </style>
 </head>
 
@@ -854,6 +946,7 @@ body .submenu{
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -1072,30 +1165,90 @@ body .submenu{
       </section>
 
       <!-- アクセス -->
-      <section id="access" class="myroot-section" aria-labelledby="access-title">
-        <h2 id="access-title" class="myroot-section__title">事業所のご案内</h2>
-        <div class="myroot-grid">
-          <div class="myroot-card">
-            <dl class="facts">
-              <div><dt>所在地</dt><dd>〒021-0881　一関市大町4-29 なのはなプラザ4階</dd></div>
-              <div><dt>受付時間</dt><dd>平日（月～金）10:00–17:00（最終受付16:00／予約優先）</dd></div>
-              <div><dt>TEL</dt><dd><a href="tel:0191-48-3787">0191-48-3787</a></dd></div>
-              <div><dt>FAX</dt><dd>0191-48-3788</dd></div>
-              <div><dt>MAIL</dt><dd><a href="mailto:hands.nakapotsu@gmail.com">hands.nakapotsu@gmail.com</a></dd></div>
-              <div><dt>駐車場</dt><dd>なのはなプラザ無料駐車場／一関図書館駐車場</dd></div>
-            </dl>
-          </div>
-<div class="map map--embed">
+<section id="access" class="myroot-section" aria-labelledby="access-title">
+  <h2 id="access-title" class="myroot-section__title">事業所のご案内</h2>
+  <div class="myroot-grid">
+    
+    <div class="myroot-card p-0"> <dl class="facts-list">
+        
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+            所在地
+          </dt>
+          <dd>
+            〒021-0881<br>
+            一関市大町4-29 なのはなプラザ4階
+          </dd>
+        </div>
+
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" fill="currentColor"/></svg>
+            受付時間
+          </dt>
+          <dd>
+            平日（月～金） 10:00–17:00<br>
+            <span class="muted small">（最終受付16:00／予約優先）</span>
+          </dd>
+        </div>
+
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/></svg>
+            TEL
+          </dt>
+          <dd>
+            <a href="tel:0191-48-3787" class="fact-link">0191-48-3787</a>
+          </dd>
+        </div>
+
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM18 8h-4v2h4V8zm-6 0H6v6h6V8zm6 4h-4v2h4v-2zm0 4h-4v2h4v-2z" fill="currentColor"/></svg>
+            FAX
+          </dt>
+          <dd>0191-48-3788</dd>
+        </div>
+
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+            MAIL
+          </dt>
+          <dd>
+            <a href="mailto:hands.nakapotsu@gmail.com" class="fact-link">hands.nakapotsu@gmail.com</a>
+          </dd>
+        </div>
+
+        <div class="fact-row">
+          <dt>
+            <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.97 10.97h2.06v5.15h-2.06zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.88-12.88h1.76v1.76h-1.76z" fill="currentColor"/></svg>
+            駐車場
+          </dt>
+          <dd>なのはなプラザ無料駐車場<br>一関図書館駐車場</dd>
+        </div>
+
+      </dl>
+    </div>
+
+<div class="map map--embed" id="gmapBox">
   <iframe
     title="マイルートリンク周辺地図"
-    src="https://www.google.com/maps?q=なのはなプラザ%204F%20一関&output=embed"
+    src="https://maps.google.co.jp/maps?output=embed&q=なのはなプラザ&z=16"
+    width="100%"
+    height="100%"
     loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    allowfullscreen>
+    style="border:0;"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 </div>
-        </div>
-      </section>
+
+  </div>
+</section>
+
+
 
          </section>
   </main>
@@ -1139,7 +1292,7 @@ body .submenu{
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉2-6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
