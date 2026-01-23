@@ -3,41 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NEWS一覧 | レスパイトハウス・ハンズ</title>
+  <title>NEWS一覧（お知らせ） | 一関・平泉の障がい者支援 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <meta name="description" content="岩手県一関市・平泉町のNPO法人レスパイトハウス・ハンズからのお知らせ一覧です。各事業所の活動報告、イベント情報、年末年始の休業日などを発信しています。">
+  
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
   
   <style>
     /* フェード/スプラッシュ無効 */
     body{opacity:1 !important} #splash{display:none !important}
 
+    /* ページ固有スタイル */
     .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto;padding:0 2%;}
     .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.9rem;margin:0;padding:0;list-style:none;}
     .breadcrumb li+li::before{content:"›";color:#9aa6af;margin:0 .5em;}
+    
     .news-index{max-width:min(1100px,92vw);margin: clamp(12px,3vw,28px) auto; padding:0 2%;}
     .news-index h1{font-size:clamp(22px,3.6vw,32px);margin:.2em 0 .6em;}
     .news-year{margin: clamp(16px,3vw,28px) 0 8px; font-size:1rem; color:#193528; border-left:4px solid #2f7d5b; padding-left:.6em;}
+    
     .news-list{margin:0; padding:0; list-style:none; border-top:1px solid #eef3ef;}
     .news-list li{border-bottom:1px solid #eef3ef;}
-    .news-list a{display:grid; grid-template-columns:110px 88px 1fr; gap:10px;
-                 padding:12px 6px; text-decoration:none; color:inherit; align-items:center;}
+    
+    .news-list a{
+      display:grid; grid-template-columns:110px 88px 1fr; gap:10px;
+      padding:12px 6px; text-decoration:none; color:inherit; align-items:center;
+      /* 追加：ホバー時の変化を滑らかにする */
+      transition: background-color 0.2s ease;
+      border-radius: 4px; /* 角を少し丸めて柔らかく */
+    }
+    
+    /* 追加：マウスを乗せた時の背景色（薄いミントグリーン） */
+    .news-list a:hover {
+      background-color: #f4fcf9;
+    }
+
     .news-date{color:#4c5a63; font-variant-numeric: tabular-nums;}
     .news-tag{font-size:12px; background:#eaf7f1; color:#215d47; border-radius:999px; padding:2px 8px; justify-self:start;}
     .news-title{line-height:1.6;}
+    
     @media (max-width:640px){
       .news-list a{grid-template-columns:90px auto; grid-template-areas:
         "date tag" "title title";}
@@ -45,11 +63,33 @@
       .news-tag{grid-area:tag; justify-self:end;}
       .news-title{grid-area:title;}
     }
+
+    /* ドロップダウンメニューの背景を白にする指定 */
+    .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb;
+    }
+
+.news-list a{
+      display:grid; grid-template-columns:110px 88px 1fr; gap:10px;
+      padding:12px 6px; text-decoration:none; color:inherit; align-items:center;
+      
+      /* アニメーションの設定 */
+      transition: all 0.2s ease-out;
+      border-radius: 4px;
+      border-left: 4px solid transparent; /* 左端に透明な線を用意しておく */
+    }
+    
+    /* マウスを乗せた時の変化 */
+    .news-list a:hover {
+      background-color: #e3f2eb; /* さっきより濃いミントグリーン */
+      transform: translateX(6px); /* 右に少し動く */
+      border-left-color: #2f7d5b; /* 左端にアクセントカラーの線が出る */
+    }
   </style>
 </head>
 <body>
 <div id="page">
-  <!-- 共通ヘッダー（既存サイトと同一） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -93,6 +133,7 @@
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -109,7 +150,6 @@
   </header>
 
   <main id="main">
-    <!-- パンくず -->
     <nav class="breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
@@ -146,7 +186,7 @@
             <span class="news-title">わぁははクラブ竣工式　開催報告</span>
           </a>
         </li>
-      
+       
         <li>
           <a href="news3.html">
             <time class="news-date" datetime="2025-11-11">2025.11.11</time>
@@ -172,14 +212,9 @@
         </li>
 
       </ul>
-
-      <!-- （将来）年が増えたら <h2 class="news-year">2024年</h2> … を追加 -->
     </section>
-
-    <!-- 既存の電話/メールCTAを載せたいならここに <nav class="cta-bar">…</nav> -->
   </main>
 
-<!-- 上へ戻る（スクロール進捗リング付き） -->
 <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
   <span class="btt__ring" aria-hidden="true"></span>
   <span class="btt__inner" aria-hidden="true">
@@ -191,7 +226,6 @@
 </button>
 
 
-  <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -207,7 +241,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -300,8 +334,5 @@
   })();
 </script>
 
-
 </body>
 </html>
-
-
