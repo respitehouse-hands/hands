@@ -3,307 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NEWS | 年末年始の休業について</title>
-<meta name="description" content="年末年始の休業期間についてのお知らせです。わぁははクラブ、リトルハンズ等の各事業所の休業期間と再開日をご案内します。">
+  <title>【お知らせ】年末年始の休業について | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <meta name="description" content="レスパイトハウス・ハンズ各事業所（わぁははクラブ、リトルハンズ、さくらなみき等）の年末年始の休業期間と年始の再開日をお知らせいたします。" />
 
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css" />
   
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-<style>
+  <style>
+    body{opacity:1 !important}
+    #splash{display:none !important}
 
-body{opacity:1 !important}
-#splash{display:none !important}
+    /* 区切りをCSSからは出さない（共通breadcrumb対策） */
+    .breadcrumb li::before,
+    .breadcrumb li + li::before{ content:none !important; }
 
-/* 区切りをCSSからは出さない（共通breadcrumb対策） */
-.breadcrumb li::before,
-.breadcrumb li + li::before{ content:none !important; }
+    /* ドロップダウンメニューの背景を白にする指定 */
+    .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb;
+    }
 
-/* ===== NEWS共通（必要最小限） ===== */
-.news-wrap{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 min(4vw, 24px);
-}
+    /* ===== NEWS共通レイアウト ===== */
+    .news-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 min(4vw, 24px);
+    }
 
-.news-breadcrumb{ margin: 1.2rem 0 0; }
-.news-breadcrumb ol{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.5rem .75rem;
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-.news-breadcrumb li+li::before{
-  content:"›";
-  color:#9ca3af;
-  margin:0 .25rem 0 .2rem;
-}
+    /* パンくずリスト */
+    .news-breadcrumb{ margin: 1.2rem 0 0; }
+    .news-breadcrumb ol{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem .75rem;
+      list-style:none;
+      padding:0;
+      margin:0;
+      font-size: 0.9rem;
+    }
+    .news-breadcrumb li+li::before{
+      content:"›";
+      color:#9ca3af;
+      margin:0 .25rem 0 .2rem;
+    }
 
-/* リンク色（サイト全体を変えたくないなら .news-wrap a にしてもOK） */
-a{
-  color:#2EA6F0;
-  text-decoration:none;
-  transition:.25s ease;
-}
-a:hover{
-  color:#1b72aa;
-  text-decoration:underline;
-}
+    /* リンク色 */
+    a{
+      color:#2EA6F0;
+      text-decoration:none;
+      transition:.25s ease;
+    }
+    a:hover{
+      color:#1b72aa;
+      text-decoration:underline;
+    }
 
-/* ===== 年末年始：PCテーブル + スマホカード ===== */
+    /* ===== 年末年始専用：PCテーブル + スマホカード ===== */
+    
+    .table-wrap{ display:block; }
+    .ny-cards{ display:none; }
 
-/* テーブル表示（PC） / カード非表示 */
-.table-wrap{ display:block; }
-.ny-cards{ display:none; }
+    .note{
+      color:#6b7280;
+      font-size:.95rem;
+      margin-top:1rem;
+      margin-bottom:3rem;
+    } 
 
-.note{
-  color:#6b7280;
-  font-size:.95rem;
-  margin-top:1rem;
-  margin-bottom:3rem;
-} 
+    /* PC：テーブルデザイン */
+    .table-wrap{
+      border: 1px solid #e6edf2;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      margin-top: 2rem;
+    }
 
-/* ---------- PC：テーブルをカード化（右端の途切れ根治） ---------- */
-.table-wrap{
-  border: 1px solid #e6edf2;
-  border-radius: 16px;
-  overflow: hidden;     /* ← 角丸クリップ＆右端欠け対策の本丸 */
-  background: #fff;
-}
+    .info-table{
+      width:100%;
+      margin:0;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+    }
 
-/* テーブル本体 */
-.info-table{
-  width:100%;
-  margin:0;
-  border-collapse: separate;  /* 罫線設計を安定 */
-  border-spacing: 0;
-  table-layout: fixed;        /* 列幅を安定 */
-}
+    .info-table th,
+    .info-table td{
+      padding:.75rem .85rem;
+      vertical-align: middle;
+      border: 0;
+      border-right: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-/* セル共通 */
-.info-table th,
-.info-table td{
-  padding:.75rem .85rem;
-  vertical-align: middle;
-  border: 0;
-  border-right: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-}
+    .info-table tr > *:last-child{ border-right: 0; }
+    .info-table tbody tr:last-child > *{ border-bottom: 0; }
 
-/* 右端の縦線はwrapの枠に任せる */
-.info-table tr > *:last-child{ border-right: 0; }
-/* 最下段の横線もwrapの枠に任せる */
-.info-table tbody tr:last-child > *{ border-bottom: 0; }
+    .info-table thead th{
+      background:#f5fbff;
+      font-weight:700;
+      border-bottom: 2px solid #d8efff;
+      color: #17222f;
+    }
 
-/* ヘッダー */
-.info-table thead th{
-  background:#f5fbff;
-  font-weight:700;
-  border-bottom: 2px solid #d8efff;
-}
+    /* PC時の列幅調整 */
+    @media (min-width: 900px){
+      .info-table thead th:nth-child(1){ width: 32%; }
+      .info-table thead th:nth-child(2){ width: 22%; }
+      .info-table thead th:nth-child(3){ width: 30%; }
+      .info-table thead th:nth-child(4){ width: 16%; }
 
-/* PC：列幅（長い事業所名のはみ出し対策） */
-@media (min-width: 900px){
-  .info-table thead th:nth-child(1){ width: 32%; } /* 事業所 */
-  .info-table thead th:nth-child(2){ width: 22%; } /* 事業 */
-  .info-table thead th:nth-child(3){ width: 30%; } /* 休業期間 */
-  .info-table thead th:nth-child(4){ width: 16%; } /* 再開日 */
+      .info-table tbody th[scope="row"],
+      .info-table tbody td:nth-child(3),
+      .info-table tbody td:nth-child(4){
+        white-space: nowrap;
+      }
+    }
 
-  /* 折返しの基本方針 */
-  .info-table th,
-  .info-table td{
-    word-break: normal;
-    overflow-wrap: normal;
-  }
+    /* スマホ：カード表示 */
+    @media (max-width: 899px){
+      .table-wrap{ display:none; }
+      .ny-cards{
+        display:grid;
+        gap: 12px;
+        margin-top: 24px;
+      }
 
-  /* 事業所名・休業期間・再開日は1行 */
-  .info-table tbody th[scope="row"],
-  .info-table tbody td:nth-child(3),
-  .info-table tbody td:nth-child(4){
-    white-space: nowrap;
-  }
+      .ny-card{
+        border:1px solid #e6edf2;
+        background:#fff;
+        border-radius: 14px;
+        padding: 16px;
+      }
 
-  /* 事業列は原則折返しOK（わぁはは対策） */
-  .info-table tbody td:nth-child(2){
-    white-space: normal;
-  }
+      .ny-card__title{
+        margin: 0 0 12px;
+        font: 700 1.1rem "Zen Maru Gothic","Noto Sans JP",system-ui;
+        color:#17222f;
+        border-bottom: 2px solid #f0f4f8;
+        padding-bottom: 8px;
+      }
 
-  /* ただし特定行だけ事業を1行に（並び前提） */
-  .info-table tbody tr:nth-child(2) td:nth-child(2),
-  .info-table tbody tr:nth-child(6) td:nth-child(2){
-    white-space: nowrap;
-  }
-}
+      .ny-card__dl{
+        margin:0;
+        display:grid;
+        gap: 10px;
+      }
 
-/* 行ホバー（PCだけ） */
-@media (hover:hover){
-  .info-table tbody tr:hover{ background:#fbfdff; }
-}
+      .ny-card__dl > div{
+        display:grid;
+        grid-template-columns: 5.5em 1fr;
+        gap: 12px;
+        align-items: baseline;
+      }
 
-/* ---------- スマホ：テーブルを消してカード表示 ---------- */
-@media (max-width: 899px){
-  .table-wrap{ display:none; }
-  .ny-cards{
-    display:grid;
-    gap: 12px;
-    margin-top: 12px;
-  }
+      .ny-card__dl dt{
+        color:#6b7280;
+        font-weight:700;
+        font-size:.85rem;
+      }
 
-  .ny-card{
-    border:1px solid #e6edf2;
-    background:#fff;
-    border-radius: 14px;
-    padding: 12px 12px 10px;
-  }
+      .ny-card__dl dd{
+        margin:0;
+        color:#111827;
+        font-size: 0.95rem;
+      }
+    }
 
-  .ny-card__title{
-    margin: 0 0 14px;
-    font: 700 1.18rem/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
-    color:#17222f;
-  }
+    /* ===== 記事タイトル周り ===== */
+    .news-body h2 {
+        font-family: "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;
+        font-size: clamp(20px, 3.5vw, 32px);
+        margin: 1.5rem 0 0.5rem;
+        line-height: 1.3;
+    }
 
-  .ny-card__dl{
-    margin:0;
-    display:grid;
-    gap: 10px;
-    padding-top: 4px;
-  }
+    .article__meta {
+        color: #2f7d5b;
+        display: flex;
+        gap: .8em;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
 
-  .ny-card__dl > div{
-    display:grid;
-    grid-template-columns: 5.5em 1fr;
-    gap: 12px;
-    align-items: start;
-  }
+    .ny-lead {
+        line-height: 1.8;
+    }
 
-  .ny-card__dl dt{
-    margin:0;
-    color:#6b7280;
-    font-weight:700;
-    font-size:.92rem;
-  }
+    /* ===== シンプルな「戻る」リンクのデザイン ===== */
+    .article__nav {
+      margin: 3rem 0;
+      text-align: left; /* 左寄せ */
+    }
+    .link-back {
+      display: inline-flex;
+      align-items: center;
+      color: #888; /* 控えめなグレー */
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .link-back::before {
+      content: "←";
+      margin-right: 0.5em;
+      transition: transform 0.2s ease;
+    }
+    .link-back:hover {
+      color: #2f7d5b; /* ホバー時はブランドカラー */
+      text-decoration: none;
+    }
+    .link-back:hover::before {
+      transform: translateX(-4px); /* 矢印が少し左に動く */
+    }
 
-  .ny-card__dl dd{
-    margin:0;
-    color:#111827;
-    line-height:1.6;
-  }
-
-  /* 挨拶の2行目を1行に寄せたい場合（HTML側にclass付けてる前提） */
-  .ny-lead__greet{
-    font-size: .94em;
-    white-space: nowrap;
-    display: inline-block;
-  }
-}
-
-/* ===== サブメニュー背景を「白」に固定（共通CSSの上書き） ===== */
-#site-header .submenu{
-  background: #fff !important;
-  border: 1px solid #e6edf2;
-  border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
-/* サブメニュー内の各行が緑にならないよう保険 */
-#site-header .submenu li{
-  background: transparent !important;
-}
-
-/* サブメニューリンクの可読性 */
-#site-header .submenu a{
-  color: #17222f;
-  background: transparent;
-}
-
-/* hover/focus（薄い水色でOK） */
-#site-header .submenu a:hover,
-#site-header .submenu a:focus{
-  background: #f5fbff;
-  color: #1b72aa;
-}
-
-/* スマホのハンバーガー内は影が邪魔なら軽くする */
-@media (max-width: 899px){
-  #site-header .submenu{
-    box-shadow: none;
-    border-radius: 10px;
-  }
-}
-
-/* ===== このページだけ：サブメニューのハイライトを「緑系」に ===== */
-:root{
-  /* ヘッダーの緑に合わせて調整してOK（少し薄い方が上品） */
-  --menu-accent: #2f7d5b;
-  --menu-accent-bg: rgba(47, 125, 91, .10);
-}
-
-/* hover / focus（キーボード操作含む） */
-#site-header .submenu a:hover,
-#site-header .submenu a:focus,
-#site-header .submenu a:focus-visible{
-  background: var(--menu-accent-bg) !important;
-  color: var(--menu-accent) !important;
-  text-decoration: none;
-  outline: none;
-}
-
-/* クリック中の一瞬（active） */
-#site-header .submenu a:active{
-  background: rgba(47, 125, 91, .16) !important;
-  color: var(--menu-accent) !important;
-}
-
-/* 「今いるページ」を示す系（クラス名が違っても効くように保険で複数） */
-#site-header .submenu a[aria-current="page"],
-#site-header .submenu a[aria-current="true"],
-#site-header .submenu .is-current > a,
-#site-header .submenu .current > a,
-#site-header .submenu .active > a{
-  background: var(--menu-accent-bg) !important;
-  color: var(--menu-accent) !important;
-  font-weight: 700;
-}
-
-.btn--ghost{display:inline-block;padding:.9em 1.4em;border:1.6px solid #1f6f59;border-radius:9999px;text-decoration:none}
-
-@media (max-width: 899px){
-  /* 段落全体は折り返してOK（はみ出し防止） */
-  .ny-lead{
-    white-space: normal;
-    overflow-wrap: anywhere;
-    line-height: 1.9;
-  }
-
-  /* 「ご不便を〜」の行だけ1行にしたい */
-  .ny-lead__greet{
-    white-space: nowrap;
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis; /* どうしても入らない時は…で省略 */
-    vertical-align: bottom;
-  }
-}
-
-
-</style>
-
+  </style>
 </head>
 
 <body>
@@ -311,7 +238,6 @@ a:hover{
 
 <div id="page">
 
-  <!-- 共通ヘッダー（既存サイトと同一） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -355,6 +281,7 @@ a:hover{
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -381,163 +308,152 @@ a:hover{
         </ol>
       </nav>
 
-<section class="news-body" aria-labelledby="ny-title">
-  <h2 id="ny-title">年末年始の休業について</h2>
+      <section class="news-body" aria-labelledby="ny-title">
+        <h2 id="ny-title">年末年始の休業について</h2>
 
-    <!-- ここに記事メタを追加する -->
-  <p class="article__meta">
-    <time datetime="2025-12-24" itemprop="datePublished">2025.12.24（水）</time>
-    <span class="news__tag">お知らせ</span>
-  </p>
+        <p class="article__meta">
+          <time datetime="2025-12-24" itemprop="datePublished">2025.12.24（水）</time>
+          <span class="news__tag">お知らせ</span>
+        </p>
 
-<p class="ny-lead">
-  いつもレスパイトハウス・ハンズをご利用いただき、ありがとうございます。<br>
-  年末年始の休業期間についてのお知らせです。<br>
-  ご不便をおかけしますが、ご理解とご協力のほど、何卒よろしくお願いいたします。<br>　
-</p>
+        <p class="ny-lead">
+          いつもレスパイトハウス・ハンズをご利用いただき、ありがとうございます。<br>
+          年末年始の休業期間についてのお知らせです。<br>
+          ご不便をおかけしますが、ご理解とご協力のほど、何卒よろしくお願いいたします。<br>　
+        </p>
 
+        <div class="table-wrap" role="region" aria-label="年末年始の休業期間一覧">
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th scope="col">事業所</th>
+                <th scope="col">事業</th>
+                <th scope="col">休業期間</th>
+                <th scope="col">再開日</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">わぁははクラブ</th>
+                <td>生活介護・居宅介護・<br>相談支援</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row">リトルハンズ</th>
+                <td>障がい児等デイサービス</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row">さくらなみき</th>
+                <td>就労継続支援B型</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row" class="office--long">いちのせき若者サポートステーション</th>
+                <td>就労支援</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row">ジョブカフェ一関</th>
+                <td>就職支援</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row">マイルートリンク</th>
+                <td>障がい者就業・生活支援</td>
+                <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+              <tr>
+                <th scope="row">いちのせき市民活動センター</th>
+                <td>市民活動支援</td>
+                <td>2025/12/28 (日) 〜 2026/1/4 (日)</td>
+                <td>2026/1/5 (月) 〜</td>
+              </tr>
+            </tbody>
+          </table>
+        </div><div class="ny-cards" aria-label="年末年始の休業期間（スマホ表示）">
+          <article class="ny-card">
+            <h3 class="ny-card__title">わぁははクラブ</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>生活介護・居宅介護・<br>相談支援</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
+          <article class="ny-card">
+            <h3 class="ny-card__title">リトルハンズ</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>障がい児等デイサービス</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
-  <div class="table-wrap" role="region" aria-label="年末年始の休業期間一覧（横スクロール）">
-    <table class="info-table">
-      <thead>
-        <tr>
-          <th scope="col">事業所</th>
-          <th scope="col">事業</th>
-          <th scope="col">休業期間</th>
-          <th scope="col">再開日</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">わぁははクラブ</th>
-          <td>生活介護・居宅介護・<br>相談支援</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row">リトルハンズ</th>
-          <td>障がい児等デイサービス</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row">さくらなみき</th>
-          <td>就労継続支援B型</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row" class="office--long">いちのせき若者サポートステーション</th>
-          <td>就労支援</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row">ジョブカフェ一関</th>
-          <td>就職支援</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row">マイルートリンク</th>
-          <td>障がい者就業・生活支援</td>
-          <td>2025/12/27 (土) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-        <tr>
-          <th scope="row">いちのせき市民活動センター</th>
-          <td>市民活動支援</td>
-          <td>2025/12/28 (日) 〜 2026/1/4 (日)</td>
-          <td>2026/1/5 (月) 〜</td>
-        </tr>
-      </tbody>
-    </table>
-  </div><!-- /.table-wrap -->
+          <article class="ny-card">
+            <h3 class="ny-card__title">さくらなみき</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>就労継続支援B型</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
-<!-- スマホ用：カード表示 -->
-<div class="ny-cards" aria-label="年末年始の休業期間（スマホ表示）">
-  <article class="ny-card">
-    <h3 class="ny-card__title">わぁははクラブ</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>生活介護・居宅介護・<br>相談支援</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+          <article class="ny-card">
+            <h3 class="ny-card__title">いちのせき若者サポートステーション</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>就労支援</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">リトルハンズ</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>障がい児等デイサービス</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+          <article class="ny-card">
+            <h3 class="ny-card__title">ジョブカフェ一関</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>就職支援</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">さくらなみき</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>就労継続支援B型</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+          <article class="ny-card">
+            <h3 class="ny-card__title">マイルートリンク</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>障がい者就業・生活支援</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">いちのせき若者サポートステーション</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>就労支援</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+          <article class="ny-card">
+            <h3 class="ny-card__title">いちのせき市民活動センター</h3>
+            <dl class="ny-card__dl">
+              <div><dt>事業内容</dt><dd>市民活動支援</dd></div>
+              <div><dt>休業期間</dt><dd>2025/12/28 (日) 〜 2026/1/4 (日)</dd></div>
+              <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
+            </dl>
+          </article>
+        </div>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">ジョブカフェ一関</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>就職支援</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+        <p class="note">
+          ※休業期間は変更となる場合があります。ご来所・ご相談の前に、各窓口へお問い合わせください。
+        </p>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">マイルートリンク</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>障がい者就業・生活支援</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/27 (土) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
+        <nav class="article__nav">
+          <a class="link-back" href="news.html">NEWS一覧へ戻る</a>
+        </nav>
 
-  <article class="ny-card">
-    <h3 class="ny-card__title">いちのせき市民活動センター</h3>
-    <dl class="ny-card__dl">
-      <div><dt>事業内容</dt><dd>市民活動支援</dd></div>
-      <div><dt>休業期間</dt><dd>2025/12/28 (日) 〜 2026/1/4 (日)</dd></div>
-      <div><dt>再開日</dt><dd>2026/1/5 (月) 〜</dd></div>
-    </dl>
-  </article>
-</div>
-
-
-  <p class="note">
-    ※休業期間は変更となる場合があります。ご来所・ご相談の前に、各窓口へお問い合わせください。
-  </p>
-
-      <!-- 一覧へ戻る -->
-      <nav class="article__nav">
-        <a class="btn btn--ghost" href="index.html">← TOPへ戻る</a>
-      </nav>
-
-</section>
-
-
+      </section>
     </div>
   </main>
 
-<!-- 上へ戻る（スクロール進捗リング付き） -->
 <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
   <span class="btt__ring" aria-hidden="true"></span>
   <span class="btt__inner" aria-hidden="true">
@@ -549,7 +465,6 @@ a:hover{
 </button>
 
 
-  <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -565,7 +480,7 @@ a:hover{
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -604,7 +519,6 @@ a:hover{
         <div class="footer__group">
           <h3>情報公開</h3>
           <ul>
-            <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
             <li><a href="sitemap.html">サイトマップ</a></li>
@@ -619,36 +533,7 @@ a:hover{
     </div>
   </footer>
 
-</div><!-- /#page -->
-
-<!-- 任意：記事ページ用の軽いCSS（既存style.cssに似せたユーティリティ） -->
-<style>
-  .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto;}
-  .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.9rem}
-  .breadcrumb li::after{content:"›";margin:0 .5em;color:#999}
-  .breadcrumb li:last-child::after{content:none}
-  .article{max-width:min(1100px,92vw);margin: clamp(16px,4vw,32px) auto}
-  .article__title{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;line-height:1.25;margin:0 0 .25em;font-size:clamp(18px,3.8vw,28px)}
-  .article__meta{color:#2f7d5b;display:flex;gap:.8em;align-items:center;margin-bottom:clamp(12px,2vw,20px)}
-  .article__body{font-size:1.06rem;line-height:1.9}
-  .article__section{margin-top: clamp(20px,3.2vw,32px)}
-  .article__h2{font-size:1.1rem;margin:0 0 .6em;color:#193528;border-left:4px solid #2f7d5b;padding-left:.6em}
-  .definition-list{border:1px solid #e6eee9;border-radius:12px;padding:12px}
-  .definition-list__row{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 6px;border-top:1px dashed #e6eee9}
-  .definition-list__row:first-child{border-top:none}
-  .definition-list dt{color:#193528;font-weight:600}
-  .map-embed{margin-top:12px;border-radius:12px;overflow:hidden;background:#f6fbf8;border:1px solid #e6eee9}
-  .map-embed iframe{width:100%;height:360px;border:0;display:block}
-  .map-embed__link{margin:6px 10px 10px;font-size:.95rem}
-  .article__nav{margin: clamp(20px,3vw,32px) 0}
-  .btn--ghost{display:inline-block;padding:.9em 1.4em;border:1.6px solid #1f6f59;border-radius:9999px;text-decoration:none}
-  @media (max-width:640px){
-    .definition-list__row{grid-template-columns:1fr}
-    .map-embed iframe{height:280px}
-  }
-</style>
-
-<script>
+</div><script>
   document.body.classList.add('page-show');
   document.documentElement.classList.remove('no-scroll');
   var s = document.getElementById('splash'); if(s) s.style.display='none';
@@ -685,9 +570,5 @@ a:hover{
   })();
 </script>
 
-
 </body>
 </html>
-
-
-
