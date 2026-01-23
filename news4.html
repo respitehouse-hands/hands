@@ -3,65 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NEWS ハンズ生活介護事業所わぁははクラブ | 竣工式を開催しました – レスパイトハウス・ハンズ</title>
-  <meta name="description" content="ハンズ生活介護事業所 | わぁははクラブ竣工式の開催報告です。" />
+  <title>【開催報告】わぁははクラブ竣工式 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <meta name="description" content="令和7年11月21日に開催された、ハンズ生活介護事業所「わぁははクラブ」の竣工式および見学会の開催報告です。当日の様子を写真付きでご紹介しています。" />
+  
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css" />
   
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-<style>
+  <style>
+    body{opacity:1 !important} #splash{display:none !important}
 
-body{opacity:1 !important} #splash{display:none !important}
+    /* パンくずリストの区切り線調整 */
+    .breadcrumb li::before,
+    .breadcrumb li + li::before { content:none !important; }
 
-/* 区切りをCSSからは出さない */
-.breadcrumb li::before,
-.breadcrumb li + li::before { content:none !important; }
+    /* ドロップダウンメニューの背景を白にする指定 */
+    .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb;
+    }
 
-/* 記事トップ画像 */
-.article__image{
-  max-width: min(1100px, 92vw);
-  margin: 0 auto clamp(20px, 4vw, 32px);
-}
+    /* ▼▼▼ リンクカードのデザイン ▼▼▼ */
+    .link-card-wrapper {
+      margin-top: 2rem;
+    }
 
-.article__image img{
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-}
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      
+      background-color: #fff;
+      border: 1px solid #2f7d5b;
+      border-left: 6px solid #2f7d5b;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      
+      text-decoration: none;
+      color: #193528;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-/* テキストリンク（NEWS用含む）の基本 */
-a {
-  color: #2EA6F0;  /* ハンズのスカイ系カラー */
-  text-decoration: none;
-  transition: 0.25s ease;
-}
+    .link-card:hover {
+      background-color: #f4fcf9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(47, 125, 91, 0.2);
+    }
 
-/* ホバー時：色変化＋アンダーライン */
-a:hover {
-  color: #1b72aa;  /* 少し濃いブルー */
-  text-decoration: underline;
-}
+    .link-card__content {
+      display: flex;
+      flex-direction: column;
+    }
 
-/* 記事内だけ太字は避けたいので太字化なし */
+    .link-card__label {
+      font-size: 0.75rem;
+      color: #2f7d5b;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      display: block;
+    }
 
+    .link-card__title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.4;
+      font-family: "Zen Maru Gothic", sans-serif;
+    }
 
-</style>
+    .link-card__desc {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.3rem;
+    }
 
+    .link-card__icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      color: #2f7d5b;
+      transition: transform 0.3s ease;
+    }
 
+    .link-card:hover .link-card__icon {
+      transform: translateX(5px);
+    }
+
+    /* スマホ表示の調整 */
+    @media (max-width: 600px) {
+      .link-card {
+        padding: 1rem 0.8rem;
+        gap: 0.4rem;
+      }
+      .link-card__title {
+        font-size: 1.1rem;
+      }
+      .link-card__desc {
+        font-size: 0.7rem;      
+      }
+      .link-card__icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    /* ▼▼▼ シンプルな「戻る」リンクのデザイン ▼▼▼ */
+    .article__nav {
+      margin: 3rem 0;
+      text-align: left; /* 左寄せ */
+    }
+    .link-back {
+      display: inline-flex;
+      align-items: center;
+      color: #888; /* 控えめなグレー */
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .link-back::before {
+      content: "←";
+      margin-right: 0.5em;
+      transition: transform 0.2s ease;
+    }
+    .link-back:hover {
+      color: #2f7d5b; /* ホバー時はブランドカラー */
+    }
+    .link-back:hover::before {
+      transform: translateX(-4px); /* 矢印が少し左に動く */
+    }
+  </style>
 </head>
 
 <body>
@@ -69,7 +153,6 @@ a:hover {
 
 <div id="page">
 
-  <!-- 共通ヘッダー（既存サイトと同一） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -113,6 +196,7 @@ a:hover {
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -130,51 +214,63 @@ a:hover {
 
   <main id="main">
 
-    <!-- パンくず -->
     <nav class="breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
         <li><a href="news.html">NEWS</a></li>
-        <li aria-current="page">ハンズ生活介護事業所 | わぁははクラブ竣工式を開催しました</li>
+        <li aria-current="page">わぁははクラブ竣工式 開催報告</li>
       </ol>
     </nav>
 
-    <!-- 記事本体 -->
     <article class="article" itemscope itemtype="https://schema.org/Article">
       <header class="article__header">
         <h1 class="article__title" itemprop="headline">
           【わぁははクラブ竣工式 | 開催報告】
         </h1>
         <p class="article__meta">
-          <time datetime="2025-11-11" itemprop="datePublished">2025.11.27（木）</time>
+          <time datetime="2025-11-27" itemprop="datePublished">2025.11.27（木）</time>
           <span class="news__tag">お知らせ</span>
         </p>
       </header>
 
       <div class="article__body" itemprop="articleBody">
+        
+        <figure class="article__image">
+          <img src="img/ceremony.webp" alt="竣工式の様子" loading="lazy">
+        </figure>
 
-<figure class="article__image">
-  <img src="img/ceremony.webp" alt="竣工式の様子" loading="lazy">
-</figure>
+        <p>
+          いつもレスパイトハウス・ハンズをご利用いただき、ありがとうございます。<br>
+          令和７年11月21日（金）に、ハンズ生活介護事業所「わぁははクラブ」の竣工式ならびに新事業所の見学会を行いました。<br>
+          多くの関係者、また利用者の皆さまにお越しいただきましたこと、心より御礼申し上げます。<br>
+          この新事業所とともに、これからも地域の皆さまに寄り添い、安心してご利用いただける支援を提供してまいります。<br>
+          これからもレスパイトハウス・ハンズをよろしくお願い申し上げます。
+        </p>
 
-<p>
-  いつもレスパイトハウス・ハンズをご利用いただき、ありがとうございます。<br>
-  令和７年11月21日（金）に、ハンズ生活介護事業所 わぁははクラブの竣工式ならびに新事業所の見学会を開催いたしました。<br>
-  多くの関係者、また利用者の皆さまにお越しいただきましたこと、心より御礼申し上げます。<br>
-  この新事業所とともに、これからも地域の皆さまに寄り添い、安心してご利用いただける支援を提供してまいります。<br>
-  これからもレスパイトハウス・ハンズをよろしくお願い申し上げます。<br><br>
-  ▷ <a href="wahaha.html">ハンズ生活介護事業所「わぁははクラブ」の詳細はこちら</a>
-</p>
-  
+        <div class="link-card-wrapper">
+          <a href="wahaha.html" class="link-card">
+            <div class="link-card__content">
+              <span class="link-card__label">生活介護事業所</span>
+              <span class="link-card__title">わぁははクラブ</span>
+              
+            </div>
+            <span class="link-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 16 16 12 12 8"></polyline>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </span>
+          </a>
+        </div>
+
       </div>
 
-      <!-- 一覧へ戻る -->
       <nav class="article__nav">
-        <a class="btn btn--ghost" href="index.html">← TOPへ戻る</a>
+        <a class="link-back" href="news.html">NEWS一覧へ戻る</a>
       </nav>
     </article>
 
-    <!-- 電話／メール CTA（既存のデザインに合わせて） -->
     <nav class="cta-bar" aria-label="主要導線">
       <a class="cta" href="tel:0191-31-5720">
         <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -193,7 +289,6 @@ a:hover {
 
   </main>
 
-<!-- 上へ戻る（スクロール進捗リング付き） -->
 <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
   <span class="btt__ring" aria-hidden="true"></span>
   <span class="btt__inner" aria-hidden="true">
@@ -205,7 +300,6 @@ a:hover {
 </button>
 
 
-  <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -221,7 +315,7 @@ a:hover {
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -274,32 +368,86 @@ a:hover {
     </div>
   </footer>
 
-</div><!-- /#page -->
+</div><style>
+  /* 余白調整：モバイルでの左右余白を広くする */
+  .breadcrumb {
+    max-width: min(1100px, 92vw);
+    margin: clamp(8px, 2vw, 16px) auto;
+    /* モバイルで84vw相当の余白感を持たせる */
+    padding-left: 0; 
+    padding-right: 0;
+  }
+  .article {
+    max-width: min(1100px, 92vw);
+    margin: clamp(16px, 4vw, 32px) auto;
+  }
+  
+  .breadcrumb ol {
+    display: flex; gap: .5em; flex-wrap: wrap; font-size: .9rem;
+  }
+  .breadcrumb li::after {
+    content: "›"; margin: 0 .5em; color: #999;
+  }
+  .breadcrumb li:last-child::after { content: none; }
 
-<!-- 任意：記事ページ用の軽いCSS（既存style.cssに似せたユーティリティ） -->
-<style>
-  .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto;}
-  .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.9rem}
-  .breadcrumb li::after{content:"›";margin:0 .5em;color:#999}
-  .breadcrumb li:last-child::after{content:none}
-  .article{max-width:min(1100px,92vw);margin: clamp(16px,4vw,32px) auto}
-  .article__title{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;line-height:1.25;margin:0 0 .25em;font-size:clamp(22px,3.8vw,34px)}
-  .article__meta{color:#2f7d5b;display:flex;gap:.8em;align-items:center;margin-bottom:clamp(12px,2vw,20px)}
-  .article__body{font-size:1.06rem;line-height:1.9}
-  .article__section{margin-top: clamp(20px,3.2vw,32px)}
-  .article__h2{font-size:1.1rem;margin:0 0 .6em;color:#193528;border-left:4px solid #2f7d5b;padding-left:.6em}
-  .definition-list{border:1px solid #e6eee9;border-radius:12px;padding:12px}
-  .definition-list__row{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 6px;border-top:1px dashed #e6eee9}
-  .definition-list__row:first-child{border-top:none}
-  .definition-list dt{color:#193528;font-weight:600}
-  .map-embed{margin-top:12px;border-radius:12px;overflow:hidden;background:#f6fbf8;border:1px solid #e6eee9}
-  .map-embed iframe{width:100%;height:360px;border:0;display:block}
-  .map-embed__link{margin:6px 10px 10px;font-size:.95rem}
-  .article__nav{margin: clamp(20px,3vw,32px) 0}
-  .btn--ghost{display:inline-block;padding:.9em 1.4em;border:1.6px solid #1f6f59;border-radius:9999px;text-decoration:none}
-  @media (max-width:640px){
-    .definition-list__row{grid-template-columns:1fr}
-    .map-embed iframe{height:280px}
+  /* 見出し（タイトル） */
+  .article__title {
+    font-family: "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;
+    line-height: 1.25;
+    margin: 0 0 .25em;
+    font-size: clamp(22px, 3.8vw, 34px);
+  }
+
+  .article__meta {
+    color: #2f7d5b; display: flex; gap: .8em; align-items: center;
+    margin-bottom: clamp(12px, 2vw, 20px);
+  }
+  .article__body {
+    font-size: 1.06rem; line-height: 1.9;
+  }
+  .article__section {
+    margin-top: clamp(20px, 3.2vw, 32px);
+  }
+  .article__h2 {
+    font-size: 1.1rem; margin: 0 0 .6em; color: #193528;
+    border-left: 4px solid #2f7d5b; padding-left: .6em;
+  }
+  
+  /* 画像用のスタイル */
+  .article__image {
+    max-width: 100%;
+    margin: 0 auto clamp(20px, 4vw, 32px);
+  }
+  .article__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  @media (max-width: 640px) {
+    /* スマホ対応：余白を確保して窮屈さを解消 */
+    .breadcrumb, .article {
+      width: 86%; /* 少し内側に寄せる（左右7%ずつの余白） */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* スマホ対応：パンくずリスト */
+    .breadcrumb ol {
+      font-size: 0.75rem; /* 文字を小さく */
+      flex-wrap: nowrap;  /* 折り返しを禁止 */
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; /* はみ出る場合は省略 */
+    }
+
+    /* スマホ対応：見出し */
+    .article__title {
+      font-size: 1.2rem; /* 一行に収まりやすいサイズへ縮小 */
+      line-height: 1.4;
+    }
   }
 </style>
 
@@ -340,8 +488,5 @@ a:hover {
   })();
 </script>
 
-
 </body>
 </html>
-
-
