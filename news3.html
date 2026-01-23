@@ -4,36 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>【新施設完成／見学会のご案内】ハンズ生活介護事業所 | わぁははクラブ – レスパイトハウス・ハンズ</title>
-  <meta name="description" content="ハンズ生活介護事業所 | わぁははクラブの新施設完成と見学会（令和7年12月15日）のご案内です。" />
+  <meta name="description" content="ハンズ生活介護事業所「わぁははクラブ」の新施設完成に伴い、令和7年11月22日（土）に見学会を開催いたします。どなたでもお気軽にご参加ください。" />
+  
   <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css" />
   
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-<style>
+  <style>
+    body{opacity:1 !important} #splash{display:none !important}
 
-body{opacity:1 !important} #splash{display:none !important}
+    /* パンくずリストの区切り線調整 */
+    .breadcrumb li::before,
+    .breadcrumb li + li::before { content:none !important; }
 
-/* 区切りをCSSからは出さない */
-.breadcrumb li::before,
-.breadcrumb li + li::before { content:none !important; }
+    /* ドロップダウンメニューの背景を白にする指定 */
+    .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb;
+    }
 
-
-</style>
-
-
+    /* ▼▼▼ シンプルな「戻る」リンクのデザイン ▼▼▼ */
+    .article__nav {
+      margin: 3rem 0;
+      text-align: left; /* 左寄せ */
+    }
+    .link-back {
+      display: inline-flex;
+      align-items: center;
+      color: #888; /* 控えめなグレー */
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .link-back::before {
+      content: "←";
+      margin-right: 0.5em;
+      transition: transform 0.2s ease;
+    }
+    .link-back:hover {
+      color: #2f7d5b; /* ホバー時はブランドカラー */
+    }
+    .link-back:hover::before {
+      transform: translateX(-4px); /* 矢印が少し左に動く */
+    }
+  </style>
 </head>
 
 <body>
@@ -41,7 +68,6 @@ body{opacity:1 !important} #splash{display:none !important}
 
 <div id="page">
 
-  <!-- 共通ヘッダー（既存サイトと同一） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -85,6 +111,7 @@ body{opacity:1 !important} #splash{display:none !important}
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -102,7 +129,6 @@ body{opacity:1 !important} #splash{display:none !important}
 
   <main id="main">
 
-    <!-- パンくず -->
     <nav class="breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
@@ -111,7 +137,6 @@ body{opacity:1 !important} #splash{display:none !important}
       </ol>
     </nav>
 
-    <!-- 記事本体 -->
     <article class="article" itemscope itemtype="https://schema.org/Article">
       <header class="article__header">
         <h1 class="article__title" itemprop="headline">
@@ -167,13 +192,11 @@ body{opacity:1 !important} #splash{display:none !important}
         </section>
       </div>
 
-      <!-- 一覧へ戻る -->
       <nav class="article__nav">
-        <a class="btn btn--ghost" href="index.html">← TOPへ戻る</a>
+        <a class="link-back" href="news.html">NEWS一覧へ戻る</a>
       </nav>
     </article>
 
-    <!-- 電話／メール CTA（既存のデザインに合わせて） -->
     <nav class="cta-bar" aria-label="主要導線">
       <a class="cta" href="tel:0191-31-5720">
         <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -192,7 +215,6 @@ body{opacity:1 !important} #splash{display:none !important}
 
   </main>
 
-<!-- 上へ戻る（スクロール進捗リング付き） -->
 <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
   <span class="btt__ring" aria-hidden="true"></span>
   <span class="btt__inner" aria-hidden="true">
@@ -204,7 +226,6 @@ body{opacity:1 !important} #splash{display:none !important}
 </button>
 
 
-  <!-- 共通フッター（既存サイトと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -220,7 +241,7 @@ body{opacity:1 !important} #splash{display:none !important}
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -273,10 +294,7 @@ body{opacity:1 !important} #splash{display:none !important}
     </div>
   </footer>
 
-</div><!-- /#page -->
-
-<!-- 任意：記事ページ用の軽いCSS（既存style.cssに似せたユーティリティ） -->
-<style>
+</div><style>
   .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto;}
   .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.9rem}
   .breadcrumb li::after{content:"›";margin:0 .5em;color:#999}
@@ -294,12 +312,66 @@ body{opacity:1 !important} #splash{display:none !important}
   .map-embed{margin-top:12px;border-radius:12px;overflow:hidden;background:#f6fbf8;border:1px solid #e6eee9}
   .map-embed iframe{width:100%;height:360px;border:0;display:block}
   .map-embed__link{margin:6px 10px 10px;font-size:.95rem}
-  .article__nav{margin: clamp(20px,3vw,32px) 0}
-  .btn--ghost{display:inline-block;padding:.9em 1.4em;border:1.6px solid #1f6f59;border-radius:9999px;text-decoration:none}
   @media (max-width:640px){
     .definition-list__row{grid-template-columns:1fr}
     .map-embed iframe{height:280px}
   }
+
+/* ...（前略）... */
+
+  /* ▼▼▼ 定義リスト（概要表）のデザイン修正 ▼▼▼ */
+  .definition-list {
+    border: 1px solid #e6eee9;
+    border-radius: 12px;
+    padding: 12px;
+  }
+  
+  .definition-list__row {
+    display: grid;
+    /* PC修正：左カラムを120pxから180pxに拡張して「見学のお問い合わせ」を入れる */
+    grid-template-columns: 180px 1fr; 
+    gap: 12px;
+    padding: 10px 6px;
+    border-top: 1px dashed #e6eee9;
+    align-items: center; /* 上下中央揃え */
+  }
+  
+  .definition-list__row:first-child {
+    border-top: none;
+  }
+  
+  .definition-list dt {
+    color: #193528;
+    font-weight: 600;
+    line-height: 1.4; /* 行間を少し締める */
+  }
+  
+  .definition-list dd {
+    margin: 0; /* デフォルトのマージンを消す */
+    line-height: 1.6;
+  }
+
+  /* ...（中略：マップ関連など）... */
+
+  @media (max-width:640px){
+    /* スマホ修正：縦積み（1fr）をやめて、横並び（一行）を維持する */
+    .definition-list__row {
+      grid-template-columns: 9em 1fr; /* 左を文字数分確保、右を残りで */
+      gap: 8px;      /* 隙間を少し詰める */
+      padding: 8px 0; /* 左右のパディングをなくして左に寄せる */
+    }
+    
+    .definition-list dt {
+      font-size: 0.85rem; /* スマホでは項目名を少し小さくして収める */
+    }
+    
+    .definition-list dd {
+      font-size: 0.95rem;
+    }
+    
+    .map-embed iframe{height:280px}
+  }
+
 </style>
 
 <script>
@@ -339,8 +411,5 @@ body{opacity:1 !important} #splash{display:none !important}
   })();
 </script>
 
-
 </body>
 </html>
-
-
