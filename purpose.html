@@ -4,23 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの設立趣旨を紹介します。障がい福祉・就労支援・地域づくりに取り組むに至った背景や、法人が大切にしている想いをご覧いただけます。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- head内：Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <style>
     /* ===============================
@@ -56,6 +57,18 @@
       letter-spacing:.08em;
       margin:0;
       line-height:1.2;
+      position: relative; /* 線のために必要 */
+    }
+    
+    /* タイトルの下の装飾線（ハンズカラー） */
+    .purpose-title h1::after{
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      margin: 1.2rem auto 0;
+      background-color: #009688; /* ハンズグリーン */
+      border-radius: 2px;
     }
 
     /* レイアウト */
@@ -67,11 +80,11 @@
 
     /* 冒頭の要約（短い強調） */
     .purpose-lead{
-      margin: 0 auto 3.2rem;
+      margin: 0 auto 3.6rem;
       max-width: 720px;
       text-align:center;
       font-size: clamp(1.05rem, 2.2vw, 1.2rem);
-      line-height: 2;
+      line-height: 2.1;
       font-weight:500;
       color:#0f172a;
     }
@@ -81,6 +94,7 @@
       margin: 2.1rem 0;
       line-height: 2;
       color:#1f2937;
+      font-size: 1.05rem; /* 読みやすく少し大きく */
     }
 
     /* 結び */
@@ -108,137 +122,18 @@
       .purpose-body p{ margin: 1.8rem 0; }
     }
 
-/* 冒頭リード文：囲まない・余白で格上げ */
-.purpose-lead{
-  max-width: 720px;
-  margin: 0 auto 3.6rem; /* ← 下だけしっかり空ける */
-  text-align: center;
-  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
-  line-height: 2.1;
-  font-weight: 500;
-  color: #0f172a;
-
-  /* 装飾は一切しない */
-  background: none;
-  padding: 0;
-  border: none;
-}
-
-.purpose-title{
-  text-align: center;
-  margin: 0 0 3.2rem;
-  padding: 0 min(6vw,32px);
-}
-
-.purpose-title h1{
-  font-family: "Zen Maru Gothic","Noto Sans JP",sans-serif;
-  font-weight: 700;
-  letter-spacing: .08em;
-  margin: 0;
-  line-height: 1.2;
-  position: relative;
-}
-
-/* 装飾ライン */
-.purpose-title h1::after{
-  content: "";
-  display: block;
-  width: 48px;
-  height: 2px;
-  margin: 1.2rem auto 0;
-  background-color: var(--unit-brand, #2EA6F0);
-  opacity: .7;
-  border-radius: 1px;
-}
-
-/* ---------- ページタイトル（強め指定） ---------- */
-.hero.hero--page .hero__inner{
-  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
-  text-align: center;
-}
-.hero.hero--page .hero__title{
-  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  line-height: 1.3;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-}
-
-/* タイトル下：明るめ帯（確実に色が出る） */
-.hero.hero--page .hero__title::after{
-  content:"";
-  display:block;
-  width: 76px;
-  height: 6px;
-  margin: .55rem auto 0;
-  border-radius: 999px;
-  background: rgba(var(--ph-accent-rgb), .80);
-}
-
-/* うっすら光（任意：弱め） */
-.hero.hero--page .hero__title::before{
-  content:"";
-  position:absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -10px;
-  width: 92px;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(var(--ph-accent-rgb), .25);
-  filter: blur(10px);
-  pointer-events:none;
-}
-
-/* ===== 下層ページ共通：ページタイトル装飾 ===== */
-.hero.hero--page .hero__inner{
-  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
-  text-align: center;
-}
-
-.hero.hero--page .hero__title{
-  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  line-height: 1.3;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-}
-
-.hero.hero--page .hero__title::after{
-  content:"";
-  display:block;
-  width: 76px;
-  height: 6px;
-  margin: .55rem auto 0;
-  border-radius: 999px;
-  background: var(--ph-accent, #2ea6a0);
-}
-
-@media (max-width: 600px){
-  .hero.hero--page .hero__title::after{
-    width: 56px;
-    height: 4px;
-  }
-}
-
-/* トップページ：サブメニュー背景を白に */
-.page-purpose .submenu{
-  background: #fff;
-}
+    /* トップページ：サブメニュー背景を白に */
+    .page-purpose .submenu{
+      background: #fff;
+    }
   </style>
 </head>
 
 <body class="page-purpose">
 
-<!-- ページ先頭へのリンク用 -->
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <!-- ← ヘッダーからフッターまで全部ここに入れる -->
-
-  <!-- 共通ヘッダー（あなたの実コード：省略なし） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -247,12 +142,12 @@
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
         <ul class="submenu">
-          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="purpose.html" aria-current="page">設立趣旨</a></li>
           <li><a href="philosophy.html">ハンズの理念</a></li>
           <li><a href="history.html">ハンズのあゆみ</a></li>
           <li><a href="teikan.html">定款</a></li>
@@ -260,13 +155,13 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -282,6 +177,7 @@
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -305,28 +201,19 @@
     </ol>
   </nav>
 
-  <!-- タイトル -->
-<section class="hero hero--page" aria-label="ページタイトル">
-  <div class="hero__inner">
-    <h1 class="hero__title">設立趣旨</h1>
-  </div>
-</section>
+  <header class="purpose-title">
+    <h1>設立趣旨</h1>
+  </header>
 
-  <!-- 本文 -->
   <main class="purpose-container">
 
-
-
     <section class="purpose-body" aria-label="本文">
-
       <p>私たちレスパイトハウス・ハンズは、自分の生まれ育った地域での生活を望むしょうがいを持つ方々の支援と、このまちにおける新たな社会福祉の資源となることを目指し、平成11年4月に障害者地域生活支援サービス団体として活動を開始しました。</p>
       <p>一関市を中心に事業を展開し、現在では利用登録会員は約100名となり、一関市をはじめ両磐地区に暮らすしょうがいを持つ方々に、幅広くご利用いただいております。しょうがいを持つ方々が、いつでも気軽に利用できるレスパイトサービスの提供を出発点とし、現在は障害者総合支援法に基づく各種サービスを複合的に実施しています。</p>
       <p>また、平成17年よりいちのせき市民活動センターの運営を開始し、市民活動団体の支援や地域づくり、協働の推進など、中間支援にも取り組んでまいりました。福祉と市民活動の両面から、誰もが豊かに、安心して暮らせる地域づくりを目指し、しょうがいを持つ方々およびそのご家族が、地域の中で安心して生活できる社会の実現を図っています。あわせて、老若男女を問わず、みんながまちづくりに参加し作り上げていく一関市の未来に向けて、私たちにできることを考え、取り組んでまいります。</p>
       <p>東日本大震災後は、いわて連携復興センターの団体会員としての活動に加え、独自に陸前高田市のミニ商店街再生に携わってきました。さらに、陸前高田市におけるまちづくりや市民活動団体の連携を支えるため、陸前高田まちづくり協働センターを設置し、地域の再生と人と人とのつながりを支える役割を担っています。</p>
       <p>私たちハンズは、県内の福祉の向上にとどまらず、さまざまな分野の市民活動を支え、連携しながら、社会的に弱い立場にある人たちやしょうがいを持つ人たちと地域が一体となり、元気で豊かな地域をつくっていくこと――インクルージョンの実現を、これからも目指してまいります。</p>
     </section>
-
-
 
     <div class="purpose-signature">
       平成13年1月17日<br>
@@ -335,7 +222,6 @@
     </div>
   </main>
 
-  <!-- 上へ戻る（スクロール進捗リング付き） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -346,12 +232,11 @@
     </span>
   </button>
 
-  <!-- フッター（あなたの実コード：省略なし） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
       <section class="footer__brand">
-        <a href="/" class="footer__logo">
+        <a href="index.html" class="footer__logo">
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
@@ -362,7 +247,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -370,7 +255,7 @@
           <h3>法人概要</h3>
           <ul>
             <li><a href="philosophy.html">ハンズの理念</a></li>
-            <li><a href="purpose.html">設立趣旨</a></li>
+            <li><a href="purpose.html" aria-current="page">設立趣旨</a></li>
             <li><a href="history.html">ハンズのあゆみ</a></li>
             <li><a href="teikan.html">定款</a></li>
             <li><a href="officers.html">役員</a></li>
@@ -384,9 +269,10 @@
             <li><a href="soudan.html">相談支援</a></li>
             <li><a href="little.html">リトルハンズ</a></li>
             <li><a href="sakura.html">さくらなみき</a></li>
-            <li><a href="citizen.html">市民活動センター</a></li>
-            <li><a href="ichisapo.html">いちサポ</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
             <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
           </ul>
         </div>
         <div class="footer__group">
@@ -395,7 +281,7 @@
             <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
             <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
             <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
-            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">市民活動センター</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
           </ul>
         </div>
         <div class="footer__group">
@@ -412,61 +298,11 @@
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
-
-<script>
-  /* 下層ページは強制的に表示状態にする（共通CSSのhas-splash前提を無効化） */
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('page-show');
-    const html = document.documentElement;
-    html.classList.remove('no-scroll');
-    html.classList.remove('has-splash');
-    html.style.overflowY = 'auto';
-
-    const splash = document.getElementById('splash');
-    if (splash) splash.remove();
-  });
-</script>
-
-<script>
-  (function(){
-    const btn = document.getElementById('backToTop');
-    if(!btn) return;
-
-    const showAt = 200;
-    const ring = btn.querySelector('.btt__ring');
-
-    const update = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
-      const deg = Math.round(ratio * 360) + 'deg';
-      ring && ring.style.setProperty('--btt-progress', deg);
-
-      if (scrollTop > showAt) btn.classList.add('is-visible');
-      else btn.classList.remove('is-visible');
-    };
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-    });
-
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-</script>
+</div><script src="js/site.js"></script>
 
 </body>
 </html>
-
-
-
-
-
-
