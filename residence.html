@@ -7,23 +7,22 @@
 
   <title>ハンズ居宅介護事業所 | レスパイトハウス・ハンズ</title>
 
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- 共通CSS -->
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
 
   <style>
@@ -110,11 +109,13 @@
       margin-bottom:clamp(12px,2vw,18px);
     }
     .emblem{
-      width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
-      display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #e6f4ff 70%);
-           box-shadow:0 8px 22px rgba(88,182,242,.18);
+      width: 100px !important; height: 100px !important;
+      display:grid; place-items:center;
     }
-    .emblem svg{ width:58%; height:58%; fill:var(--brand); }
+    .emblem img{
+      width: 100px !important; height: auto !important;
+    }
+    
     .hero-title{
       margin:0 0 .1rem;
       font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
@@ -151,7 +152,7 @@
     }
     .callout h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); }
 
-    /* ▼ TEL/MAIL をボタン化（デザイン・大きさは callout 内に収める） */
+    /* ▼ TEL/MAIL をボタン化 */
     .cta-row{
       display:grid;
       gap:.6rem;
@@ -290,84 +291,60 @@
       .unit-sky .has-sub .sub-toggle:checked ~ .sub-caret::after{ content:"－"; }
     }
 
-/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
-body.unit-sky .cta-bar .cta{
-  background: #58b6f2;          /* 空色 */
-  border: 2px solid #58b6f2;
-  color: #fff;
-}
-body.unit-sky .cta-bar .cta:hover{
-  background: #2ea6f0;          /* 濃いめの空色 */
-  border-color: #2ea6f0;
-  box-shadow: 0 8px 20px rgba(88,182,242,.20);
-  transform: translateY(-1px);
-}
-body.unit-sky .cta-bar .cta:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(88,182,242,.18);
-}
+    /* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
+    body.unit-sky .cta-bar .cta{
+      background: #58b6f2;         /* 空色 */
+      border: 2px solid #58b6f2;
+      color: #fff;
+    }
+    body.unit-sky .cta-bar .cta:hover{
+      background: #2ea6f0;         /* 濃いめの空色 */
+      border-color: #2ea6f0;
+      box-shadow: 0 8px 20px rgba(88,182,242,.20);
+      transform: translateY(-1px);
+    }
+    body.unit-sky .cta-bar .cta:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(88,182,242,.18);
+    }
 
+    /* ===== 居宅介護：下部CTAの横幅をそろえる ===== */
+    body.unit-sky .cta-bar{
+      max-width: var(--max);
+      margin: 1.25rem auto 2.4rem;
+      padding-inline: min(4vw,24px);
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      flex-wrap: wrap;            /* 狭い時は折り返し */
+    }
 
-/* ===== 居宅介護：下部CTAの横幅をそろえる ===== */
-body.unit-sky .cta-bar{
-  max-width: var(--max);
-  margin: 1.25rem auto 2.4rem;
-  padding-inline: min(4vw,24px);
-  display: flex;
-  gap: .8rem;
-  justify-content: center;
-  flex-wrap: wrap;            /* 狭い時は折り返し */
-}
+    body.unit-sky .cta-bar .cta{
+      display: flex;              /* 中央寄せ */
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: .95em 1.2em;
+      border-radius: 12px;
 
-body.unit-sky .cta-bar .cta{
-  display: flex;              /* 中央寄せ */
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: .95em 1.2em;
-  border-radius: 12px;
+      /* ここで“同じ幅”にする */
+      flex: 1 1 16rem;            /* 両ボタンとも16remを基準に等分 */
+      min-width: 16rem;           /* PC時に細くなりすぎないように */
+      text-align: center;
+    }
 
-  /* ここで“同じ幅”にする */
-  flex: 1 1 16rem;            /* 両ボタンとも16remを基準に等分 */
-  min-width: 16rem;           /* PC時に細くなりすぎないように */
-  text-align: center;
-}
+    /* スマホ時は縦並びで幅100%に */
+    @media (max-width: 680px){
+      body.unit-sky .cta-bar .cta{
+        flex-basis: 100%;
+        min-width: 0;
+        width: 100%;
+      }
+    }
 
-/* スマホ時は縦並びで幅100%に */
-@media (max-width: 680px){
-  body.unit-sky .cta-bar .cta{
-    flex-basis: 100%;
-    min-width: 0;
-    width: 100%;
-  }
-}
-
-#services,
-#flow,
-#city,
-#access,
-#overview {
-  scroll-margin-top: 20px;
-}
-
-/* residence：ロゴ画像が自前で円背景を持っているため、外側の円は消す */
-.page-residence .unit-hero__emblem {
-  background: none !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-
-
-.emblem {
-  width: 100px !important;
-  height: 100px !important;
-}
-.emblem img {
-  width: 100px !important;
-  height: auto !important;
-}
-
+    #services, #flow, #city, #access, #overview {
+      scroll-margin-top: 20px;
+    }
 
   </style>
 </head>
@@ -375,7 +352,6 @@ body.unit-sky .cta-bar .cta{
 <body class="unit-sky">
   <a id="top" class="visually-hidden">top</a>
 
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -414,12 +390,12 @@ body.unit-sky .cta-bar .cta{
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -436,7 +412,6 @@ body.unit-sky .cta-bar .cta{
   </header>
 
   <main class="wrap" id="main">
-    <!-- パンくず -->
     <nav class="myroot-breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
@@ -445,13 +420,12 @@ body.unit-sky .cta-bar .cta{
       </ol>
     </nav>
 
-    <!-- ヒーローバンド -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-head">
-<div class="emblem unit-hero__emblem">
-  <img src="img/residence_logo.webp" alt="居宅介護事業所のロゴ">
-</div>
+          <div class="emblem unit-hero__emblem">
+            <img src="img/residence_logo.webp" alt="居宅介護事業所のロゴ">
+          </div>
 
           <div>
             <h1 id="hero-title" class="hero-title">ハンズ居宅介護事業所</h1>
@@ -471,7 +445,6 @@ body.unit-sky .cta-bar .cta{
             </ul>
           </div>
 
-          <!-- ▼ ここが“左に青ラインのカード”：デザインはそのまま、TEL/MAILだけボタン化 -->
           <aside class="callout" aria-label="まずはご相談ください">
             <h3>まずはご相談ください</h3>
             <p>相談は無料です。ご状況を伺いながら、支援の進め方を一緒に考えます。</p>
@@ -493,12 +466,10 @@ body.unit-sky .cta-bar .cta{
               </a>
             </div>
           </aside>
-          <!-- ▲ ボタン化ここまで -->
         </div>
       </div>
     </section>
 
-    <!-- サブナビ -->
     <div class="subnav">
       <div class="subnav-inner">
         <ul class="subnav-list" role="list">
@@ -511,7 +482,6 @@ body.unit-sky .cta-bar .cta{
       </div>
     </div>
 
-    <!-- 主なサービス -->
     <section id="services" aria-labelledby="services-title">
       <h2 id="services-title" class="sec-title">主なサービス内容</h2>
       <div class="card">
@@ -526,7 +496,6 @@ body.unit-sky .cta-bar .cta{
       </div>
     </section>
 
-    <!-- ご利用の流れ -->
     <section id="flow" aria-labelledby="flow-title">
       <h2 id="flow-title" class="sec-title">～ ご利用までの流れ ～</h2>
       <div class="flow">
@@ -539,7 +508,6 @@ body.unit-sky .cta-bar .cta{
       <p class="muted" style="margin:.6rem 0 0;">※ 相談は無料です。</p>
     </section>
 
-    <!-- 一関市生活支援事業 -->
     <section id="city" aria-labelledby="city-title">
       <h2 id="city-title" class="sec-title">一関市生活支援事業<span class="note-mark">※1</span>について</h2>
       <div class="card">
@@ -556,7 +524,6 @@ body.unit-sky .cta-bar .cta{
       </div>
     </section>
 
-    <!-- 事業所案内・アクセス -->
     <section id="access" aria-labelledby="access-title">
       <h2 id="access-title" class="sec-title">事業所案内</h2>
       <div class="card">
@@ -569,13 +536,13 @@ body.unit-sky .cta-bar .cta{
         <div class="map" style="margin:1rem 0;">
           <iframe title="ハンズ居宅介護事業所 周辺地図" loading="lazy" allowfullscreen
                   referrerpolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16&output=embed"></iframe>
+                  src="https://maps.google.com/maps?q=岩手県一関市青葉二丁目6-16&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- CTA（本文幅に揃える2ボタン：連絡先はわぁははクラブに合わせて） -->
   <nav class="cta-bar" aria-label="主要導線">
     <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
       <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -587,7 +554,6 @@ body.unit-sky .cta-bar .cta{
     </a>
   </nav>
 
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -596,7 +562,6 @@ body.unit-sky .cta-bar .cta{
     </span>
   </button>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -612,7 +577,7 @@ body.unit-sky .cta-bar .cta{
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -629,7 +594,7 @@ body.unit-sky .cta-bar .cta{
           <h3>事業所紹介</h3>
           <ul>
             <li><a href="wahaha.html">わぁははクラブ</a></li>
-            <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
             <li><a href="soudan.html">相談支援</a></li>
             <li><a href="little.html">リトルハンズ</a></li>
             <li><a href="sakura.html">さくらなみき</a></li>
@@ -662,17 +627,11 @@ body.unit-sky .cta-bar .cta{
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
+</div><script src="js/site.js"></script>
 
-  <!-- 共通JS -->
-  <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
-
-
-
