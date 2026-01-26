@@ -3,360 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが大切にしている理念をご紹介します。よりそう支援とつながる安心を軸に、ハンズの考え方をお伝えします。">
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが大切にしている理念をご紹介します。よりそう支援とつながる安心を軸に、ハンズの考え方をお伝えします。">
 
   <title>ハンズの理念 | レスパイトハウス・ハンズ</title>
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
-<!-- head内：Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
+  <style>
+    /* ==============================
+       philosophy.html – override（修正版）
+       ============================== */
 
-<style>
-/* ==============================
-   philosophy.html – override（修正版）
-   目的：共通CSSに負けない + 線を確実に表示 + スマホは幅広め
-   ============================== */
+    :root{
+      --ph-accent: #2ea6a0; /* ハンズのメイン緑 */
+      --ph-accent-rgb: 46,166,160;
 
-/* ※ --unit-brand が「46,166,160」みたいなRGB想定 */
-:root{
-  --ph-accent-rgb: var(--unit-brand, 46,166,160);
-  --ph-accent: rgb(var(--ph-accent-rgb));
+      --ph-ink: #17222f;
+      --ph-ink2:#425466;
+      --ph-line:#e6edf2;
+      --ph-radius: 18px;
+    }
 
-  --ph-ink: #17222f;
-  --ph-ink2:#425466;
-  --ph-line:#e6edf2;
-  --ph-radius: 18px;
-}
+    /* ---------- 基本レイアウト ---------- */
+    .ph-page{ padding-inline: min(4vw, 24px); }
+    .ph-container{ max-width: 980px; margin-inline: auto; }
 
-/* ---------- 基本レイアウト ---------- */
-.ph-page{ padding-inline: min(4vw, 24px); }
-.ph-container{ max-width: 980px; margin-inline: auto; }
+    /* ---------- パンくず ---------- */
+    .ph-breadcrumb{ margin: 0 0 1.75rem; }
+    .ph-breadcrumb ol{
+      display:flex; flex-wrap:wrap; gap:.5rem .75rem;
+      list-style:none; padding:1.2em 0; margin:0;
+      font-size:.9rem;
+    }
+    .ph-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem; }
+    .ph-breadcrumb a{ color: var(--ph-ink2); text-decoration:none; }
+    .ph-breadcrumb a:hover{ text-decoration:underline; }
 
-/* ---------- パンくず ---------- */
-.ph-breadcrumb{ margin: 0 0 1.75rem; }
-.ph-breadcrumb ol{
-  display:flex; flex-wrap:wrap; gap:.5rem .75rem;
-  list-style:none; padding:1.2em 0; margin:0;
-  font-size:.9rem;
-}
-.ph-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem; }
-.ph-breadcrumb a{ color: var(--ph-ink2); text-decoration:none; }
-.ph-breadcrumb a:hover{ text-decoration:underline; }
+    /* ---------- ページタイトル（強め指定） ---------- */
+    .hero.hero--page .hero__inner{
+      padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
+      text-align: center;
+    }
+    .hero.hero--page .hero__title{
+      font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.3;
+      margin: 0;
+      display: inline-block;
+      position: relative;
+    }
 
-/* ---------- ページタイトル（強め指定） ---------- */
-.hero.hero--page .hero__inner{
-  padding-block: clamp(1.4rem, 3.4vw, 2.2rem);
-  text-align: center;
-}
-.hero.hero--page .hero__title{
-  font-family:"Zen Maru Gothic","Noto Sans JP",system-ui;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  line-height: 1.3;
-  margin: 0;
-  display: inline-block;
-  position: relative;
-}
+    /* タイトル下：明るめ帯（確実に色が出る） */
+    .hero.hero--page .hero__title::after{
+      content:"";
+      display:block;
+      width: 76px;
+      height: 6px;
+      margin: .55rem auto 0;
+      border-radius: 999px;
+      background: rgba(var(--ph-accent-rgb), .80);
+    }
 
-/* タイトル下：明るめ帯（確実に色が出る） */
-.hero.hero--page .hero__title::after{
-  content:"";
-  display:block;
-  width: 76px;
-  height: 6px;
-  margin: .55rem auto 0;
-  border-radius: 999px;
-  background: rgba(var(--ph-accent-rgb), .80);
-}
+    /* ==============================
+       理念文：縦線だけ
+       ============================== */
+    .lead-block.lead-block--accent{
+      margin: clamp(2.2rem, 6vw, 3.4rem) auto;
+    }
+    .lead-block.lead-block--accent blockquote{
+      margin: 0;
+      padding: 0;
+      border: none;
+      position: relative;
+      max-width: 46em;
+      margin-inline: auto;
+      padding-left: 1.25em; /* 縦線分 */
+    }
+    .lead-block.lead-block--accent blockquote::before{
+      content:"";
+      position:absolute;
+      left: 0;
+      top: .15em;
+      bottom: .15em;
+      width: 4px;
+      border-radius: 999px;
+      background: rgba(var(--ph-accent-rgb), .78);
+    }
+    .lead-block.lead-block--accent blockquote > p{
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+      line-height: 2;
+      color: var(--ph-ink);
+    }
 
-/* うっすら光（任意：弱め） */
-.hero.hero--page .hero__title::before{
-  content:"";
-  position:absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -10px;
-  width: 92px;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(var(--ph-accent-rgb), .25);
-  filter: blur(10px);
-  pointer-events:none;
-}
+    /* ==============================
+       理念直下の事務所写真
+       ============================== */
+    .philosophy-photo{
+      margin: clamp(2.2rem, 6vw, 3.6rem) auto;
+    }
+    .ph-photo{
+      max-width: 860px;
+      margin-inline: auto;
+    }
+    .ph-photo img{
+      width: 100%;
+      display: block;
+      border-radius: var(--ph-radius);
+    }
+    .ph-photo__caption{
+      margin-top: .6rem;
+      font-size: .9rem;
+      color: var(--ph-ink2);
+      text-align: center;
+    }
 
-/* ==============================
-   理念文：縦線だけ（枠・面・影なし）
-   ============================== */
-.lead-block.lead-block--accent{
-  margin: clamp(2.2rem, 6vw, 3.4rem) auto;
-}
-.lead-block.lead-block--accent blockquote{
-  margin: 0;
-  padding: 0;
-  border: none;
-  position: relative;
+    /* ==============================
+       セクション見出し
+       ============================== */
+    .section__header{
+      margin: clamp(3rem, 7vw, 4.5rem) 0 1.6rem;
+    }
+    .section__header h2{
+      font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+      line-height: 1.35;
+      margin: 0;
+    }
 
-  max-width: 46em;
-  margin-inline: auto;
-  padding-left: 1.25em; /* 縦線分 */
-}
-.lead-block.lead-block--accent blockquote::before{
-  content:"";
-  position:absolute;
-  left: 0;
-  top: .15em;
-  bottom: .15em;
-  width: 4px;
-  border-radius: 999px;
-  background: rgba(var(--ph-accent-rgb), .78); /* ←明るく見える */
-}
-.lead-block.lead-block--accent blockquote > p{
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
+    /* ==============================
+       3つの支援カード
+       ============================== */
+    .cards--pillars{
+      display: grid;
+      gap: clamp(1.2rem, 3vw, 2rem);
+    }
+    @media (min-width: 720px){
+      .cards--pillars{ grid-template-columns: repeat(3, 1fr); }
+    }
+    .card.pillar{
+      background:#fff;
+      border: 1px solid var(--ph-line);
+      border-radius: 16px;
+      padding: 1.6rem 1.4rem;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card.pillar:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+    .pillar__icon{
+      width:40px; height:40px;
+      display:grid; place-items:center;
+      border-radius:12px;
+      color: var(--ph-accent);
+      background: rgba(var(--ph-accent-rgb), .14);
+      border: 1px solid rgba(var(--ph-accent-rgb), .18);
+      margin-bottom: .8rem;
+    }
+    .pillar__icon svg{ width:22px; height:22px; fill: currentColor; }
+    
+    .card__title{ font-size: 1.05rem; margin: .2rem 0 .6rem; color: var(--ph-ink); }
+    .card__text{ font-size: .95rem; line-height: 1.8; color: var(--ph-ink2); }
 
-  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  line-height: 2;
-  color: var(--ph-ink);
-}
+    /* ==============================
+       スマホ最適化
+       ============================== */
+    @media (max-width: 600px){
+      .ph-container{ max-width: none; }
+      .ph-page{ padding-inline: 16px; }
+      .hero.hero--page .hero__title{ font-size: 1.5rem; }
+      .hero.hero--page .hero__title::after{ width: 70px; height: 6px; }
 
-/* ==============================
-   理念直下の事務所写真：装飾なし（角丸だけ）
-   ============================== */
-.philosophy-photo{
-  margin: clamp(2.2rem, 6vw, 3.6rem) auto;
-}
-.ph-photo{
-  max-width: 860px;
-  margin-inline: auto;
-}
-.ph-photo img{
-  width: 100%;
-  display: block;
-  border-radius: var(--ph-radius);
-}
-.ph-photo__caption{
-  margin-top: .6rem;
-  font-size: .9rem;
-  color: var(--ph-ink2);
-  text-align: center;
-}
+      .lead-block.lead-block--accent blockquote{
+        max-width: none;
+        margin-inline: 0;
+        padding-left: 1.0em;
+      }
+      .lead-block.lead-block--accent blockquote::before{
+        width: 3px;
+        background: rgba(var(--ph-accent-rgb), .78);
+      }
+      .lead-block.lead-block--accent blockquote > p{
+        line-height: 1.9;
+        font-size: 1.05rem;
+      }
 
-/* ==============================
-   セクション見出し
-   ============================== */
+      .philosophy-photo{ margin-inline: -16px; }
+      .ph-photo{ max-width: none; }
+      .ph-photo img{ border-radius: 14px; }
 
-.section__header{
-  margin: clamp(3rem, 7vw, 4.5rem) 0 1.6rem;
-}
+      .ph-photo__caption{
+        padding: .5rem 1rem 0;
+        font-size: .85rem;
+        text-align: center;
+      }
 
-.section__header h2{
-  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
-  line-height: 1.35;
-  margin: 0;
-}
+      .section__header{ margin-top: 2.5rem; }
+      .card.pillar{ padding: 1.4rem 1.2rem; }
+    }
 
-/* ==============================
-   3つの支援カード
-   ============================== */
-.cards--pillars{
-  display: grid;
-  gap: clamp(1.2rem, 3vw, 2rem);
-}
-@media (min-width: 720px){
-  .cards--pillars{ grid-template-columns: repeat(3, 1fr); }
-}
-.card.pillar{
-  background:#fff;
-  border: 1px solid var(--ph-line);
-  border-radius: 16px;
-  padding: 1.6rem 1.4rem;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.card.pillar:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0,0,0,.08);
-}
-.pillar__icon{
-  width: 40px;
-  height: 40px;
-  margin-bottom: .8rem;
-  color: rgba(var(--ph-accent-rgb), .95);
-}
-.pillar__icon svg{ width:100%; height:100%; fill: currentColor; }
-.card__title{ font-size: 1.05rem; margin: .2rem 0 .6rem; color: var(--ph-ink); }
-.card__text{ font-size: .95rem; line-height: 1.8; color: var(--ph-ink2); }
+    /* ===== 線が出ない問題の強制修正 ===== */
+    .hero.hero--page .hero__title{ position: relative !important; }
+    .hero.hero--page .hero__title::after{
+      content: "" !important; display: block !important;
+      width: 76px !important; height: 6px !important;
+      margin: .55rem auto 0 !important; border-radius: 999px !important;
+      background: var(--ph-accent) !important; opacity: .85 !important;
+      box-shadow: none !important; filter: none !important;
+    }
 
-/* ==============================
-   スマホ最適化：幅をもっと使う
-   ============================== */
-@media (max-width: 600px){
-  .ph-container{ max-width: none; }
+    .lead-block.lead-block--accent blockquote{ position: relative !important; padding-left: 1.25em !important; }
+    .lead-block.lead-block--accent blockquote::before{
+      content: "" !important; position: absolute !important;
+      left: 0 !important; top: .15em !important; bottom: .15em !important;
+      width: 4px !important; border-radius: 999px !important;
+      background: var(--ph-accent) !important; opacity: .75 !important;
+    }
 
-  /* 全体の余白は少しだけ減らす */
-  .ph-page{ padding-inline: 16px; }
+    /* タイトル下の“ぼんやり光”を消す */
+    .hero.hero--page .hero__title::before{
+      content: none !important; display: none !important;
+    }
 
-  .hero.hero--page .hero__title{ font-size: 1.5rem; }
-  .hero.hero--page .hero__title::after{ width: 70px; height: 6px; }
+    .br-sm{ display:none; }
+    .nowrap{ white-space:nowrap; }
+    @media (max-width: 600px){
+      .br-sm{ display:block; }
+      .section__header{ margin: 1.4rem 0 1rem !important; }
+      .hero.hero--page .hero__title::after{
+        width: 56px !important; height: 4px !important;
+        margin-top: .5rem !important; opacity: .75 !important;
+      }
+    }
 
-  /* 理念文は読みやすさ残しつつ、幅を使う */
-  .lead-block.lead-block--accent blockquote{
-    max-width: none;
-    margin-inline: 0;
-    padding-left: 1.0em;
-  }
-  .lead-block.lead-block--accent blockquote::before{
-    width: 3px;
-    background: rgba(var(--ph-accent-rgb), .78);
-  }
-  .lead-block.lead-block--accent blockquote > p{
-    line-height: 1.9;
-    font-size: 1.05rem;
-  }
+    /* トップページ：サブメニュー背景を白に */
+    .page-philosophy .submenu{
+      background: #fff;
+    }
 
-  /* 写真だけ“ほぼ全幅”にする（左右を引っ張る） */
-  .philosophy-photo{ margin-inline: -16px; }
-  .ph-photo{ max-width: none; }
-  .ph-photo img{ border-radius: 14px; }
-
-  /* キャプション中央 */
-  .ph-photo__caption{
-    padding: .5rem 1rem 0;
-    font-size: .85rem;
-    text-align: center;
-  }
-
-  .section__header{ margin-top: 2.5rem; }
-  .card.pillar{ padding: 1.4rem 1.2rem; }
-}
-
-/* ===== 線が出ない問題の強制修正（最後に追記） ===== */
-:root{
-  /* ハンズのメイン緑を直指定（変数事故を避ける） */
-  --ph-accent: #2ea6a0;
-}
-
-/* タイトル下の横線：強制表示 */
-.hero.hero--page .hero__title{
-  position: relative !important;
-}
-
-.hero.hero--page .hero__title::after{
-  content: "" !important;
-  display: block !important;
-  width: 76px !important;
-  height: 6px !important;
-  margin: .55rem auto 0 !important;
-  border-radius: 999px !important;
-  background: var(--ph-accent) !important;
-  opacity: .85 !important;
-}
-
-/* 理念文の縦線：強制表示 */
-.lead-block.lead-block--accent blockquote{
-  position: relative !important;
-  padding-left: 1.25em !important;
-}
-
-.lead-block.lead-block--accent blockquote::before{
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  top: .15em !important;
-  bottom: .15em !important;
-  width: 4px !important;
-  border-radius: 999px !important;
-  background: var(--ph-accent) !important;
-  opacity: .75 !important;
-}
-
-.br-sm{ display:none; }
-.nowrap{ white-space:nowrap; }
-
-@media (max-width: 600px){
-  .br-sm{ display:block; }
-}
-
-/* 例：ハンズの緑を一発で効かせる（rgbは実値に合わせてね） */
-:root{
-  --ph-accent: #2ea6a0;
-  --ph-accent-rgb: 46,166,160;
-}
-
-.pillar__icon{
-  width:40px; height:40px;
-  display:grid; place-items:center;
-  border-radius:12px;
-
-  color: var(--ph-accent);
-  background: rgba(var(--ph-accent-rgb), .14);
-  border: 1px solid rgba(var(--ph-accent-rgb), .18);
-}
-
-.pillar__icon svg{
-  width:22px; height:22px;
-  fill: currentColor;
-}
-
-/* タイトル下の“ぼんやり光”を消す（原因は ::before） */
-.hero.hero--page .hero__title::before{
-  content: none !important;
-  display: none !important;
-  filter: none !important;
-  box-shadow: none !important;
-}
-
-/* 念のため：横線自体にも影が付いてたら消す */
-.hero.hero--page .hero__title::after{
-  box-shadow: none !important;
-  filter: none !important;
-}
-
-@media (max-width: 600px){
-  .hero.hero--page .hero__title::after{
-    width: 56px !important;
-    height: 4px !important;
-    margin-top: .5rem !important;
-    opacity: .75 !important;
-  }
-}
-
-
-@media (max-width: 600px){
-  .section__header{
-    margin: 1.4rem 0 1rem !important;
-  }
-}
-
-/* トップページ：サブメニュー背景を白に */
-.page-philosophy .submenu{
-  background: #fff;
-}
-
-
-</style>
-
+  </style>
 </head>
 
 <body class="page-philosophy">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-   <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -365,26 +276,26 @@
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="purpose.html">設立趣旨</a></li>
-          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="philosophy.html" aria-current="page">ハンズの理念</a></li>
           <li><a href="history.html">ハンズのあゆみ</a></li>
           <li><a href="teikan.html">定款</a></li>
           <li><a href="officers.html">役員</a></li>
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -395,12 +306,12 @@
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -416,224 +327,181 @@
     </label>
   </header>
 
-
-
-
-
-  <!-- ↓ 追加：ページ幅ラッパー -->
   <div class="ph-wrap">
 
-<main id="main" class="ph-page">
-   <section class="ph-container" aria-labelledby="page-title">
+    <main id="main" class="ph-page">
+      <section class="ph-container" aria-labelledby="page-title">
 
-     <!-- パンくず（historyと同位置・同余白） -->
-     <nav class="ph-breadcrumb" aria-label="パンくず">
-       <ol>
-         <li><a href="index.html">TOP</a></li>
-         <li><a href="corp.html">法人概要</a></li>
-         <li aria-current="page">ハンズの理念</li>
-       </ol>
-     </nav>
+        <nav class="ph-breadcrumb" aria-label="パンくず">
+          <ol>
+            <li><a href="index.html">TOP</a></li>
+            <li><a href="corp.html">法人概要</a></li>
+            <li aria-current="page">ハンズの理念</li>
+          </ol>
+        </nav>
 
-   <!-- ページ見出し -->
-<section class="hero hero--page" aria-label="ページタイトル">
-  <div class="hero__inner">
-    <h1 class="hero__title">ハンズの理念</h1>
-  </div>
-</section>
+        <section class="hero hero--page" aria-label="ページタイトル">
+          <div class="hero__inner">
+            <h1 class="hero__title">ハンズの理念</h1>
+          </div>
+        </section>
 
+        <section class="section section--narrow" aria-labelledby="philosophy-title">
+          <figure class="lead-block lead-block--accent">
+            <blockquote>
+              <p>
+                私たちレスパイトハウス・ハンズは、しょうがいを持つ方々とその家族が、地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、利用する人に合わせたサービスを提供します。
+              </p>
+            </blockquote>
+          </figure>
+        </section>
 
+        <section class="philosophy-photo" aria-label="ハンズの事務所">
+          <figure class="ph-photo">
+            <img src="img/topimage.webp" alt="レスパイトハウス・ハンズ 事務所外観">
+            <figcaption class="ph-photo__caption">
+              ハンズ生活介護事業所 わぁははクラブ
+            </figcaption>
+          </figure>
+        </section>
 
-<!-- 理念（強調ブロック） -->
-<section class="section section--narrow" aria-labelledby="philosophy-title">
+        <section class="section section--narrow" aria-labelledby="pillars-title">
+          <div class="section__header">
+            <h2 id="pillars-title">ハンズが大切にしている<br class="br-sm"><span class="nowrap">3つのこと</span></h2>
+          </div>
 
+          <div class="cards cards--pillars">
+            <article class="card pillar">
+              <div class="pillar__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2-8 4.5V20h16v-1.5C20 16 16.42 14 12 14Z"/>
+                </svg>
+              </div>
+              <h3 class="card__title">ひとりひとりが持つ“個性”</h3>
+              <p class="card__text">本人の希望を尊重し、<br>いろいろな体験ができるように。</p>
+            </article>
 
-  <figure class="lead-block lead-block--accent">
-    <blockquote>
-      <p>
-        私たちレスパイトハウス・ハンズは、しょうがいを持つ方々とその家族が、地域で豊かに安心して暮らせるよう、様々なサポートを創りだし、利用する人に合わせたサービスを提供します。
-      </p>
-    </blockquote>
-  </figure>
-</section>
+            <article class="card pillar">
+              <div class="pillar__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 21s-6.5-4.35-9-7.5A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9 7.5C18.5 16.65 12 21 12 21Z"/>
+                </svg>
+              </div>
+              <h3 class="card__title">支えあう“家族”</h3>
+              <p class="card__text">家族みんなの時間が、<br>穏やかで有意義になるように。</p>
+            </article>
 
-<!-- 理念の背景：事務所写真 -->
-<section class="philosophy-photo" aria-label="ハンズの事務所">
-  <figure class="ph-photo">
-    <img src="img/topimage.webp" alt="レスパイトハウス・ハンズ 事務所外観">
-    <figcaption class="ph-photo__caption">
-      ハンズ生活介護事業所 わぁははクラブ
-    </figcaption>
-  </figure>
-</section>
+            <article class="card pillar">
+              <div class="pillar__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4Zm-8 7v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c0 2.21-3.58 4-8 4s-8-1.79-8-4Zm0 5v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c-1.69 1.65-4.94 2.74-8 2.74S5.69 16.65 4 15Z"/>
+                </svg>
+              </div>
+              <h3 class="card__title">安心して選べる“手軽さ”</h3>
+              <p class="card__text">いつでも、気軽に、自由に。</p>
+            </article>
+          </div>
+        </section>
 
+        <nav class="cta-bar cta-bar--contained cta-bar--align-grid" aria-label="主要導線" style="margin-top: 3rem; margin-bottom: 3rem;">
+          <a class="cta" href="tel:0191-31-5720">
+            <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            電話で相談
+          </a>
 
-<!-- 3つの支援（カード） -->
-<section class="section section--narrow" aria-labelledby="pillars-title">
-  <div class="section__header">
-    <h2 id="pillars-title">ハンズが大切にしている<br class="br-sm"><span class="nowrap">3つのこと</span></h2>
-  </div>
+          <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+            <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            メールで問い合わせ
+          </a>
+        </nav>
 
-  <div class="cards cards--pillars">
-    <!-- 個性の支援 -->
-    <article class="card pillar">
-      <div class="pillar__icon" aria-hidden="true">
-        <!-- person-星アイコン -->
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.42 0-8 2-8 4.5V20h16v-1.5C20 16 16.42 14 12 14Z"/>
+      </section> </main>
+
+    <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+      <span class="btt__ring" aria-hidden="true"></span>
+      <span class="btt__inner" aria-hidden="true">
+        <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
+          <path d="M12 5l-6 6h4v7h4v-7h4z"/>
         </svg>
+        <span class="btt__label">TOP</span>
+      </span>
+    </button>
+
+    <footer class="site-footer" aria-labelledby="footer-title">
+      <h2 id="footer-title" class="visually-hidden">フッター</h2>
+      <div class="footer__inner">
+        <section class="footer__brand">
+          <a href="index.html" class="footer__logo">
+            <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
+          </a>
+          <address class="footer__addr">
+            <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+            〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+            TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+            FAX：0191-31-5721<br>
+            MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+          </address>
+          <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+          <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        </section>
+
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <div class="footer__group">
+            <h3>法人概要</h3>
+            <ul>
+              <li><a href="philosophy.html" aria-current="page">ハンズの理念</a></li>
+              <li><a href="history.html">ハンズのあゆみ</a></li>
+              <li><a href="teikan.html">定款</a></li>
+              <li><a href="officers.html">役員</a></li>
+            </ul>
+          </div>
+          <div class="footer__group">
+            <h3>事業所紹介</h3>
+            <ul>
+              <li><a href="wahaha.html">わぁははクラブ</a></li>
+              <li><a href="residence.html">居宅介護</a></li>
+              <li><a href="soudan.html">相談支援</a></li>
+              <li><a href="little.html">リトルハンズ</a></li>
+              <li><a href="sakura.html">さくらなみき</a></li>
+              <li><a href="myroot.html">マイルートリンク</a></li>
+              <li><a href="ichisapo.html">若者サポートステーション</a></li>
+              <li><a href="jobcafe.html">ジョブカフェ</a></li>
+              <li><a href="citizen.html">市民活動センター</a></li>
+            </ul>
+          </div>
+          <div class="footer__group">
+            <h3>外部リンク</h3>
+            <ul>
+              <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+              <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+              <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+              <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+            </ul>
+          </div>
+          <div class="footer__group">
+            <h3>情報公開</h3>
+            <ul>
+              <li><a href="news.html">お知らせ・活動報告</a></li>
+              <li><a href="privacy.html">プライバシーポリシー</a></li>
+              <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+              <li><a href="sitemap.html">サイトマップ</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <h3 class="card__title">ひとりひとりが持つ“個性”</h3>
-      <p class="card__text">本人の希望を尊重し、<br>いろいろな体験ができるように。</p>
 
-    </article>
+      <div class="footer__bar">
+        <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
 
-    <!-- ご家族のための支援 -->
-    <article class="card pillar">
-      <div class="pillar__icon" aria-hidden="true">
-        <!-- familyハート -->
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path d="M12 21s-6.5-4.35-9-7.5A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9 7.5C18.5 16.65 12 21 12 21Z"/>
-        </svg>
+        <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
       </div>
-      <h3 class="card__title">支えあう“家族”</h3>
-      <p class="card__text">家族みんなの時間が、<br>穏やかで有意義になるように。</p>
-
-    </article>
-
-    <!-- リーズナブルな支援 -->
-    <article class="card pillar">
-      <div class="pillar__icon" aria-hidden="true">
-        <!-- コイン/手のイメージ -->
-        <svg viewBox="0 0 24 24" focusable="false">
-          <path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4Zm-8 7v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c0 2.21-3.58 4-8 4s-8-1.79-8-4Zm0 5v2c0 2.21 3.58 4 8 4s8-1.79 8-4v-2c-1.69 1.65-4.94 2.74-8 2.74S5.69 16.65 4 15Z"/>
-        </svg>
-      </div>
-      <h3 class="card__title">安心して選べる“手軽さ”</h3>
-      <p class="card__text">いつでも、気軽に、自由に。</p>
-
-    </article>
-  </div>
-</section>
-
-<!-- ↓ 幅に収めたいのでフラグを付与 -->
-<nav class="cta-bar cta-bar--contained cta-bar--align-grid" aria-label="主要導線">
-
-  <a class="cta" href="tel:0191-31-5720">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Phone (outline) -->
-      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    電話で相談
-  </a>
-
-  <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Mail (outline) -->
-      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    メールで問い合わせ
-  </a>
-</nav>
-
-
-
-
-   </section> <!-- /.ph-container -->
- </main>
-
-
-  <!-- 上へ戻る（スクロール進捗リング） -->
-  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
-    <span class="btt__ring" aria-hidden="true"></span>
-    <span class="btt__inner" aria-hidden="true">
-      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
-        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
-      </svg>
-      <span class="btt__label">TOP</span>
-    </span>
-  </button>
-
-
-
-  <!-- フッター -->
-  <footer class="site-footer" aria-labelledby="footer-title">
-    <h2 id="footer-title" class="visually-hidden">フッター</h2>
-    <div class="footer__inner">
-      <section class="footer__brand">
-        <a href="index.html" class="footer__logo">
-          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
-        </a>
-        <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
-          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
-          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
-          FAX：0191-31-5721<br>
-          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
-        </address>
-        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
-      </section>
-
-      <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <div class="footer__group">
-          <h3>法人概要</h3>
-          <ul>
-            <li><a href="philosophy.html" aria-current="page">ハンズの理念</a></li>
-            <li><a href="history.html">ハンズのあゆみ</a></li>
-            <li><a href="teikan.html">定款</a></li>
-            <li><a href="officers.html">役員</a></li>
-          </ul>
-        </div>
-        <div class="footer__group">
-          <h3>事業所紹介</h3>
-          <ul>
-            <li><a href="wahaha.html">わぁははクラブ</a></li>
-            <li><a href="residence.html">居宅介護</a></li>
-            <li><a href="soudan.html">相談支援</a></li>
-            <li><a href="little.html">リトルハンズ</a></li>
-            <li><a href="sakura.html">さくらなみき</a></li>
-            <li><a href="myroot.html">マイルートリンク</a></li>
-            <li><a href="ichisapo.html">若者サポートステーション</a></li>
-            <li><a href="jobcafe.html">ジョブカフェ</a></li>
-            <li><a href="citizen.html">市民活動センター</a></li>
-          </ul>
-        </div>
-        <div class="footer__group">
-          <h3>外部リンク</h3>
-          <ul>
-            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
-            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
-            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
-            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
-          </ul>
-        </div>
-        <div class="footer__group">
-          <h3>情報公開</h3>
-          <ul>
-            <li><a href="news.html">お知らせ・活動報告</a></li>
-            <li><a href="privacy.html">プライバシーポリシー</a></li>
-            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
-            <li><a href="sitemap.html">サイトマップ</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
-    <div class="footer__bar">
-      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
-      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
-    </div>
-  </footer>
-</div><!-- /#page -->
-
-
-<script src="js/site.js"></script>
+    </footer>
+  </div><script src="js/site.js"></script>
 
 </body>
 </html>
-
-
-
