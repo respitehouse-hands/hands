@@ -5,41 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>事業所紹介 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズが運営する事業所の一覧ページです。各事業所の詳細ページへ進むことができます。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- ページ専用CSS（他ページに干渉しないようにスコープ） -->
   <style>
     :root{
-      --office-accent:#009688;
+      --office-accent:#009688;      /* 既定=障がい福祉(緑) */
       --office-line:#e5e7eb;
       --office-ink:#333;
       --office-ink-2:#555;
       --office-surface:#fff;
       --office-radius:14px;
 
-        --office-accent:#009688;      /* 既定=障がい福祉(緑) */
-  /* 追加：分野別アクセント */
-  --office-work:#f59e0b;        /* 就労支援=アンバー系 */
-  --office-community:#0b2b6b;   /* 地域づくり=深紺 */
+      /* 分野別アクセント */
+      --office-work:#f59e0b;        /* 就労支援=アンバー系 */
+      --office-community:#0b2b6b;   /* 地域づくり=深紺 */
 
-  /* 追加：カードの「詳しく見る →」専用色（固定） */
-  --office-link:#222222;
-
+      /* カードリンク色 */
+      --office-link:#222222;
     }
 
     html{ scroll-behavior:smooth; }
@@ -58,7 +57,7 @@
     .office-lead{ color:#444; margin:2rem 0 2rem; }
 
     /* =============================
-       finder.html のカードUIを流用（スコープ化）
+       finder.html のカードUIを流用
        ============================= */
     .office-cats{ display:grid; grid-template-columns:1fr; gap:1rem; margin:1.1rem 0 1.6rem; }
     @media (min-width:760px){ .office-cats{ grid-template-columns:repeat(3,1fr); } }
@@ -84,7 +83,7 @@
     .of-btn:hover{ filter:brightness(.96); }
     .of-btn:active{ transform:translateY(1px); }
 
-    /* アイコン枠（finder の svc-mark を流用） */
+    /* アイコン枠 */
     .svc-mark{
       --accent:#16a34a;
       inline-size:56px; block-size:56px; border-radius:14px;
@@ -97,7 +96,7 @@
     .svc--work{ --accent:#f59e0b; }
     .svc--community{ --accent:#0b2b6b; }
 
-    /* カード全体をアンカー化するためのリンクスタイル */
+    /* カード全体リンク */
     .of-cardlink{ display:block; text-decoration:none; color:inherit; }
     .of-cardlink:focus-visible{ outline:3px solid #94a3b8; outline-offset:3px; border-radius:18px; }
 
@@ -108,7 +107,7 @@
       padding-left:.5rem; border-left:4px solid var(--office-accent);
     }
 
-    /* カードグリッド（下の一覧） */
+    /* カードグリッド */
     .office-grid{
       display:grid; gap: clamp(16px,2.4vw,24px);
       grid-template-columns: repeat(2,minmax(0,1fr));
@@ -132,25 +131,23 @@
     .office-card__eyebrow{ color:#666; font:500 .86rem "Noto Sans JP",system-ui,sans-serif; margin:0 0 .1rem .25rem; }
     .office-card__title{ font-weight:700; font-size:1.1rem; margin:.1rem 0 .35rem .25rem; color:#111; }
     .office-card__desc{ margin:0 0 0 .25rem; color:#444; line-height:1.7; }
-    .office-card__more{ margin:.6rem 0 0 .25rem; color:var(--office-accent); font-weight:500; text-decoration:none; display:inline-block; }
+    .office-card__more{
+      margin:.6rem 0 0 .25rem;
+      color: var(--office-link);
+      font-weight:500;
+      text-decoration:none;
+      display:inline-block;
+    }
     .office-card__more:hover{ text-decoration:underline; }
 
-/* 分野ごとに --office-accent を上書き */
-.office-section--work{      --office-accent: var(--office-work); }
-.office-section--community{ --office-accent: var(--office-community); }
+    /* 分野ごとに --office-accent を上書き */
+    .office-section--work{      --office-accent: var(--office-work); }
+    .office-section--community{ --office-accent: var(--office-community); }
 
-.office-card__more{
-  margin:.6rem 0 0 .25rem;
-  color: var(--office-link);    /* ← ここだけ変更 */
-  font-weight:500;
-  text-decoration:none;
-  display:inline-block;
-}
-
-/* トップページ：サブメニュー背景を白に */
-.page-office .submenu{
-  background: #fff;
-}
+    /* トップページ：サブメニュー背景を白に */
+    .page-office .submenu{
+      background: #fff;
+    }
 
   </style>
 </head>
@@ -160,7 +157,6 @@
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -188,7 +184,7 @@
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -199,12 +195,12 @@
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -219,10 +215,9 @@
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
-  <!-- メイン -->
+
   <main id="main" class="l-main office-page">
     <section class="office-wrap" aria-labelledby="office-title">
-      <!-- パンくず -->
       <nav class="office-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -230,13 +225,11 @@
         </ol>
       </nav>
 
-      <!-- 見出し -->
       <header>
         <h1 id="office-title" class="office-title">事業所紹介</h1>
         <p class="office-lead">私たちは、「障がい福祉」「就労支援」「地域づくり」という３つの面から、様々な取り組みを行っています。まずは分野をお選びください。</p>
       </header>
 
-      <!-- ▼ 分野カード（finder.html 流用） -->
       <section class="office-cats" aria-label="分野から選ぶ">
         <a class="of-cardlink" href="#cat-care">
           <article class="of-cat">
@@ -303,9 +296,6 @@
           </article>
         </a>
       </section>
-      <!-- ▲ 分野カードここまで -->
-
-      <!-- ========= 障がい福祉 ========= -->
       <section id="cat-care" class="office-section" aria-labelledby="cat-care-title">
         <h2 id="cat-care-title" class="office-section__title">障がい福祉</h2>
         <div class="office-grid">
@@ -346,7 +336,6 @@
         </div>
       </section>
 
-      <!-- ========= 就労支援 ========= -->
       <section id="cat-work" class="office-section office-section--work" aria-labelledby="cat-work-title">
         <h2 id="cat-work-title" class="office-section__title">就労支援</h2>
         <div class="office-grid">
@@ -373,7 +362,6 @@
         </div>
       </section>
 
-      <!-- ========= 地域づくり ========= -->
       <section id="cat-community" class="office-section office-section--community" aria-labelledby="cat-community-title">
         <h2 id="cat-community-title" class="office-section__title">地域づくり</h2>
         <div class="office-grid">
@@ -388,19 +376,6 @@
     </section>
   </main>
 
-  <!-- 主要導線（2ボタン想定） -->
-  <nav class="cta-bar" aria-label="主要導線">
-    <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
-      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      電話で相談
-    </a>
-    <a class="cta" href="mailto:hands.guitar@ocn.ne.jp" aria-label="メールで問い合わせ">
-      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      メールで問い合わせ
-    </a>
-  </nav>
-
-  <!-- 上へ戻る（スクロール進捗リング） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -411,7 +386,6 @@
     </span>
   </button>
 
-  <!-- フッター（共通） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -420,14 +394,14 @@
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -481,13 +455,7 @@
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
+</div><script src="js/site.js"></script>
 
-<script src="js/site.js"></script>
 </body>
 </html>
-
-
-
-
-
