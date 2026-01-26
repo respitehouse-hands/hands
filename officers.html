@@ -4,131 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>役員 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの役員ページです。">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの役員紹介ページです。">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- このページ専用CSS（他ページに影響しないようスコープ） -->
   <style>
+    :root{
+      --member-ink:#333;
+      --member-line:#d1d5db; /* 少し濃いめのグレーで境界を明確に */
+      --member-accent:#009688;
+    }
 
- :root{
-   --member-ink:#333;
-   --member-ink-2:#555;
-   --member-line:#e5e7eb;
-   --member-surface:#fff;
-   --member-accent:#009688; /* ハンズの緑に寄せる */
-   --member-radius:14px;
- }
+    .member-page{ padding-inline:min(4vw,24px); }
+    .member-wrap{ max-width:1040px; margin-inline:auto; }
 
-.member-page{ padding-inline:min(4vw,24px); }
-
-/* max-width を 1040px にして他ページと統一 */
-
-.member-wrap{ max-width:1040px; margin-inline:auto; }
-
- /* パンくず */
-
-.member-breadcrumb{ margin:0 0 1.5rem; }
-/* history/teikan と同じ上下パディング */
-.member-breadcrumb ol{
-  display:flex; flex-wrap:wrap; gap:.5rem .75rem;
-  list-style:none; padding:1.5em 0; margin:0;
-}
-
+    /* パンくず */
+    .member-breadcrumb{ margin:0 0 1.5rem; }
+    .member-breadcrumb ol{
+      display:flex; flex-wrap:wrap; gap:.5rem .75rem;
+      list-style:none; padding:1.5em 0; margin:0;
+    }
     .member-breadcrumb li+li::before{content:"›";color:#9ca3af;margin:0 .25rem 0 .2rem;}
 
     /* 見出し */
-    .member-eyebrow{ font:500 .95rem "Noto Sans JP",system-ui,sans-serif; color:var(--member-ink-2); }
-    .member-title{ font:700 clamp(1.6rem,2.4vw,2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; margin:2rem 0 2rem; color:var(--member-ink); }
-    .member-note{ color:#666; margin:.25rem 0 1rem; }
+    .member-title{ 
+      font:700 clamp(1.6rem,2.4vw,2rem)/1.3 "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif; 
+      margin:2rem 0 1rem; 
+      color:var(--member-ink); 
+    }
+    .member-note{ color:#666; margin:0 0 3rem; font-size: 0.95rem; }
 
-    /* テーブル（デスクトップ） */
-    .member-card{
-      background:var(--member-surface); border:1px solid var(--member-line); border-radius:var(--member-radius);
-      overflow:hidden; box-shadow:0 1px 0 #00000008;
+    /* 役職ごとのブロック */
+    .member-block {
+      margin-bottom: 3.5rem;
     }
-    .member-card__bar{ height:6px; background:var(--member-accent); }
 
-    .member-table{ width:100%; border-collapse:separate; border-spacing:0; }
-    .member-table caption{
-      text-align:left; padding:1rem 1rem .5rem; color:#444; font-weight:500;
+    /* ブロック見出し（理事・監事） - シンプルで厳格に */
+    .member-block__title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #111;
+      border-bottom: 2px solid var(--member-accent); /* 下線のみでスッキリと */
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
     }
-    .member-table thead th{
-      text-align:left; font-weight:700; color:#111; padding:.75rem 1rem; border-bottom:1px solid var(--member-line);
-      background:#fafafa;
-    }
-    .member-table tbody td, .member-table tbody th{
-      padding:.85rem 1rem; border-bottom:1px solid var(--member-line); vertical-align:middle;
-    }
-    .member-table tbody tr:last-child td, .member-table tbody tr:last-child th{ border-bottom:0; }
-    .member-role{ font-weight:700; color:#111; white-space:nowrap; }
-    .member-name{ color:var(--member-ink); }
 
-    /* スマホ：カード型に（アクセシブルな擬似テーブル） */
-    @media (max-width:680px){
-      .member-table thead{ display:none; }
-      .member-table, .member-table tbody, .member-table tr, .member-table td, .member-table th{ display:block; width:100%; }
-      .member-table tbody tr{
-        border-top:1px solid var(--member-line);
-        padding:.35rem 0;
+    /* グリッドレイアウト（名簿スタイル） */
+    .member-grid {
+      display: grid;
+      /* PC: 3列, タブレット: 2列, スマホ: 1列 */
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem 2rem; /* 横の間隔を広めに */
+    }
+
+    /* 役員名プレート（カードっぽさを消す） */
+    .member-entry {
+      display: flex;
+      align-items: baseline; /* 文字のベースラインを揃える */
+      padding: 0.8rem 0;     /* 上下の余白のみ */
+      border-bottom: 1px solid #e5e7eb; /* 薄い下線のみでリスト感を出す */
+    }
+
+    /* 役職ラベル */
+    .member-role-label {
+      flex: 0 0 4em; /* 幅固定 */
+      color: #666;   /* 落ち着いたグレー */
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* 氏名 */
+    .member-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #111;
+      letter-spacing: 0.05em;
+    }
+
+    /* スマホ調整 */
+    @media (max-width: 600px) {
+      .member-grid {
+        grid-template-columns: 1fr;
+        gap: 0; /* 縦積みリストにする */
       }
-      .member-table tbody tr:first-child{ border-top:0; }
-      .member-table tbody th.member-role{
-        background:#fafafa; padding:.7rem 1rem .45rem; border:0; border-radius:8px;
-      }
-      .member-table tbody td.member-name{
-        padding:.5rem 1rem .9rem;
+      .member-entry {
+        padding: 1rem 0.5rem;
       }
     }
 
-    /* 補助：役職のまとまりを視覚的に分ける（任意） */
-    .member-section-title{
-      font-weight:700; font-size:1.05rem; margin:1.25rem 0 .5rem; color:#111;
-      padding-left:.5rem; border-left:4px solid var(--member-accent);
+    /* トップページ：サブメニュー背景を白に */
+    .page-officers .submenu{
+      background: #fff;
     }
-
-/* 役職と氏名の間に薄い縦線（PC表示のみ） */
-@media (min-width: 681px){
-  :root{ --member-vline: #eef2f6; } /* 少し薄いグレー。濃くしたい時は #e5e7eb */
-
-  /* ヘッダーの1列目と、ボディの役職セルに右ボーダー */
-  .member-table thead th:first-child,
-  .member-table tbody th.member-role{
-    border-right: 1px solid var(--member-vline);
-  }
-
-  /* 見た目の詰まり防止に、氏名側の左パディングを少しだけ足す（任意） */
-  .member-table tbody td.member-name{
-    padding-left: 1.25rem;
-  }
-}
-
-/* スマホではカード表示にしているので縦線は不要（明示しておく） */
-@media (max-width: 680px){
-  .member-table thead th:first-child,
-  .member-table tbody th.member-role{
-    border-right: none;
-  }
-}
-
-/* トップページ：サブメニュー背景を白に */
-.page-officers .submenu{
-  background: #fff;
-}
 
   </style>
 </head>
@@ -137,7 +120,6 @@
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -146,7 +128,7 @@
     <ul class="c-header__list c-hamburger-menu__list">
       <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
         <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
@@ -155,17 +137,17 @@
           <li><a href="philosophy.html">ハンズの理念</a></li>
           <li><a href="history.html">ハンズのあゆみ</a></li>
           <li><a href="teikan.html">定款</a></li>
-          <li><a href="officers.html">役員</a></li>
+          <li><a href="officers.html" aria-current="page">役員</a></li>
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -176,12 +158,12 @@
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -196,10 +178,9 @@
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
-  <!-- メイン -->
+
   <main id="main" class="l-main member-page">
     <section class="member-wrap" aria-labelledby="member-title">
-      <!-- パンくず -->
       <nav class="member-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -208,88 +189,72 @@
         </ol>
       </nav>
 
-      <!-- 見出し -->
       <header>
         <h1 id="member-title" class="member-title">役員</h1>
         <p class="member-note">（令和6年5月1日現在）</p>
       </header>
 
-      <!-- 役員一覧 -->
-      <section class="member-card" aria-label="役員一覧">
-        <div class="member-card__bar" aria-hidden="true"></div>
-        <table class="member-table">
-          <caption>理事・監事</caption>
-          <thead>
-            <tr>
-              <th scope="col" style="width:28%;">役職</th>
-              <th scope="col">氏名</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row" class="member-role">理事</th>
-              <td class="member-name">小野　仁志</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">理事</th>
-              <td class="member-name">小野寺　浩樹</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">理事</th>
-              <td class="member-name">千葉　喜恵</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">理事</th>
-              <td class="member-name">三浦　まり江</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">理事</th>
-              <td class="member-name">千田　雅子</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">監事</th>
-              <td class="member-name">佐々木　芳久</td>
-            </tr>
-            <tr>
-              <th scope="row" class="member-role">監事</th>
-              <td class="member-name">金野　直司</td>
-            </tr>
-          </tbody>
-        </table>
+      <section class="member-block">
+        <h2 class="member-block__title">理事</h2>
+        <div class="member-grid">
+          <div class="member-entry">
+            <span class="member-role-label">理事</span>
+            <span class="member-name">小野　仁志</span>
+          </div>
+          <div class="member-entry">
+            <span class="member-role-label">理事</span>
+            <span class="member-name">小野寺　浩樹</span>
+          </div>
+          <div class="member-entry">
+            <span class="member-role-label">理事</span>
+            <span class="member-name">千葉　喜恵</span>
+          </div>
+          <div class="member-entry">
+            <span class="member-role-label">理事</span>
+            <span class="member-name">三浦　まり江</span>
+          </div>
+          <div class="member-entry">
+            <span class="member-role-label">理事</span>
+            <span class="member-name">千田　雅子</span>
+          </div>
+        </div>
       </section>
 
-      <!-- 追記用メモ（将来のために残すなら） -->
-      <!-- <p class="member-note">※ 敬称略。50音順。</p> -->
+      <section class="member-block">
+        <h2 class="member-block__title">監事</h2>
+        <div class="member-grid">
+          <div class="member-entry">
+            <span class="member-role-label">監事</span>
+            <span class="member-name">佐々木　芳久</span>
+          </div>
+          <div class="member-entry">
+            <span class="member-role-label">監事</span>
+            <span class="member-name">金野　直司</span>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <section class="member-wrap">
+      <nav class="cta-bar" aria-label="主要導線">
+        <a class="cta" href="tel:0191-31-5720">
+          <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          電話で相談
+        </a>
+        <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
+          <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          メールで問い合わせ
+        </a>
+      </nav>
     </section>
   </main>
 
-
-  <!-- CTAを本文と同じ幅に合わせる -->
-  <section class="member-wrap">
-    <nav class="cta-bar" aria-label="主要導線">
-
-  <a class="cta" href="tel:0191-31-5720">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Phone (outline) -->
-      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    電話で相談
-  </a>
-
-  <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <!-- Mail (outline) -->
-      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    メールで問い合わせ
-  </a>
-</nav>
-
-  </section>
-  </main>
-
-  <!-- 上へ戻る（スクロール進捗リング） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -300,7 +265,6 @@
     </span>
   </button>
 
-  <!-- フッター（共通） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -309,14 +273,14 @@
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -332,15 +296,15 @@
         <div class="footer__group">
           <h3>事業所紹介</h3>
           <ul>
-          <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html">居宅介護</a></li>
-          <li><a href="soudan.html">相談支援</a></li>
-          <li><a href="little.html">リトルハンズ</a></li>
-          <li><a href="sakura.html">さくらなみき</a></li>
-          <li><a href="myroot.html">マイルートリンク</a></li>
-          <li><a href="ichisapo.html">若者サポートステーション</a></li>
-          <li><a href="jobcafe.html">ジョブカフェ</a></li>
-          <li><a href="citizen.html">市民活動センター</a></li>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
           </ul>
         </div>
         <div class="footer__group">
@@ -370,14 +334,7 @@
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
-
-<script src="js/site.js"></script>
+</div><script src="js/site.js"></script>
 
 </body>
 </html>
-
-
-
-
-
