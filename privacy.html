@@ -5,18 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー | 特定非営利活動法人レスパイトハウス・ハンズ</title>
 
-  <!-- 共通スタイルを必ず読み込む（ロゴの既定サイズなどが入っている） -->
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
 
   <style>
     /* サブページはスプラッシュ演出を無効化 */
     body{opacity:1 !important}
     #splash{display:none !important}
-
-
 
     /* 本文レイアウト（単一カラム） */
     .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding:0 2%;}
@@ -32,18 +30,27 @@
     .doc a:hover{text-decoration:underline;}
     .doc small{color:#5c6a62;}
 
-
-
-
+    /* ★修正：ドロップダウンメニューの背景を白に固定 */
+    body.page-privacy #site-header .submenu {
+      background: #fff !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
+    }
+    /* 念のためリンク自体の背景も白に */
+    body.page-privacy #site-header .submenu a {
+      background-color: #fff;
+    }
+    body.page-privacy #site-header .submenu a:hover {
+      background-color: #f3f4f6; /* ホバー時は薄いグレー */
+    }
 
   </style>
 </head>
 
-<body>
+<body class="page-privacy">
 <a id="top" class="visually-hidden">top</a>
 <div id="page">
 
-   <!-- 共通ヘッダー（そのまま） -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -82,13 +89,14 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub is-current">
+      <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
-          <li><a href="faq.html" aria-current="page">FAQ</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
 
@@ -156,8 +164,8 @@
 
       <h2>お問い合わせ窓口</h2>
       <p>
-        【法人名】特定非営利活動法人レスパイトハウス・ハンズ（個人情報保護管理者：理事&nbsp;千田 雅子）<br>
-        所在地：〒021-0031&nbsp;岩手県一関市青葉二丁目6-16<br>
+        【法人名】特定非営利活動法人レスパイトハウス・ハンズ（個人情報保護管理者：理事 千田 雅子）<br>
+        所在地：〒021-0031 岩手県一関市青葉二丁目6-16<br>
         メール：<a href="mailto:hands-ma@ceres.ocn.ne.jp">hands-ma@ceres.ocn.ne.jp</a> ／
         電話：<a href="tel:0191-31-5720">0191-31-5720</a>
       </p>
@@ -166,7 +174,6 @@
     </article>
   </main>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -182,7 +189,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -222,7 +229,7 @@
           <h3>情報公開</h3>
           <ul>
             <li><a href="news.html">お知らせ・活動報告</a></li>
-            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="privacy.html" aria-current="page">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
             <li><a href="sitemap.html">サイトマップ</a></li>
           </ul>
@@ -231,33 +238,23 @@
     </div>
 
     <div class="footer__bar">
-      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
 
-</div><!-- /#page -->
-
-<script>
-  // サブページの“常時表示”リセット
+</div><script>
+  // サブページの“常時表示”リセット（フェードイン待機を解除）
   (function () {
-    // フェードを強制解除
     document.addEventListener('DOMContentLoaded', function(){
-      document.body.classList.add('page-show');            // opacity:1にするクラス
-      document.documentElement.classList.remove('no-scroll'); // スクロール封鎖を解除
+      document.body.classList.add('page-show');
+      document.documentElement.classList.remove('no-scroll');
       var s = document.getElementById('splash'); 
-      if (s) s.style.display = 'none';                     // 万一あっても非表示
+      if (s) s.style.display = 'none';
     });
   })();
 </script>
-<style>
-  /* 念のための保険（CSSでの強制表示） */
-  body { opacity: 1 !important; }
-  #splash { display: none !important; }
-</style>
-
+<style> body { opacity: 1 !important; } #splash { display: none !important; } </style>
 
 </body>
 </html>
-
-
