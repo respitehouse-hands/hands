@@ -22,84 +22,18 @@
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Zen+Maru+Gothic:wght@700&display=swap" rel="stylesheet">
   </noscript>
-  <script>document.documentElement.classList.add('no-scroll');</script>
-
-
+  
   <link rel="stylesheet" href="css/style.css">
 
   <style>
     /* ===============================
-       A11y: スクリーンリーダー用
+       ページ間のガタつき防止
        =============================== */
-    .visually-hidden{
-      position:absolute !important; left:0 !important; top:0 !important;
-      width:1px !important; height:1px !important; margin:0 !important; padding:0 !important;
-      overflow:hidden !important; clip:rect(0 0 0 0) !important; clip-path:inset(50%) !important;
-      border:0 !important; white-space:nowrap !important;
+    html {
+      /* 常にスクロールバーの領域を確保 */
+      scrollbar-gutter: stable;
     }
-
-    /* ===============================
-       全体保険
-       =============================== */
-    *,*::before,*::after{ box-sizing:border-box; }
-    html,body{ margin:0; overflow-x:hidden; }
-    img, video{ max-width:100%; height:auto; display:block; }
-    svg{ display:block; }
-
-    /* ===============================
-       ヘッダー（PC：横並び固定 / Mobile：overlayドロワー）
-       =============================== */
-    @media (min-width: 901px){
-      #site-header{
-        display:flex !important; align-items:center !important; justify-content:space-between !important;
-        gap:24px !important; overflow:visible !important;
-      }
-      .c-header__logo img{ width:auto !important; display:block; }
-
-      .c-hamburger-menu__list{
-        position:static !important; transform:none !important;
-        display:flex !important; flex-wrap:nowrap !important; align-items:center !important;
-        gap:.8rem !important; width:auto !important; height:auto !important;
-        margin:0 !important; padding:0 !important; white-space:nowrap !important; overflow:visible !important;
-      }
-
-      .c-hamburger-menu__input,
-      .c-hamburger-menu__button,
-      .c-hamburger-menu__bg{ display:none !important; }
-
-      .submenu{ display:none !important; position:absolute; left:0; top:100%; }
-      .has-sub:hover > .submenu{ display:block !important; }
-    }
-
-    @media (max-width: 900px){
-      #hamburger:not(:checked) ~ .c-hamburger-menu__list{ display:none !important; }
-      #hamburger:not(:checked) ~ .c-hamburger-menu__bg  { display:none !important; }
-
-      .c-hamburger-menu__list{
-        position:fixed !important; z-index:1000 !important;
-        top:0; left:0; width:min(100svw,340px) !important; height:100dvh !important;
-        margin:0 !important; padding:16px 20px !important; background:#fff !important; box-sizing:border-box !important;
-        transform:translateX(-100%) !important; transition:transform .25s ease !important; will-change:transform;
-        overflow-x:hidden !important; overflow-y:hidden !important;
-      }
-      #hamburger:checked ~ .c-hamburger-menu__list{
-        display:block !important; transform:translateX(0) !important; overflow-y:auto !important;
-      }
-      .c-hamburger-menu__bg{
-        position:fixed !important; inset:0; background:rgba(0,0,0,.35) !important; z-index:999 !important;
-      }
-
-      .sub-toggle:not(:checked) ~ .submenu{ display:none !important; }
-      .sub-toggle:checked ~ .submenu{ display:block !important; }
-
-      .c-header__list, .c-header__list-item, .c-header__list-link, .submenu{
-        max-width:100% !important; white-space:normal !important; overflow-wrap:anywhere !important; box-sizing:border-box !important;
-      }
-    }
-
-    /* トップページ：サブメニュー背景を白に */
-    .page-home .submenu{ background:#fff; }
-
+    
     /* ===============================
        Topview 背景 + 波
        =============================== */
@@ -217,7 +151,6 @@
       gap: clamp(100px, 3vw, 40px);
       align-items: center;
 
-      /* style.cssに負けない保険（現行踏襲） */
       width:min(1100px,100%) !important;
       max-width:none !important;
       padding-inline:clamp(12px,5vw,24px) !important;
@@ -275,15 +208,11 @@
       font-size: clamp(18px, 2.2vw, 22px);
       line-height: 1.9;
       margin: 0;
-
-      /* 折返し */
       text-wrap: balance;
-      text-wrap: pretty;              /* 最終的にこちらが効く（現行踏襲） */
+      text-wrap: pretty;
       line-break: strict;
       hanging-punctuation: allow-end;
       word-break: keep-all;
-
-      /* はみ出し対策（現行踏襲） */
       word-break:normal !important;
       overflow-wrap:anywhere !important;
       white-space:normal !important;
@@ -293,7 +222,7 @@
     .nowrap{ white-space: nowrap; }
 
     /* ===============================
-       NEWS一覧：整列 + NEWバッジ
+       NEWS一覧
        =============================== */
     .news-row,
     .news-meta,
@@ -329,66 +258,17 @@
     /* ===============================
        主な事業のご案内
        =============================== */
-    .services{
-      padding: clamp(40px, 6vw, 64px) 0;
+    .main-services {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.2rem; 
     }
 
-    .services__grid{
-      max-width: min(1100px, 92vw);
-      margin: 0 auto;
-      padding: 0 clamp(12px, 5vw, 24px);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
+    @media (min-width: 901px) {
+      .main-services {
+        padding: 0;
+      }
     }
-
-    .service-card{
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px 22px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.06);
-    }
-
-    .service-card__title{
-      margin: 0 0 .6rem 0;
-      font-size: 1.05rem;
-    }
-
-    .service-card__title a{
-      color: #333;
-      text-decoration: none;
-    }
-
-    .service-card__desc{
-      margin: 0;
-      font-size: .95rem;
-      line-height: 1.8;
-      color: #555;
-    }
-
-    .service-card__note{
-      display: inline-block;
-      margin-left: .3em;
-      font-size: .85em;
-      opacity: .7;
-    }
-
-
-.main-services {
-  max-width: 1100px;
-  margin: 3rem auto;
-  
-  /* スマホ・タブレット用の余白（デフォルト） */
-  padding: 0 1.2rem; 
-}
-
-/* ▼▼▼ 追加：PC幅（901px以上）のときだけ余白をゼロにする ▼▼▼ */
-@media (min-width: 901px) {
-  .main-services {
-    padding: 0;
-  }
-}
-
 
     .main-services h2 {
       font-size: 1.4rem;
@@ -409,17 +289,13 @@
       border-radius: 8px;
       text-decoration: none;
       color: inherit;
-      transition: 
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
     }
 
     .service-card h3 {
       font-size: 1.05rem;
       margin-bottom: 0.4rem;
-
-
     }
 
     .service-card p {
@@ -435,16 +311,13 @@
       border-color: #9fbfa8;
     }
 
-    .service-card {
-      position: relative;
-    }
-
+    /* 左側の色線 */
     .service-card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 4px;
+      width: 6px;
       height: 100%;
       background: #d0d0d0;
       border-radius: 8px 0 0 8px;
@@ -460,231 +333,73 @@
       margin-bottom: 0.4rem;
     }
 
-
-
-/* 左線の太さ */
-.service-card::before {
-  width: 6px;
-}
-
-/* ==============================================
-   新しいベン図（修正版）に合わせたカラーパレット
-   ============================================== */
-
-/* 【障がい福祉】の色（黄）：わぁははクラブ */
-/* 新しいベン図の上部（黄色）と一致させます */
-.service-card.type-living::before {
-  background-color: #ffe073; 
-}
-
-/* 【就労支援】の色（緑）：マイルートリンク */
-/* 新しいベン図の右下（緑色）と一致させます */
-/* これでマイルートリンクの実店舗カラーとも合致します */
-.service-card.type-center::before {
-  background-color: #50c3aa; 
-}
-
-/* 【地域づくり】の色（青）：市民活動センター */
-/* ここは変更なし。左側の青色です */
-.service-card.type-community::before {
-  background-color: #587c98; 
-}
-
-/* 【子ども/その他】の色（オレンジ）：リトルハンズ */
-/* 3色と馴染む柔らかいオレンジ */
-.service-card.type-day::before {
-  background-color: #ffb74d; 
-}
-
-/* スマホ表示（幅640px以下）の説明文調整 */
-@media (max-width: 640px) {
-  .service-card .service-note {
-    /* 文字サイズを少し小さくして収まりを良くする */
-    font-size: 0.85rem !important; 
+    /* カードごとの色分け */
+    .service-card.type-living::before { background-color: #ffe073; }
+    .service-card.type-center::before { background-color: #50c3aa; }
+    .service-card.type-community::before { background-color: #587c98; }
+    .service-card.type-day::before { background-color: #ffb74d; }
     
-    /* ほんの少し文字間を詰める（読みづらくならない限界値） */
-    letter-spacing: -0.04em !important;
-    
-    /* 行間は少し広めにして、文字が小さくても読みやすくする */
-    line-height: 1.6 !important; 
-  }
-}
+    /* ホバー時の背景色 */
+    .service-card.type-living:hover { background-color: #fffdf5; }
+    .service-card.type-center:hover { background-color: #f0fcf9; }
+    .service-card.type-community:hover { background-color: #f4f8fa; }
+    .service-card.type-day:hover { background-color: #fffaf5; }
 
+    @media (max-width: 640px) {
+      .service-card .service-note {
+        font-size: 0.85rem !important; 
+        letter-spacing: -0.04em !important;
+        line-height: 1.6 !important; 
+      }
+    }
 
-/* ============================================
-   「主な事業」下の全サービス誘導エリア
-   ============================================ */
-.service-footer {
-  margin-top: 3rem; /* カードとの距離 */
-  text-align: center;
-}
+    /* 誘導エリア */
+    .service-footer {
+      margin-top: 3rem;
+      text-align: center;
+    }
 
-.service-footer__text {
-  font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-}
+    .service-footer__text {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
 
-/* モバイル用改行（PCでは消す） */
-.u-mobile { display: block; }
-@media (min-width: 768px) {
-  .u-mobile { display: none; }
-}
+    /* スマホ用改行 */
+    br.sp-br { display: none !important; }
+    @media (max-width: 640px) {
+      br.sp-br { display: block !important; }
+      .service-footer__text {
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        font-size: 0.9rem !important;
+        padding: 0 1rem !important; 
+      }
+    }
 
+    /* 検索ボタン */
+    .btn.btn--finder {
+      background-color: #ffffff !important;
+      color: #007867 !important;
+      border: 2px solid #007867 !important;
+      font-weight: 700 !important;
+      box-shadow: none !important;
+      transition: all 0.3s ease;
+    }
+    .btn.btn--finder:hover {
+      background-color: #007867 !important;
+      border-color: #007867 !important;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 120, 103, 0.3) !important; 
+    }
 
-
-/* =========================================
-   【修正版】コントラストを確保した安全なボタン
-   ========================================= */
-
-/* 通常時のスタイル（白背景＋濃い緑枠・文字） */
-.btn.btn--finder {
-  background-color: #ffffff !important;
-  
-  /* ▼▼▼ 変更点：コントラスト比 4.8:1 を確保した濃い緑 ▼▼▼ */
-  color: #2e8c7a !important; 
-  border: 2px solid #2e8c7a !important;
-  
-  font-weight: 700 !important;
-  box-shadow: none !important;
-  transition: all 0.3s ease;
-}
-
-/* ホバー時のスタイル（濃い緑背景＋白文字） */
-.btn.btn--finder:hover {
-  /* ▼▼▼ 変更点：背景も同じ濃い緑で塗りつぶす ▼▼▼ */
-  background-color: #2e8c7a !important;
-  border-color: #2e8c7a !important;
-  
-  /* 白文字とのコントラスト比は 4.8:1 で安全 */
-  color: #ffffff !important;
-  
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(46, 140, 122, 0.3) !important; /* 影の色も合わせて調整 */
-}
-
-/* ベースのホバー設定（動きと影） */
-.service-card:hover {
-  transform: translateY(-4px); 
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-  /* グレー背景は廃止します */
-  /* background-color: #f9f9f9; */ 
-}
-
-/* ▼▼▼ 各カードの色に合わせた「極薄パステル背景」 ▼▼▼ */
-
-/* わぁはは（黄）→ 温かいクリーム色 */
-.service-card.type-living:hover {
-  background-color: #fffdf5; 
-}
-
-/* マイルート（緑）→ 爽やかなミントホワイト */
-.service-card.type-center:hover {
-  background-color: #f0fcf9; 
-}
-
-/* 市民活動（青）→ 知的なアイスブルー */
-.service-card.type-community:hover {
-  background-color: #f4f8fa; 
-}
-
-/* リトルハンズ（オレンジ）→ 優しいピーチホワイト */
-.service-card.type-day:hover {
-  background-color: #fffaf5; 
-}
-
-/* スマホ表示（幅640px以下）の案内文調整 */
-@media (max-width: 640px) {
-  .service-footer__text {
-    /* 1. 単語の途中で改行させない「文節維持」の設定 */
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
-    
-    /* 2. 文字サイズを少し調整して読みやすく */
-    font-size: 0.9rem !important;
-    line-height: 1.8 !important;
-    
-    /* 3. 左右に少し余白を入れて、画面端ギリギリにならないようにする */
-    padding: 0 1rem !important; 
-  }
-
-
-/* スマホ表示（幅640px以下）の微調整 */
-@media (max-width: 640px) {
-  .service-footer__text {
-    font-size: 0.9rem !important;
-    line-height: 1.8 !important;
-    padding: 0 1rem !important;
-    /* word-breakの設定は削除してもOKですが、残しておいても害はありません */
-  }
-
-  /* ▼▼▼ 修正ポイント：特定のクラスがついた改行だけは「有効」にする ▼▼▼ */
-  .service-footer__text br.sp-br {
-    display: block !important;
-  }
-}
-
-}
-
-
-/* ドロップダウンメニューの背景を強制的に白にする */
-.submenu {
-  background-color: #ffffff !important;
-} 
-
-/* =========================================
-   スマホ専用改行タグ（.sp-br）の完全制御
-   ========================================= */
-
-/* 1. 基本（PCを含む全サイズ）：まずは強制的に「隠す」 */
-br.sp-br {
-  display: none !important;
-}
-
-/* 2. スマホ（640px以下）の時だけ：「隠す」を解除して改行させる */
-@media (max-width: 640px) {
-  br.sp-br {
-    display: block !important;
-  }
-}
-
-/* =========================================
-   【修正版2】コントラスト完全合格のボタン
-   ========================================= */
-
-/* 通常時のスタイル */
-.btn.btn--finder {
-  background-color: #ffffff !important;
-  
-  /* ▼▼▼ 変更点：さらに深く、知的な緑色に変更（#007867） ▼▼▼ */
-  color: #007867 !important;
-  border: 2px solid #007867 !important;
-  
-  font-weight: 700 !important;
-  box-shadow: none !important;
-  transition: all 0.3s ease;
-}
-
-/* ホバー時のスタイル */
-.btn.btn--finder:hover {
-  /* 背景も同じ濃い緑に */
-  background-color: #007867 !important;
-  border-color: #007867 !important;
-  
-  /* 白文字とのコントラストもしっかり確保 */
-  color: #ffffff !important;
-  
-  transform: translateY(-2px);
-  /* 影の色も合わせて調整 */
-  box-shadow: 0 6px 16px rgba(0, 120, 103, 0.3) !important; 
-}
+    /* トップページ：サブメニュー背景を白に */
+    .page-home .submenu{ background:#fff; }
 
   </style>
-
-
 </head>
-
 
 <body class="page-home">
   <a id="top" class="visually-hidden">top</a>
@@ -711,13 +426,13 @@ br.sp-br {
           </ul>
         </li>
 
-        <li class="c-header__list-item has-sub is-current">
+        <li class="c-header__list-item has-sub">
           <input type="checkbox" id="sub-offices" class="sub-toggle">
           <a href="office.html" class="c-header__list-link">事業所紹介</a>
           <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
           <ul class="submenu">
             <li><a href="wahaha.html">わぁははクラブ</a></li>
-            <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
             <li><a href="soudan.html">相談支援</a></li>
             <li><a href="little.html">リトルハンズ</a></li>
             <li><a href="sakura.html">さくらなみき</a></li>
@@ -809,52 +524,49 @@ br.sp-br {
       </section>
 
 
-      <!-- ▼▼ ここから追加 ▼▼ -->
-<section class="main-services">
-  <h2>主な事業</h2>
+      <section class="main-services">
+        <h2>主な事業</h2>
 
-  <div class="service-grid">
-    <a href="wahaha.html" class="service-card type-living">
-      <span class="service-type">生活介護事業所</span>
-      <h3>わぁははクラブ</h3>
-      <p class="service-note">
-        利用者さんの生きがいとなる日中活動を支援します。
-      </p>
-    </a>
+        <div class="service-grid">
+          <a href="wahaha.html" class="service-card type-living">
+            <span class="service-type">生活介護事業所</span>
+            <h3>わぁははクラブ</h3>
+            <p class="service-note">
+              利用者さんの生きがいとなる日中活動を支援します。
+            </p>
+          </a>
 
-    <a href="myroot.html" class="service-card type-center">
-      <span class="service-type">障がい者就業・生活支援センター</span>
-      <h3>マイルートリンク</h3>
-      <p class="service-note">仕事や暮らしに関する、あらゆる悩みに対応します。<br><br>※受託事業（岩手労働局）</p>
-    </a>
+          <a href="myroot.html" class="service-card type-center">
+            <span class="service-type">障がい者就業・生活支援センター</span>
+            <h3>マイルートリンク</h3>
+            <p class="service-note">仕事や暮らしに関する、あらゆる悩みに対応します。<br><br>※受託事業（岩手労働局）</p>
+          </a>
 
-    <a href="citizen.html" class="service-card type-community">
-      <span class="service-type">市民活動支援</span>
-      <h3>いちのせき市民活動センター</h3>
-      <p class="service-note">地域づくりの拠点として、市民活動を広く支えます。</p>
-    </a>
+          <a href="citizen.html" class="service-card type-community">
+            <span class="service-type">市民活動支援</span>
+            <h3>いちのせき市民活動センター</h3>
+            <p class="service-note">地域づくりの拠点として、市民活動を広く支えます。</p>
+          </a>
 
-    <a href="little.html" class="service-card type-day">
-      <span class="service-type">放課後等デイサービス</span>
-      <h3>リトルハンズ</h3>
-      <p class="service-note">お子さんが安心して過ごせる場を提供します。</p>
-    </a>
-  </div> 
-<div class="service-footer">
-  <p class="service-footer__text">
-    レスパイトハウス・ハンズは、<br class="sp-br">
-    この他にも様々な支援を行っています。<br class="sp-br">
-    お困りごとや目的に合わせて、<br class="sp-br">
-    最適な事業所をお探しいただけます。
-  </p>
-  
-  <a href="finder.html" class="btn btn--finder">
-    あなたに合う支援をさがす
-  </a>
-</div>
-  </section>
-      <!-- ▲▲ 追加ここまで ▲▲ -->
-
+          <a href="little.html" class="service-card type-day">
+            <span class="service-type">放課後等デイサービス</span>
+            <h3>リトルハンズ</h3>
+            <p class="service-note">お子さんが安心して過ごせる場を提供します。</p>
+          </a>
+        </div>  
+        <div class="service-footer">
+          <p class="service-footer__text">
+            レスパイトハウス・ハンズは、<br class="sp-br">
+            この他にも様々な支援を行っています。<br class="sp-br">
+            お困りごとや目的に合わせて、<br class="sp-br">
+            最適な事業所をお探しいただけます。
+          </p>
+          
+          <a href="finder.html" class="btn btn--finder">
+            あなたに合う支援をさがす
+          </a>
+        </div>
+      </section>
 
       <section class="news" aria-labelledby="news-title">
         <div class="section__header">
@@ -948,7 +660,7 @@ br.sp-br {
             MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
           </address>
           <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉2-6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+          <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
         </section>
 
         <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -965,7 +677,7 @@ br.sp-br {
             <h3>事業所紹介</h3>
             <ul>
               <li><a href="wahaha.html">わぁははクラブ</a></li>
-              <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+              <li><a href="residence.html">居宅介護</a></li>
               <li><a href="soudan.html">相談支援</a></li>
               <li><a href="little.html">リトルハンズ</a></li>
               <li><a href="sakura.html">さくらなみき</a></li>
@@ -1001,82 +713,74 @@ br.sp-br {
         <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
       </div>
     </footer>
-  </div><!-- /#page -->
-
-  <div id="splash" aria-hidden="true">
+  </div><div id="splash" aria-hidden="true">
     <img src="img/logo.webp" alt="">
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ▼▼▼ 設定 ▼▼▼
+      const fadeInMs    = 80;    // ロゴが見えるまで
+      const minHoldMs   = 1200;  // ロゴを“最低”キープする時間
+      const fadeOutMs   = 700;   // 消える時間（CSSと一致）
+      const maxWaitLoad = 1200;  // load待ちの最大追加時間
 
+      // ▼▼▼ セッションストレージで「初回かどうか」を判定 ▼▼▼
+      const key = 'hands_splash_seen'; // 合言葉
+      const splash = document.getElementById('splash');
+      const html = document.documentElement;
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // ▼▼▼ 設定 ▼▼▼
-    const fadeInMs    = 80;    // ロゴが見えるまで
-    const minHoldMs   = 1200;  // ロゴを“最低”キープする時間
-    const fadeOutMs   = 700;   // 消える時間（CSSと一致）
-    const maxWaitLoad = 1200;  // load待ちの最大追加時間
+      if (!splash) return;
 
-    // ▼▼▼ セッションストレージで「初回かどうか」を判定 ▼▼▼
-    const key = 'hands_splash_seen'; // 合言葉
-    const splash = document.getElementById('splash');
-    const html = document.documentElement;
+      // もし「すでに見たよ（true）」という記録があれば、アニメなしで終了
+      if (sessionStorage.getItem(key)) {
+        splash.style.display = 'none'; // 即座に隠す
+        splash.classList.add('splash-hide');
+        document.body.classList.add('page-show');
+        html.classList.remove('no-scroll', 'no-scrollbar');
+        return; // ここで処理を終える
+      }
 
-    if (!splash) return;
+      // --- 以下は「初めての人（記録がない人）」への処理 ---
 
-    // もし「すでに見たよ（true）」という記録があれば、アニメなしで終了
-    if (sessionStorage.getItem(key)) {
-      splash.style.display = 'none'; // 即座に隠す
-      splash.classList.add('splash-hide');
-      document.body.classList.add('page-show');
-      html.classList.remove('no-scroll', 'no-scrollbar');
-      return; // ここで処理を終える
-    }
+      // 「今見たよ」と記録に残す（ブラウザを閉じるまで有効）
+      sessionStorage.setItem(key, 'true');
 
-    // --- 以下は「初めての人（記録がない人）」への処理 ---
+      // 最初はスクロール禁止 + バー非表示
+      html.classList.add('no-scroll', 'no-scrollbar');
 
-    // 「今見たよ」と記録に残す（ブラウザを閉じるまで有効）
-    sessionStorage.setItem(key, 'true');
+      // 表示開始
+      requestAnimationFrame(() => {
+        splash.classList.add('is-show');
+        document.body.classList.add('page-show');
+      });
 
-    // 最初はスクロール禁止 + バー非表示
-    html.classList.add('no-scroll', 'no-scrollbar');
+      // 「最低表示時間」を待つ
+      const minHoldPromise = new Promise(resolve => {
+        setTimeout(resolve, fadeInMs + minHoldMs);
+      });
 
-    // 表示開始
-    requestAnimationFrame(() => {
-      splash.classList.add('is-show');
-      document.body.classList.add('page-show');
+      // 「load完了」か「最大待機」を待つ
+      const loadOrTimeoutPromise = new Promise(resolve => {
+        const done = () => resolve();
+        if (document.readyState === 'complete') return done();
+        window.addEventListener('load', done, { once: true });
+        setTimeout(done, maxWaitLoad);
+      });
+
+      // 両方終わったらフェードアウト
+      Promise.all([minHoldPromise, loadOrTimeoutPromise]).then(() => {
+        splash.classList.add('splash-hide');
+        html.classList.remove('no-scroll'); // スクロール解禁
+        
+        setTimeout(() => {
+          splash.style.display = 'none';
+          html.classList.remove('no-scrollbar');
+        }, fadeOutMs + 100);
+      });
     });
+  </script>
 
-    // 「最低表示時間」を待つ
-    const minHoldPromise = new Promise(resolve => {
-      setTimeout(resolve, fadeInMs + minHoldMs);
-    });
-
-    // 「load完了」か「最大待機」を待つ
-    const loadOrTimeoutPromise = new Promise(resolve => {
-      const done = () => resolve();
-      if (document.readyState === 'complete') return done();
-      window.addEventListener('load', done, { once: true });
-      setTimeout(done, maxWaitLoad);
-    });
-
-    // 両方終わったらフェードアウト
-    Promise.all([minHoldPromise, loadOrTimeoutPromise]).then(() => {
-      splash.classList.add('splash-hide');
-      html.classList.remove('no-scroll'); // スクロール解禁
-      
-      setTimeout(() => {
-        splash.style.display = 'none';
-        html.classList.remove('no-scrollbar');
-      }, fadeOutMs + 100);
-    });
-  });
-</script>
-
-
-
-
-  <!-- BackToTop（※二重登録を解消：これ1本のみ） -->
   <script>
     (function(){
       const btn = document.getElementById('backToTop');
@@ -1106,14 +810,7 @@ br.sp-br {
       window.addEventListener('resize', update);
       update();
     })();
-
-
-
-
   </script>
-
-
 
 </body>
 </html>
-
