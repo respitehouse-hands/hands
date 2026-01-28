@@ -7,23 +7,22 @@
 
   <title>さくらなみき | レスパイトハウス・ハンズ</title>
 
-  <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 
-  <!-- 共通CSS -->
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css">
 
   <style>
@@ -32,10 +31,7 @@
     body{
       margin:0; color:var(--ink);
       font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      background:
-        radial-gradient(1200px 220px at 15% -8%, #fff7fb 30%, transparent 60%),
-        radial-gradient(1000px 200px at 85% -10%, #fff3f8 25%, transparent 60%),
-        #ffffff;
+      background: #ffffff;
     }
     .wrap{ max-width:var(--max); margin-inline:auto; padding-inline:min(4vw,24px); }
 
@@ -67,7 +63,7 @@
     .unit-sakura .site-footer .footer__bar{ background:#FFF1F6; border-top:1px solid var(--menu-border); }
     .unit-sakura .site-footer h3, .unit-sakura .site-footer a{ color:var(--brand-ink); }
 
-    /* ========== ヒーローバンド（マイルート型） ========== */
+    /* ========== ヒーローバンド ========== */
     .unit-hero{
       margin:1.2rem 0 1.8rem; border-radius:20px; border:1px solid var(--line);
       background:
@@ -78,16 +74,37 @@
     }
     .unit-hero__inner{ padding:clamp(18px,3.2vw,36px) clamp(18px,3.6vw,40px); }
     .unit-hero__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,2vw,20px); align-items:center; margin-bottom:clamp(12px,2vw,18px); }
+    
+    /* ロゴ周り */
     .unit-hero__emblem{
-      width:clamp(58px,7.5vw,82px); height:clamp(58px,7.5vw,82px); border-radius:50%;
-      display:grid; place-items:center; background:radial-gradient(120% 120% at 30% 20%, #fff, #ffeaf2 70%);
-     }
-    .unit-hero__emblem svg{ width:62%; height:62%; fill:var(--brand); }
+      max-width: 120px; 
+      border-radius: 0; 
+      background: none;
+      border: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      .unit-hero__emblem {
+        max-width: 80px; 
+      }
+    }
+
+    .unit-hero__emblem img{ 
+      width: auto; 
+      height: auto; 
+      display: block; 
+      max-width: 100%;
+    }
+    
     .unit-hero__title{ margin:0 0 .1rem; font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; color:var(--brand-ink); }
     .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
     .unit-hero__grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:1.55fr .95fr; }
     @media (max-width:920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
-    .unit-hero__points ul{ margin:.2rem 0 0; padding:0 0 0 1.2em; }
+    
+    /* ★修正：リスト全体の左余白を削除して左寄せにする */
+    .unit-hero__points ul{ margin:.2rem 0 0; padding:0; }
     .unit-hero__points li{ margin:.45rem 0; line-height:1.9; }
 
     .unit-hero__callout{
@@ -100,7 +117,7 @@
     .unit-hero__cta{ display:grid; gap:.8rem; margin:.6rem 0; }
     .unit-hero__small{ color:#657b8f; font-size:.92rem; }
 
-    /* ---- フォールバック：このページ限定のボタン体裁（共通 .btn が無い場合でも形になる） ---- */
+    /* ボタン */
     .unit-sakura .btn{
       display:inline-flex; align-items:center; justify-content:center;
       text-decoration:none; font-weight:700;
@@ -125,10 +142,79 @@
     .grid{ display:grid; grid-template-columns:1fr; gap:16px; }
     @media (min-width:880px){ .grid{ grid-template-columns:1fr 1fr; } }
 
-    .info-table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
-    .info-table th, .info-table td{ padding:12px 14px; vertical-align:top; text-align:left; border-bottom:1px solid #f6e6ee; }
-    .info-table th{ width:34%; background:var(--brand-weak); color:var(--brand-ink); font-weight:600; }
+    /* 基本情報の2カラムレイアウト */
+    .basic-grid {
+      display: grid;
+      gap: clamp(24px, 4vw, 64px);
+      grid-template-columns: 1.2fr 1fr;
+      align-items: start;
+    }
+    @media (max-width: 800px) {
+      .basic-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* テーブル */
+    .info-table{ 
+      width: 100%;
+      border-collapse: collapse; 
+      background: transparent;
+      border: none;
+    }
+    .info-table th, .info-table td{ 
+      padding: 14px 10px; 
+      vertical-align: top; 
+      text-align: left; 
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .info-table th{ 
+      width: 7em; 
+      background: transparent;
+      color: var(--brand-ink); 
+      font-weight: 700; 
+      white-space: nowrap;
+    }
     .info-table tr:last-child th, .info-table tr:last-child td{ border-bottom:none; }
+
+    /* 右側の「主な作業の例」ブロック */
+    .work-box {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .work-box h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand-ink);
+      margin: 0 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--brand-weak);
+    }
+    .work-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .work-list li {
+      position: relative;
+      padding-left: 1em;
+      margin-bottom: 0.8em;
+      line-height: 1.7;
+      color: #333;
+    }
+    /* ピンクの丸チェック */
+    .work-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--brand); /* ピンク色 */
+    }
 
     .map{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff7fb; min-height:260px; }
     .map iframe{ width:100%; height:350px; border:0; display:block; }
@@ -137,6 +223,8 @@
     .unit-sakura #backToTop.btt.btt--ring{
       --btt-bg:#F48FB1; --btt-bg-h:#EC6A95; --btt-fg:#fff;
       --btt-ring:rgba(244,143,177,.35); --btt-ring-h:rgba(244,143,177,.55); --btt-focus:#fed1e1;
+      --btt-ring-active: #F48FB1;
+      --btt-ring-base: #FFE6EF;
     }
     .unit-sakura #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
     .unit-sakura #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
@@ -149,92 +237,64 @@
     :root { --sticky-offset: 120px; }
     section{ scroll-margin-top: var(--sticky-offset); }
 
-/* ── さくらアイコンの色味（このページだけ） ───────────────── */
-.unit-sakura{
+    /* チェックマークの重複と色を完全修正 */
+    .checklist {
+      list-style: none !important;
+      padding-left: 0;
+      margin: 0.5rem 0;
+    }
+    .checklist li {
+      list-style: none !important;
+      position: relative;
+      padding-left: 1.5em; 
+      margin-bottom: 0.5em;
+      line-height: 1.8;
+    }
+    .checklist li::marker { content: none !important; display: none !important; }
 
-  --sakura-ring: #F6B3C9;   /* エンブレム外枠の線色 */
-  --sakura-bg:   #FFF1F6;   /* エンブレムの内側の淡いピンク */
-}
-
-.unit-hero__emblem{
-  /* 内側の淡いピンク＆やわらかい陰影に変更 */
-  background:
-    radial-gradient(120% 120% at 30% 20%, #fff, var(--sakura-bg) 70%);
-  border-color: var(--sakura-ring);
-  box-shadow: 0 8px 22px rgba(232, 93, 153, .12); /* ピンク系の薄影 */
-}
-
-/* SVGを桜色に。共通CSSがfill指定していても勝てるよう保険も足す */
-.unit-hero__emblem svg{ color: var(--sakura-icon); }
-.unit-hero__emblem svg *{ fill: var(--sakura-icon) !important; }
-
-/* ✔ をネイティブのマーカーとして描く（互換性◎） */
-.checklist{
-  /* 既定の箇条書き機能を使うので、list-style は消さない */
-  margin:.2rem 0 0;
-  padding-left: 1.3em;              /* 文字とマーカーの間 */
-}
-.checklist li{
-  list-style: disc;                  /* 何でもOK。::markerで上書きされる */
-  list-style-position: outside;      /* 行頭に出す */
-}
-.checklist li::marker{
-  content: "✔  ";                   /* ← マーカーをチェックに置き換え */
-  color: var(--brand);               /* 桜ページのピンクに合わせる */
-  font-weight: 700;
-  font-size: 1.05em;                 /* 少しだけ大きく見せる */
-}
-
-li.c-header__list-item {
-
-background: #fde7ef;
-
-}
-
-/* ▼ さくらページ用：上へ戻るボタンのリング色をピンクに */
-.unit-sakura #backToTop.btt.btt--ring{
-  --btt-ring-active: #F48FB1;  /* 進捗の“動く”部分（今は緑） */
-  --btt-ring-base:   #FFE6EF;  /* 残りのトラック（薄ピンク） */
-}
-
-/* 念のため、縁取りもピンク系に寄せる（任意） */
-.unit-sakura #backToTop .btt__ring{
-  border-color: rgba(244,143,177,.35);
-  box-shadow: 0 4px 16px rgba(244,143,177,.35);
-}
+    /* ピンク色のチェックマークを描画 */
+    .unit-sakura .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4em;
+      width: 1.1em;
+      height: 1.1em;
+      background-color: var(--brand) !important; /* ピンク色を強制 */
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
 
     /* パンくず */
     .myroot-breadcrumb{ margin:0 0 1rem; }
     .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
-/* さくら（ピンク）：CTA配色 */
-body.unit-sakura{
-  --cta-bg: #F48FB1;          /* 面色（ピンク） */
-  --cta-border: #F48FB1;      /* 枠もピンク */
-  --cta-ink: #fff;            /* 文字は白 */
-  --cta-bg-hover: #EC6A95;    /* ホバー時の濃いピンク */
-  --cta-border-hover: #EC6A95;
-  /* 幅を少し広めにしたければ：--cta-min: 17rem; などもOK */
-}
-
-/* さくらページ内：緑チェック（::before）を殺して、::marker だけ表示 */
-.unit-sakura .checklist li::before{
-  content: none !important;
-  display: none !important;
-}
-
-.unit-hero__emblem img{
-  width: auto;
-  height: auto;
-  display: block;
-}
-
-.unit-hero__emblem{
-  width:clamp(80px,10vw,100px);
-  height:clamp(80px,10vw,100px);
-}
-
+    /* CTA配色 */
+    body.unit-sakura .cta-bar .cta{
+      background: #F48FB1;
+      border: 2px solid #F48FB1;
+      color: #fff;
+    }
+    body.unit-sakura .cta-bar .cta:hover{
+      background: #EC6A95;
+      border-color: #EC6A95;
+      box-shadow: 0 8px 20px rgba(236,106,149,.20);
+      transform: translateY(-1px);
+    }
+    
+    /* CTAレイアウト */
+    .cta-bar{
+      max-width:var(--max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px);
+      display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;
+    }
+    .cta{
+      display:flex; align-items:center; justify-content:center; padding:.95em 1.2em; border-radius:12px;
+      text-decoration:none; font-weight:700; flex:1 1 16rem; min-width:16rem; text-align:center;
+    }
+    .cta__icon{ width:1.1em; height:1.1em; margin-right:.5em; }
+    .cta__icon path{ stroke:currentColor; fill:none; }
+    @media (max-width:680px){ .cta{ flex-basis:100%; width:100%; } }
 
   </style>
 </head>
@@ -242,8 +302,6 @@ body.unit-sakura{
 <body class="unit-sakura">
   <a id="top" class="visually-hidden">top</a>
 
-  <!-- 共通ヘッダー -->
- <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -266,15 +324,15 @@ body.unit-sakura{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle" checked>
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
-          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="sakura.html" aria-current="page">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
           <li><a href="ichisapo.html">若者サポートステーション</a></li>
           <li><a href="jobcafe.html">ジョブカフェ</a></li>
@@ -282,12 +340,12 @@ body.unit-sakura{
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -302,8 +360,8 @@ body.unit-sakura{
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
+
   <main class="wrap" id="main">
-      <!-- パンくず -->
       <nav class="myroot-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -311,19 +369,19 @@ body.unit-sakura{
           <li aria-current="page">さくらなみき</li>
         </ol>
       </nav>
-    <!-- ========= ヒーローバンド：さくらなみき ========= -->
+
     <section class="unit-hero" aria-labelledby="unit-hero-title">
       <div class="unit-hero__inner">
         <div class="unit-hero__head">
-<div class="unit-hero__emblem" aria-hidden="true">
-  <img src="img/sakura_logo.webp" alt="さくらなみき ロゴ">
-</div>
+          <div class="unit-hero__emblem" aria-hidden="true">
+            <img src="img/sakura_logo.webp" alt="さくらなみき ロゴ">
+          </div>
 
           <div class="unit-hero__titlewrap">
             <h2 id="unit-hero-title" class="unit-hero__title">さくらなみき</h2>
             <p class="unit-hero__lead">
               　障がいをお持ちの方へ「働く機会」や「訓練」を提供する就労支援事業所です。<br>
-              	「就労継続支援B型事業」や「中間的就労支援作業」などがございます。
+              「就労継続支援B型事業」や「中間的就労支援作業」などがございます。
             </p>
           </div>
         </div>
@@ -337,7 +395,6 @@ body.unit-sakura{
             </ul>
           </div>
 
-          <!-- 右コールアウト：ボタン化 -->
           <aside class="unit-hero__callout" aria-label="お問い合わせはこちら">
             <h3>お問い合わせはこちら</h3>
             <div class="unit-hero__cta">
@@ -350,24 +407,39 @@ body.unit-sakura{
       </div>
     </section>
 
-    <!-- 基本情報 -->
     <section id="basic" aria-labelledby="basic-title">
       <h2 id="basic-title" class="sec-title">基本情報</h2>
       <div class="card">
-        <table class="info-table">
-          <tbody>
-            <tr><th>定員</th><td>20名（就労継続支援B型）</td></tr>
-            <tr><th>作業内容</th><td>弁当の製造等</td></tr>
-            <tr><th>開所日</th><td>月曜～金曜、土曜（不定期）</td></tr>
-            <tr><th>開所時間</th><td>09:00～17:00</td></tr>
-            <tr><th>利用可能地域</th><td>一関、平泉</td></tr>
-            <tr><th>送迎</th><td>あり</td></tr>
-          </tbody>
-        </table>
+        
+        <div class="basic-grid">
+          <table class="info-table">
+            <tbody>
+              <tr><th>定員</th><td>20名（就労継続支援B型）</td></tr>
+              <tr><th>作業内容</th><td>弁当の製造等</td></tr>
+              <tr><th>開所日</th><td>月曜～金曜、土曜（不定期）</td></tr>
+              <tr><th>開所時間</th><td>09:00～17:00</td></tr>
+              <tr><th>利用可能地域</th><td>一関、平泉</td></tr>
+              <tr><th>送迎</th><td>あり</td></tr>
+            </tbody>
+          </table>
+
+          <div class="work-box">
+            <h3>主な作業の例</h3>
+            <p style="margin: 0 0 1rem; font-size: 0.9rem; line-height: 1.6; color: #555;">
+              お弁当製造に関わる、以下のような作業があります。適性に合わせて担当します。
+            </p>
+            <ul class="work-list">
+              <li>食材のカット・下準備</li>
+              <li>お弁当の盛り付け・パック詰め</li>
+              <li>食器や調理器具の洗浄</li>
+              <li>厨房内の清掃・片付け</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- 概要・アクセス -->
     <section id="outline" aria-labelledby="outline-title">
       <h2 id="outline-title" class="sec-title">事業所概要・アクセス</h2>
       <div class="grid">
@@ -387,33 +459,33 @@ body.unit-sakura{
             バス・・・岩手県交通「一関市役所前」にて降車後、徒歩３分
           </p>
           <div class="map" aria-label="Googleマップ">
-            <iframe title="さくらなみき 周辺地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1%E4%B8%81%E7%9B%AE1-4&output=embed"></iframe>
+            <iframe src="https://maps.google.com/maps?q=一関市中央町１丁目１-４&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    title="さくらなみき 周辺地図" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-<!-- CTA（本文幅に揃える2ボタン） -->
-<nav class="cta-bar" aria-label="主要導線">
-  <a class="cta" href="tel:0191-48-3622" aria-label="電話で相談">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    電話で相談
-  </a>
-  <a class="cta" href="mailto:hands.sakura@gmail.com" aria-label="メールで問い合わせ">
-    <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    メールで問い合わせ
-  </a>
-</nav>
+  <nav class="cta-bar" aria-label="主要導線">
+    <a class="cta" href="tel:0191-48-3622" aria-label="電話で相談">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      電話で相談
+    </a>
+    <a class="cta" href="mailto:hands.sakura@gmail.com" aria-label="メールで問い合わせ">
+      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      メールで問い合わせ
+    </a>
+  </nav>
 
-
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -422,7 +494,6 @@ body.unit-sakura{
     </span>
   </button>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -431,14 +502,14 @@ body.unit-sakura{
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -493,11 +564,6 @@ body.unit-sakura{
     </div>
   </footer>
 
-  <!-- 共通JS -->
   <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
-
