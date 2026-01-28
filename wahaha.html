@@ -131,7 +131,7 @@
     /* チェック付きリスト */
     .checklist{ margin:.6rem 0 .4rem; padding:0; list-style:none !important; }
     .checklist li{
-      position:relative; margin:.45rem 0; line-height:1.95;
+      position:relative; padding-left:1.4em; margin:.45rem 0; line-height:1.95;
       list-style:none !important;
     }
     .checklist li::marker { content: none !important; display: none !important; }
@@ -219,7 +219,7 @@
     }
 
     /* セクション */
-    .section{ scroll-margin-top:10px; margin:1.25rem 0 1.6rem; }
+    .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
     .section__title{
       font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 3rem;
       padding-left:.5rem; border-left:6px solid var(--unit-brand);
@@ -234,26 +234,34 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
       padding:1rem 1.1rem; 
     }
+    /* デフォルトのグリッド（1.6 : 0.9） */
     .grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr); align-items:start; }
     @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
     
-    /* ★修正：基本情報リストの余白調整 */
+    /* ★修正：「サービス内容」だけは左右均等（1:1）にする */
+    #services .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 920px){
+      #services .grid{ grid-template-columns:1fr; }
+    }
+
+    /* 基本情報リストのデザイン */
     .facts {
       display: block; 
       border: none; padding: 0; background: transparent;
     }
     .facts > div {
       display: grid;
-      grid-template-columns: 7em 1fr;
+      grid-template-columns: 5em 1fr;
       gap: 1rem;
-      /* 上下のパディングを少し減らす */
       padding: 0.75rem 0;
       border-bottom: 1px solid #f0f0f0;
       align-items: baseline;
     }
     .facts > div:last-child { border-bottom: none; }
     
-    /* ★追加：リストの上下端の余白をカット（カードのパディングのみにする） */
+    /* 上下の余白をカット */
     .facts > div:first-child { padding-top: 0; }
     .facts > div:last-child { padding-bottom: 0; }
     
