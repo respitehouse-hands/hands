@@ -119,6 +119,13 @@
       font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
       color: var(--unit-brand-ink);
     }
+    
+    /* ★追加：スマホ用改行クラス */
+    .sp-break { display: none; }
+    @media (max-width: 600px) {
+      .sp-break { display: block; }
+    }
+
     .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2937; }
 
     .unit-hero__grid{
@@ -234,11 +241,10 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
       padding:1rem 1.1rem; 
     }
-    /* デフォルトのグリッド（1.6 : 0.9） */
     .grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr); align-items:start; }
     @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
     
-    /* ★修正：「サービス内容」だけは左右均等（1:1）にする */
+    /* サービス内容だけ左右均等 */
     #services .grid {
       grid-template-columns: 1fr 1fr;
     }
@@ -436,10 +442,9 @@
             </div>
 
             <div class="unit-hero__titlewrap">
-              <h2 id="unit-hero-title" class="unit-hero__title">ハンズ生活介護事業所｜わぁははクラブ</h2>
+              <h2 id="unit-hero-title" class="unit-hero__title">ハンズ生活介護事業所｜<br class="sp-break">わぁははクラブ</h2>
               <p class="unit-hero__lead">
-                ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
-                日中活動・生活支援を提供します。
+                ひとりひとりの個性を尊重し、地域で安心して暮らすための日中活動・生活支援を提供します。
               </p>
             </div>
           </div>
