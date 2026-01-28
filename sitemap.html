@@ -3,34 +3,127 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズのサイトマップです。本サイト内の各ページ構成と内容を一覧でご確認いただけます。">
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズのサイトマップです。本サイト内の各ページ構成と内容を一覧でご確認いただけます。">
   <title>サイトマップ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css" />
-  <!-- サブページはスプラッシュ／フェードを使わない：強制表示の保険 -->
-  <style>
-    body{opacity:1!important}
-    #splash{display:none!important}
-    /* ページ固有：サイトマップのレイアウトのみ（既存配色は壊さない） */
-    .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding: 0 2%;}
-    .breadcrumb ol{display:flex;gap:.5em;flex-wrap:wrap;font-size:.92rem;margin:0;padding:0;list-style:none}
-    .breadcrumb li::after{content:"›";margin:0 .5em;color:#9aa6af}
-    .breadcrumb li:last-child::after{content:none}
-    .breadcrumb a{text-decoration:none;color:#1d4ed8}
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
 
-    .sitemap{max-width:min(1100px,92vw);margin: clamp(16px,4vw,40px) auto; padding: 0 2%;}
-    .sitemap__title{font-family:"Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;font-size:clamp(22px,3.6vw,32px);line-height:1.3;margin:.2em 0 .6em}
-    .sitemap__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap: clamp(16px,2.8vw,28px)}
-    @media (max-width:900px){ .sitemap__grid{grid-template-columns:repeat(2,1fr)} }
+  <style>
+    /* サブページ用のスプラッシュ非表示設定 */
+    body{opacity:1!important; background: #fff; color: #17222f;}
+    #splash{display:none!important}
+
+    /* ページ固有：サイトマップのレイアウト */
+    
+    /* ★修正：パンくずリストを他ページのデザイン（.myroot-breadcrumb）に統一 */
+    .myroot-breadcrumb{ 
+      max-width: min(1100px, 92vw); 
+      margin: clamp(16px, 2vw, 24px) auto 0; /* 中央寄せと余白 */
+      padding: 0 2%; 
+    }
+    .myroot-breadcrumb ol{ 
+      display:flex; 
+      gap:.5rem .75rem; 
+      list-style:none; 
+      padding:0; 
+      margin:0; 
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    .myroot-breadcrumb li{
+      display: flex;
+      align-items: center;
+    }
+    /* 区切り文字 */
+    .myroot-breadcrumb li+li::before{ 
+      content:"›"; 
+      color:#9ca3af; 
+      margin:0 .25rem 0 .2rem; 
+      font-family: system-ui, sans-serif; 
+    }
+    /* リンクスタイル */
+    .myroot-breadcrumb a{
+      text-decoration:none; 
+      color: #4b5563; /* 落ち着いたグレー */
+      transition: color 0.2s;
+    }
+    .myroot-breadcrumb a:hover{
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    /* 現在地 */
+    .myroot-breadcrumb li[aria-current="page"] {
+      color: #17222f; /* 濃い黒 */
+      font-weight: 500;
+    }
+
+    .sitemap{max-width:min(1100px,92vw); margin: clamp(16px,4vw,60px) auto; padding: 0 2%;}
+    .sitemap__title{
+      font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+      font-size:clamp(22px,3.6vw,32px);
+      line-height:1.3;
+      margin:.2em 0 .8em;
+      padding-bottom: .4em;
+      border-bottom: 2px solid #e6edf2;
+      color: #17222f;
+    }
+    
+    .sitemap__grid{
+      display:grid; 
+      grid-template-columns:repeat(3,minmax(0,1fr)); 
+      gap: clamp(12px, 2vw, 24px); 
+    }
+    @media (max-width:1000px){ .sitemap__grid{grid-template-columns:repeat(2,1fr)} }
     @media (max-width:560px){ .sitemap__grid{grid-template-columns:1fr} }
-    .sitemap__section{border:1px solid #e8eee9;border-radius:14px;padding: clamp(12px,2.4vw,18px);background:#fff}
-    .sitemap__heading{font-size:1.08rem;margin:0 0 .4em;color:#193528}
-    .sitemap__list{margin:0; padding:0; list-style:none; display:grid; gap:.4em}
-    .sitemap__list a{text-decoration:none}
-    .sitemap__list a:hover{text-decoration:underline}
-    .sitemap__note{color:#66776f;font-size:.92rem;margin-top:.8em}
+
+    .sitemap__section{
+      border:1px solid #e8eee9; 
+      border-radius:12px; 
+      padding: 16px; 
+      background:#fcfdfd;
+    }
+    .sitemap__heading{
+      font-family:"Zen Maru Gothic", sans-serif;
+      font-size:1.1rem; 
+      margin:0 0 .8em; 
+      color:#193528; 
+      font-weight: 700;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 0.4em;
+    }
+    .sitemap__list{margin:0; padding:0; list-style:none; display:grid; gap:.6em;}
+    
+    .sitemap__list li { position: relative; padding-left: 1em; }
+    
+    .sitemap__list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.75em;
+        width: 6px;
+        height: 6px;
+        background: #cbd5e1;
+        border-radius: 50%;
+    }
+    
+    .sitemap__list a{
+      text-decoration:none; 
+      color: #17222f; 
+      transition: color 0.2s;
+      font-size: 0.95rem; 
+      letter-spacing: -0.04em; 
+    }
+    .sitemap__list a:hover{text-decoration:underline; color: #1d4ed8;}
+    
+    .sitemap__note{color:#66776f; font-size:.9rem; margin-top:.8em;}
   </style>
 </head>
 
@@ -39,7 +132,6 @@
 
 <div id="page">
 
-  <!-- 共通ヘッダー -->
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -83,6 +175,7 @@
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -100,35 +193,29 @@
 
   <main id="main">
 
-    <!-- パンくず -->
-    <nav class="breadcrumb" aria-label="パンくず">
+    <nav class="myroot-breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="index.html">TOP</a></li>
         <li aria-current="page">サイトマップ</li>
       </ol>
     </nav>
 
-    <!-- サイトマップ -->
     <section class="sitemap">
       <h1 class="sitemap__title">サイトマップ</h1>
 
       <div class="sitemap__grid">
-        <!-- TOP / NEWS / お問い合わせ -->
         <section class="sitemap__section" aria-labelledby="sm-top">
           <h2 id="sm-top" class="sitemap__heading">はじめに</h2>
           <ul class="sitemap__list">
-            <li><a href="index.html">TOP</a></li>
+            <li><a href="index.html">TOPページ</a></li>
             <li><a href="contact.html">お問い合わせ</a></li>
-            <!-- NEWS 一覧を作る場合は下記を有効化 -->
-            <!-- <li><a href="news.html">NEWS 一覧</a></li> -->
           </ul>
         </section>
 
-        <!-- 法人概要 -->
         <section class="sitemap__section" aria-labelledby="sm-corp">
           <h2 id="sm-corp" class="sitemap__heading">法人概要</h2>
           <ul class="sitemap__list">
-            <li><a href="corp.html">法人概要（総合）</a></li>
+            <li><a href="corp.html">法人概要（トップ）</a></li>
             <li><a href="purpose.html">設立趣旨</a></li>
             <li><a href="philosophy.html">ハンズの理念</a></li>
             <li><a href="history.html">ハンズのあゆみ</a></li>
@@ -137,11 +224,10 @@
           </ul>
         </section>
 
-        <!-- 事業所紹介 -->
         <section class="sitemap__section" aria-labelledby="sm-offices">
           <h2 id="sm-offices" class="sitemap__heading">事業所紹介</h2>
           <ul class="sitemap__list">
-            <li><a href="office.html">事業所紹介（総合）</a></li>
+            <li><a href="office.html">事業所紹介（トップ）</a></li>
             <li><a href="wahaha.html">わぁははクラブ</a></li>
             <li><a href="residence.html">居宅介護</a></li>
             <li><a href="soudan.html">相談支援</a></li>
@@ -154,29 +240,26 @@
           </ul>
         </section>
 
-        <!-- 初めての方へ -->
         <section class="sitemap__section" aria-labelledby="sm-howto">
           <h2 id="sm-howto" class="sitemap__heading">初めての方へ</h2>
           <ul class="sitemap__list">
-            <li><a href="howto.html">ご利用までの流れ</a></li>
+            <li><a href="howto.html">サイトの歩き方</a></li>
+            <li><a href="finder.html">あなたに合う支援をさがす</a></li>
             <li><a href="access.html">アクセス一覧</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="faq.html">FAQ（よくある質問）</a></li>
           </ul>
         </section>
 
-        <!-- 情報公開 -->
         <section class="sitemap__section" aria-labelledby="sm-public">
-          <h2 id="sm-public" class="sitemap__heading">情報公開</h2>
+          <h2 id="sm-public" class="sitemap__heading">情報公開・その他</h2>
           <ul class="sitemap__list">
             <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
             <li><a href="sitemap.html" aria-current="page">サイトマップ</a></li>
           </ul>
-          <p class="sitemap__note"></p>
         </section>
 
-        <!-- 外部リンク（任意で掲載） -->
         <section class="sitemap__section" aria-labelledby="sm-external">
           <h2 id="sm-external" class="sitemap__heading">外部リンク</h2>
           <ul class="sitemap__list">
@@ -189,26 +272,8 @@
       </div>
     </section>
 
-    <!-- 電話／メール CTA（必要なら） -->
-    <nav class="cta-bar" aria-label="主要導線">
-      <a class="cta" href="tel:0191-31-5720">
-        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        電話で相談
-      </a>
-      <a class="cta" href="mailto:hands.guitar@ocn.ne.jp">
-        <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        メールで問い合わせ
-      </a>
-    </nav>
-
   </main>
 
-  <!-- 共通フッター -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -266,23 +331,24 @@
             <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
-            <li><a href="sitemap.html" aria-current="page">サイトマップ</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
           </ul>
         </div>
       </nav>
     </div>
 
     <div class="footer__bar">
-      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
 
-</div><!-- /#page -->
+</div><script src="js/site.js"></script>
 
-<!-- サブページの“常時表示”リセット（トップのスプラッシュ対策） -->
 <script>
   document.addEventListener('DOMContentLoaded', function(){
+    if(document.body.classList.contains('page-show')) return; 
     document.body.classList.add('page-show');
     document.documentElement.classList.remove('no-scroll');
     var s = document.getElementById('splash'); if(s) s.style.display='none';
@@ -290,6 +356,3 @@
 </script>
 </body>
 </html>
-
-
-
