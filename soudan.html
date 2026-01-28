@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -7,24 +6,25 @@
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの相談支援事業所では、障がいのある方やご家族に寄り添い、サービス利用計画の作成や関係機関との連携を通じた支援を行っています。">
 
   <title>相談支援 | レスパイトハウス・ハンズ</title>
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts（共通） -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
 
-  <!-- ページ専用CSS（このページだけ） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
     /* ===== 色テーマ（ミント系） ===== */
     :root{
@@ -35,50 +35,77 @@
       --my-ink:#222;
 
       /* 相談支援のテーマカラー */
-      --unit-tint: #d8eeeb;     /* 薄い面色（指定色） */
+      --unit-tint: #d8eeeb;     /* 薄い面色 */
       --unit-tint-2:#edf7f5;    /* さらに淡い面 */
       --unit-brand:#2f7d6d;     /* 文字や枠のアクセントに使う濃色ミント */
       --unit-brand-ink:#123f36; /* アクセント文字の濃色 */
-
-      /* 上へ戻る（ページだけ上書き） */
-      --btt-ring-active:#2f7d6d;
-      --btt-center:#eaf6f3;
     }
 
-    /* ページ幅 */
-    .page{ padding-inline:min(4vw,24px); }
-    .wrap{ max-width:var(--my-max); margin-inline:auto; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0; color:var(--my-ink);
+      font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background: #ffffff;
+    }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; padding-inline:min(4vw,24px); }
 
-    /* パンくず */
-    .breadcrumb{ margin:0 0 1rem; }
-    .breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
-    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    /* ヘッダー色上書き（構造は共通のまま） */
+    .unit-soudan #site-header.c-header{ background:var(--unit-tint-2); border-bottom:1px solid #ccece6; }
+    .unit-soudan .submenu{
+      background:#fff; border:1px solid #ccece6; box-shadow:0 12px 28px rgba(47,125,109,.10);
+    }
+    .unit-soudan .submenu li + li{ border-top:1px solid #e0f2ef; }
+    .unit-soudan .submenu a{ color:var(--unit-brand-ink); }
+    .unit-soudan .submenu a:hover, .unit-soudan .submenu a:focus{ background:var(--unit-tint); color:var(--unit-brand-ink); }
+
+    /* フッター配色（このページ限定） */
+    .unit-soudan .site-footer{ background:var(--unit-tint-2); border-top:1px solid #ccece6; }
+    .unit-soudan .site-footer .footer__bar{ background:#e6f5f2; border-top:1px solid #ccece6; }
+    .unit-soudan .site-footer h3, .unit-soudan .site-footer a{ color:var(--unit-brand-ink); }
+
+    /* パンくず（共通スタイル .myroot-breadcrumb） */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
     /* ===== ヒーロー（相談支援） ===== */
     .unit-hero{
-      margin:2.2rem 0 2.6rem;
+      margin:1.2rem 0 1.8rem;
       background:
         radial-gradient(1200px 280px at 10% -20%, var(--unit-tint), transparent 60%),
         radial-gradient(900px 240px at 80% -30%, var(--unit-tint-2), transparent 60%),
         linear-gradient(#fff,#fff);
       border:1px solid var(--my-line);
       border-radius:20px;
-      box-shadow:0 20px 50px rgba(0,0,0,.06);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.04);
     }
     .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
     .unit-hero__head{
-      display:grid; grid-template-columns: clamp(72px, 8vw, 92px) 1fr;
+      display:grid; grid-template-columns: auto 1fr;
       gap: clamp(12px,2vw,20px); align-items:center; margin-bottom: clamp(14px,2vw,18px);
     }
+    
+    /* ロゴ周り */
     .unit-hero__emblem{
-      width: clamp(56px,7vw,76px); height: clamp(56px,7vw,76px);
-      display:grid; place-items:center; border-radius:50%;
-      background: radial-gradient(120% 120% at 30% 20%, #ffffff, #f1fbf8 70%);
-          box-shadow: 0 6px 20px rgba(47,125,109,.18);
-      /* ← currentColor をアイコンに渡す */
-      color: var(--unit-brand);
+      max-width: 120px; 
+      border-radius: 0; 
+      background: none;
+      border: none;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
     }
-    .unit-hero__emblem svg{ width:58%; height:58%; }
+    .unit-hero__emblem img{ 
+      width: auto; 
+      height: auto; 
+      display: block; 
+      max-width: 100%;
+    }
+    /* スマホでロゴを少し小さくする */
+    @media (max-width: 600px) {
+      .unit-hero__emblem { max-width: 80px; }
+    }
+
     .unit-hero__title{
       margin:0 0 .1rem;
       font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
@@ -88,41 +115,66 @@
 
     .unit-hero__grid{
       display:grid; gap: clamp(16px,2.2vw,24px);
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr);
+      grid-template-columns: 1.55fr .95fr;
       align-items:start;
     }
     @media (max-width: 920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
 
-    /* チェック付きリスト（ヒーロー要点） */
-    .checklist{ margin:.6rem 0 .4rem; padding:0; list-style:none; }
+    /* チェック付きリスト */
+    .checklist{ margin:.6rem 0 .4rem; padding:0; list-style:none !important; }
     .checklist li{
-      position:relative; padding-left:1.6em; margin:.45rem 0; line-height:1.95;
+      position:relative; padding-left:0.5em; margin:.45rem 0; line-height:1.95;
+      list-style:none !important;
     }
+    .checklist li::marker { content: none !important; display: none !important; }
+    
     .checklist li::before{
-      content:""; position:absolute; left:0; top:.55em; width:1rem; height:1rem; border-radius:50%;
-      background: var(--unit-brand);
-      -webkit-mask:
-        radial-gradient(circle at 70% 35%, #000 48%, transparent 49%) top left,
-        radial-gradient(circle at 70% 65%, #000 48%, transparent 49%) bottom left,
-        linear-gradient(#000 0 0) center/55% 14%;
-      -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-              mask:
-        radial-gradient(circle at 70% 35%, #000 48%, transparent 49%) top left,
-        radial-gradient(circle at 70% 65%, #000 48%, transparent 49%) bottom left,
-        linear-gradient(#000 0 0) center/55% 14%;
+      content:""; position:absolute; left:0; top:0.4em; width:1.1rem; height:1.1rem; 
+      background-color: var(--unit-brand);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
     }
-    .note{ color:#4b5563; margin:.8rem 0 0; }
+
+    /* ★修正：シンプルな丸（●）リスト */
+    .bullet-list{ margin:.6rem 0 .4rem; padding:0; list-style:none; }
+    .bullet-list li{
+      position:relative; padding-left:1em; margin:.45rem 0; line-height:1.7; color: #333;
+    }
+    .bullet-list li::before{
+      content:""; position:absolute; left:0; 
+      /* サイズを少し大きくして潰れ防止 & 位置調整 */
+      top: 0.6em; 
+      width: 8px; 
+      height: 8px; 
+      border-radius: 50%;
+      background: var(--unit-brand);
+    }
 
     /* 右のコールアウト */
     .callout{
       background:#fff; border:1px solid color-mix(in oklab, var(--unit-brand) 40%, #e5e7eb);
       border-left:6px solid var(--unit-brand);
       border-radius:14px; padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
-      box-shadow:0 8px 26px rgba(47,125,109,.08);
+      box-shadow: 0 12px 32px rgba(47, 125, 109, 0.06);
     }
     .callout h3{ margin:.1rem 0 1rem; font-weight:700; color:var(--unit-brand-ink); }
-    .small{ font-size:.92rem; }
-    .muted{ color:#6b7280; }
+    
+    /* CTAボタン */
+    .unit-hero__cta{ display:grid; gap:.8rem; margin:.6rem 0; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      text-decoration:none; font-weight:700;
+      padding:.72em 1.2em; border-radius:999px;
+      border:1.5px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+      background:#fff; color:var(--unit-brand-ink);
+      transition:background .18s ease, border-color .18s ease, transform .03s ease;
+      box-shadow:0 2px 0 rgba(0,0,0,.02);
+      width: 100%; box-sizing: border-box; text-align: center;
+    }
+    .btn.ghost:hover{ background:var(--unit-tint-2); }
+    .btn:active{ transform:translateY(1px); }
+    
+    .unit-hero__small{ font-size:.92rem; color:#6b7280; margin-top: 0.5rem; }
 
     /* サブナビ（本文内） */
     .subnav{
@@ -141,10 +193,23 @@
       background: color-mix(in oklab, var(--unit-tint) 40%, #fff);
       border-color: color-mix(in oklab, var(--unit-brand) 50%, #fff);
       color: var(--unit-brand-ink);
-      box-shadow:0 4px 14px rgba(47,125,109,.14);
+      box-shadow: 0 6px 16px rgba(47, 125, 109, 0.12);
       transform: translateY(-1px);
     }
     .subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
+
+    /* スマホでサブナビを横一列 */
+    @media (max-width: 600px) {
+      .subnav { padding: .5rem 1rem; }
+      .subnav__list { flex-wrap: nowrap; gap: 0.5rem; }
+      .subnav__list a {
+        flex: 1; 
+        padding: 0.7em 0; 
+        font-size: 0.85rem; 
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
 
     /* セクション */
     .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
@@ -155,9 +220,16 @@
     }
 
     /* カード・表 */
-    .card{ background:#fff; border:1px solid var(--my-line); border-radius:var(--my-radius); box-shadow:0 1px 0 #00000008; padding:1rem 1.1rem; }
+    .card{ 
+      background:#fff; 
+      border:1px solid var(--my-line); 
+      border-radius:var(--my-radius); 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding:1rem 1.1rem; 
+    }
     .grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr); align-items:start; }
     @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
+    
     .facts{ display:grid; gap:.5rem; grid-template-columns:1fr 2fr; border:1px solid var(--my-line); border-radius:12px; padding:.8rem 1rem; background:#fff; }
     .facts dt{ color:#555; } .facts dd{ margin:0; }
     @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
@@ -167,391 +239,52 @@
     .map iframe{ width:100%; height:100%; border:0; display:block; }
     @media (max-width:920px){
       .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
-      @supports not (aspect-ratio: 1){ .map{ padding-top:75%; min-height:0; position:relative; } .map iframe{ position:absolute; inset:0; } }
     }
 
     /* CTA（下部） */
+    .unit-soudan .cta-bar .cta{
+      background: #e7f4f1;
+      border: 2px solid #c7ece6;
+      color: #0f3d37;
+    }
+    .unit-soudan .cta-bar .cta:hover{
+      background: #d3ece7;
+      border-color: #aedcd3;
+      box-shadow: 0 10px 24px rgba(47, 125, 109, 0.10);
+      transform: translateY(-1px);
+    }
     .cta-bar{ max-width:var(--my-max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px); display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
-    .cta{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; padding:.95em 1.2em; border-radius:12px; text-decoration:none; font-weight:700; }
+    .cta{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; padding:.95em 1.2em; border-radius:12px; text-decoration:none; font-weight:700; flex:1 1 16rem; min-width:16rem; text-align:center; }
     .cta .cta__icon{ width:1.1em; height:1.1em; }
     .cta .cta__icon path{ stroke:currentColor; fill:none; }
+    @media (max-width:680px){ .cta{ width:100%; min-width:0; flex-basis: 100%; } }
 
-    /* 相談支援：淡いミントボタン */
-    :root{ --cta-fill:#e7f4f1; --cta-ink:#0f3d37; --cta-hover:#d3ece7; }
-    .cta{ background:var(--cta-fill); border:2px solid color-mix(in oklab, var(--unit-brand) 30%, #fff); color:var(--cta-ink); min-width:16rem; text-align:center; }
-    .cta:hover{ background:var(--cta-hover); border-color: color-mix(in oklab, var(--unit-brand) 40%, #fff); box-shadow:0 8px 20px rgba(47,125,109,.12); transform:translateY(-1px); }
-    @media (max-width:680px){ .cta{ width:100%; min-width:0; } }
-
-    /* ====== ヘッダー/フッター：このページはミント系に（色だけ上書き） ====== */
-    .c-header{ background: var(--unit-tint-2); }
-    .c-hamburger-menu__button .c-hamburger-menu__button-mark{ background: var(--unit-brand); }
-    .site-footer{ background: var(--unit-tint-2); }
-    .site-footer .footer__group h3{ color: var(--unit-brand-ink); }
-    .site-footer .footer__bar{ border-top:2px solid color-mix(in oklab, var(--unit-brand) 20%, #fff); }
-    .footer__top{ color: var(--unit-brand-ink); }
-
-    /* 現在地リンクを太字にしない（サイト基準と揃える） */
-    #site-header .c-header__list-item.is-current > .c-header__list-link,
-    #site-header .c-header__list-link[aria-current="page"],
-    #site-header .submenu a[aria-current="page"]{
-      font-weight:500; color:#111;
+    /* 上へ戻る（ページだけ上書き） */
+    .unit-soudan #backToTop.btt.btt--ring{
+      --btt-bg:#2f7d6d; --btt-bg-h:#266659; --btt-fg:#fff;
+      --btt-ring:rgba(47,125,109,.35); --btt-ring-h:rgba(47,125,109,.55); --btt-focus:#cff0e9;
+      --btt-ring-active: #2f7d6d;
+      --btt-ring-base: #eaf6f3;
     }
+    .unit-soudan #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
+    .unit-soudan #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
+    .unit-soudan #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
+    .unit-soudan #backToTop .btt__label{ color:var(--btt-fg); }
+    .unit-soudan #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
+    .unit-soudan #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
+    .unit-soudan #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
 
-    /* ドロップダウンもミント系に（読みやすい薄クリーム寄りにするなら #fffaf6 に変更可） */
-    #site-header .submenu{
-      background:#f5fbfa; border:1px solid color-mix(in oklab, var(--unit-brand) 30%, #fff); box-shadow:0 10px 26px rgba(47,125,109,.10); border-radius:12px; padding:.4rem 0; min-width:16.5rem;
-    }
-    #site-header .submenu a{ color:#222; display:block; padding:.7rem 1rem; line-height:1.6; white-space:nowrap; text-decoration:none; }
-    #site-header .submenu a:hover, #site-header .submenu a:focus-visible{ background: color-mix(in oklab, var(--unit-tint) 35%, #fff); color:#111; outline:none; }
+    :root { --sticky-offset: 120px; }
+    section{ scroll-margin-top: var(--sticky-offset); }
 
-/* スムーススクロール（OSで「簡易動作」指定なら無効） */
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce){
-  html { scroll-behavior: auto; }
-}
-
-/* 固定ヘッダー分のオフセット（値はサイトの実寸に合わせて調整） */
-:root { --header-offset: 120px; }  /* 例：ヘッダー高さ */
-
- /* #id へ飛ぶときに、見出しが隠れないよう余白を確保 */
-[id] { scroll-margin-top: var(--header-offset); }
-
-/* ========== 相談支援：ナビのホバーピル & モバイル行ハイライト ========== */
-body.page-soudan{
-  --brand: #14b8a6;           /* ティール系（相談カラー） */
-  --ink-strong:#0b4b46;       /* 文字の濃色 */
-  --header-bg:#ecfdf5;        /* ヘッダー薄ミント（必要なら調整） */
-  --panel:#ffffff;
-  --panel-border:#c7f5ea;
-  --nav-hover: color-mix(in oklab, var(--brand) 14%, #fff);
-  --nav-active: color-mix(in oklab, var(--brand) 22%, #fff);
-  --nav-text:#0f172a;
-}
-
-/* ヘッダーは薄ミント、中身は透明（線の発生源を絶つ） */
-.page-soudan #site-header.c-header{ background: var(--header-bg) !important; }
-.page-soudan #site-header .c-header__list,
-.page-soudan #site-header .c-hamburger-menu__list,
-.page-soudan #site-header .c-header__list-item{
-  background: transparent !important; border:0 !important; box-shadow:none !important;
-}
-
-/* PC：上段リンクにピルのホバー */
-@media (min-width:1025px){
-  .page-soudan #site-header .c-header__list-link{
-    display:inline-block; border-radius:999px;
-    padding:.46em .85em; line-height:1.1;
-    transition:background-color .15s ease, color .15s ease, box-shadow .15s ease;
-  }
-  .page-soudan #site-header .c-header__list-link:hover,
-  .page-soudan #site-header .c-header__list-link:focus-visible{
-    background: var(--nav-hover) !important; color: var(--ink-strong);
-    box-shadow: 0 2px 10px rgba(20,184,166,.12); outline:none;
-  }
-  .page-soudan #site-header .c-header__list-link:active{
-    background: var(--nav-active) !important;
-  }
-
-  /* ドロップダウン（カード） */
-  .page-soudan #site-header .submenu{
-    background:#f0fdfa !important; border:1px solid var(--panel-border) !important;
-    box-shadow:0 10px 24px rgba(20,184,166,.12) !important; border-radius:12px; padding:.35rem 0;
-    min-width:16rem;
-  }
-  .page-soudan #site-header .submenu a{
-    display:block; padding:.7rem 1rem; border-radius:10px; color:var(--nav-text) !important;
-    transition:background-color .12s ease;
-  }
-  .page-soudan #site-header .submenu a:hover,
-  .page-soudan #site-header .submenu a:focus-visible{
-    background: var(--nav-hover) !important; outline:none;
-  }
-}
-
-/* モバイル（ハンバーガー開時）：面は白、行ホバーのみ色 */
-@media (max-width:1024px){
-  .page-soudan #site-header .c-hamburger-menu__bg{
-    background: rgba(20,184,166,.28) !important; backdrop-filter: blur(1.5px);
-  }
-  .page-soudan #hamburger:checked ~ .c-hamburger-menu__list{
-    background:#fff !important; border:1px solid var(--panel-border) !important;
-    box-shadow:0 14px 36px rgba(20,184,166,.14);
-  }
-  .page-soudan #site-header .c-header__list-link,
-  .page-soudan #site-header .submenu a{
-    display:block; width:100%; padding:.9em 1rem; line-height:1.25; border-radius:12px;
-    background:transparent !important; color:var(--nav-text) !important;
-  }
-  .page-soudan #hamburger:checked ~ .c-hamburger-menu__list .c-header__list-item:hover,
-  .page-soudan #hamburger:checked ~ .c-hamburger-menu__list .c-header__list-item:focus-within,
-  .page-soudan #site-header .submenu a:hover,
-  .page-soudan #site-header .submenu a:focus-visible{
-    background: var(--nav-hover) !important; outline:none;
-  }
-}
-
-/* === ハンバーガー内 サブメニュー：スマホで確実に開閉 === */
-@media (max-width: 750px){
-  /* ヘッダー層を手前に（下のコンテンツに負けない） */
-  .c-hamburger-menu{ position: relative; z-index: 4000; }
-  .c-hamburger-menu__list{ z-index: 4001; }
-  .c-hamburger-menu__bg{ z-index: 4000; }
-
-  /* 1行を [テキスト][＋／－] の2カラムに */
-  .has-sub{
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    width: 100%;
-  }
-
-  /* 左：テキスト(リンク)。行全体を覆わないようにする */
-  .has-sub > .c-header__list-link{
-    grid-column: 1;
-    position: relative;
-    z-index: 1;                 /* 右端の＋／－より奥に */
-    padding-right: .5rem;
-  }
-
-  /* 右：＋／－ボタン（label）。最前面＆十分な当たり判定 */
-  .has-sub .sub-caret{
-    grid-column: 2;
-    z-index: 2;                 /* これが前面で反応する */
-    width: 56px !important;
-    height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer;
-    user-select: none;
-    margin-left: 4px;
-  }
-  .has-sub .sub-caret::after{
-    content: "＋";
-    font-size: 22px;
-    line-height: 1;
-    color:#2f3e33;
-  }
-
-  /* 初期は閉じる。チェックでだけ表示する（見えない指定を解除） */
-  .has-sub > .submenu{
-    position: static !important;
-    display: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    background: #fff !important;
-    border: 1px solid #e6eaef !important;
-    border-radius: 12px !important;
-    box-shadow: 0 10px 26px rgba(0,0,0,.06) !important;
-    margin: .35rem 0 0 !important;
-    width: 100% !important;
-  }
-
-  /* 隠しトグル checkbox を使って開閉 */
-  .has-sub .sub-toggle{ display: none; }
-  .has-sub .sub-toggle:checked ~ .submenu{ display: block !important; }
-  .has-sub .sub-toggle:checked ~ .sub-caret::after{ content: "－"; }
-}
-
-/* 相談支援：下部CTAの横幅をそろえる（PCで左右同幅、SPで100%） */
-.page-soudan .cta-bar .cta{
-  flex: 1 1 16rem;   /* ← これで両ボタンが同じ基準幅で伸縮 */
-  min-width: 16rem;
-}
-@media (max-width: 680px){
-  .page-soudan .cta-bar .cta{
-    flex-basis: 100%;
-    min-width: 0;
-    width: 100%;
-  }
-}
-
-/* ===== Hamburgerメニュー内：ホバーのはみ出し対策 ===== */
-@media (max-width: 960px){
-
-  /* サブメニューの白い箱（淡色背景の部分）自体でクリップ */
-  .c-hamburger-menu__list .has-sub > .submenu{
-    padding: 8px;
-    border-radius: 16px;
-    overflow: hidden;           /* ← 影・枠を内側に収める */
-  }
-
-  /* サブメニューの各リンクを“枠あり前提”にしてサイズジャンプ防止 */
-  .c-hamburger-menu__list .submenu a{
-    display: block;
-    width: 100%;
-    box-sizing: border-box;     /* ← 枠を幅計算に含める */
-    margin: 6px 0;              /* 横方向のマージンはゼロ（はみ出し防止） */
-    padding: 12px 14px;
-    border-radius: 14px;
-    border: 1px solid transparent; /* ← 通常時から枠を持たせる */
-    transition: background .15s ease, box-shadow .15s ease, border-color .15s ease, transform .04s ease;
-  }
-  .c-hamburger-menu__list .submenu a:hover,
-  .c-hamburger-menu__list .submenu a:focus-visible{
-    background: var(--nav-hover-bg, #fff);
-    border-color: var(--nav-hover-bd, rgba(0,0,0,.12));
-    box-shadow: var(--nav-hover-shadow, 0 8px 22px rgba(0,0,0,.10));
-  }
-  .c-hamburger-menu__list .submenu a:active{
-    background: var(--nav-press-bg, #f3f6f9);
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px rgba(0,0,0,.10) inset, 0 1px 2px rgba(0,0,0,.06);
-  }
-
-  /* トップレベル項目も同じ思想で（上下だけマージン） */
-  .c-hamburger-menu__list > .c-header__list-item > .c-header__list-link{
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 4px 0;
-    padding: 12px 14px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    transition: background .15s ease, box-shadow .15s ease, border-color .15s ease, transform .04s ease;
-  }
-  .c-hamburger-menu__list > .c-header__list-item > .c-header__list-link:hover,
-  .c-hamburger-menu__list > .c-header__list-item > .c-header__list-link:focus-visible{
-    background: var(--nav-hover-bg, #fff);
-    border-color: var(--nav-hover-bd, rgba(0,0,0,.12));
-    box-shadow: var(--nav-hover-shadow, 0 8px 22px rgba(0,0,0,.10));
-  }
-}
-
-/* まず親たちを「はみ出さない体質」にする */
-#page,
-.l-main.page,
-.wrap,
-#access.section,
-#access.section .grid,
-#access.section .map {
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: clip; /* hiddenでもOK。clipの方が副作用少なめ */
-}
-
-/* グリッドの“横伸び”抑制：auto→minmax(0,1fr) に */
-#access.section .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  gap: var(--gap, 16px);
-}
-
-/* 地図iframeを完全レスポンシブ化（属性やインライン幅を無効化） */
-#access.section .map iframe {
-  display: block;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 16 / 9;     /* 比率は好みで */
-  border: 0;
-}
-
-/* 念のため、地図ラッパー側でも横はみ出しを封じる */
-#access.section .map {
-  overflow: hidden;
-}
-
-/* 共通の保険（もう入ってたらスキップ可） */
-html, body { width:100%; max-width:100%; overflow-x:hidden; }
-*, *::before, *::after { box-sizing: border-box; }
-img, svg, video, canvas { display:block; max-width:100%; height:auto; }
-
-.wrap { max-width: var(--my-max) !important; margin-inline: auto !important; }
-
-
-
-.page-soudan .unit-hero__emblem {
-  width: auto !important;   /* 好きなサイズに変更可：100〜120推奨 */
-  height: auto !important;
-
-}
-
-.page-soudan .unit-hero__emblem img {
-  width:  auto !important;
-  height: auto !important;
-}
-
-.page-soudan .callout a {
-  display: block !important;
-  width: 100% !important;
-  padding: 0.85em 1.2em !important;
-  border: 2px solid #2f7d6d !important;
-  border-radius: 12px !important;
-  font-weight: 700 !important;
-  text-align: center !important;
-  line-height: 1.4 !important;
-  box-sizing: border-box !important;
-}
-
-/* ================================
-   相談支援ページ CTA（電話／メール）
-   ホバー時の色変化 + アニメーション
-=================================== */
-.page-soudan .callout a {
-  transition: 
-    background-color .25s ease,
-    border-color .25s ease,
-    color .25s ease,
-    box-shadow .25s ease,
-    transform .15s ease;
-}
-
-/* ホバー：色を濃く / 背景に薄いミント */
-.page-soudan .callout a:hover {
-  background-color: color-mix(in oklab, #2f7d6d 18%, #ffffff);
-  border-color: color-mix(in oklab, #2f7d6d 50%, #ffffff);
-  color: #0f3d37; /* 文字を少し濃く */
-  box-shadow: 0 4px 14px rgba(47,125,109,.18);
-  transform: translateY(-1px);
-}
-
-/* クリック時の押し込み感 */
-.page-soudan .callout a:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 4px rgba(47,125,109,.18) inset;
-}
-
-:root {
-  --header-offset: 10px;
-}
-
-.checklist li::before{
-  width: 0.5rem;   /* ← 8px相当 */
-  height: 0.5rem;  /* ← 8px相当 */
-}
-
-.checklist li::before{
-  top: .7em; /* 数値は少しずつ調整 */
-}
-
-@media (max-width: 680px){
-  #access .grid{
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* ================================
-   soudan.html：サブメニュー最終指定
-   ================================ */
-.page-soudan #site-header .submenu{
-  background: #fff !important;
-  border: 1px solid #e5e7eb !important;
-  box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
-}
-
-    
   </style>
 </head>
 
-<body class="page-soudan">
+<body class="unit-soudan">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
-  <header id="site-header" class="c-header c-hamburger-menu">
+ <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
@@ -578,8 +311,8 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
-          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html" aria-current="page">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
@@ -589,12 +322,12 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -609,11 +342,10 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
-  <!-- メイン -->
+
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="title">
-      <!-- パンくず -->
-      <nav class="breadcrumb" aria-label="パンくず">
+      <nav class="myroot-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li><a href="office.html">事業所紹介</a></li>
@@ -621,13 +353,12 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
         </ol>
       </nav>
 
-      <!-- ヒーロー -->
       <section class="unit-hero" aria-labelledby="unit-hero-title">
         <div class="unit-hero__inner">
           <div class="unit-hero__head">
-<div class="unit-hero__emblem" aria-hidden="true">
-  <img src="img/soudan_logo.webp" alt="相談支援事業所のロゴ" class="emblem__img">
-</div>
+            <div class="unit-hero__emblem" aria-hidden="true">
+              <img src="img/soudan_logo.webp" alt="相談支援事業所のロゴ">
+            </div>
 
             <div class="unit-hero__titlewrap">
               <h2 id="unit-hero-title" class="unit-hero__title">ハンズ相談支援事業所</h2>
@@ -645,37 +376,35 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
                 <li>就労や暮らしの不安、制度のことなど幅広くご相談いただけます。</li>
                 <li>生活全般の悩み相談、情報提供や助言も行います。</li>
               </ul>
-                        </div>
+            </div>
 
             <aside class="callout" aria-label="まずはご相談ください">
               <h3>まずはご相談ください</h3>
-              <div class="unit-hero__cta" style="display:flex;gap:.6rem .8rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem;">
-                <a class="btn ghost" href="tel:0191-31-5720" style="text-decoration:none;padding:.55em .9em;border-radius:10px;border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);color:var(--unit-brand-ink);">電話する（0191-31-5720）</a>
-                <a class="btn ghost" href="mailto:hands.soudan@gmail.com" style="text-decoration:none;padding:.55em .9em;border-radius:10px;border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);color:var(--unit-brand-ink);">メールで相談</a>
+              <div class="unit-hero__cta">
+                <a class="btn ghost" href="tel:0191-31-5720">電話で相談（0191-31-5720）</a>
+                <a class="btn ghost" href="mailto:hands.soudan@gmail.com">メールで問い合わせ</a>
               </div>
-              <p class="small muted" style="margin-top:.3rem;">受付：平日 9:00–18:00(年末年始を除く)</p>
+              <p class="unit-hero__small">※受付：平日 9:00–18:00 (年末年始を除く)</p>
             </aside>
           </div>
         </div>
       </section>
 
-      <!-- サブナビ -->
       <nav class="subnav" aria-label="このページ内のメニュー">
         <div class="subnav__list">
           <a href="#cases">ご相談例</a>
           <a href="#overview">事業所概要</a>
           <a href="#access">アクセス</a>
         </div>
-        <p class="subnav__help muted small">クリックすると各セクションへ移動します。</p>
+        <p class="subnav__help">クリックすると各セクションへ移動します。</p>
       </nav>
 
-      <!-- ご相談例 -->
       <section id="cases" class="section" aria-labelledby="cases-title">
         <h2 id="cases-title" class="section__title">こんな時、ご相談ください</h2>
 
         <div class="grid">
           <div class="card">
-            <ul class="checklist">
+            <ul class="bullet-list">
               <li>福祉サービスってどんなこと？</li>
               <li>病気や障がいで、家での暮らしに困っていて…</li>
               <li>福祉サービスの手続きをサポートしてほしい！</li>
@@ -684,17 +413,16 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
               <li>ふつうのお仕事は不安…サポートを受けながら働きたい！</li>
               <li>障がい者手帳って、どうやって申請するの？ etc</li>
             </ul>
-            <p class="small muted" style="margin-top:.4rem;">その他、障がいのある方が自立した日常生活・社会生活を送れるよう支援します。</p>
+            <p class="unit-hero__small" style="margin-top:.8rem;">その他、障がいのある方が自立した日常生活・社会生活を送れるよう支援します。</p>
           </div>
 
           <div class="card">
             <h3 style="margin:.1rem 0 .5rem;font-weight:700;">相談は無料です</h3>
-            <p class="small">お電話・メール・来所・訪問など状況に合わせて対応します。</p>
+            <p>お電話・メール・来所・訪問など状況に合わせて対応します。</p>
           </div>
         </div>
       </section>
 
-      <!-- 事業所概要 -->
       <section id="overview" class="section" aria-labelledby="overview-title">
         <h2 id="overview-title" class="section__title">事業所概要</h2>
         <div class="grid">
@@ -709,7 +437,7 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
 
           <div class="card">
             <h3 style="margin:.1rem 0 .5rem;font-weight:700;">支援内容の一例</h3>
-            <ul class="checklist">
+            <ul class="bullet-list">
               <li>サービス利用計画づくりの相談・調整</li>
               <li>関係機関との連絡・同行</li>
               <li>申請手続きや情報提供、制度のご案内</li>
@@ -718,7 +446,6 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
         </div>
       </section>
 
-      <!-- アクセス -->
       <section id="access" class="section" aria-labelledby="access-title">
         <h2 id="access-title" class="section__title">アクセス</h2>
         <div class="grid">
@@ -726,8 +453,8 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
             <h3 style="margin:.1rem 0 .6rem;font-weight:700;">交通案内</h3>
             <p><strong>お車：</strong>JR「一ノ関駅」より約5分</p>
             <p><strong>バス：</strong>岩手県交通：厳美渓線・瑞山線・須川温泉線「一関市役所前」にて降車</p>
-            <p class="small muted" style="margin-top:.4rem;">敷地内に駐車スペースあり。</p>
-            <p class="small" style="margin-top:.6rem;"><a href="https://www.google.com/maps/search/?api=1&query=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%89%E4%BA%8C%E4%B8%81%E7%9B%AE%206-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+            <p class="unit-hero__small" style="margin-top:.4rem;">敷地内に駐車スペースあり。</p>
+            <p class="unit-hero__small" style="margin-top:.6rem;"><a href="https://www.google.com/maps/search/?api=1&query=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%89%E4%BA%8C%E4%B8%81%E7%9B%AE%206-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
           </div>
 
           <div class="map" aria-label="相談支援 事業所 地図">
@@ -742,7 +469,6 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
     </section>
   </main>
 
-  <!-- CTA（本文幅に揃える2ボタン） -->
   <nav class="cta-bar" aria-label="主要導線">
     <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
       <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -754,7 +480,6 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
     </a>
   </nav>
 
-  <!-- 上へ戻る（共通） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
@@ -763,7 +488,6 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
     </span>
   </button>
 
-  <!-- フッター（共通） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -772,14 +496,14 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -835,14 +559,15 @@ img, svg, video, canvas { display:block; max-width:100%; height:auto; }
   </footer>
 </div>
 
-<!-- 共通JS -->
 <script src="js/site.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if(document.body.classList.contains('page-show')) return; 
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    var s = document.getElementById('splash'); if(s) s.style.display='none';
+  });
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
