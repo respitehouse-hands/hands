@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ja">
 <head>
@@ -7,905 +6,343 @@
   <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが運営する生活介護事業所「わぁははクラブ」は、障がいのある方が日中を安心して過ごし、活動や交流を通じて豊かな時間を送れるよう支援しています。">
 
   <title>わぁははクラブ | レスパイトハウス・ハンズ</title>
-  <link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-<link rel="apple-touch-icon" href="img/icon_192.png">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Google Fonts（マイルートリンクと同様） -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-  rel="stylesheet"
-  media="print"
-  onload="this.media='all'"
->
-<noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-</noscript>
 
-  <!-- ページ専用CSS（本ページだけ） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
+    /* ===== 色テーマ（オレンジ系） ===== */
     :root{
-      /* マイルートリンクの設計を踏襲（幅・色変数など） */
-      --my-accent:#ff8a00;                /* 本ページの主アクセント（オレンジ） */
-      --my-ink:#222;
-      --my-ink-2:#555;
+      --my-max:1120px;
       --my-line:#e5e7eb;
       --my-surface:#fff;
       --my-radius:14px;
-      --my-max:1120px;
+      --my-ink:#222;
 
-      /* ヒーローバンド用（事業所テーマ色） */
-      --unit-brand: #ff8a00;              /* ベース：オレンジ */
-      --unit-brand-ink: #7a3b00;          /* 文字の濃色（可読性重視で深めブラウン） */
-      --unit-grad-1: #fff3e5;             /* 薄オレンジの面 */
-      --unit-grad-2: #fff8ef;
-
-      /* サブナビ・フロー等が拾うアクセント */
-      --subnav-accent: var(--unit-brand);
-      --subnav-ink: var(--unit-brand-ink);
-
-      /* 「上へ戻る」ボタン（サイト共通のCSS変数を上書き） */
-      --btt-ring-active: #ff8a00;         /* リングのアクティブ色だけオレンジに */
-      --btt-center: #ffe6cc;              /* 中央グラデの淡色オレンジ */
+      /* わぁははクラブのテーマカラー */
+      --unit-brand: #ff8a00;      /* メイン：オレンジ */
+      --unit-brand-ink: #7a3b00;  /* 文字濃色：ブラウン系 */
+      --unit-tint: #fff7ed;       /* 薄い面色 */
+      --unit-tint-2: #fffaf0;     /* さらに淡い面 */
+      --unit-hover: #fff3e0;      /* ホバー時の色（薄いオレンジ） */
     }
 
-    /* ページ幅と余白（マイルートリンク踏襲） */
-    .myroot-page{ padding-inline:min(4vw,24px); }
-    .myroot-wrap{ max-width:var(--my-max); margin-inline:auto; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0; color:var(--my-ink);
+      font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background: #ffffff;
+    }
+    .wrap{ max-width:var(--my-max); margin-inline:auto; padding-inline:min(4vw,24px); }
 
-    /* パンくず */
+    /* ヘッダー色上書き */
+    .page-wahaha #site-header.c-header{ background:var(--unit-tint); border-bottom:1px solid #ffe4c4; }
+    
+    .page-wahaha .submenu{
+      background: #fff !important; 
+      border: 1px solid #ffe4c4; 
+      box-shadow: 0 12px 28px rgba(255,138,0,.10);
+    }
+    .page-wahaha .submenu li + li{ border-top:1px solid #fff0e0; }
+    .page-wahaha .submenu a{ color:var(--unit-brand-ink); transition: background-color 0.2s; }
+    
+    .page-wahaha .submenu a:hover, 
+    .page-wahaha .submenu a:focus { 
+      background-color: var(--unit-hover) !important; 
+      color: var(--unit-brand-ink) !important; 
+    }
+
+    /* フッター配色 */
+    .page-wahaha .site-footer{ background:var(--unit-tint); border-top:1px solid #ffe4c4; }
+    .page-wahaha .site-footer .footer__bar{ background:#fff0e0; border-top:1px solid #ffe4c4; }
+    .page-wahaha .site-footer h3, .page-wahaha .site-footer a{ color:var(--unit-brand-ink); }
+
+    /* パンくず（共通スタイル .myroot-breadcrumb） */
     .myroot-breadcrumb{ margin:0 0 1rem; }
-    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
-    /* ヒーローバンド（マイルートリンクを色だけ変更） */
+    /* ===== ヒーロー ===== */
     .unit-hero{
-      margin: 2.2rem 0 2.8rem;
+      margin:1.2rem 0 1.8rem;
       background:
-        radial-gradient(1400px 300px at 10% -20%, var(--unit-grad-1), transparent 60%),
-        radial-gradient(900px 260px at 80% -30%, var(--unit-grad-2), transparent 60%),
-        linear-gradient(180deg, #fff, #fff);
-      border: 1px solid var(--my-line);
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.06);
+        radial-gradient(1200px 280px at 10% -20%, var(--unit-tint), transparent 60%),
+        radial-gradient(900px 240px at 80% -30%, var(--unit-tint-2), transparent 60%),
+        linear-gradient(#fff,#fff);
+      border:1px solid var(--my-line);
+      border-radius:20px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.04);
     }
     .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
     .unit-hero__head{
-      display: grid;
-      grid-template-columns: clamp(72px, 8vw, 92px) 1fr;
-      gap: clamp(12px,2vw,20px);
-      align-items: center;
-      margin-bottom: clamp(14px,2vw,18px);
+      display:grid; grid-template-columns: auto 1fr;
+      gap: clamp(12px,2vw,20px); align-items:center; margin-bottom: clamp(14px,2vw,18px);
     }
+    
+    /* ロゴ周り */
     .unit-hero__emblem{
-
-      display: grid; place-items: center;
-      border-radius: 50%;
-      background: radial-gradient(120% 120% at 30% 20%, #ffffff, #fff1e0 70%);
-
-      box-shadow: 0 6px 20px color-mix(in oklab, var(--unit-brand) 18%, #0000);
+      width: clamp(70px, 12vw, 90px);
+      height: clamp(70px, 12vw, 90px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
     }
-    .unit-hero__emblem svg{ width: 58%; height: 58%; fill: var(--unit-brand); }
-    .unit-hero__title{ 
-      margin: 0 0 .1rem; 
-      font: 700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
+    .unit-hero__emblem img{ 
+      width: auto; 
+      height: auto; 
+      display: block; 
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .unit-hero__title{
+      margin:0 0 .1rem;
+      font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui;
       color: var(--unit-brand-ink);
     }
     .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2937; }
-    .unit-hero__chips{
-      margin:.6rem 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:.5rem .6rem;
-    }
-    .unit-hero__chips li{
-      border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #fff);
-      background:#fff; color:var(--unit-brand-ink);
-      border-radius:999px; padding:.28em .7em; font:500 .9rem "Noto Sans JP",system-ui;
-    }
+
     .unit-hero__grid{
       display:grid; gap: clamp(16px,2.2vw,24px);
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr);
-      align-items: stretch;
+      grid-template-columns: 1.55fr .95fr;
+      align-items:start;
     }
-    @media (max-width: 920px){ .unit-hero__grid{ grid-template-columns: 1fr; } }
-    .unit-hero__points > * + * { margin-top: clamp(.6rem, 1.2vw, 1rem); }
-    .unit-hero__note{ color:#4b5563; margin:.8rem 0 0; }
-    .unit-hero__callout{
-      background:#fff; border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);
+    @media (max-width: 920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
+
+    /* チェック付きリスト */
+    .checklist{ margin:.6rem 0 .4rem; padding:0; list-style:none !important; }
+    .checklist li{
+      position:relative; margin:.45rem 0; line-height:1.95;
+      list-style:none !important;
+    }
+    .checklist li::marker { content: none !important; display: none !important; }
+    
+    .checklist li::before{
+      content:""; position:absolute; left:0; top:0.4em; width:1.1rem; height:1.1rem; 
+      background-color: var(--unit-brand);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+
+    /* シンプルな丸（●）リスト */
+    .bullet-list{ margin:.6rem 0 .4rem; padding:0; list-style:none; }
+    .bullet-list li{
+      position:relative; padding-left:1em; margin:.45rem 0; line-height:1.7; color: #333;
+    }
+    .bullet-list li::before{
+      content:""; position:absolute; left:0; 
+      top: 0.6em; 
+      width: 8px; 
+      height: 8px; 
+      border-radius: 50%;
+      background: var(--unit-brand);
+    }
+
+    /* 右のコールアウト */
+    .callout{
+      background:#fff; border:1px solid color-mix(in oklab, var(--unit-brand) 40%, #e5e7eb);
       border-left:6px solid var(--unit-brand);
       border-radius:14px; padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
-      box-shadow:0 8px 26px color-mix(in oklab, var(--unit-brand) 8%, #0000);
-      height:100%;
+      box-shadow: 0 12px 32px rgba(255, 138, 0, 0.06);
     }
-    .unit-hero__callout h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--unit-brand-ink); }
-    .unit-hero__small{ color:#6b7280; font-size:.92rem; margin:.3rem 0 0; }
-    .unit-hero__cta{
-      display:flex; justify-content:center; gap:.6rem .8rem; flex-wrap:wrap; margin:.7rem 0 0;
+    .callout h3{ margin:.1rem 0 1rem; font-weight:700; color:var(--unit-brand-ink); }
+    
+    /* CTAボタン */
+    .unit-hero__cta{ display:grid; gap:.8rem; margin:.6rem 0; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      text-decoration:none; font-weight:700;
+      padding:.72em 1.2em; border-radius:999px;
+      border:1.5px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
+      background:#fff; color:var(--unit-brand-ink);
+      transition:background .18s ease, border-color .18s ease, transform .03s ease;
+      box-shadow:0 2px 0 rgba(0,0,0,.02);
+      width: 100%; box-sizing: border-box; text-align: center;
     }
-    .btn.ghost{
-      display:inline-block; text-decoration:none; font-weight:600;
-      padding:.55em 1.05em; border-radius:10px; color:var(--unit-brand-ink);
-      border:1px solid color-mix(in oklab, var(--unit-brand) 45%, #e5e7eb);
-      background:#fff;
-    }
-    .btn.ghost:hover{ background:color-mix(in oklab, var(--unit-brand) 6%, #fff); }
+    .btn.ghost:hover{ background:var(--unit-tint); }
+    .btn:active{ transform:translateY(1px); }
+    
+    .unit-hero__small{ font-size:.92rem; color:#6b7280; margin-top: 0.5rem; }
 
-    /* ページ内サブナビ（同一デザイン／色のみ反映） */
-    .myroot-subnav{
-      position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid var(--my-line);
-      margin: 0 auto; max-width: var(--my-max); padding: .75rem min(4vw, 24px);
+    /* サブナビ（本文内） */
+    .subnav{
+      position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--my-line);
+      margin:0 auto; max-width:var(--my-max); padding:.75rem min(4vw,24px);
     }
-    .myroot-subnav__list{
-      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-      gap:.6rem .95rem;
+    .subnav__list{
+      display:flex; flex-wrap:wrap; gap:.6rem .95rem; align-items:center; justify-content:center;
     }
-    .myroot-subnav__list a{
-      display:inline-block; padding:.65em 1.15em; border:1px solid var(--my-line);
-      border-radius:999px; background:#fafafa; color:#111; font-weight:500; line-height:1;
+    .subnav__list a{
+      display:inline-block; padding:.65em 1.15em; border:1px solid var(--my-line); border-radius:999px;
+      background:#fafafa; color:#111; font-weight:500; line-height:1; text-decoration:none;
       transition: background-color .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
-      text-decoration:none;
     }
-    .myroot-subnav__list a:hover{
-      background: color-mix(in oklab, var(--subnav-accent) 14%, #fff);
-      border-color: color-mix(in oklab, var(--subnav-accent) 70%, #fff);
-      color: var(--subnav-ink);
-      box-shadow: 0 4px 14px color-mix(in oklab, var(--unit-brand) 14%, #0000);
+    .subnav__list a:hover{
+      background: color-mix(in oklab, var(--unit-tint) 40%, #fff);
+      border-color: color-mix(in oklab, var(--unit-brand) 50%, #fff);
+      color: var(--unit-brand-ink);
+      box-shadow: 0 6px 16px rgba(255, 138, 0, 0.12);
       transform: translateY(-1px);
     }
-    .myroot-subnav__list a:focus-visible{
-      outline:none;
-      border-color: color-mix(in oklab, var(--subnav-accent) 80%, #fff);
-      box-shadow:
-        0 0 0 3px color-mix(in oklab, var(--subnav-accent) 26%, #fff),
-        0 6px 18px color-mix(in oklab, var(--unit-brand) 16%, #0000);
-      background: color-mix(in oklab, var(--subnav-accent) 12%, #fff);
-      color: var(--subnav-ink);
-    }
-    .myroot-subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
+    .subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
 
-    /* セクション見出しなど */
-    .myroot-section{ scroll-margin-top:120px; margin:1.25rem 0 1.5rem; }
-    .myroot-section__title{
+    /* スマホでサブナビを横一列 */
+    @media (max-width: 600px) {
+      .subnav { padding: .5rem 1rem; }
+      .subnav__list { flex-wrap: nowrap; gap: 0.5rem; }
+      .subnav__list a {
+        flex: 1; 
+        padding: 0.7em 0; 
+        font-size: 0.85rem; 
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+
+    /* セクション */
+    .section{ scroll-margin-top:10px; margin:1.25rem 0 1.6rem; }
+    .section__title{
       font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 3rem;
-      padding-left:.5rem; border-left:6px solid var(--my-accent);
+      padding-left:.5rem; border-left:6px solid var(--unit-brand);
       line-height:1.2;
     }
 
-    /* 情報ボード／カード */
-    .myroot-card{
-      background:var(--my-surface); border:1px solid var(--my-line); border-radius:var(--my-radius);
-      box-shadow:0 1px 0 #00000008; padding:1rem 1.1rem; margin:0;
+    /* カード・表 */
+    .card{ 
+      background:#fff; 
+      border:1px solid var(--my-line); 
+      border-radius:var(--my-radius); 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding:1rem 1.1rem; 
     }
-    .myroot-card__title{ font-weight:700; margin:0 0 2rem; }
+    .grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:minmax(0,1.6fr) minmax(0,.9fr); align-items:start; }
+    @media (max-width:920px){ .grid{ grid-template-columns:1fr; } }
+    
+    /* ★修正：基本情報リストの余白調整 */
+    .facts {
+      display: block; 
+      border: none; padding: 0; background: transparent;
+    }
+    .facts > div {
+      display: grid;
+      grid-template-columns: 7em 1fr;
+      gap: 1rem;
+      /* 上下のパディングを少し減らす */
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      align-items: baseline;
+    }
+    .facts > div:last-child { border-bottom: none; }
+    
+    /* ★追加：リストの上下端の余白をカット（カードのパディングのみにする） */
+    .facts > div:first-child { padding-top: 0; }
+    .facts > div:last-child { padding-bottom: 0; }
+    
+    .facts dt { 
+      font-weight: 700; 
+      color: var(--unit-brand-ink); 
+      margin: 0;
+    } 
+    .facts dd { margin: 0; line-height: 1.6; }
 
-    /* グリッド */
-    .myroot-grid{ display:grid; gap: clamp(16px,2.2vw,24px); grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr); align-items:stretch; }
-    @media (max-width: 920px){ .myroot-grid{ grid-template-columns:1fr; align-items:start; } }
-    .facts{ display:grid; gap:.5rem; grid-template-columns: 1fr 2fr; border:1px solid var(--my-line); border-radius:12px; padding:.8rem 1rem; background:#fff; }
-    .facts dt{ color:#555; } .facts dd{ margin:0; }
-    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
+    @media (max-width: 500px){
+      .facts > div {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+        padding: 0.8rem 0;
+      }
+      .facts dt { font-size: 0.95rem; color: #555; }
+    }
 
     /* チップ風見出し */
     .pill{
       display:inline-block; padding:.25em .75em; border-radius:999px;
       background:#fff3e5; border:1px solid color-mix(in oklab, var(--unit-brand) 55%, #fff);
-      color:var(--unit-brand-ink); font-weight:700; font-size:.95rem;
+      color:var(--unit-brand-ink); font-weight:700; font-size:.95rem; margin-bottom: 0.5rem;
     }
 
-    /* 箇条書き（チェック丸） */
-    .checklist{ margin:.4rem 0 .6rem; padding:0; list-style:none; }
-    .checklist li{
-      position:relative; padding-left:0.3em; margin:.4rem 0; line-height:1.9;
+    /* お願いボックス */
+    .ask-box{
+      display:grid; justify-items:center; gap: clamp(10px,1.6vw,14px);
+      padding: clamp(16px,2.4vw,24px);
+      border: 1px solid color-mix(in oklab, var(--unit-brand) 34%, #e5e7eb);
+      border-radius: 14px;
+      background: radial-gradient(140% 80% at 50% 0%, color-mix(in oklab, var(--unit-brand) 8%, #fff), transparent 60%), #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      height: 100%; box-sizing: border-box;
     }
-    .checklist li::before{
-      content:"";  left:0; top:.45em; width:1rem; height:1rem; border-radius:50%;
-      background: var(--unit-brand);
-      -webkit-mask: radial-gradient(circle at 70% 35%, #000 48%, transparent 49%) top left,
-                    radial-gradient(circle at 70% 65%, #000 48%, transparent 49%) bottom left,
-                    linear-gradient(#000 0 0) center/55% 14%;
-      -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-              mask: radial-gradient(circle at 70% 35%, #000 48%, transparent 49%) top left,
-                    radial-gradient(circle at 70% 65%, #000 48%, transparent 49%) bottom left,
-                    linear-gradient(#000 0 0) center/55% 14%;
+    .ask-box__label{
+      justify-self: start; font-weight: 800; font-size: 1.15rem; color: var(--unit-brand-ink);
+      text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--unit-brand) 60%, #fff); text-decoration-thickness: 2px; text-underline-offset: 0.3em;
+    }
+    .ask-box__img{
+      width: clamp(120px, 24vw, 160px); height:auto; display:block;
+    }
+    .ask-box__text{
+      margin: 0; text-align: center; font-weight: 700; line-height: 1.6; color: var(--unit-brand-ink);
     }
 
-    /* 地図埋め込み */
-    .map{
-      height: 100%; min-height: 300px; border:1px solid var(--my-line); border-radius:12px;
-      overflow:hidden; background:#fff; box-sizing:border-box;
-    }
+    /* 地図 */
+    .map{ height:100%; min-height:300px; border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
     .map iframe{ width:100%; height:100%; border:0; display:block; }
-    @media (max-width: 920px){
+    @media (max-width:920px){
       .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
-      @supports not (aspect-ratio: 1){
-        .map{ padding-top:75%; min-height:0; position:relative; }
-        .map iframe{ position:absolute; inset:0; }
-      }
     }
 
-    /* 細かな補助 */
-    .muted{ color:#6b7280; font-size:.92rem; }
-    .small{ font-size:.92rem; }
-    .strong{ font-weight:700; }
-
-    /* スムーススクロール（共通と被ってもOK） */
-    html{ scroll-behavior:smooth; }
-    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-
-/* ===== わぁははクラブ（このページだけ） ヘッダー/フッター配色 ===== */
-:root{
-  /* 既に定義してるページ色と同系で少し薄めも用意 */
-  --unit-brand: #ff8a00;
-  --unit-brand-ink: #7a3b00;
-  --unit-soft: #fff7ed;      /* 薄い面色 */
-  --unit-line: #ffd7b0;      /* 薄い境界色 */
-}
-
-/* ヘッダー背景を薄オレンジ、リンクは既定のままでもOK。現在地/ホバーだけ濃色に */
-.c-header{ background: var(--unit-soft); }
-.c-header__list-item.is-current > .c-header__list-link,
-.c-header__list-link:hover{ color: var(--unit-brand-ink); }
-
-
-/* フッター：背景をうっすらオレンジ、見出しは濃色、バーは薄オレンジの線で締める */
-.site-footer{ background: var(--unit-soft); }
-.site-footer .footer__group h3{ color: var(--unit-brand-ink); }
-.site-footer .footer__bar{
-  border-top: 2px solid var(--unit-line);
-}
-.site-footer .footer__top{ color: var(--unit-brand-ink); }
-
-/* グリッドを上揃えにして等高さをやめる */
-.unit-hero__grid{
-  align-items: start;    /* ← ここを start に */
-}
-
-/* 右カードは height 指定を外して自然高さに（以前の height:100% を無効化） */
-.unit-hero__callout{
-  height: auto;
-  align-self: start;     /* 念のため */
-}
-
-/* 影が外ににじむのが気になる環境向けに、親で軽くクリップ */
-.unit-hero{
-  overflow: clip;        /* 対応外ブラウザは overflow:hidden にフォールバックしてもOK */
-}
-@supports not (overflow: clip){
-  .unit-hero{ overflow: hidden; }
-}
-
-/* 右カード内の余白が多めの場合に備えて下マージンを詰める（見た目微調整） */
-.unit-hero__callout .unit-hero__small{ margin-bottom: .1rem; }
-
-:root{
-  --btt-ring-active: #ff8a00;  /* リングのアクティブ色 */
-  --btt-center: #ffe6cc;       /* 中心の淡いオレンジ */
-}
-
-li.c-header__list-item{
-background:#fff7ed;
-}
-
-/* ====== わぁははページ専用：ヘッダー色をオレンジ系に固定 ====== */
-:root{
-  /* 念のため色定義（好みで調整OK） */
-  --unit-brand: #ff8a00;     /* オレンジ */
-  --unit-brand-ink: #7a3b00; /* 文字の濃色 */
-}
-
-/* 親メニューの現在地タブ */
-.page-wahaha #site-header .c-header__list-item.is-current{
-  background-color:#fff3e5 !important;
-  border-radius:8px;
-}
-
-
-
-
-/* ドロップダウン本体（面色がまだミントならこれで上書き） */
-.page-wahaha #site-header .submenu{
-  background: #fff8ef !important;       /* 面 */
-  background-color:#fff !important;   /* 念のため */
-  border-color: #ffd7b0 !important;      /* 枠 */
-  box-shadow: 0 10px 26px rgba(255,138,0,.12) !important;
-}
-
-/* ドロップダウン内の各リンクの文字色／hover */
-.page-wahaha #site-header .submenu a{
-  color: var(--unit-brand-ink) !important;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.page-wahaha #site-header .submenu a:hover,
-.page-wahaha #site-header .submenu a:focus-visible{
-  color: var(--unit-brand-ink) !important;
-  outline: none;
-}
-/* 現在地の項目だけ強調 */
-.page-wahaha #site-header .submenu a[aria-current="page"]{
-  color: var(--unit-brand) !important;
-  font-weight:700 !important;
-}
-
-
-/* =========================
-   ヘッダー：最小限の色直し（このページだけ）
-   ========================= */
-.page-wahaha #site-header .c-header__list-item.is-current{
-  /* ① 親タブ「事業所紹介」の薄色背景を消す */
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-/* =========================
-   ドロップダウン（submenu）
-   ========================= */
-/* ② 面色＝読みやすい薄クリーム、枠は淡いオレンジ */
-.page-wahaha #site-header .submenu{
-  background: #fffaf6 !important;         /* 以前より明度高め／彩度低め */
-  border: 1px solid #ffd9bd !important;
-  box-shadow: 0 10px 26px rgba(255,138,0,.10) !important;
-  border-radius: 12px;
-  padding: .4rem 0;
-  min-width: 16.5rem;
-}
-
-/* リンク文字：黒寄り。hoverで“面だけ”ほんのり色づく */
-.page-wahaha #site-header .submenu a{
-  color: #222 !important;                  /* 読みやすさ優先の黒寄り */
-  font-weight: 500;                        /* 標準やや強め */
-  display: block; padding: .7rem 1rem;
-  line-height: 1.6; text-decoration: none;
-  white-space: nowrap; word-break: keep-all;
-}
-.page-wahaha #site-header .submenu a:hover,
-.page-wahaha #site-header .submenu a:focus-visible{
-  background: color-mix(in oklab, #ff8a00 8%, #fff) !important; /* うっすら */
-  color: #222 !important;
-  outline: none;
-}
-
-/* ③ 現在地は “黒・やや太字” に。オレンジ強調はやめる */
-.page-wahaha #site-header .submenu a[aria-current="page"]{
-  color: #111 !important;
-  font-weight: 600 !important;             /* 700→600へ */
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* ===== わぁははページ専用：ヘッダーナビのミント背景を完全オフ ===== */
-
-/* li 側に背景が付くパターンも潰す */
-.page-wahaha #site-header .c-header__list-item,
-.page-wahaha #site-header .c-header__list-item:hover,
-.page-wahaha #site-header .c-header__list-item:focus-within,
-.page-wahaha #site-header .c-header__list-item.is-current{
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-}
-
-/* a（リンク）側に背景が付くパターンを全て無効化 */
-.page-wahaha #site-header .c-header__list-link,
-.page-wahaha #site-header .c-header__list-link:hover,
-.page-wahaha #site-header .c-header__list-link:focus,
-.page-wahaha #site-header .c-header__list-link:focus-visible,
-.page-wahaha #site-header .c-header__list-link[aria-current="page"]{
-  background: transparent !important;
-  box-shadow: none !important;
-  outline: none;
-}
-
-/* 擬似要素で色面を出しているテーマにも対応 */
-.page-wahaha #site-header .c-header__list-link::before,
-.page-wahaha #site-header .c-header__list-link::after{
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-
-
-/* li／a 側の背景をゼロに（hover等で色面を出す指定も打ち消す） */
-.page-wahaha #site-header .c-header__list-item,
-.page-wahaha #site-header .c-header__list-item:hover,
-.page-wahaha #site-header .c-header__list-item:focus-within,
-.page-wahaha #site-header .c-header__list-link,
-.page-wahaha #site-header .c-header__list-link:hover,
-.page-wahaha #site-header .c-header__list-link:focus,
-.page-wahaha #site-header .c-header__list-link:focus-visible{
-  background: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-
-
-/* ヒーロー用チェックリスト調整（色は var(--unit-brand)=オレンジ） */
-.page-wahaha .checklist--hero li{
-  line-height: 1.95;        /* 読みやすく */
-  margin: .45rem 0;         /* 行間 */
-}
-.page-wahaha .checklist--hero li::before{
-  width: 1.05rem;
-  height: 1.05rem;
-  top: .5em;                /* ベースラインに合わせて微調整 */
-  background: var(--unit-brand); /* オレンジ（既に定義済み） */
-}
-
-/* ===== わぁはは専用：フッター直前のCTAをオレンジに ===== */
-.page-wahaha .cta-bar{
-  max-width: var(--my-max);
-  margin: 1.25rem auto 2.4rem;
-  padding-inline: min(4vw, 24px);
-  display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap;
-}
-
-/* 色：オレンジ（文字は白） */
-.page-wahaha .cta-bar .cta{
-  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
-  padding: .95em 1.2em;
-  border-radius: 12px;
-  background: var(--unit-brand);                 /* #ff8a00 */
-  border: 2px solid var(--unit-brand);
-  color: #fff; text-decoration: none; font-weight: 700;
-  transition: transform .12s ease, box-shadow .2s ease, background .18s ease, border-color .18s ease;
-}
-
-/* 幅をそろえる（PC時）：両ボタン同じ横幅 */
-.page-wahaha .cta-bar .cta{
-  flex: 0 0 auto;
-  min-width: 16rem;                               /* ここで幅統一 */
-  text-align: center;
-}
-@media (max-width: 680px){
-  .page-wahaha .cta-bar .cta{ width:100%; min-width: 0; }
-}
-
-/* ホバー／フォーカス */
-.page-wahaha .cta-bar .cta:hover{
-  background: #e67700;                            /* 少し濃いオレンジ */
-  border-color: #e67700;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255,138,0,.20);
-}
-.page-wahaha .cta-bar .cta:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255,138,0,.25), 0 8px 20px rgba(255,138,0,.18);
-}
-
-/* アイコンをボタン色に追随させる（白で見やすく） */
-.page-wahaha .cta-bar .cta .cta__icon{
-  width: 1.15em; height: 1.15em;
-}
-.page-wahaha .cta-bar .cta .cta__icon path{
-  stroke: currentColor; fill: none;               /* 既存SVGに合わせて */
-}
-
-/* わぁははページ：現在地リンクの太字をやめる */
-.page-wahaha #site-header .c-header__list-item.is-current > .c-header__list-link,
-.page-wahaha #site-header .c-header__list-link[aria-current="page"],
-.page-wahaha #site-header .submenu a[aria-current="page"]{
-  font-weight: 500 !important; /* or 400 / inherit 好みで */
-  color: #111 !important;      /* さっきの要望どおり黒で統一 */
-}
-
-/* ========== わぁはは：ナビの線消し＆ホバー可視化（最終上書き） ========== */
-body.page-wahaha{
-  /* テーマ色（必要なら微調整） */
-  --brand: #ff8a00;
-  --ink-strong:#7a3b00;
-  --header-bg:#fff7ed;   /* ヘッダーの薄クリーム */
-  --panel:#ffffff;       /* メニュー面(スマホ/サブ) */
-  --panel-border:#ffd9bd;
-  --nav-hover: color-mix(in oklab, var(--brand) 14%, #fff);
-  --nav-active: color-mix(in oklab, var(--brand) 22%, #fff);
-  --nav-text:#222;
-}
-
-
-
-/* ドロップダウン(PC時)のカード */
-.page-wahaha #site-header .submenu{
-  background: #fffaf6 !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 10px 24px rgba(255,138,0,.12) !important;
-  border-radius: 12px;
-  padding: .35rem 0;
-  min-width: 16rem;
-}
-.page-wahaha #site-header .submenu a{
-  display:block; padding:.7rem 1rem; white-space:nowrap;
-  color: var(--nav-text) !important; background: transparent !important;
-}
-
-/* ===== PC幅：ホバーを“淡オレンジのピル”で明確に ===== */
-@media (min-width:1025px){
-  .page-wahaha #site-header .c-header__list-link{
-    border-radius:999px; 
-    transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
-  }
-  .page-wahaha #site-header .c-header__list-link:hover,
-  .page-wahaha #site-header .c-header__list-link:focus-visible{
-    background: var(--nav-hover) !important;
-    color: var(--ink-strong);
-    box-shadow: 0 2px 10px rgba(255,138,0,.10);
-    outline: none;
-  }
-  .page-wahaha #site-header .c-header__list-link:active{
-    background: var(--nav-active) !important;
-  }
-  .page-wahaha #site-header .submenu a:hover,
-  .page-wahaha #site-header .submenu a:focus-visible{
-    background: var(--nav-hover) !important;
-    color: var(--nav-text) !important;
-    outline: none;
-  }
-  .page-wahaha #site-header .submenu a:active{
-    background: var(--nav-active) ;
-  }
-}
-
-
-/* お願い：イラスト＋一文だけのシンプルカード */
-.myroot-card .ask-box{
-  display:grid;
-  justify-items:center;
-  gap: clamp(10px,1.6vw,14px);
-  padding: clamp(16px,2.4vw,24px);
-  border: 1px solid color-mix(in oklab, var(--unit-brand, #ff8a00) 34%, #e5e7eb);
-  border-radius: 14px;
-  background:
-    radial-gradient(140% 80% at 50% 0%, color-mix(in oklab, var(--unit-brand, #ff8a00) 8%, #fff), transparent 60%),
-    #fff;
-}
-
-.myroot-card .ask-box__img{
-  width: clamp(120px, 24vw, 180px);
-  height:auto;
-  display:block;
-  filter: drop-shadow(0 8px 18px color-mix(in oklab, var(--unit-brand, #ff8a00) 18%, #0000));
-}
-
-.myroot-card .ask-box__text{
-  margin: 0;
-  text-align: left;
-  font-weight: 800;
-  line-height: 1.7;
-  color: var(--unit-brand-ink, #7a3b00);
-  letter-spacing: .02em;
-}
-
-/* === ask-box の見出しを左寄せ・大きく、本文も左寄せに === */
-.myroot-card .ask-box{
-  justify-items: stretch;                 /* 子要素の横幅を揃える */
-}
-
-/* 見出し「お願い」：左寄せ・サイズUP・チップ装飾を解除 */
-.myroot-card .ask-box__label{
-  justify-self: start;
-  align-self: start;
-  margin: .1rem 0 .6rem;
-  padding: 0;                             /* 以前のピル用パディングを無効化 */
-  background: transparent;                /* ピル背景オフ */
-  border: 0;                              /* 枠線オフ */
-  font-weight: 800;
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-  letter-spacing: .02em;
-  color: var(--unit-brand-ink, #7a3b00);
-}
-
-/* 画像は中央寄せのまま */
-.myroot-card .ask-box__img{
-  justify-self: center;
-}
-
-/* 本文は左寄せ／やや間を空ける */
-.myroot-card .ask-box__text{
-  justify-self: start;
-  text-align: left;
-  margin-top: .6rem;
-  color: var(--unit-brand-ink, #7a3b00);
-}
-
-/* （お好み）見出しの下に極細ボーダーで締める */
-.myroot-card .ask-box__label::after{
-  content:"";
-  display:block;
-  width: 52px;
-  height: 2px;
-  margin-top: .35rem;
-  background: color-mix(in oklab, var(--unit-brand, #ff8a00) 60%, #fff);
-  border-radius: 999px;
-}
-
-/* 見出しの下線をテキスト下線で正確に表示（::afterは無効化） */
-.myroot-card .ask-box__label{
-  text-decoration: underline;
-  text-decoration-thickness: 2px;                 /* 線の太さ */
-  text-underline-offset: 0.35em;                  /* 文字と線の間隔 */
-  text-decoration-color: color-mix(in oklab, var(--unit-brand, #ff8a00) 60%, #fff);
-}
-.myroot-card .ask-box__label::after{ content:none; } /* 以前のカスタム線を停止 */
-
-/* 下の文を1行で表示（はみ出しに備えて可読範囲で縮小） */
-.myroot-card .ask-box__text{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;  /* もし極端に狭い幅なら末尾を省略 */
-}
-
-/* 幅が狭い端末では少しだけ文字サイズを下げて1行を維持 */
-@media (max-width: 480px){
-  .myroot-card .ask-box__text{
-    font-size: clamp(.92rem, 3.4vw, 1rem);
-  }
-}
-
-/* カード幅に応じて本文を自動縮小（コンテナクエリ対応） */
-.myroot-card .ask-box{
-  container-type: inline-size; /* ← これで cqi 単位が使える */
-}
-
-/* 一行固定＋箱内に収める（優先度高めに） */
-.myroot-card .ask-box__text{
-  white-space: nowrap;
-  overflow: hidden;      /* はみ出し防止 */
-  text-overflow: clip;   /* 省略記号は出さない */
-  padding-inline: .25rem;/* 端の当たり防止の薄い余白 */
-  font-size: clamp(.84rem, 3.4cqi, 1rem);   /* ← 幅に合わせて自動縮小 */
-  letter-spacing: -.005em;                  /* ほんの少しだけ詰める */
-}
-
-/* フォールバック（コンテナクエリ非対応の環境） */
-@supports not (container-type: inline-size){
-  .myroot-card .ask-box__text{
-    font-size: .92rem;                      /* やや小さめ固定 */
-  }
-  @media (max-width: 560px){
-    .myroot-card .ask-box__text{ font-size: .88rem; }
-  }
-}
-
-/* 「お願い」カード：本文を中央ぞろえに */
-.myroot-card .ask-box__text{
-  justify-self: center !important; /* グリッド内で中央に */
-  text-align: center;              /* テキストも中央 */
-  width: 100%;
-}
-
-/* 共通：矢印と文字色を変える（currentColor運用） */
-#backToTop .btt__icon{ fill: var(--btt-ink, #111) !important; }
-#backToTop .btt__label{ color: var(--btt-ink, #111) !important; }
-
-/* デフォルト（他ページ）：ほぼ黒 */
-:root{ --btt-ink:#111; }
-
-/* ページ別のおすすめ色（統一感出ます） */
-body.page-wahaha{ --btt-ink:#7a3b00; }   /* オレンジ系の濃茶 */
-body.page-soudan{ --btt-ink:#0b4b46; }   /* ティールの濃色 */
-body.page-citizen{ --btt-ink:#0b2b6b; }  /* 深めの紺 */
-
-/* ついでにホバー/フォーカスで少しだけ濃く */
-#backToTop:hover .btt__label,
-#backToTop:focus-visible .btt__label{
-  opacity:.9;
-}
-
-/* ========== wahaha.html 専用：背景の緑をオフ（ヘッダー/フッターは触らない） ========== */
-body.page-wahaha,
-body.page-wahaha #page,
-body.page-wahaha main,
-body.page-wahaha .l-main{
-  background: #fff !important;
-  background-image: none !important;  /* グラデや柄が仕込まれていても消す */
-}
-
-/* ページ内で淡い緑を使っている汎用ブロックがあれば白化（なければスルーされます） */
-body.page-wahaha .unit-hero,
-body.page-wahaha .hero,
-body.page-wahaha .c-section--tint,
-body.page-wahaha .doc-page,
-body.page-wahaha .doc-container{
-  background: #fff !important;
-}
-
-/* ハンバーガー展開時の暗幕は既定どおり */
-body.page-wahaha #site-header .c-hamburger-menu__bg{
-  background: rgba(0,0,0,.45);
-  backdrop-filter: blur(2px);
-}
-
-/* wahaha 専用の淡いページトーン */
-:root{
-  --wahaha-tint: #f5fbf9;  /* ほぼ白に近いミント。#f7fafb でもOK */
-}
-body.page-wahaha,
-body.page-wahaha #page{
-  background:
-    radial-gradient(1000px 260px at 8% -10%, var(--wahaha-tint), transparent 60%),
-    radial-gradient(900px 240px at 92% -20%, #f8fcfa, transparent 60%),
-    #fff !important;
-}
-
-/* ===== わぁはは：下部CTAの横幅をそろえる（電話＝メールと同幅） ===== */
-.page-wahaha .cta-bar{
-  max-width: var(--my-max);
-  margin: 1.25rem auto 2.4rem;
-  padding-inline: min(4vw, 24px);
-  display: flex;
-  gap: .8rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.page-wahaha .cta-bar .cta{
-  display: flex;                /* 中央寄せ */
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: .95em 1.2em;
-  border-radius: 12px;
-
-  /* ← ここがポイント：同じ幅で伸縮 */
-  flex: 1 1 16rem;              /* 16remを基準に両方同じ比率で広がる */
-  min-width: 16rem;             /* PC時に細くなり過ぎない */
-  text-align: center;
-}
-
-/* スマホでは縦並びで100%幅 */
-@media (max-width: 680px){
-  .page-wahaha .cta-bar .cta{
-    flex-basis: 100%;
-    min-width: 0;
-    width: 100%;
-  }
-}
-
-
-/* ========== 横スク抑止（アクセス系ページまとめて） ========== */
-/* 親たちを「はみ出さない体質」にする */
-#page,
-.l-main.page,
-.l-main.myroot-page,
-.wrap,
-.myroot-wrap,
-#access.section,
-#access.myroot-section,
-#access.section .grid,
-.myroot-grid,
-#access.section .map,
-#gmapBox.map.map--embed {
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: clip; /* hiddenでもOK。clipの方が副作用少なめ */
-}
-
-/* Grid列は minmax(0,1fr) で横伸びを封じる */
-#access.section .grid,
-.myroot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  gap: var(--gap, 16px);
-}
-
-/* 地図 iframe を完全レスポンシブ化（属性やインライン幅を無効化） */
-#access.section .map iframe,
-#gmapBox.map.map--embed iframe {
-  display: block;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 16 / 9; /* 必要なら比率変更OK */
-  border: 0;
-}
-
-/* ラッパー側でも横はみ出しを封じる */
-#access.section .map,
-#gmapBox.map.map--embed {
-  overflow: hidden;
-}
-
-/* 共通の土台（すでに入ってたら重複OK） */
-html, body { width:100%; max-width:100%; overflow-x:hidden; }
-*, *::before, *::after { box-sizing:border-box; }
-img, svg, video, canvas { display:block; max-width:100%; height:auto; }
-
-/* ========== 横スク抑止（アクセス系ページまとめて） ========== */
-/* 親たちを「はみ出さない体質」にする */
-#page,
-.l-main.page,
-.l-main.myroot-page,
-.wrap,
-.myroot-wrap,
-#access.section,
-#access.myroot-section,
-#access.section .grid,   /* ← ここだけ残す */
-#access.section .map,
-#gmapBox.map.map--embed {
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: clip;
-}
-
-/* ここも myroot-grid を触らない */
-#access.section .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--gap, 16px);
-}
-
-/* スマホ時は必ず1カラム */
-@media (max-width: 920px){
-  .myroot-grid { grid-template-columns: 1fr !important; }
-}
-
-.myroot-wrap { max-width: var(--my-max) !important; }
-
-.unit-hero__emblem {
-  border: 1.5px solid #e5e5e5;
-}
-
-/* セクション見出しのアンカー位置調整 */
-h2[id]{
-  scroll-margin-top: 96px; /* PC時のヘッダー高さに合わせる */
-}
-
-/* スマホ時の調整（必要なら） */
-@media(max-width: 767px){
-  h2[id]{
-    scroll-margin-top: 72px;
-  }
-}
-
-#services {
-  scroll-margin-top: 20px;
-}
-
-#overview-title {
-  scroll-margin-top: 20px;
-}
-
-#overview {
-  scroll-margin-top: 20px;
-}
-
-#access {
-  scroll-margin-top: 20px;
-}
-
-/* 右カード内CTAボタンの横幅を揃える */
-.unit-hero__cta a.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 15rem; /* 好みで14〜16rem程度に調整 */
-  text-align: center;
-}
-
-@media (max-width: 600px){
-  .unit-title wbr {
-    display: block;
-  }
-}
-
-@media (max-width: 600px){
-  h2.unit-title,
-  .unit-hero__title,
-  .unit-hero__titlewrap h2 {
-    white-space: normal !important;
-    line-break: strict;
-    overflow-wrap: anywhere;
-  }
-}
-
-/* wahaha.html：サブメニュー背景を白に固定 */
-.page-wahaha #site-header .submenu{
-  background: #fff !important;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 10px 24px rgba(0,0,0,.08);
-}
-
+    /* CTA（下部） */
+    .page-wahaha .cta-bar .cta{
+      background: var(--unit-brand);
+      border: 2px solid var(--unit-brand);
+      color: #fff;
+    }
+    .page-wahaha .cta-bar .cta:hover{
+      background: #e67700;
+      border-color: #e67700;
+      box-shadow: 0 8px 20px rgba(255, 138, 0, 0.20);
+      transform: translateY(-1px);
+    }
+    .cta-bar{ max-width:var(--my-max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px); display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; }
+    .cta{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; padding:.95em 1.2em; border-radius:12px; text-decoration:none; font-weight:700; flex:1 1 16rem; min-width:16rem; text-align:center; }
+    .cta .cta__icon{ width:1.1em; height:1.1em; }
+    .cta .cta__icon path{ stroke:currentColor; fill:none; }
+    @media (max-width:680px){ .cta{ width:100%; min-width:0; flex-basis: 100%; } }
+
+    /* 上へ戻る（ページだけ上書き） */
+    .page-wahaha #backToTop.btt.btt--ring{
+      --btt-bg:#ff8a00; --btt-bg-h:#e67700; --btt-fg:#fff;
+      --btt-ring:rgba(255,138,0,.35); --btt-ring-h:rgba(255,138,0,.55); --btt-focus:#ffe6cc;
+      --btt-ring-active: #ff8a00;
+      --btt-ring-base: #fff7ed;
+    }
+    .page-wahaha #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
+    .page-wahaha #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
+    .page-wahaha #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
+    .page-wahaha #backToTop .btt__label{ color:var(--btt-fg); }
+    .page-wahaha #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
+    .page-wahaha #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
+    .page-wahaha #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
+
+    :root { --sticky-offset: 120px; }
+    section{ scroll-margin-top: var(--sticky-offset); }
 
   </style>
 </head>
@@ -914,8 +351,7 @@ h2[id]{
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <!-- 共通ヘッダー -->
-  <header id="site-header" class="c-header c-hamburger-menu">
+ <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
@@ -937,12 +373,12 @@ h2[id]{
       </li>
 
       <li class="c-header__list-item has-sub is-current">
-        <input type="checkbox" id="sub-offices" class="sub-toggle" >
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
-          <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="wahaha.html" aria-current="page">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
@@ -953,12 +389,12 @@ h2[id]{
         </ul>
       </li>
 
-      <!-- 下層追加：初めての方へ 配下に「アクセス」「FAQ」 -->
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
         <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
         <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
           <li><a href="access.html">アクセス一覧</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -973,10 +409,9 @@ h2[id]{
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
-  <!-- メイン -->
-  <main id="main" class="l-main myroot-page">
-    <section class="myroot-wrap" aria-labelledby="wahaha-title">
-      <!-- パンくず -->
+
+  <main id="main" class="l-main page">
+    <section class="wrap" aria-labelledby="title">
       <nav class="myroot-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
@@ -985,60 +420,56 @@ h2[id]{
         </ol>
       </nav>
 
-     <!-- ========= ヒーローバンド：わぁははクラブ ========= -->
-<section class="unit-hero" aria-labelledby="unit-hero-title">
-  <div class="unit-hero__inner">
-    <div class="unit-hero__head">
-      <div class="unit-hero__emblem" aria-hidden="true">
-        <img src="img/wahaha_logo.webp" alt="" class="wahaha-logo">
-      </div>
+      <section class="unit-hero" aria-labelledby="unit-hero-title">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem" aria-hidden="true">
+              <img src="img/wahaha_logo.webp" alt="わぁははクラブのロゴ">
+            </div>
 
-      <div class="unit-hero__titlewrap">
-        <h2 id="unit-hero-title" class="unit-hero__title unit-title">ハンズ生活介護事業所｜<wbr>わぁははクラブ</h2>
-        <p class="unit-hero__lead">
-          ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
-          日中活動・生活支援を提供します。
-        </p>
-      </div>
-    </div>
+            <div class="unit-hero__titlewrap">
+              <h2 id="unit-hero-title" class="unit-hero__title">ハンズ生活介護事業所｜わぁははクラブ</h2>
+              <p class="unit-hero__lead">
+                ひとりひとりの個性を尊重し、地域で安心して暮らし続けるための
+                日中活動・生活支援を提供します。
+              </p>
+            </div>
+          </div>
 
-    <div class="unit-hero__grid">
-      <div class="unit-hero__points">
-        <ul class="checklist checklist--hero">
-          <li>わぁははクラブは、学校卒業後の日中活動を支援する場として、平成21年4月よりスタートした生活介護事業所です。</li>
-          <li>ひとりひとりの個性を大切にし、みんなで協力しあい、様々な活動を行っています。</li>
-          <li>ご家族とともに生きがいを持った毎日を送れるようお手伝いいたします。</li>
-        </ul>
-      </div>
+          <div class="unit-hero__grid">
+            <div>
+              <ul class="checklist">
+                <li>わぁははクラブは、学校卒業後の日中活動を支援する場として、平成21年4月よりスタートした生活介護事業所です。</li>
+                <li>ひとりひとりの個性を大切にし、みんなで協力しあい、様々な活動を行っています。</li>
+                <li>ご家族とともに生きがいを持った毎日を送れるようお手伝いいたします。</li>
+              </ul>
+            </div>
 
-      <aside class="unit-hero__callout" aria-label="見学・ご相談">
-        <h3>見学・ご相談はこちら</h3>
-        <div class="unit-hero__cta">
-          <a class="btn ghost" href="tel:0191315720">電話する（0191-31-5720）</a>
-          <a class="btn ghost" href="mailto:hands-ma@ceres.ocn.ne.jp">メールで相談</a>
+            <aside class="callout" aria-label="見学・ご相談">
+              <h3>見学・ご相談はこちら</h3>
+              <div class="unit-hero__cta">
+                <a class="btn ghost" href="tel:0191-31-5720">電話で相談（0191-31-5720）</a>
+                <a class="btn ghost" href="mailto:hands-ma@ceres.ocn.ne.jp">メールで問い合わせ</a>
+              </div>
+              <p class="unit-hero__small">※開所日：月〜土 10:00–16:00</p>
+            </aside>
+          </div>
         </div>
-        <p class="unit-hero__small">開所日：月〜土 10:00–16:00</p>
-      </aside>
-    </div>
-  </div>
-</section>
+      </section>
 
-
-      <!-- サブナビ（ページ内） -->
-      <nav class="myroot-subnav" aria-label="このページ内のメニュー">
-        <div class="myroot-subnav__list">
+      <nav class="subnav" aria-label="このページ内のメニュー">
+        <div class="subnav__list">
           <a href="#overview">事業所概要</a>
           <a href="#services">サービス内容</a>
           <a href="#access">アクセス</a>
         </div>
-        <p class="myroot-subnav__help muted small">クリックすると各セクションへ移動します。</p>
+        <p class="subnav__help">クリックすると各セクションへ移動します。</p>
       </nav>
 
-      <!-- 事業所概要 -->
-      <section id="overview" class="myroot-section" aria-labelledby="overview-title">
-        <h2 id="overview-title" class="myroot-section__title">事業所概要</h2>
-        <div class="myroot-grid">
-          <div class="myroot-card">
+      <section id="overview" class="section" aria-labelledby="overview-title">
+        <h2 id="overview-title" class="section__title">事業所概要</h2>
+        <div class="grid">
+          <div class="card">
             <dl class="facts">
               <div><dt>定員</dt><dd>20名</dd></div>
               <div><dt>開所日</dt><dd>月曜〜土曜</dd></div>
@@ -1051,94 +482,85 @@ h2[id]{
               <div><dt>MAIL</dt><dd><a href="mailto:hands-ma@ceres.ocn.ne.jp">hands-ma@ceres.ocn.ne.jp</a></dd></div>
             </dl>
           </div>
-          <div class="myroot-card">
-<div class="ask-box" role="group" aria-label="お願い">
-  <span class="ask-box__label" aria-hidden="true">お願い</span>
-  <img src="img/phone.webp" class="ask-box__img" alt="お問い合わせのイメージ">
-  <p class="ask-box__text">見学を希望される場合、<br>事前にお問い合わせください。</p>
-</div>
 
-</div>
-  
-
+          <div class="ask-box" role="group" aria-label="お願い">
+            <span class="ask-box__label" aria-hidden="true">お願い</span>
+            <img src="img/phone.webp" class="ask-box__img" alt="お問い合わせのイメージ">
+            <p class="ask-box__text">見学を希望される場合、<br>事前にお問い合わせください。</p>
+          </div>
+        </div>
       </section>
 
-      <!-- サービス内容 -->
-      <section id="services-section" class="myroot-section" aria-labelledby="services-title">
-  <h2 id="services" class="myroot-section__title">サービス内容</h2>
+      <section id="services" class="section" aria-labelledby="services-title">
+        <h2 id="services-title" class="section__title">サービス内容</h2>
 
-        <div class="myroot-grid">
-          <div class="myroot-card">
-            <h3 class="myroot-card__title"><span class="pill">食事・入浴支援</span></h3>
-            <ul class="checklist">
+        <div class="grid">
+          <div class="card">
+            <h3 class="pill">食事・入浴支援</h3>
+            <ul class="bullet-list">
               <li><strong>食事：</strong>お弁当（昼食はさくらなみき弁当または外注）</li>
               <li><strong>入浴：</strong>希望により週2回程度</li>
               <li><strong>理美容：</strong>スタッフによる引率可</li>
             </ul>
           </div>
 
-          <div class="myroot-card">
-            <h3 class="myroot-card__title"><span class="pill">日中活動支援</span></h3>
-            <ul class="checklist">
+          <div class="card">
+            <h3 class="pill">日中活動支援</h3>
+            <ul class="bullet-list">
               <li><strong>介護支援：</strong>食事・トイレ介助</li>
               <li><strong>リハビリ支援：</strong>体操・散歩</li>
               <li><strong>その他：</strong>⽣産活動、掃除・洗⾐、⾳楽療法 など</li>
             </ul>
           </div>
 
-          <div class="myroot-card">
-            <h3 class="myroot-card__title"><span class="pill">余暇支援</span></h3>
-            <ul class="checklist">
+          <div class="card">
+            <h3 class="pill">余暇支援</h3>
+            <ul class="bullet-list">
               <li><strong>行事：</strong>新年会、お花見、夕涼み、外出、旅行 等</li>
               <li><strong>余暇：</strong>調理、カラオケ、レク</li>
               <li><strong>外出：</strong>買い物、外食、ドライブ</li>
             </ul>
           </div>
 
-          <div class="myroot-card">
-            <h3 class="myroot-card__title"><span class="pill">健康管理</span></h3>
-            <ul class="checklist">
+          <div class="card">
+            <h3 class="pill">健康管理</h3>
+            <ul class="bullet-list">
               <li>嘱託医による健康診断・問診（2か月に1回程度）</li>
               <li>健康診断（年1回）</li>
               <li>看護師による医療的ケア支援</li>
             </ul>
-            <p class="muted small" style="margin-top:.4rem;">※個々の状況に応じて、主治医と連携しながら支援します。</p>
+            <p class="unit-hero__small" style="margin-top:.4rem;">※個々の状況に応じて、主治医と連携しながら支援します。</p>
           </div>
         </div>
       </section>
 
-      <!-- アクセス -->
-      <section id="access" class="myroot-section" aria-labelledby="access-title">
-        <h2 id="access-title" class="myroot-section__title">アクセス</h2>
-        <div class="myroot-grid">
-          <div class="myroot-card">
-            <h3 class="myroot-card__title"><span class="pill">交通案内</span></h3>
-            <ul class="checklist">
+      <section id="access" class="section" aria-labelledby="access-title">
+        <h2 id="access-title" class="section__title">アクセス</h2>
+        <div class="grid">
+          <div class="card">
+            <h3 class="pill">交通案内</h3>
+            <ul class="bullet-list">
               <li><strong>お車：</strong>JR「一ノ関駅」より約5分</li>
               <li><strong>バス：</strong>岩手県交通・瑞山線・須川温泉線「一関市役所前」にて降車</li>
               <li>敷地内に駐車スペースあり。車椅子での来訪可。</li>
             </ul>
-            <p class="muted small" style="margin-top:.4rem;">
+            <p class="unit-hero__small" style="margin-top:.4rem;">
               <a href="https://www.google.com/maps/search/?api=1&query=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%89%E4%BA%8C%E4%B8%81%E7%9B%AE%206-16" target="_blank" rel="noopener">Googleマップで見る</a>
             </p>
           </div>
 
-          <div class="map map--embed" id="gmapBox" aria-label="わぁははクラブ 地図">
+          <div class="map" aria-label="わぁははクラブ 地図">
             <iframe
               title="わぁははクラブ周辺地図"
               src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%89%E4%BA%8C%E4%B8%81%E7%9B%AE%206-16&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen>
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
             </iframe>
           </div>
         </div>
       </section>
-
     </section>
   </main>
 
-  <!-- CTA（本文幅に揃える2ボタン：連絡先はわぁははクラブに合わせて） -->
   <nav class="cta-bar" aria-label="主要導線">
     <a class="cta" href="tel:0191-31-5720" aria-label="電話で相談">
       <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1150,18 +572,14 @@ h2[id]{
     </a>
   </nav>
 
-  <!-- 上へ戻る（共通：マイルートリンクと同一マークアップ。色はCSS変数で本ページだけオレンジ） -->
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
-      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
-        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
-      </svg>
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
       <span class="btt__label">TOP</span>
     </span>
   </button>
 
-  <!-- フッター（共通：マイルートリンクと同一） -->
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
@@ -1170,14 +588,14 @@ h2[id]{
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
           〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -1231,19 +649,17 @@ h2[id]{
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><!-- /#page -->
+</div>
 
-<!-- 共通JS -->
 <script src="js/site.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if(document.body.classList.contains('page-show')) return; 
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    var s = document.getElementById('splash'); if(s) s.style.display='none';
+  });
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
