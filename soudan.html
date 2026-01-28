@@ -85,25 +85,29 @@
       gap: clamp(12px,2vw,20px); align-items:center; margin-bottom: clamp(14px,2vw,18px);
     }
     
-    /* ロゴ周り */
+    /* ★修正：ロゴサイズをlittle.htmlに合わせて調整（clamp使用） */
     .unit-hero__emblem{
-      max-width: 120px; 
-      border-radius: 0; 
+      /* width/heightをlittle.htmlと同じ仕様に */
+      width: clamp(70px, 12vw, 90px);
+      height: clamp(70px, 12vw, 90px);
+      
+      /* 位置調整 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* 装飾なし（前回の指定を維持） */
+      border-radius: 0;
       background: none;
       border: none;
       box-shadow: none;
-      display: flex;
-      align-items: center;
     }
     .unit-hero__emblem img{ 
       width: auto; 
       height: auto; 
       display: block; 
       max-width: 100%;
-    }
-    /* スマホでロゴを少し小さくする */
-    @media (max-width: 600px) {
-      .unit-hero__emblem { max-width: 80px; }
+      max-height: 100%;
     }
 
     .unit-hero__title{
@@ -121,9 +125,9 @@
     @media (max-width: 920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
 
     /* チェック付きリスト */
-    .checklist{ margin:.6rem 0 .4rem; padding:0; list-style:none !important; }
+    .checklist{ margin:.6rem ; padding:0; list-style:none !important; }
     .checklist li{
-      position:relative; padding-left:0.5em; margin:.45rem 0; line-height:1.95;
+      position:relative;  margin:.45rem 0; line-height:1.95;
       list-style:none !important;
     }
     .checklist li::marker { content: none !important; display: none !important; }
@@ -135,14 +139,13 @@
       mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
     }
 
-    /* ★修正：シンプルな丸（●）リスト */
+    /* シンプルな丸（●）リスト */
     .bullet-list{ margin:.6rem 0 .4rem; padding:0; list-style:none; }
     .bullet-list li{
       position:relative; padding-left:1em; margin:.45rem 0; line-height:1.7; color: #333;
     }
     .bullet-list li::before{
       content:""; position:absolute; left:0; 
-      /* サイズを少し大きくして潰れ防止 & 位置調整 */
       top: 0.6em; 
       width: 8px; 
       height: 8px; 
