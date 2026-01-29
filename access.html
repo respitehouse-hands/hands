@@ -24,20 +24,15 @@
   </noscript>
 
   <style>
+    /* ===== ページ固有設定 ===== */
     :root{
       /* ── Hands 共通トーン（緑系）── */
-      --unit-brand:#2f7d5b;   /* アクセント/線 */
-      --unit-ink:#193528;     /* 見出しなどの濃色 */
-      --unit-tint:#eaf7f1;    /* ごく淡い緑 */
-      --unit-tint-2:#f5fbf8;  /* さらに淡い面 */
-
-      /* 枠・面 */
+      --unit-brand:#2f7d5b;
+      --unit-ink:#193528;
+      --unit-tint:#eaf7f1;
+      --unit-tint-2:#f5fbf8;
       --my-line:#e5e7eb;
       --my-surface:#fff;
-
-      /* 上へ戻る（このページだけ） */
-      --btt-ring-active:#2f7d5b;
-      --btt-center:#f1fbf6;
     }
 
     html{ scroll-behavior:smooth; }
@@ -45,9 +40,9 @@
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
-    /* パンくず（共通スタイル .myroot-breadcrumb） */
+    /* パンくず（accessibility.htmlと統一） */
     .myroot-breadcrumb{ margin:0 0 1rem; }
-    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; font-size:.92rem; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
     /* セクション見出し */
@@ -57,12 +52,8 @@
       padding-left:.5rem; border-left:6px solid var(--unit-brand); line-height:1.2;
     }
 
-    /* グリッド */
-    .grid{ 
-      display:grid; 
-      gap:48px; 
-      grid-template-columns: 1fr; /* 常に1カラム */
-    }
+    /* グリッドレイアウト */
+    .grid{ display:grid; gap:48px; grid-template-columns: 1fr; }
 
     /* 各拠点カード */
     .spot{
@@ -82,16 +73,12 @@
     }
     .spot__title{ margin:.1rem 0 .2rem; font-weight:800; color:var(--unit-ink); }
     
-    /* スマホでタイトルが折り返さないように少し小さくする */
     @media (max-width: 480px) {
-      .spot__title {
-        font-size: 1.4rem;
-      }
+      .spot__title { font-size: 1.4rem; }
     }
 
     .spot__addr{ margin:.25rem 0 0; color:#334155; }
     
-    /* カード内ボディ */
     .spot__body{
       display:grid; 
       grid-template-columns:1.1fr 1fr; 
@@ -99,30 +86,17 @@
       padding:1.1rem 1.2rem;
     }
     @media (max-width:820px){ 
-      .spot__body{ 
-        grid-template-columns: minmax(0, 1fr); 
-      } 
+      .spot__body{ grid-template-columns: minmax(0, 1fr); } 
     }
 
     /* 地図 */
     .map{ 
-      height:100%; 
-      min-height:440px; 
-      border:1px solid var(--my-line); 
-      border-radius:12px; 
-      overflow:hidden; 
-      background:#fff;
-      width: 100%;
-      max-width: 100%;
+      height:100%; min-height:440px; 
+      border:1px solid var(--my-line); border-radius:12px; 
+      overflow:hidden; background:#fff;
+      width: 100%; max-width: 100%;
     }
-    
-    .map iframe{ 
-      width:100% !important; 
-      height:100% !important; 
-      border:0; 
-      display:block; 
-    }
-    
+    .map iframe{ width:100% !important; height:100% !important; border:0; display:block; }
     @media (max-width:820px){
       .map{ min-height:300px; height:auto; aspect-ratio: 4/3; }
     }
@@ -144,16 +118,11 @@
       background: color-mix(in oklab, var(--unit-tint) 60%, #fff);
       outline:none; transform: translateY(-1px);
     }
-
     .office-link__chev{ font-size:1rem; opacity:.55; }
     .office-link:hover .office-link__chev{ opacity:.85; }
 
     .office-link__label{
-      min-width:0;
-      flex:1 1 auto;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      min-width:0; flex:1 1 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     @media (max-width:480px){
       .office-link__label{ font-size:0.95rem; letter-spacing:.01em; }
@@ -162,7 +131,7 @@
     /* ヘッダー色上書き */
     .page-access #site-header.c-header{ background:var(--unit-tint-2); border-bottom:1px solid #e5e7eb; }
     
-    /* ドロップダウンメニューの修正 */
+    /* ドロップダウンメニュー */
     .page-access .submenu{
       background: #fff !important; 
       border: 1px solid #e5e7eb; 
@@ -170,15 +139,11 @@
     }
     .page-access .submenu li + li{ border-top:1px solid #f0f0f0; }
     .page-access .submenu a{ color:#222; transition: background-color 0.2s; }
-    
-    /* ホバー時の色を緑系に */
     .page-access .submenu a:hover, 
     .page-access .submenu a:focus { 
       background-color: var(--unit-tint) !important; 
       color: var(--unit-brand) !important; 
     }
-
-    /* サブメニュー文字の太さリセット */
     #site-header .submenu a { font-weight: 500 !important; }
     #site-header .submenu a[aria-current="page"] { font-weight: 700 !important; }
 
@@ -187,26 +152,12 @@
     .page-access .site-footer .footer__bar{ background:#f0f7f4; border-top:1px solid #e5e7eb; }
     .page-access .site-footer h3, .page-access .site-footer a{ color:var(--unit-ink); }
 
-    /* 上へ戻る（ページだけ上書き） */
-    .page-access #backToTop.btt.btt--ring{
-      --btt-bg:#2f7d5b; --btt-bg-h:#246146; --btt-fg:#fff;
-      --btt-ring:rgba(47,125,91,.35); --btt-ring-h:rgba(47,125,91,.55); --btt-focus:#eaf7f1;
-      --btt-ring-active: #2f7d5b;
-      --btt-ring-base: #f5fbf8;
-    }
-    .page-access #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
-    .page-access #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
-    .page-access #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
-    .page-access #backToTop .btt__label{ color:var(--btt-fg); }
-    .page-access #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
-    .page-access #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
-    .page-access #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
-
-    /* ★追加：スマホ用改行クラス（郵便番号の後ろなどで使用） */
+    /* スマホ用改行クラス */
     .sp-break { display: none; }
-    @media (max-width: 600px) {
-      .sp-break { display: block; }
-    }
+    @media (max-width: 600px) { .sp-break { display: block; } }
+
+
+
 
   </style>
 </head>
@@ -272,7 +223,7 @@
       <span class="c-hamburger-menu__button-mark"></span>
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
-  </header>
+ </header>
 
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="page-title">
@@ -316,7 +267,7 @@
               </ul>
             </div>
             <div class="map" aria-label="青葉（二丁目６-16）地図">
-              <iframe
+              <iframe 
                 title="青葉（二丁目 ６-16）周辺地図"
                 src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%892%E4%B8%81%E7%9B%AE6-16&output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
@@ -360,7 +311,7 @@
               </ul>
             </div>
             <div class="map" aria-label="大町（なのはなプラザ４F）地図">
-              <iframe
+              <iframe 
                 title="大町 ４-29 なのはなプラザ 周辺地図"
                 src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E5%A4%A7%E7%94%BA4-29%20%E3%81%AA%E3%81%AE%E3%81%AF%E3%81%AA%E3%83%97%E3%83%A9%E3%82%B6&output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
@@ -386,7 +337,7 @@
               </ul>
             </div>
             <div class="map" aria-label="中央町（１-１-４）地図">
-              <iframe
+              <iframe 
                 title="中央町 １-１-４ 周辺地図"
                 src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1-1-4&output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
@@ -412,7 +363,7 @@
               </ul>
             </div>
             <div class="map" aria-label="赤萩（上袋75-５）地図">
-              <iframe
+              <iframe 
                 title="赤萩 上袋 75-５ 周辺地図"
                 src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E8%B5%A4%E8%90%A9%E5%AD%97%E4%B8%8A%E8%A2%8B75-5&output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
