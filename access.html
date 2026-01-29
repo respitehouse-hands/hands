@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>アクセス一覧 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズが運営する各事業所へのアクセス案内です。所在地、地図、駐車場などをまとめています。初めてお越しの方も安心してご来所いただけます。">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
+  
   <link rel="stylesheet" href="css/style.css" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,16 +40,15 @@
       --btt-center:#f1fbf6;
     }
 
-    /* レイアウト */
+    html{ scroll-behavior:smooth; }
+    body{ margin:0; color:#222; font-family:"Noto Sans JP",sans-serif; background:#fff; }
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
-    /* パンくず */
-    .breadcrumb{ margin:0 0 1rem; }
-    .breadcrumb ol{
-      display:flex; gap:.5rem .75rem; list-style:none; padding:1.2em 0; margin:0;
-    }
-    .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    /* パンくず（共通スタイル .myroot-breadcrumb） */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
     /* セクション見出し */
     .section{ scroll-margin-top:120px; margin:1.25rem 0 2rem; }
@@ -81,22 +81,50 @@
       border-bottom:1px solid #eef1f5;
     }
     .spot__title{ margin:.1rem 0 .2rem; font-weight:800; color:var(--unit-ink); }
+    
+    /* スマホでタイトルが折り返さないように少し小さくする */
+    @media (max-width: 480px) {
+      .spot__title {
+        font-size: 1.4rem;
+      }
+    }
+
     .spot__addr{ margin:.25rem 0 0; color:#334155; }
     
     /* カード内ボディ */
     .spot__body{
-      display:grid; grid-template-columns:1.1fr 1fr; gap:16px; padding:1.1rem 1.2rem;
+      display:grid; 
+      grid-template-columns:1.1fr 1fr; 
+      gap:16px; 
+      padding:1.1rem 1.2rem;
     }
     @media (max-width:820px){ 
-      .spot__body{ grid-template-columns:1fr; } 
+      .spot__body{ 
+        grid-template-columns: minmax(0, 1fr); 
+      } 
     }
 
     /* 地図 */
-    .map{ height:100%; min-height:440px; border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
-    .map iframe{ width:100%; height:100%; border:0; display:block; }
+    .map{ 
+      height:100%; 
+      min-height:440px; 
+      border:1px solid var(--my-line); 
+      border-radius:12px; 
+      overflow:hidden; 
+      background:#fff;
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .map iframe{ 
+      width:100% !important; 
+      height:100% !important; 
+      border:0; 
+      display:block; 
+    }
     
     @media (max-width:820px){
-      .map{ min-height:300px; height:auto; }
+      .map{ min-height:300px; height:auto; aspect-ratio: 4/3; }
     }
 
     /* 行リンク化 */
@@ -131,32 +159,55 @@
       .office-link__label{ font-size:0.95rem; letter-spacing:.01em; }
     }
 
-    /* ── このページだけ：ナビの“下層”ホバー色を緑系に固定 ── */
-    body.page-access #site-header .submenu a:hover,
-    body.page-access #site-header .submenu a:focus-visible{
-      background: color-mix(in oklab, var(--unit-brand) 18%, #fff);
-      color: var(--unit-ink);
-      border-radius:8px;
-      outline:none;
-    }
+    /* ヘッダー色上書き */
+    .page-access #site-header.c-header{ background:var(--unit-tint-2); border-bottom:1px solid #e5e7eb; }
     
-    /* ヘッダーのサブメニュー背景を白に固定 */
-    #site-header .submenu {
-      background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important;
-      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
+    /* ドロップダウンメニューの修正 */
+    .page-access .submenu{
+      background: #fff !important; 
+      border: 1px solid #e5e7eb; 
+      box-shadow: 0 12px 28px rgba(47,125,91,.10);
+    }
+    .page-access .submenu li + li{ border-top:1px solid #f0f0f0; }
+    .page-access .submenu a{ color:#222; transition: background-color 0.2s; }
+    
+    /* ホバー時の色を緑系に */
+    .page-access .submenu a:hover, 
+    .page-access .submenu a:focus { 
+      background-color: var(--unit-tint) !important; 
+      color: var(--unit-brand) !important; 
     }
 
-    /* ▼▼▼ 追加修正：サブメニュー内の文字の太さをリセット ▼▼▼ */
-    /* 親メニュー(is-current)の影響で太字になるのを防ぎます */
-    #site-header .submenu a {
-      font-weight: 500 !important; /* 標準の太さに戻す */
+    /* サブメニュー文字の太さリセット */
+    #site-header .submenu a { font-weight: 500 !important; }
+    #site-header .submenu a[aria-current="page"] { font-weight: 700 !important; }
+
+    /* フッター配色 */
+    .page-access .site-footer{ background:var(--unit-tint-2); border-top:1px solid #e5e7eb; }
+    .page-access .site-footer .footer__bar{ background:#f0f7f4; border-top:1px solid #e5e7eb; }
+    .page-access .site-footer h3, .page-access .site-footer a{ color:var(--unit-ink); }
+
+    /* 上へ戻る（ページだけ上書き） */
+    .page-access #backToTop.btt.btt--ring{
+      --btt-bg:#2f7d5b; --btt-bg-h:#246146; --btt-fg:#fff;
+      --btt-ring:rgba(47,125,91,.35); --btt-ring-h:rgba(47,125,91,.55); --btt-focus:#eaf7f1;
+      --btt-ring-active: #2f7d5b;
+      --btt-ring-base: #f5fbf8;
     }
-    
-    /* 現在地(aria-current="page")がついている時だけ太字にする */
-    #site-header .submenu a[aria-current="page"] {
-      font-weight: 700 !important;
+    .page-access #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
+    .page-access #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
+    .page-access #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
+    .page-access #backToTop .btt__label{ color:var(--btt-fg); }
+    .page-access #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
+    .page-access #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
+    .page-access #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
+
+    /* ★追加：スマホ用改行クラス（郵便番号の後ろなどで使用） */
+    .sp-break { display: none; }
+    @media (max-width: 600px) {
+      .sp-break { display: block; }
     }
+
   </style>
 </head>
 
@@ -164,7 +215,7 @@
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
-  <header id="site-header" class="c-header c-hamburger-menu">
+ <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
@@ -225,7 +276,7 @@
 
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="page-title">
-      <nav class="breadcrumb" aria-label="パンくず">
+      <nav class="myroot-breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li><a href="howto.html">初めての方へ</a></li>
@@ -239,7 +290,7 @@
         <article class="spot" id="aoba">
           <header class="spot__head">
             <h2 class="spot__title">①青葉（二丁目 ６-16）</h2>
-            <p class="spot__addr">〒021-0031　岩手県一関市青葉２丁目６-16</p>
+            <p class="spot__addr">〒021-0031<br class="sp-break">岩手県一関市青葉２丁目６-16</p>
           </header>
           <div class="spot__body">
             <div>
@@ -276,8 +327,8 @@
 
         <article class="spot" id="omachi">
           <header class="spot__head">
-            <h2 class="spot__title">②大町（４-29 なのはなプラザ ４F）</h2>
-            <p class="spot__addr">〒021-0881　岩手県一関市大町４-29 なのはなプラザ４F</p>
+            <h2 class="spot__title">②大町（なのはなプラザ ４F）</h2>
+            <p class="spot__addr">〒021-0881<br class="sp-break">岩手県一関市大町４-29 なのはなプラザ４F</p>
           </header>
           <div class="spot__body">
             <div>
@@ -321,7 +372,7 @@
         <article class="spot" id="chuomachi">
           <header class="spot__head">
             <h2 class="spot__title">③中央町（１丁目 １-４）</h2>
-            <p class="spot__addr">〒021-0021　岩手県一関市中央町１丁目１-４</p>
+            <p class="spot__addr">〒021-0021<br class="sp-break">岩手県一関市中央町１丁目１-４</p>
           </header>
           <div class="spot__body">
             <div>
@@ -347,7 +398,7 @@
         <article class="spot" id="akahagi">
           <header class="spot__head">
             <h2 class="spot__title">④赤萩（上袋 75-５）</h2>
-            <p class="spot__addr">〒021-0041　岩手県一関市赤萩字上袋75-５</p>
+            <p class="spot__addr">〒021-0041<br class="sp-break">岩手県一関市赤萩字上袋75-５</p>
           </header>
           <div class="spot__body">
             <div>
@@ -447,11 +498,21 @@
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
 </div>
 
 <script src="js/site.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if(document.body.classList.contains('page-show')) return; 
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    var s = document.getElementById('splash'); if(s) s.style.display='none';
+  });
+</script>
 </body>
 </html>
