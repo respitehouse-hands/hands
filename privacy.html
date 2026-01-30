@@ -16,32 +16,95 @@
     body{opacity:1 !important}
     #splash{display:none !important}
 
-    /* 本文レイアウト（単一カラム） */
+    /* 本文レイアウト */
     .breadcrumb{max-width:min(1100px,92vw);margin: clamp(8px,2vw,16px) auto; padding:0 2%;}
     .breadcrumb ol{display:flex; gap:.5em; flex-wrap:wrap; font-size:.9rem; margin:0; padding:0; list-style:none;}
     .breadcrumb li+li::before{content:"›"; color:#9aa6af; margin:0 .5em;}
 
-    .doc{max-width:min(1100px,92vw); margin: clamp(16px,4vw,32px) auto; padding:0 2%;}
+    /* コンテナ幅 */
+    .doc{
+      max-width: min(1200px, 92vw); 
+      margin: clamp(16px,4vw,32px) auto; 
+      padding: 0 2%;
+    }
+
     .doc h1{font-size:clamp(22px,3.8vw,34px); line-height:1.35; margin:.2em 0 .6em;}
     .doc h2{font-size:1.1rem; margin:1.6em 0 .6em; color:#193528; border-left:4px solid #2f7d5b; padding-left:.6em;}
-    .doc p, .doc li{line-height:1.9;}
+    
+    /* ▼▼▼ 修正：スマホで文字が落ちないよう調整 ▼▼▼ */
+    .doc p, .doc li {
+      line-height: 1.8;
+      text-align: justify; /* 両端揃え */
+      text-justify: inter-ideograph;
+      /* 禁則処理を強化（句読点が頭に来ないようにする） */
+      line-break: strict; 
+      word-break: normal; 
+      overflow-wrap: break-word;
+    }
+
+    /* スマホ（600px以下）の時だけ、文字サイズを少し下げて収まりを良くする */
+    @media (max-width: 600px) {
+      .doc p, .doc li {
+        font-size: 0.95rem; /* ほんの少し小さく */
+        letter-spacing: -0.02em; /* 文字間をわずかに詰める */
+      }
+    }
+
+    /* PC用のリード文一行強制（変更なし） */
+    @media (min-width: 1025px) {
+      .doc > p:first-of-type {
+        white-space: nowrap !important;
+        letter-spacing: -0.04em !important;
+        font-size: clamp(13px, 1.25vw, 16px);
+        word-break: keep-all;
+      }
+    }
+    
     .doc ul{padding-left:1.2em;}
     .doc a{color:#2f7d5b; text-decoration:none;}
     .doc a:hover{text-decoration:underline;}
     .doc small{color:#5c6a62;}
 
-    /* ★修正：ドロップダウンメニューの背景を白に固定 */
+    /* ▼▼▼ 修正：お問い合わせ窓口を完全に縦積みにする ▼▼▼ */
+    .contact-block {
+      background: #f9fafa;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+    .contact-row {
+      margin-bottom: 0.8em; /* 行間を少し広げる */
+      display: flex;
+      flex-direction: column; /* 中身も縦に積む */
+      gap: 0.2em;
+    }
+    /* メールと電話番号の間を確実に離す */
+    .contact-row span {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    /* リンクの折り返し対策 */
+    .break-text a {
+      display: inline-block;
+      word-break: break-all;
+    }
+
+    /* ドロップダウンメニュー */
     body.page-privacy #site-header .submenu {
       background: #fff !important;
       border: 1px solid #e5e7eb !important;
       box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
     }
-    /* 念のためリンク自体の背景も白に */
+    
     body.page-privacy #site-header .submenu a {
       background-color: #fff;
+      color: #222;
+      transition: background-color 0.2s, color 0.2s;
     }
+
     body.page-privacy #site-header .submenu a:hover {
-      background-color: #f3f4f6; /* ホバー時は薄いグレー */
+      background-color: #eaf3ee !important; 
+      color: #2f7d5b !important;
     }
 
   </style>
@@ -140,7 +203,7 @@
       <p>当法人は、個人情報保護法その他関連法令・ガイドラインを遵守します。</p>
 
       <h2>4. 第三者提供</h2>
-      <p>次の場合を除き、個人情報を第三者に提供しません。</p>
+      <p>当法人は、ご本人の同意を得ることなく、第三者に個人情報を提供することはありません。ただし、次のいずれかに該当する場合を除きます。</p>
       <ul>
         <li>本人の同意がある場合</li>
         <li>法令に基づく場合</li>
@@ -163,12 +226,24 @@
       <p>本ポリシーは予告なく改定する場合があります。重要な変更は本サイト上で告知します。</p>
 
       <h2>お問い合わせ窓口</h2>
-      <p>
-        【法人名】特定非営利活動法人レスパイトハウス・ハンズ（個人情報保護管理者：理事 千田 雅子）<br>
-        所在地：〒021-0031 岩手県一関市青葉二丁目6-16<br>
-        メール：<a href="mailto:hands-ma@ceres.ocn.ne.jp">hands-ma@ceres.ocn.ne.jp</a> ／
-        電話：<a href="tel:0191-31-5720">0191-31-5720</a>
-      </p>
+      <div class="contact-block">
+        <div class="contact-row">
+          <span><strong>【法人名】</strong></span>
+          <span>特定非営利活動法人レスパイトハウス・ハンズ<br>（個人情報保護管理者：理事 千田 雅子）</span>
+        </div>
+        <div class="contact-row">
+          <span><strong>所在地：</strong></span>
+          <span>〒021-0031 岩手県一関市青葉二丁目6-16</span>
+        </div>
+        <div class="contact-row break-text">
+          <span><strong>メール：</strong></span>
+          <a href="mailto:hands-ma@ceres.ocn.ne.jp">hands-ma@ceres.ocn.ne.jp</a>
+        </div>
+        <div class="contact-row">
+          <span><strong>電話：</strong></span>
+          <a href="tel:0191-31-5720">0191-31-5720</a>
+        </div>
+      </div>
 
       <p><small>施行日：2025年11月1日</small></p>
     </article>
@@ -189,7 +264,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=特定非営利活動法人レスパイトハウス・ハンズ" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
