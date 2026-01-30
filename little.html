@@ -38,7 +38,7 @@
       --unit-tint:#fff7e6;    /* うすいクリーム */
       --unit-tint-2:#fffaf1;  /* さらに淡い面 */
 
-      /* Back-to-top ring */
+      /* Back-to-top ring color */
       --btt-ring-active:#f59e0b;
       --btt-center:#fff4df;
     }
@@ -137,7 +137,7 @@
     }
     .subnav__help{ text-align:center; margin:.45rem 0 1.1rem; color:#6b7280; font-size:.9rem; }
 
-    /* ★修正：スクロール位置の調整（数値を大きくしました） */
+    /* ★修正：スクロール位置の調整 */
     .section{ scroll-margin-top:10px; margin:1.25rem 0 1.7rem; } /* PC */
     @media (max-width: 960px){
       .section{ scroll-margin-top: calc(10px + env(safe-area-inset-top, 0px)); } /* スマホ */
@@ -173,18 +173,9 @@
     .step p{ margin:.2rem 0 0; }
     .step > h3, .step > p { grid-column: 2; }
 
-    /* facts */
-    .facts{
-      display:grid; gap:.5rem; grid-template-columns:1fr 2fr;
-      border:1px solid var(--my-line); border-radius:16px; padding:.8rem 1rem; background:#fff;
-      box-shadow: 0 12px 30px rgba(0,0,0,.06);
-    }
-    .facts dt{ color:#555; } .facts dd{ margin:0; }
-    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
-
     /* map */
     .map{
-      min-height:300px; border:1px solid var(--my-line); border-radius:16px;
+      border:1px solid var(--my-line); border-radius:16px;
       overflow:hidden; background:#fff;
       box-shadow: 0 12px 30px rgba(0,0,0,.06);
     }
@@ -199,15 +190,22 @@
     /* CTA bottom */
     .cta-bar{
       max-width:var(--my-max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px);
-      display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;
-      background:#fff; border:1px solid #eef1f3; border-radius:16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.06); padding-block:.8rem;
+      display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+      padding-block:1rem;
     }
     .cta{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; padding:.95em 1.2em; border-radius:12px; text-decoration:none; font-weight:700; min-width:16rem; }
     .cta .cta__icon{ width:1.1em; height:1.1em; }
     .cta .cta__icon path{ stroke:currentColor; fill:none; }
     .cta{ background:#fff4df; border:2px solid color-mix(in oklab, var(--unit-brand) 40%, #fff); color:var(--unit-ink); }
-    .cta:hover{ background:#ffecc6; border-color: color-mix(in oklab, var(--unit-brand) 60%, #fff); box-shadow:0 8px 20px rgba(245,158,11,.14); transform:translateY(-1px); }
+    
+    .cta:hover{ 
+      background:#ffecc6; 
+      border-color: color-mix(in oklab, var(--unit-brand) 60%, #fff); 
+      box-shadow:0 8px 20px rgba(245,158,11,.14); 
+      transform:translateY(-1px);
+      color: var(--unit-ink) !important;
+    }
+    
     @media (max-width:680px){ .cta{ width:100%; min-width:0; } }
 
     /* リトルハンズ：特徴の行頭マーカー */
@@ -243,12 +241,200 @@
     body.page-little .site-footer .footer__bar{ background:#fff0d5 !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
     body.page-little .site-footer h3, body.page-little .site-footer a{ color:var(--unit-ink); }
 
-    /* 横スクロール抑止（安全な範囲で） */
+    /* 横スクロール抑止 */
     #access.section .map,
     #access.section .grid {
       overflow-x: clip; 
     }
     
+    /* ▼▼▼ 支援プログラムのデザイン ▼▼▼ */
+    .program-section {
+      background-color: #fcfdfd; 
+      padding: 3rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .section-header { margin-bottom: 2.5rem; }
+    .section-title.program-main-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--unit-ink);
+      margin-bottom: 0.8rem;
+      border: none;
+      padding: 0;
+    }
+    .section-lead { color: #333; line-height: 1.7; }
+    .section-meta { text-align: right; font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
+
+    .program-grid { border-top: 2px solid color-mix(in oklab, var(--unit-brand) 40%, #ddd); }
+    .program-row {
+      display: grid;
+      grid-template-columns: 12em 1fr;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .program-head {
+      background: #fffaf0;
+      padding: 1.2rem;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--unit-ink);
+      display: flex;
+      align-items: center; 
+    }
+    .program-body { padding: 1.2rem; background: #fff; line-height: 1.7; color: #333; }
+
+    .program-group { margin-top: -1px; }
+    .group-label {
+      background: #7a3e00;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .program-row { display: block; }
+      .program-head {
+        background: #fff8eb;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .program-body { padding: 1rem; }
+    }
+
+    .policy-list { list-style: none; padding: 0; margin: 0 0 1rem; }
+    .policy-list li { margin-bottom: 0.8rem; }
+    .inline-dl { display: flex; gap: 2rem; flex-wrap: wrap; margin: 0; }
+    .inline-dl div { display: flex; gap: 0.8rem; }
+    .inline-dl dt { font-weight: 700; color: var(--unit-ink); }
+    .inline-dl dd { margin: 0; }
+    
+    .text-link { color: var(--unit-brand); text-decoration: underline; font-weight: 700; }
+    .text-link:hover { text-decoration: none; color: var(--unit-ink); }
+    
+    .num-list { padding-left: 1.4em; margin: 0; }
+    .num-list li { margin-bottom: 0.5em; }
+
+    /* ▼▼▼ BTTボタンの色上書き（オレンジ） ▼▼▼ */
+    body.page-little #backToTop .btt__inner {
+      background-color: #fff !important;
+      color: var(--unit-brand) !important;
+    }
+    body.page-little #backToTop .btt__icon {
+      fill: currentColor !important;
+    }
+    body.page-little #backToTop .btt__label {
+      color: currentColor !important;
+    }
+
+    /* ▼▼▼ 情報カードのデザイン（枠復活・シンプル化） ▼▼▼ */
+    .info-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,.06);
+      /* 高さの強制はしない */
+    }
+
+    /* アクセス欄の高さ合わせ設定 */
+    #access .grid {
+      align-items: stretch !important; /* マップとカードの高さを揃える */
+    }
+    #access .info-card {
+      height: 100%; /* 親に合わせて引き伸ばす */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* 開所日・時間は自然な高さにする */
+    #schedule .grid {
+      align-items: start !important;
+    }
+
+    /* マップの高さ固定 */
+    #access .map {
+      height: 280px !important; 
+      min-height: 280px !important;
+    }
+    #access .map iframe {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: auto !important;
+    }
+
+    /* テーブル風リストデザイン */
+    .info-table {
+      display: grid;
+      gap: 0;
+      margin: 0;
+    }
+    .info-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding: 0.9rem 0;
+    }
+    .info-row:first-child { padding-top: 0; }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    
+    /* ▼▼▼ 文字スタイル修正（黒・標準の太さ） ▼▼▼ */
+    .info-row dt {
+      flex-shrink: 0;
+      width: 5em;
+      font-weight: 500; /* 太字解除 */
+      color: #333; /* グレー解除 */
+      font-size: 0.95rem;
+    }
+    .info-row dd {
+      margin: 0;
+      color: #333;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    
+    /* ▼▼▼ 電話番号リンクの青色解除 ▼▼▼ */
+    .info-row a[href^="tel"] {
+      color: inherit !important; /* 親の文字色を継承 */
+      text-decoration: none !important;
+      font-weight: 500;
+      pointer-events: none; /* PCではリンクに見せない */
+    }
+    @media (pointer: coarse) {
+      .info-row a[href^="tel"] {
+        pointer-events: auto; /* スマホのみタップ可能 */
+      }
+    }
+
+    /* スマホ調整 */
+    @media (max-width: 480px) {
+      .info-row { gap: 0.5rem; flex-direction: column; align-items: flex-start; } 
+      .info-row dt { width: auto; font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.1rem; }
+    }
+
+/* ▼▼▼ BTTボタンの色修正（視認性確保） ▼▼▼ */
+    body.page-little #backToTop .btt__inner {
+      background-color: #fff !important;
+      /* 文字色をオレンジ（brand）から、こげ茶（ink）に変更して読みやすく */
+      color: var(--unit-ink) !important;
+    }
+    
+    /* アイコンと文字は親の色（currentColor）を継承 */
+    body.page-little #backToTop .btt__icon {
+      fill: currentColor !important;
+    }
+    body.page-little #backToTop .btt__label {
+      color: currentColor !important;
+    }
+    
+    /* リング（外枠）はオレンジのままでOK */
+    body.page-little #backToTop .btt__ring {
+      stroke: var(--unit-brand) !important; 
+      opacity: 1 !important; /* リングを常時表示させたい場合 */
+    }
+
   </style>
 </head>
 
@@ -360,7 +546,7 @@
                 </a>
                 <a class="cta" href="mailto:hands.guitar@ocn.ne.jp" aria-label="メールで問い合わせ">
                   <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  メールで相談
+                  メールで問い合わせ
                 </a>
               </div>
             </aside>
@@ -370,6 +556,7 @@
 
       <nav class="subnav" aria-label="このページ内のメニュー">
         <div class="subnav__list">
+          <a href="#program">支援プログラム</a>
           <a href="#features">特徴</a>
           <a href="#programs">放課後利用プログラム</a>
           <a href="#schedule">一日利用プログラム</a>
@@ -377,6 +564,137 @@
         </div>
         <p class="subnav__help muted small">クリックすると各セクションへ移動します。</p>
       </nav>
+
+      <section id="program" class="program-section">
+        <div class="wrap">
+          <div class="section-header">
+            <h2 class="section-title program-main-title">支援プログラム</h2>
+            <p class="section-lead">
+              リトルハンズでは、厚生労働省のガイドラインに基づき、5領域（健康・生活、運動・感覚、認知・行動、言語・コミュニケーション、人間関係・社会性）を含む支援プログラムを作成・公表しています。
+            </p>
+            <p class="section-meta">作成日：令和7年3月1日</p>
+          </div>
+
+          <div class="program-grid">
+            
+            <div class="program-row">
+              <h3 class="program-head">法人（事業所）理念</h3>
+              <div class="program-body">
+                <ul class="policy-list">
+                  <li><strong>一人ひとりの個性を支援</strong><br>本人の希望を大切にし、様々な体験の機会を提供します。</li>
+                  <li><strong>ご家族のための支援</strong><br>ご家族皆様の時間がより有意義になるようサポートします。</li>
+                  <li><strong>リーズナブルな支援</strong><br>いつでも気軽に、安心してご利用いただける環境を整えます。</li>
+                </ul>
+                <a href="philosophy.html" class="text-link" target="_blank" rel="noopener">法人理念の詳細はこちら ›</a>
+              </div>
+            </div>
+
+            <div class="program-row">
+              <h3 class="program-head">支援方針</h3>
+              <div class="program-body">
+                <p>障がいのある方々が、生まれ育った地域で安心して生活できるよう支援を行います。<br>
+                日常生活における基本動作の指導や集団生活への適応訓練を通じて、自立の促進と生活の質の向上を目指します。ご本人やご家族の状況・環境に応じて、創作活動、機能訓練、社会適応訓練、育成相談、レクリエーション、個別活動など、一人ひとりに合わせた支援を提供します。</p>
+              </div>
+            </div>
+
+            <div class="program-row">
+              <h3 class="program-head">営業時間</h3>
+              <div class="program-body">
+                9:00 〜 18:00
+              </div>
+            </div>
+            
+            <div class="program-row">
+              <h3 class="program-head">送迎実施の有無</h3>
+              <div class="program-body">
+                あり
+              </div>
+            </div>
+
+            <div class="program-group">
+              <h4 class="group-label">本人支援（5領域）</h4>
+              
+              <div class="program-row">
+                <h3 class="program-head">健康・生活</h3>
+                <div class="program-body">
+                  <p>看護師による定期的な訪問日を設け、健康管理を行っています。身支度・食事・排せつ等の生活全般の支援に加え、お預かり時以外のアフターフォローも個別に対応いたします。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">運動・感覚</h3>
+                <div class="program-body">
+                  <ol class="num-list">
+                    <li>集団活動の中で、運動やダンスなど身体を動かす課題を提供します。</li>
+                    <li>日常生活に必要な姿勢保持や運動機能を観察し、体重管理を含めた健康状態を把握します。必要に応じて個別の運動プログラム等による支援を行います。</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">認知・行動</h3>
+                <div class="program-body">
+                  <p>個別の支援計画に基づき、お子様の特性や能力に合わせた課題を提供し、認知・行動面の発達を促します。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">言語<br>コミュニケーション</h3>
+                <div class="program-body">
+                  <p>発達段階や特性に応じた課題を設定し、ソーシャルスキル（社会技能）を取り入れた活動を行います。発音練習、読み書きの学習、絵本や紙芝居の読み聞かせなどを通じ、コミュニケーション能力を育みます。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">人間関係<br>社会性</h3>
+                <div class="program-body">
+                  <p>外出や生活におけるマナー習得などの社会適応訓練を行います。月に1度の外出活動や、ボランティア体験などを通じて多様な人と関わる機会を設け、社会性を養います。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-group">
+              <h4 class="group-label">その他の支援・連携</h4>
+
+              <div class="program-row">
+                <h3 class="program-head">家族支援</h3>
+                <div class="program-body">
+                  <p>相談支援事業所と連携し、レスパイト（一時的な休息）サービスを提供します。また、ご家族向けの相談窓口を設置し、日々の悩みや不安に寄り添います。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">移行支援</h3>
+                <div class="program-body">
+                  <p>将来の自立や進路に向け、相談支援事業所と密に連携してサポートします。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">地域支援・連携</h3>
+                <div class="program-body">
+                  <p>相談支援事業所をはじめ、学校、医療機関等との連携を強化し、地域全体でお子様を支える体制を作ります。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">職員の質の向上</h3>
+                <div class="program-body">
+                  <p>事業所内での研修に加え、外部研修への参加も積極的に行い、職員の専門性と支援の質の向上に努めています。</p>
+                </div>
+              </div>
+
+              <div class="program-row">
+                <h3 class="program-head">主な行事等</h3>
+                <div class="program-body">
+                  <p>毎日の日課に沿った活動に加え、季節ごとの行事を毎月開催しています。また、お子様の興味に合わせた個別の活動も設定しています。</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <section id="features" class="section" aria-labelledby="features-title">
         <h2 id="features-title" class="section__title">リトルハンズの特徴</h2>
@@ -392,14 +710,12 @@
       <section id="programs" class="section" aria-labelledby="programs-title">
         <h2 id="programs-title" class="section__title">放課後利用プログラム</h2>
         <div class="grid">
-          <div class="card">
-            <div class="steps">
-              <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3><p class="small muted">※下校時間に合わせて学校までお迎えします。</p></div>
-              <div class="step"><div class="step__num">2</div><h3>自由遊び</h3></div>
-              <div class="step"><div class="step__num">3</div><h3>おやつ</h3></div>
-              <div class="step"><div class="step__num">4</div><h3>集団・個別の設定活動</h3></div>
-              <div class="step"><div class="step__num">5</div><h3>自由遊び／順次降所</h3></div>
-            </div>
+          <div class="steps">
+            <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3><p class="small muted">※下校時間に合わせて学校までお迎えします。</p></div>
+            <div class="step"><div class="step__num">2</div><h3>自由遊び</h3></div>
+            <div class="step"><div class="step__num">3</div><h3>おやつ</h3></div>
+            <div class="step"><div class="step__num">4</div><h3>集団・個別の設定活動</h3></div>
+            <div class="step"><div class="step__num">5</div><h3>自由遊び／順次降所</h3></div>
           </div>
         </div>
       </section>
@@ -407,25 +723,23 @@
       <section id="schedule" class="section" aria-labelledby="schedule-title">
         <h2 id="schedule-title" class="section__title">一日利用プログラム（休日・長期休暇）</h2>
         <div class="grid">
-          <div class="card">
-            <div class="steps">
-              <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3></div>
-              <div class="step"><div class="step__num">2</div><h3>学習タイム</h3></div>
-              <div class="step"><div class="step__num">3</div><h3>自由遊び</h3></div>
-              <div class="step"><div class="step__num">4</div><h3>昼食</h3></div>
-              <div class="step"><div class="step__num">5</div><h3>ゆっくりタイム</h3></div>
-              <div class="step"><div class="step__num">6</div><h3>集団・個別の設定活動</h3></div>
-              <div class="step"><div class="step__num">7</div><h3>おやつ</h3></div>
-              <div class="step"><div class="step__num">8</div><h3>自由遊び／順次降所</h3></div>
-            </div>
+          <div class="steps">
+            <div class="step"><div class="step__num">1</div><h3>来所・挨拶</h3></div>
+            <div class="step"><div class="step__num">2</div><h3>学習タイム</h3></div>
+            <div class="step"><div class="step__num">3</div><h3>自由遊び</h3></div>
+            <div class="step"><div class="step__num">4</div><h3>昼食</h3></div>
+            <div class="step"><div class="step__num">5</div><h3>ゆっくりタイム</h3></div>
+            <div class="step"><div class="step__num">6</div><h3>集団・個別の設定活動</h3></div>
+            <div class="step"><div class="step__num">7</div><h3>おやつ</h3></div>
+            <div class="step"><div class="step__num">8</div><h3>自由遊び／順次降所</h3></div>
           </div>
 
-          <div class="card">
-            <h3 style="margin:.1rem 0 .6rem;font-weight:700;">開所日・時間</h3>
-            <dl class="facts">
-              <div><dt>放課後利用</dt><dd>月〜金 13:00–18:00</dd></div>
-              <div><dt>一日利用</dt><dd>土日・祝日／学校の長期休暇 09:00–18:00</dd></div>
-              <div><dt>TEL</dt><dd><a href="tel:0191-31-5720">0191-31-5720</a>（常時受付）</dd></div>
+          <div class="info-card">
+            <h3 style="margin:0 0 1rem; font-weight:700; color:#333;">開所日・時間</h3>
+            <dl class="info-table">
+              <div class="info-row"><dt>放課後利用</dt><dd>月〜金 13:00–18:00</dd></div>
+              <div class="info-row"><dt>一日利用</dt><dd>土日・祝日／学校の長期休暇 09:00–18:00</dd></div>
+              <div class="info-row"><dt>TEL</dt><dd><a href="tel:0191-31-5720">0191-31-5720</a>（常時受付）</dd></div>
             </dl>
           </div>
         </div>
@@ -434,13 +748,24 @@
       <section id="access" class="section" aria-labelledby="access-title">
         <h2 id="access-title" class="section__title">アクセス</h2>
         <div class="grid">
-          <div class="card">
-            <dl class="facts">
-              <div><dt>所在地</dt><dd>〒021-0041　一関市赤萩字上袋75-5</dd></div>
-              <div><dt>お車</dt><dd>JR「一ノ関駅」より約15分</dd></div>
-              <div><dt>バス</dt><dd>岩手県交通：現鼻尖・瑞山線・須川温泉線「中道」下車 徒歩5分</dd></div>
+          
+          <div class="info-card">
+            <dl class="info-table">
+              <div class="info-row">
+                <dt>所在地</dt>
+                <dd>〒021-0041 一関市赤萩字上袋75-5</dd>
+              </div>
+              <div class="info-row">
+                <dt>お車</dt>
+                <dd>JR「一ノ関駅」より約15分</dd>
+              </div>
+              <div class="info-row">
+                <dt>バス</dt>
+                <dd>岩手県交通：現鼻尖・瑞山線・須川温泉線「中道」下車 徒歩5分</dd>
+              </div>
             </dl>
           </div>
+
           <div class="map" aria-label="リトルハンズ 地図">
             <iframe 
               title="リトルハンズ 周辺地図"
