@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="img/icon_192.png">
   
   <link rel="preload" as="image" href="img/logo.webp">
+
   <link rel="stylesheet" href="css/style.css" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,16 +37,24 @@
     html{ scroll-behavior:smooth; }
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
-    /* アニメーション待機を無効化し、即時表示させる設定 */
-    body:not(.page-show) { opacity: 1 !important; visibility: visible !important; }
+    /* ▼▼▼ 【最重要】強制表示スタイル（ここを強化しました） ▼▼▼ */
+    /* htmlタグ自体が表示を隠している場合に備えて強制解除 */
+    html:not(.page-show), 
+    body:not(.page-show) { 
+      opacity: 1 !important; 
+      visibility: visible !important; 
+      display: block !important;
+    }
     
-    .spot, .map, .section__title, .office-link {
+    /* 中身のコンテンツも全て強制的に表示 */
+    #page, .l-main, .spot, .map, .section__title, .office-link, footer, header {
       opacity: 1 !important;
+      visibility: visible !important;
       transform: none !important;
       transition: none !important;
       animation: none !important;
-      visibility: visible !important;
     }
+    /* ▲▲▲ 追加ここまで ▲▲▲ */
 
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
@@ -184,7 +193,7 @@
 <div id="page">
  <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo">
-      <img src="img/logo.webp" alt="ロゴ" fetchpriority="high" decoding="sync">
+      <img src="img/logo.webp" alt="ロゴ" fetchpriority="high" decoding="async">
     </a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
