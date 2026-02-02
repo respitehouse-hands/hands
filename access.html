@@ -11,8 +11,7 @@
   
   <link rel="preload" as="image" href="img/logo.webp">
 
-  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+  <link rel="stylesheet" href="css/style.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,18 +36,6 @@
     html{ scroll-behavior:smooth; }
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
-    /* ▼▼▼ 強制表示スタイル（リフロー対策） ▼▼▼ */
-    /* JSが遅れても最初から表示されている状態を作る */
-    body, #page { opacity: 1 !important; visibility: visible !important; display: block !important; }
-    
-    .spot, .map, .section__title, .office-link, footer, header {
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: none !important;
-      transition: none !important;
-      animation: none !important;
-    }
-
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
@@ -478,16 +465,14 @@
   </footer>
 </div>
 
-<script src="js/site.js" type="module"></script>
+<script src="js/site.js" defer></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    // ページ表示処理（site.jsが間に合わない場合の保険）
-    if(!document.body.classList.contains('page-show')){
-      document.body.classList.add('page-show');
-      document.documentElement.classList.remove('no-scroll');
-      var s = document.getElementById('splash'); if(s) s.style.display='none';
-    }
+    // 万が一site.jsが読み込まれなくても、ページが表示されるようにする保険
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    document.documentElement.style.overflowY = 'auto';
 
     // Googleマップの完全遅延読み込み (Intersection Observer)
     var mapObserver = new IntersectionObserver(function(entries, observer) {
@@ -501,7 +486,7 @@
           }
         }
       });
-    }, { rootMargin: "200px 0px" }); // 画面に近づく200px前から準備
+    }, { rootMargin: "200px 0px" });
 
     var maps = document.querySelectorAll('.lazy-map');
     maps.forEach(function(map) {
