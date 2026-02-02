@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>あなたに合う支援をさがす | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズの支援を分野から探せるページです。障がい福祉、就労支援、地域づくりの中から目的に合わせてご案内します。">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css">
@@ -26,7 +26,9 @@
     :root{
       --fd-ink:#0f172a; --fd-ink-2:#475569; --fd-muted:#64748b;
       --fd-line:#e5e7eb; --fd-surface:#fff; --fd-bg:#f7fafb;
-      --fd-accent:#009688; --fd-accent-2:#0ea5a5;
+      /* コントラスト比改善済みの濃い緑 */
+      --fd-accent:#00796b; 
+      --fd-accent-2:#00695c; 
       --fd-radius:18px; --fd-shadow:0 8px 24px rgba(0,0,0,.08);
       --community-brand:#0b2b6b;
     }
@@ -115,9 +117,13 @@
       display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
       text-decoration:none; padding:.85rem 1rem; border-radius:12px; font-weight:700;
       border:1px solid transparent; white-space:nowrap; box-sizing:border-box;
+      transition: background .2s ease;
     }
-    .fd-call{ background:#10b981; color:#fff; }
-    .fd-call:hover{ filter:brightness(.96); }
+    
+    /* ▼▼▼ 修正：電話ボタンもアクセントカラーに統一しコントラストを確保 ▼▼▼ */
+    .fd-call{ background:var(--fd-accent); color:#fff; }
+    .fd-call:hover{ background:var(--fd-accent-2); }
+    
     .fd-mail{ background:#fff; color:#0b3b36; border-color:#dbe3ea; }
     .fd-mail:hover{ background:#f8fbfb; }
     @media (max-width:720px){
