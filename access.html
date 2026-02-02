@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
   
+  <link rel="preload" as="image" href="img/logo.webp">
   <link rel="stylesheet" href="css/style.css" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,11 +36,9 @@
     html{ scroll-behavior:smooth; }
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
-    /* ▼▼▼ 【重要】アニメーション待機を無効化し、即時表示させる設定 ▼▼▼ */
-    /* ページのフェードイン待ちを強制解除 */
+    /* アニメーション待機を無効化し、即時表示させる設定 */
     body:not(.page-show) { opacity: 1 !important; visibility: visible !important; }
     
-    /* 要素のアニメーションもすべて無効化（パッと表示） */
     .spot, .map, .section__title, .office-link {
       opacity: 1 !important;
       transform: none !important;
@@ -47,7 +46,6 @@
       animation: none !important;
       visibility: visible !important;
     }
-    /* ▲▲▲ 追加ここまで ▲▲▲ */
 
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
@@ -186,7 +184,7 @@
 <div id="page">
  <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo">
-      <img src="img/logo.webp" alt="ロゴ" fetchpriority="high">
+      <img src="img/logo.webp" alt="ロゴ" fetchpriority="high" decoding="sync">
     </a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
