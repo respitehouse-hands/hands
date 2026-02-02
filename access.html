@@ -11,7 +11,8 @@
   
   <link rel="preload" as="image" href="img/logo.webp">
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,14 +37,16 @@
     html{ scroll-behavior:smooth; }
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
-    /* ▼▼▼ アニメーション強制解除（スプラッシュ対策） ▼▼▼ */
-    body:not(.page-show) { opacity: 1 !important; visibility: visible !important; }
-    .spot, .map, .section__title, .office-link {
+    /* ▼▼▼ 強制表示スタイル（リフロー対策） ▼▼▼ */
+    /* JSが遅れても最初から表示されている状態を作る */
+    body, #page { opacity: 1 !important; visibility: visible !important; display: block !important; }
+    
+    .spot, .map, .section__title, .office-link, footer, header {
       opacity: 1 !important;
+      visibility: visible !important;
       transform: none !important;
       transition: none !important;
       animation: none !important;
-      visibility: visible !important;
     }
 
     .page{ padding-inline:min(4vw,24px); }
@@ -103,7 +106,7 @@
     .map{ 
       height:100%; min-height:440px; 
       border:1px solid var(--my-line); border-radius:12px; 
-      overflow:hidden; background:#f0f0f0; /* 読み込み前は薄いグレー */
+      overflow:hidden; background:#f0f0f0;
       width: 100%; max-width: 100%;
       position: relative;
     }
@@ -475,11 +478,11 @@
   </footer>
 </div>
 
-<script src="js/site.js" defer></script>
+<script src="js/site.js" type="module"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    // ページ表示処理
+    // ページ表示処理（site.jsが間に合わない場合の保険）
     if(!document.body.classList.contains('page-show')){
       document.body.classList.add('page-show');
       document.documentElement.classList.remove('no-scroll');
