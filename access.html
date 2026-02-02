@@ -33,9 +33,22 @@
     }
 
     html{ scroll-behavior:smooth; }
-    /* ▼▼▼ 修正：フォント読み込み中も文字を表示させる設定 ▼▼▼ */
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
+    /* ▼▼▼ 【重要】アニメーション待機を無効化し、即時表示させる設定 ▼▼▼ */
+    /* ページのフェードイン待ちを強制解除 */
+    body:not(.page-show) { opacity: 1 !important; visibility: visible !important; }
+    
+    /* 要素のアニメーションもすべて無効化（パッと表示） */
+    .spot, .map, .section__title, .office-link {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      animation: none !important;
+      visibility: visible !important;
+    }
+    /* ▲▲▲ 追加ここまで ▲▲▲ */
+
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
