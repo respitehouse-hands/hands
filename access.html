@@ -24,7 +24,6 @@
   >
 
   <style>
-    /* ===== ページ固有設定 ===== */
     :root{
       --unit-brand:#2f7d5b;
       --unit-ink:#193528;
@@ -37,24 +36,15 @@
     html{ scroll-behavior:smooth; }
     body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
     
-    /* ▼▼▼ 【最重要】強制表示スタイル（ここを強化しました） ▼▼▼ */
-    /* htmlタグ自体が表示を隠している場合に備えて強制解除 */
-    html:not(.page-show), 
-    body:not(.page-show) { 
-      opacity: 1 !important; 
-      visibility: visible !important; 
-      display: block !important;
-    }
-    
-    /* 中身のコンテンツも全て強制的に表示 */
-    #page, .l-main, .spot, .map, .section__title, .office-link, footer, header {
+    /* ▼▼▼ アニメーション強制解除（スプラッシュ対策） ▼▼▼ */
+    body:not(.page-show) { opacity: 1 !important; visibility: visible !important; }
+    .spot, .map, .section__title, .office-link {
       opacity: 1 !important;
-      visibility: visible !important;
       transform: none !important;
       transition: none !important;
       animation: none !important;
+      visibility: visible !important;
     }
-    /* ▲▲▲ 追加ここまで ▲▲▲ */
 
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
@@ -113,8 +103,9 @@
     .map{ 
       height:100%; min-height:440px; 
       border:1px solid var(--my-line); border-radius:12px; 
-      overflow:hidden; background:#fff;
+      overflow:hidden; background:#f0f0f0; /* 読み込み前は薄いグレー */
       width: 100%; max-width: 100%;
+      position: relative;
     }
     .map iframe{ width:100% !important; height:100% !important; border:0; display:block; }
     @media (max-width:820px){
@@ -180,10 +171,8 @@
     .page-access .site-footer .footer__bar{ background:#f0f7f4; border-top:1px solid #e5e7eb; }
     .page-access .site-footer h3, .page-access .site-footer a{ color:var(--unit-ink); }
 
-    /* スマホ用改行クラス */
     .sp-break { display: none; }
     @media (max-width: 600px) { .sp-break { display: block; } }
-
   </style>
 </head>
 
@@ -295,9 +284,10 @@
             </div>
             <div class="map" aria-label="青葉（二丁目６-16）地図">
               <iframe 
+                class="lazy-map"
                 title="青葉（二丁目 ６-16）周辺地図"
-                src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%892%E4%B8%81%E7%9B%AE6-16&output=embed"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%892%E4%B8%81%E7%9B%AE6-16&output=embed"
+                allowfullscreen>
               </iframe>
             </div>
           </div>
@@ -339,9 +329,10 @@
             </div>
             <div class="map" aria-label="大町（なのはなプラザ４F）地図">
               <iframe 
+                class="lazy-map"
                 title="大町 ４-29 なのはなプラザ 周辺地図"
-                src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E5%A4%A7%E7%94%BA4-29%20%E3%81%AA%E3%81%AE%E3%81%AF%E3%81%AA%E3%83%97%E3%83%A9%E3%82%B6&output=embed"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E5%A4%A7%E7%94%BA4-29%20%E3%81%AA%E3%81%AE%E3%81%AF%E3%81%AA%E3%83%97%E3%83%A9%E3%82%B6&output=embed"
+                allowfullscreen>
               </iframe>
             </div>
           </div>
@@ -365,9 +356,10 @@
             </div>
             <div class="map" aria-label="中央町（１-１-４）地図">
               <iframe 
+                class="lazy-map"
                 title="中央町 １-１-４ 周辺地図"
-                src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1-1-4&output=embed"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1-1-4&output=embed"
+                allowfullscreen>
               </iframe>
             </div>
           </div>
@@ -391,9 +383,10 @@
             </div>
             <div class="map" aria-label="赤萩（上袋75-５）地図">
               <iframe 
+                class="lazy-map"
                 title="赤萩 上袋 75-５ 周辺地図"
-                src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E8%B5%A4%E8%90%A9%E5%AD%97%E4%B8%8A%E8%A2%8B75-5&output=embed"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E8%B5%A4%E8%90%A9%E5%AD%97%E4%B8%8A%E8%A2%8B75-5&output=embed"
+                allowfullscreen>
               </iframe>
             </div>
           </div>
@@ -486,10 +479,31 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function(){
-    if(document.body.classList.contains('page-show')) return; 
-    document.body.classList.add('page-show');
-    document.documentElement.classList.remove('no-scroll');
-    var s = document.getElementById('splash'); if(s) s.style.display='none';
+    // ページ表示処理
+    if(!document.body.classList.contains('page-show')){
+      document.body.classList.add('page-show');
+      document.documentElement.classList.remove('no-scroll');
+      var s = document.getElementById('splash'); if(s) s.style.display='none';
+    }
+
+    // Googleマップの完全遅延読み込み (Intersection Observer)
+    var mapObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var iframe = entry.target;
+          if(iframe.dataset.src){
+            iframe.src = iframe.dataset.src; // ここで初めて読み込み開始
+            iframe.removeAttribute('data-src');
+            observer.unobserve(iframe);
+          }
+        }
+      });
+    }, { rootMargin: "200px 0px" }); // 画面に近づく200px前から準備
+
+    var maps = document.querySelectorAll('.lazy-map');
+    maps.forEach(function(map) {
+      mapObserver.observe(map);
+    });
   });
 </script>
 </body>
