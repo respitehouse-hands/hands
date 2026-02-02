@@ -15,20 +15,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.google.com">
   <link rel="preconnect" href="https://www.gstatic.com">
+  
   <link 
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
     rel="stylesheet"
-    media="print"
-    onload="this.media='all'"
   >
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-  </noscript>
 
   <style>
     /* ===== ページ固有設定 ===== */
     :root{
-      /* ── Hands 共通トーン（緑系）── */
       --unit-brand:#2f7d5b;
       --unit-ink:#193528;
       --unit-tint:#eaf7f1;
@@ -38,7 +33,9 @@
     }
 
     html{ scroll-behavior:smooth; }
-    body{ margin:0; color:#222; font-family:"Noto Sans JP",sans-serif; background:#fff; }
+    /* ▼▼▼ 修正：フォント読み込み中も文字を表示させる設定 ▼▼▼ */
+    body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
+    
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
@@ -64,7 +61,6 @@
       border-radius:16px;
       box-shadow:0 14px 38px rgba(0,0,0,.06);
       overflow:hidden;
-      /* 読み込み時のレイアウトシフトを防ぐ */
       contain: content;
     }
     .spot__head{
@@ -140,18 +136,14 @@
       background: #fff !important; 
       border: 1px solid #e5e7eb; 
       box-shadow: 0 12px 28px rgba(47,125,91,.10);
-      /* 上下の角丸をつけて、より柔らかく */
       border-radius: 12px; 
-      padding: 0.5rem 0; 
+      padding: 0.5rem 0;
     }
-
-    /* ▼▼▼ 区切り線を削除 ▼▼▼ */
     .page-access .submenu li + li{ border-top: none; } 
-
+    
     .page-access .submenu a{ 
       color:#222; 
       transition: background-color 0.2s;
-      /* 線をなくす分、クリック範囲を広げて押しやすく */
       display: block; 
       padding: 0.8rem 1.2rem; 
     }
