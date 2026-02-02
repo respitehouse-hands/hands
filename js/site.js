@@ -1,54 +1,7 @@
-// js/site.js
+// js/site.js (軽量版)
 
 // =========================
-// 1) ページ遷移フェード
-// =========================
-(() => {
-  const doc = document.documentElement;
-  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 入場：次フレームで不透明に
-  if (!REDUCED) {
-    doc.classList.add('is-enter');
-    requestAnimationFrame(() => doc.classList.add('is-in'));
-  }
-
-  // 離脱：通常リンクのみフェードアウト
-  const DURATION = 180; // ms
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (!a) return;
-
-    const href = a.getAttribute('href') || '';
-    const sameHost = a.host === location.host;
-    const isHash = href.startsWith('#');
-    const isJs = href.startsWith('javascript:');
-    const isTel = href.startsWith('tel:') || href.startsWith('mailto:');
-    const noTrans = a.hasAttribute('data-no-transition');
-
-    if (
-      e.defaultPrevented || noTrans || a.target === '_blank' || a.hasAttribute('download') ||
-      !href || isHash || isJs || isTel || (!sameHost && !href.startsWith('/'))
-    ) return;
-
-    if (REDUCED) return;
-
-    e.preventDefault();
-    doc.classList.add('is-leave');
-    setTimeout(() => { location.href = a.href; }, DURATION);
-  }, { capture: true });
-
-  // bfcache復帰時は即表示
-  addEventListener('pageshow', (ev) => {
-    if (ev.persisted) {
-      doc.classList.remove('is-leave');
-      doc.classList.add('is-enter','is-in');
-    }
-  });
-})();
-
-// =========================
-// 2) 「上へ戻る」進捗リング（既存）
+// 1) 「上へ戻る」進捗リング
 // =========================
 (() => {
   const btn = document.getElementById('backToTop');
@@ -77,7 +30,7 @@
 })();
 
 // =========================
-// 3) サブページの表示解放（既存）
+// 2) ページの表示解放（これを即時実行させるのが大事）
 // =========================
 (() => {
   const html = document.documentElement;
@@ -86,7 +39,9 @@
   html.style.overflowY = 'auto';
 })();
 
-
+// =========================
+// 3) ヘッダーのスクロール検知
+// =========================
 (function(){
   const hd = document.getElementById('site-header');
   if(!hd) return;
@@ -97,8 +52,3 @@
   window.addEventListener('scroll', on, {passive:true});
   on();
 })();
-
-
-
-
-
