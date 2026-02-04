@@ -265,7 +265,19 @@
         text-wrap: balance; 
     }
 
+/* 1. 年代ナビ下の注釈：文字を濃いグレーに変更して警告を解消 */
+    .history-caption{ 
+        text-align: center; 
+        font-size: 0.8rem; 
+        color: #4b5563; /* ← #888 から変更（コントラスト比 4.5:1以上を確保） */
+        margin-top: -1.5rem; 
+        margin-bottom: 4rem; 
+    }
 
+    /* 2. 「開所」タグ：白文字がはっきり読める深みのある色に変更 */
+    .history-tag.is-open { 
+        background: #c2410c; /* ← 白文字を通すため、少し赤みの入った濃いオレンジに変更 */
+    }
 
   </style>
 </head>
