@@ -279,6 +279,20 @@
         background: #c2410c; /* ← 白文字を通すため、少し赤みの入った濃いオレンジに変更 */
     }
 
+/* カードにマウスが乗った時、左の●を少し大きく、色を鮮やかにする */
+    .history-card:hover::before {
+        transform: scale(1.3); /* 1.3倍に拡大 */
+        background: #00bfa5;   /* 少し明るいエメラルドグリーンに変化 */
+        box-shadow: 0 0 0 6px rgba(0, 150, 136, 0.1); /* ふわっとした光の輪を追加 */
+        transition: all 0.3s ease; /* なめらかに変化 */
+    }
+    
+    /* 元のドットにもtransitionを追加して、戻る時もなめらかにする */
+    .history-card::before {
+        /* ...既存のプロパティ... */
+        transition: all 0.3s ease; /* これを追加 */
+    }
+    
   </style>
 </head>
 
@@ -825,3 +839,4 @@
 
 </body>
 </html>
+
