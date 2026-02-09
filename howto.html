@@ -26,119 +26,284 @@
   
   <style>
     :root{
-      --unit-brand:#2f7d5b; --unit-ink:#193528; --unit-tint:#eaf7f1; --unit-tint-2:#f5fbf8;
-      --accent:#4C8CF5; --accent-ink:#123567;
-      --accent-bg-weak: color-mix(in oklab, var(--accent) 10%, #fff);
-      --accent-border:  color-mix(in oklab, var(--accent) 40%, #fff);
-      --my-line:#e6edf2; --my-radius:14px; --my-max:1120px;
+      /* ベースカラー */
+      --howto-accent: #009688;
+      --howto-ink: #333;
+      --howto-bg: #f5fbf8;
+      --howto-line: #e5e7eb;
+      --howto-radius: 14px;
     }
-    body.page-howto #site-header.c-header{ background: var(--unit-tint-2); }
-    .page{ padding-inline:min(4vw,24px); }
-    .wrap{ max-width:var(--my-max); margin-inline:auto; }
 
-    .breadcrumb{ max-width: var(--my-max); margin: 0 auto; padding: .9rem min(4vw,24px) 0; }
+    body.page-howto #site-header.c-header{ background: #fff; border-bottom:1px solid var(--howto-line); }
+    .page-howto{ background: #fcfcfc; }
+    
+    .howto-container{ max-width: 1000px; margin-inline: auto; padding: 0 min(4vw, 24px) 4rem; }
+
+    /* パンくず */
+    .breadcrumb{ margin: 0 0 1.5rem; padding-top: 1rem; }
     .breadcrumb ol{ display:flex; flex-wrap:wrap; gap:.5rem .75rem; list-style:none; padding:0; margin:0; color:#6b7280; font-size:.95rem; }
     .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
-    .breadcrumb a{ color: color-mix(in oklab, var(--unit-brand) 70%, #000); text-decoration:none; font-weight:500; }
-    .breadcrumb a:hover{ text-decoration:underline; }
-    .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+    .breadcrumb a{ color: #4b5563; text-decoration:none; transition:color .2s; }
+    .breadcrumb a:hover{ color: var(--howto-accent); text-decoration:underline; }
+    .breadcrumb [aria-current="page"]{ color:#111; font-weight:600; }
 
+    /* ヒーローエリア */
     .unit-hero{
-      margin:2.2rem 0 2.4rem;
-      background:
-        radial-gradient(1100px 260px at 12% -20%, var(--unit-tint), transparent 60%),
-        radial-gradient(900px 240px at 88% -30%, var(--unit-tint-2), transparent 60%),
-        linear-gradient(#fff,#fff);
-      border:1px solid var(--my-line); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,.06);
+      margin: 2rem 0 3rem;
+      background: #fff;
+      border: 1px solid var(--howto-line);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      overflow: hidden;
+      position: relative;
     }
-    .unit-hero__inner{ padding: clamp(18px,2.8vw,28px) clamp(18px,3.4vw,36px); }
+    .unit-hero::before{
+      content:""; position:absolute; inset:0 auto 0 0; width:6px; background:var(--howto-accent);
+    }
+
+    .unit-hero__inner{ padding: clamp(20px, 4vw, 40px); }
     .unit-hero__head{
-      display:grid; grid-template-columns: clamp(72px,8vw,92px) 1fr;
-      gap: clamp(12px,2.2vw,22px); align-items:center; margin-bottom: clamp(12px,2vw,26px);
+      display: flex; gap: 1.5rem; align-items: center;
     }
-    .unit-hero__emblem{ width: 100%; height: clamp(72px,8vw,92px); border-radius:10px; overflow:hidden; background:transparent; border:0; box-shadow:none; display:grid; place-items:center; }
-    .unit-hero__emblem img{ width:100%; height:100%; object-fit:contain; image-rendering:-webkit-optimize-contrast; }
-    .unit-hero__title{ margin:0; color:var(--unit-ink); font:700 clamp(1.2rem,2.2vw,1.6rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; }
-    .unit-hero__lead{ margin:.8rem 0 0; color:#1f2937; }
-
-    .note{ background: color-mix(in oklab, var(--unit-brand) 8%, #fff); border:1px solid color-mix(in oklab, var(--unit-brand) 25%, #fff); border-radius:10px; padding:10px 12px; color:#143957; }
-
-    .toc{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; padding:16px 18px; margin: 0 0 22px; }
-    .toc h2{ margin:.2rem 0 .6rem; font-size:1.05rem; }
-    .toc ol{ margin:0; padding-left:1.2rem; line-height:1.9; }
-    .toc a{ text-decoration:none; color:#1f6a4d; }
-    .toc a:hover{ text-decoration:underline; }
-
-    .flow{ display:grid; gap:20px; }
-    .step{ border:1px solid var(--my-line); border-radius:var(--my-radius); background:#fff; box-shadow:0 1px 0 #0000000a; padding:16px; }
-    .step__head{ display:flex; align-items:center; gap:10px; padding-bottom:.55rem; border-bottom:1px solid color-mix(in oklab, var(--unit-brand) 22%, #fff); margin-bottom:1rem; }
-    .badge{ display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background: var(--accent-bg-weak); color: var(--accent-ink); border:1px solid var(--accent-border); font-weight:700; letter-spacing:-0.01em; }
-    .step h3{ margin:0; font-size:1.1rem; color:#111; }
-    .step__body{ display:grid; gap:12px; }
-
-    @media (min-width:900px){
-      .step{ padding:18px 20px; }
-      .step__body{ grid-template-columns: 1.2fr 1fr; align-items:start; }
+    .unit-hero__emblem{
+      flex: 0 0 clamp(64px, 8vw, 80px); 
+      height: clamp(64px, 8vw, 80px);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .unit-hero__emblem img{
+      width: 100%; height: 100%; object-fit: contain;
     }
 
-    .figure{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fff; }
-    .figure img{ display:block; width:100%; height:auto; cursor:zoom-in; }
-    .figure figcaption{ --figure-cap-bg:#ffffff; --figure-cap-border:#e7eeea; --figure-cap-ink:#44515d; padding:10px 12px; font-size:.95rem; color:var(--figure-cap-ink); background:var(--figure-cap-bg); border-top:1px solid var(--figure-cap-border); }
+    .unit-hero__content{ flex: 1; }
+    .unit-hero__title{
+      margin: 0 0 .5rem;
+      font: 700 clamp(1.5rem, 2.5vw, 1.8rem)/1.3 "Zen Maru Gothic", sans-serif;
+      color: var(--howto-ink);
+    }
+    .unit-hero__lead{ margin:0; color: #555; line-height: 1.6; }
+    
+    .note{
+      margin-top: 1.5rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      font-size: .9rem;
+      color: #64748b;
+      display: flex; gap: .5em; align-items: baseline;
+    }
+    .note::before{ content:"※"; color:var(--howto-accent); font-weight:700; }
 
-    .nextprev{ display:flex; gap:10px; justify-content:space-between; margin-top:10px; }
-    .np-btn{ display:inline-flex; align-items:center; gap:.4em; padding:.6em .9em; border-radius:999px; text-decoration:none; border:1px solid var(--accent-border); background:#fff; color:var(--accent-ink); transition: box-shadow .18s ease, transform .18s ease; }
-    .np-btn:hover{ box-shadow:0 8px 18px rgba(0,0,0,.08); transform: translateY(-1px); }
-
-    .lb{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; place-items:center; z-index:9999; }
-    .lb__img{ max-width:92vw; max-height:90vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.4); }
-    .lb[aria-hidden="false"]{ display:grid; }
-
-    .page-howto{ --btt-ring-active:#2f7d5b; --btt-center:#eef8f3; }
-
-    @media print{
-      .figure figcaption:after{ content:"  画像: " attr(data-src); display:block; color:#666; font-size:.85em; margin-top:.2em; }
+    /* 目次 */
+    .toc{
+      background: #fff;
+      border: 1px solid var(--howto-line);
+      border-radius: var(--howto-radius);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    .toc-title{ font-size:1.1rem; margin:0 0 1.2rem; color:var(--howto-ink); display:flex; align-items:center; gap:.5em; }
+    .toc-title::before{ content:""; width:4px; height:1em; background:var(--howto-accent); border-radius:2px; }
+    
+    .toc-list{
+      margin: 0; padding: 0; list-style: none;
+      display: grid; 
+      gap: .8rem;
+    }
+    @media (min-width: 768px){
+      .toc-list{ grid-template-columns: 1fr 1fr; gap: 1rem 2rem; }
     }
 
-    /* 右の図版を少し広げる版 */
+    .toc-list a{
+      display: flex; align-items: center; gap: .8rem;
+      padding: .8rem 1rem;
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background .2s, color .2s;
+      border-radius: 6px;
+    }
+    .toc-list a:hover{
+      background: #f0fdfa;
+      color: var(--howto-accent);
+    }
+    .toc-num{
+      flex: 0 0 1.8em; height: 1.8em;
+      display: flex; align-items: center; justify-content: center;
+      background: #e5e7eb; color: #666;
+      border-radius: 50%; font-size: .85rem; font-weight: 700;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover .toc-num{ background:var(--howto-accent); color:#fff; }
+    
+    /* 矢印アイコン削除のため関連スタイルも削除 */
+
+
+    /* ステップ本体 */
+    .flow{ display:grid; gap: 3rem; }
+    
+    .step{
+      background: #fff;
+      border: 1px solid var(--howto-line);
+      border-radius: var(--howto-radius);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      padding: 0;
+      overflow: hidden;
+      scroll-margin-top: 10px;
+    }
+
+    .step__header{
+      background: #f9fafb;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--howto-line);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    
+    .step__num{
+      flex: 0 0 2.4rem;
+      height: 2.4rem;
+      background: var(--howto-accent);
+      color: #fff;
+      font-family: "Zen Maru Gothic", sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      display: grid; place-items: center;
+    }
+    
+    .step__title{
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--howto-ink);
+      line-height: 1.4;
+    }
+
+    .step__body{
+      padding: 1.5rem;
+      display: grid; gap: 1.5rem;
+    }
     @media (min-width: 900px){
-      .step--wide .step__body{ grid-template-columns: 1fr 1.6fr; gap: clamp(16px, 2.4vw, 28px); align-items: start; }
-      .step--wide .figure{ max-width: min(720px, 100%); margin-left: auto; }
+      .step__body{ grid-template-columns: 1fr 1.2fr; align-items: start; }
     }
-    .step--wide .figure img{ width: 100%; height: auto; display: block; }
 
-    /* howto：右下のナビ（次へと同じポジション） */
-    .howto-stepnav{
-      display:flex;
-      justify-content:flex-end;
-      margin-top: 1.25rem;
+    .step__desc{ line-height: 1.8; color: #444; }
+    .step__desc p{ margin: 0 0 1em; }
+    
+    .step__figure{
+      margin: 0;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
     }
-    .howto-btn{
-      appearance:none;
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      text-decoration:none;
-      font-weight:700;
-      padding:.85rem 1.1rem;
-      border-radius:12px;
-      border:1px solid transparent;
-      background:#009688;           /* 必要なら既存のボタン色に合わせて調整 */
-      color:#fff;
-      box-shadow:0 8px 20px rgba(0,0,0,.08);
-      transition: filter .15s ease, transform .06s ease;
+    
+    .step__img-btn{
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      position: relative;
     }
-    .howto-btn:hover{ filter:brightness(.96); }
-    .howto-btn:active{ transform: translateY(1px); }
-    .howto-btn svg{ width:18px; height:18px; }
-    @media (max-width:680px){
-      .howto-stepnav{ justify-content:stretch; }
-      .howto-btn{ width:100%; justify-content:center; }
+    .step__img-btn:hover::after{ opacity: 1; }
+    .step__img-btn::after{
+      content: "クリックで拡大";
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      display: grid; place-items: center;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .step__img{
+      display: block; width: 100%; height: auto;
+    }
+
+    .step__caption{
+      padding: .8rem 1rem;
+      font-size: .9rem;
+      color: #666;
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    /* 前後ナビ */
+    .step__nav{
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--howto-line);
+      display: flex; justify-content: space-between; gap: 1rem;
+      background: #fff;
+    }
+    .nav-btn{
+      display: inline-flex; align-items: center; gap: .5em;
+      padding: .6em 1.2em;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .95rem;
+      transition: all .2s;
+    }
+    .nav-btn.prev{
+      color: #6b7280;
+      border: 1px solid #d1d5db;
+    }
+    .nav-btn.prev:hover{
+      background: #f3f4f6;
+      color: #374151;
+    }
+    .nav-btn.next{
+      margin-left: auto;
+      background: var(--howto-accent);
+      color: #fff;
+      border: 1px solid var(--howto-accent);
+      box-shadow: 0 4px 10px rgba(0,150,136,0.2);
+    }
+    .nav-btn.next:hover{
+      background: #00796b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,150,136,0.25);
+    }
+
+    /* ライトボックス */
+    .lb-dialog{
+      padding: 0; border: none; border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      max-width: 90vw; max-height: 90vh; background: transparent;
+      overflow: hidden;
+    }
+    .lb-dialog::backdrop{ background: rgba(0,0,0,0.8); backdrop-filter: blur(2px); }
+    .lb-content{ position: relative; display: grid; }
+    .lb-img{ display: block; max-width: 100%; max-height: 85vh; object-fit: contain; }
+    
+    /* ×ボタン：黒背景・白文字・枠線なし */
+    .lb-close{
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none; /* 枠線を削除 */
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 1.8rem;
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all .2s;
+      z-index: 10;
+    }
+    .lb-close:hover{
+      transform: scale(1.1);
+      background: rgba(0,0,0,0.8);
     }
 
     /* トップページ：サブメニュー背景を白に */
-    .page-howto .submenu{
-      background: #fff;
-    }
+    .page-howto .submenu{ background: #fff; }
 
   </style>
 </head>
@@ -206,110 +371,184 @@
     </label>
   </header>
 
-  <nav class="breadcrumb" aria-label="パンくず">
-    <ol>
-      <li><a href="index.html">TOP</a></li>
-      <li aria-current="page">初めての方へ</li>
-    </ol>
-  </nav>
+  <main id="main" class="l-main">
+    <div class="howto-container">
 
-  <main id="main" class="l-main page">
-    <section class="wrap">
-
-      <section class="unit-hero" aria-labelledby="hero-title">
-        <div class="unit-hero__inner">
-          <div class="unit-hero__head">
-            <div class="unit-hero__emblem"><img src="img/hatena.webp" alt="案内アイコン" decoding="async" /></div>
-            <div>
-              <h1 id="hero-title" class="unit-hero__title">初めての方へ</h1>
-              <p class="unit-hero__lead">このページは、トップページから目的の情報までの「進み方」を図解でご案内します。</p>
-            </div>
-          </div>
-          <div class="note"><small>画像をタップ／クリックすると拡大できます。スマホとパソコンで配置が少し違う場合があります。</small></div>
-        </div>
-      </section>
-
-      <nav class="toc" aria-label="このページの使い方">
-        <h2>目的ページまでの流れ</h2>
+      <nav class="breadcrumb" aria-label="パンくず">
         <ol>
-          <li><a href="#step1">「あなたに合う支援をさがす」をクリック</a></li>
-          <li><a href="#step2">“分野”を選ぶ</a></li>
-          <li><a href="#step3">“事業所”を選ぶ</a></li>
-          <li><a href="#step4">事業内容の確認</a></li>
-          <li><a href="#step5">お問い合わせ</a></li>
+          <li><a href="index.html">TOP</a></li>
+          <li aria-current="page">初めての方へ</li>
         </ol>
       </nav>
 
+      <header class="unit-hero">
+        <div class="unit-hero__inner">
+          <div class="unit-hero__head">
+            <div class="unit-hero__emblem">
+              <img src="img/hatena.webp" alt="案内アイコン" decoding="async">
+            </div>
+            <div class="unit-hero__content">
+              <h1 class="unit-hero__title">初めての方へ</h1>
+              <p class="unit-hero__lead">トップページから目的の情報を見つけるまでの「進み方」を、図解で分かりやすくご案内します。</p>
+            </div>
+          </div>
+          <div class="note">画像をタップ／クリックすると大きく表示されます。</div>
+        </div>
+      </header>
+
+      <nav class="toc" aria-labelledby="toc-label">
+        <h2 id="toc-label" class="toc-title">目的ページまでの流れ</h2>
+        <ul class="toc-list">
+          <li>
+            <a href="#step1">
+              <span class="toc-num">1</span>「支援をさがす」をクリック
+            </a>
+          </li>
+          <li>
+            <a href="#step2">
+              <span class="toc-num">2</span>分野を選ぶ
+            </a>
+          </li>
+          <li>
+            <a href="#step3">
+              <span class="toc-num">3</span>事業所を選ぶ
+            </a>
+          </li>
+          <li>
+            <a href="#step4">
+              <span class="toc-num">4</span>事業内容の確認
+            </a>
+          </li>
+          <li>
+            <a href="#step5">
+              <span class="toc-num">5</span>お問い合わせ
+            </a>
+          </li>
+        </ul>
+      </nav>
+
       <div class="flow">
-        <section id="step1" class="step step--wide" aria-labelledby="s1">
-          <div class="step__head"><span class="badge">1</span><h3 id="s1">「あなたに合う支援をさがす」をクリック</h3></div>
-          <div class="step__body">
-            <div><p>①の「あなたに合う支援をさがす」をクリックすると、各事業所の分野をお選びいただけます。</p></div>
-            <figure class="figure" data-src="img/howto/top-01.png">
-              <img src="img/flow1.webp" alt="トップページのスクリーンショット（①：事業所紹介）" loading="lazy" onclick="openLb(this)">
-              <figcaption>例：トップページ。①をクリック（タップ）。</figcaption>
-            </figure>
+        
+        <article id="step1" class="step">
+          <div class="step__header">
+            <span class="step__num">1</span>
+            <h3 class="step__title">「あなたに合う支援をさがす」をクリック</h3>
           </div>
-          <div class="nextprev"><span></span><a class="np-btn" href="#step2">②へ →</a></div>
-        </section>
-
-        <section id="step2" class="step step--wide" aria-labelledby="s2">
-          <div class="step__head"><span class="badge">2</span><h3 id="s2">“分野”を選ぶ</h3></div>
           <div class="step__body">
-            <div><p>一覧から目的の分野を選びます。<br>例では「障がい福祉」をクリックします。</p></div>
-            <figure class="figure" data-src="img/howto/top-02.png">
-              <img src="img/flow2.webp" alt="分野の例（障がい福祉）" loading="lazy" onclick="openLb(this)">
-              <figcaption>例：分野一覧。「障がい福祉」を選びます。</figcaption>
-            </figure>
-          </div>
-          <div class="nextprev"><a class="np-btn" href="#step1">← 戻る</a><a class="np-btn" href="#step3">③へ →</a></div>
-        </section>
-
-        <section id="step3" class="step step--wide" aria-labelledby="s3">
-          <div class="step__head"><span class="badge">3</span><h3 id="s3">“事業所”を選ぶ</h3></div>
-          <div class="step__body">
-            <div><p>一覧から目的の事業所を選びます。<br>例では「わぁははクラブ」をクリックします。</p></div>
-            <figure class="figure" data-src="img/howto/top-03.png">
-              <img src="img/flow3.webp" alt="事業所の例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
-              <figcaption>例：事業所一覧。「わぁははクラブ」を選びます。</figcaption>
-            </figure>
-          </div>
-          <div class="nextprev"><a class="np-btn" href="#step2">← 戻る</a><a class="np-btn" href="#step4">④へ →</a></div>
-        </section>
-
-        <section id="step4" class="step step--wide" aria-labelledby="s4">
-          <div class="step__head"><span class="badge">4</span><h3 id="s4">事業内容を確認</h3></div>
-          <div class="step__body">
-            <div>
-              <p>事業内容をご確認ください。より詳しく知りたい場合、下部にあるボタン(※)をクリックしてご確認ください。他の事業所ページを見たい場合は、②まで戻り同様の手順でご覧ください。</p>
-              
+            <div class="step__desc">
+              <p>トップページにあるメニューの中から、①の<strong>「あなたに合う支援をさがす」</strong>をクリックしてください。</p>
+              <p>ここから、それぞれの目的に合った事業所の分野を選ぶことができます。</p>
             </div>
-            <figure class="figure" data-src="img/howto/office-01.png">
-              <img src="img/flow4.webp" alt="事業所ページ例（わぁははクラブ）" loading="lazy" onclick="openLb(this)">
-              <figcaption>例：わぁははクラブの事業所ページ。</figcaption>
+            <figure class="step__figure">
+              <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
+                <img class="step__img" src="img/flow1.webp" alt="トップページのスクリーンショット。①のボタン位置を示しています。" loading="lazy">
+              </button>
+              <figcaption class="step__caption">例：トップページ</figcaption>
             </figure>
           </div>
-          <div class="nextprev"><a class="np-btn" href="#step3">← 戻る</a><a class="np-btn" href="#step5">⑤へ →</a></div>
-        </section>
+          <div class="step__nav">
+            <span></span>
+            <a href="#step2" class="nav-btn next">次へ（分野を選ぶ） →</a>
+          </div>
+        </article>
 
-        <section id="step5" class="step step--wide" aria-labelledby="s5">
-          <div class="step__head"><span class="badge">5</span><h3 id="s5">お問い合わせ</h3></div>
+        <article id="step2" class="step">
+          <div class="step__header">
+            <span class="step__num">2</span>
+            <h3 class="step__title">分野を選ぶ</h3>
+          </div>
           <div class="step__body">
-            <div>
-              <p>ページ右上の「お問い合わせ」から、必要事項をご記入のうえ送信してください。</p>
-              <p>各事業所ページ内のメール／電話からの問い合わせも可能です。</p>
+            <div class="step__desc">
+              <p>分野の一覧が表示されます。目的の分野を選んでクリックしてください。</p>
+              <p>この例では<strong>「障がい福祉」</strong>を選択しています。</p>
             </div>
-            <figure class="figure" data-src="img/howto/contact-01.png">
-              <img src="img/flow5.webp" alt="お問い合わせページ例" loading="lazy" onclick="openLb(this)">
-              <figcaption>例：お問い合わせページ。</figcaption>
+            <figure class="step__figure">
+              <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
+                <img class="step__img" src="img/flow2.webp" alt="分野一覧画面のスクリーンショット。「障がい福祉」を選択しています。" loading="lazy">
+              </button>
+              <figcaption class="step__caption">例：分野一覧ページ</figcaption>
             </figure>
           </div>
-          <div class="nextprev"><a class="np-btn" href="#step4">← 戻る</a><a class="np-btn" href="index.html">TOPへ →</a></div>
-        </section>
+          <div class="step__nav">
+            <a href="#step1" class="nav-btn prev">← 戻る</a>
+            <a href="#step3" class="nav-btn next">次へ（事業所を選ぶ） →</a>
+          </div>
+        </article>
+
+        <article id="step3" class="step">
+          <div class="step__header">
+            <span class="step__num">3</span>
+            <h3 class="step__title">事業所を選ぶ</h3>
+          </div>
+          <div class="step__body">
+            <div class="step__desc">
+              <p>選択した分野に含まれる「事業所の一覧」が表示されます。</p>
+              <p>詳細を見たい事業所を選んでください。例では<strong>「わぁははクラブ」</strong>をクリックします。</p>
+            </div>
+            <figure class="step__figure">
+              <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
+                <img class="step__img" src="img/flow3.webp" alt="事業所一覧のスクリーンショット。「わぁははクラブ」を選択しています。" loading="lazy">
+              </button>
+              <figcaption class="step__caption">例：事業所一覧ページ</figcaption>
+            </figure>
+          </div>
+          <div class="step__nav">
+            <a href="#step2" class="nav-btn prev">← 戻る</a>
+            <a href="#step4" class="nav-btn next">次へ（内容を確認） →</a>
+          </div>
+        </article>
+
+        <article id="step4" class="step">
+          <div class="step__header">
+            <span class="step__num">4</span>
+            <h3 class="step__title">事業内容の確認</h3>
+          </div>
+          <div class="step__body">
+            <div class="step__desc">
+              <p>事業所の詳細ページが表示されます。</p>
+              <p>サービスの内容をご確認ください。より詳しい情報が必要な場合は、ページ下部にあるリンクボタン（※）から外部サイト等へ移動できます。</p>
+              <p><small>他の事業所も見たい場合は、手順②または③に戻って選び直してください。</small></p>
+            </div>
+            <figure class="step__figure">
+              <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
+                <img class="step__img" src="img/flow4.webp" alt="わぁははクラブの事業所詳細ページ。" loading="lazy">
+              </button>
+              <figcaption class="step__caption">例：わぁははクラブ 詳細ページ</figcaption>
+            </figure>
+          </div>
+          <div class="step__nav">
+            <a href="#step3" class="nav-btn prev">← 戻る</a>
+            <a href="#step5" class="nav-btn next">次へ（お問い合わせ） →</a>
+          </div>
+        </article>
+
+        <article id="step5" class="step">
+          <div class="step__header">
+            <span class="step__num">5</span>
+            <h3 class="step__title">お問い合わせ</h3>
+          </div>
+          <div class="step__body">
+            <div class="step__desc">
+              <p>ご不明な点やご相談がありましたら、お問い合わせください。</p>
+              <p>ページ右上（スマホの場合はメニュー内）の<strong>「お問い合わせ」</strong>ボタンから専用フォームへ移動できます。</p>
+              <p>また、各事業所ページに記載されている電話番号やメールアドレスへ直接ご連絡いただくことも可能です。</p>
+            </div>
+            <figure class="step__figure">
+              <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
+                <img class="step__img" src="img/flow5.webp" alt="お問い合わせページのスクリーンショット。" loading="lazy">
+              </button>
+              <figcaption class="step__caption">例：お問い合わせページ</figcaption>
+            </figure>
+          </div>
+          <div class="step__nav">
+            <a href="#step4" class="nav-btn prev">← 戻る</a>
+            <a href="index.html" class="nav-btn next">TOPページへ →</a>
+          </div>
+        </article>
+
       </div>
 
-
-    </section>
+    </div>
   </main>
 
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
@@ -320,7 +559,7 @@
     </span>
   </button>
 
-<footer class="site-footer" aria-labelledby="footer-title">
+  <footer class="site-footer">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
     <div class="footer__inner">
       <section class="footer__brand">
@@ -385,25 +624,46 @@
 
     <div class="footer__bar">
       <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
-
   </footer>
 </div>
 
-<script>
-  const lb = document.createElement('div');
-  lb.className = 'lb'; lb.setAttribute('aria-hidden','true');
-  lb.innerHTML = '<img class="lb__img" alt=""><span class="visually-hidden">画像を閉じる</span>';
-  lb.addEventListener('click',()=>lb.setAttribute('aria-hidden','true'));
-  document.body.appendChild(lb);
-  function openLb(img){
-    lb.querySelector('.lb__img').src = img.src;
-    lb.setAttribute('aria-hidden','false');
-  }
-</script>
+<dialog id="lbDialog" class="lb-dialog">
+  <div class="lb-content">
+    <img id="lbImg" class="lb-img" alt="">
+    <form method="dialog">
+      <button class="lb-close" aria-label="閉じる">×</button>
+    </form>
+  </div>
+</dialog>
 
 <script src="js/site.js"></script>
+<script>
+  (function(){
+    const dialog = document.getElementById('lbDialog');
+    const lbImg = document.getElementById('lbImg');
+    const triggers = document.querySelectorAll('.js-lb-trigger');
+
+    if(!dialog || !lbImg) return;
+
+    triggers.forEach(btn => {
+      btn.addEventListener('click', function(){
+        const img = this.querySelector('img');
+        if(img){
+          lbImg.src = img.src;
+          lbImg.alt = img.alt;
+          dialog.showModal();
+        }
+      });
+    });
+
+    dialog.addEventListener('click', function(e){
+      if(e.target === dialog){
+        dialog.close();
+      }
+    });
+  })();
+</script>
 </body>
 </html>
