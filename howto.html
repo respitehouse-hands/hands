@@ -29,12 +29,17 @@
       /* ベースカラー */
       --howto-accent: #009688;
       --howto-ink: #333;
-      --howto-bg: #f5fbf8;
+      --howto-bg: #f5fbf8; /* 薄い緑色の背景 */
       --howto-line: #e5e7eb;
       --howto-radius: 14px;
     }
 
-    body.page-howto #site-header.c-header{ background: #fff; border-bottom:1px solid var(--howto-line); }
+    /* ヘッダーの背景色を「緑基調（薄い緑）」に戻しました */
+    body.page-howto #site-header.c-header{ 
+      background: var(--howto-bg); 
+      border-bottom: 1px solid var(--howto-line); 
+    }
+    
     .page-howto{ background: #fcfcfc; }
     
     .howto-container{ max-width: 1000px; margin-inline: auto; padding: 0 min(4vw, 24px) 4rem; }
@@ -506,7 +511,7 @@
           <div class="step__body">
             <div class="step__desc">
               <p>事業所の詳細ページが表示されます。</p>
-              <p>サービスの内容をご確認ください。より詳しい情報が必要な場合は、ページ下部にあるリンクボタン（※）から外部サイト等へ移動できます。</p>
+              <p>サービスの内容をご確認ください。より詳しい情報は、ページ下部にあるボタン（※）から見たい情報まで飛ぶことができます。</p>
               <p><small>他の事業所も見たい場合は、手順②または③に戻って選び直してください。</small></p>
             </div>
             <figure class="step__figure">
@@ -667,4 +672,3 @@
 </script>
 </body>
 </html>
-
