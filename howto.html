@@ -26,19 +26,18 @@
   
   <style>
     :root{
-      /* ベースカラー設定（コントラスト調整済み） */
-      --howto-accent: #00796b;      /* 深みのある緑（白文字が読みやすい色） */
-      --howto-accent-dark: #004d40; /* ホバー用 */
-      --howto-ink: #111;            /* 見出し：ほぼ黒 */
-      --howto-text: #333;           /* 本文：濃いグレー */
-      --howto-gray: #555;           /* 補足：中間のグレー */
-      --howto-border: #bbb;         /* 枠線：はっきり見えるグレー */
-      --howto-bg: #f5fbf8;          /* ページ共通の薄い緑背景 */
+      /* ベースカラー設定 */
+      --howto-accent: #00796b;
+      --howto-accent-dark: #004d40;
+      --howto-ink: #111;
+      --howto-text: #333;
+      --howto-gray: #555;
+      --howto-border: #bbb;
+      --howto-bg: #f5fbf8;
       --howto-line: #e5e7eb;
       --howto-radius: 14px;
     }
 
-    /* ヘッダー背景色を「薄い緑」に統一 */
     body.page-howto #site-header.c-header{ 
       background: var(--howto-bg); 
       border-bottom: 1px solid var(--howto-line); 
@@ -79,7 +78,7 @@
       height: clamp(64px, 8vw, 80px);
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid #eee;
+      /* border: 1px solid #eee; */
     }
     .unit-hero__emblem img{
       width: 100%; height: 100%; object-fit: contain;
@@ -93,25 +92,25 @@
     }
     .unit-hero__lead{ margin:0; color: var(--howto-text); line-height: 1.6; }
     
+    /* 注釈 */
     .note{
       margin-top: 1.5rem;
       background: #f8fafc;
-      border: 1px solid var(--howto-border); /* 枠線を濃く */
       border-radius: 8px;
       padding: .75rem 1rem;
       font-size: .9rem;
-      color: var(--howto-gray); /* 文字色を濃く */
+      color: var(--howto-gray);
       display: flex; gap: .5em; align-items: baseline;
     }
     .note::before{ content:"※"; color:var(--howto-accent); font-weight:700; }
 
-    /* 目次（修正：大外の枠を削除） */
+    /* 目次 */
     .toc{
-      background: transparent; /* 背景なし */
-      border: none;            /* 枠線なし */
-      padding: 0;              /* 余白なし */
+      background: transparent;
+      border: none;
+      padding: 0;
       margin-bottom: 3rem;
-      box-shadow: none;        /* 影なし */
+      box-shadow: none;
     }
     .toc-title{ font-size:1.1rem; margin:0 0 1.2rem; color:var(--howto-ink); display:flex; align-items:center; gap:.5em; }
     .toc-title::before{ content:""; width:4px; height:1em; background:var(--howto-accent); border-radius:2px; }
@@ -129,9 +128,9 @@
       display: flex; align-items: center; gap: .8rem;
       padding: .8rem 1rem;
       background: #fff;
-      border: 1px solid #ccc; /* 枠線をはっきりと */
+      border: 1px solid #ccc;
       text-decoration: none;
-      color: var(--howto-text); /* 濃いグレー */
+      color: var(--howto-text);
       font-weight: 500;
       transition: all .2s;
       border-radius: 6px;
@@ -204,22 +203,19 @@
     .step__desc{ line-height: 1.8; color: var(--howto-text); }
     .step__desc p{ margin: 0 0 1em; }
     
-    .step__figure{
-      margin: 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fafafa;
-    }
+    /* 画像エリア */
+    .step__figure{ margin: 0; }
     
     .step__img-btn{
       display: block;
       width: 100%;
       padding: 0;
-      border: 0;
+      border: none;
       background: transparent;
       cursor: zoom-in;
       position: relative;
+      border-radius: 8px;
+      overflow: hidden;
     }
     .step__img-btn:hover::after{ opacity: 1; }
     .step__img-btn::after{
@@ -237,11 +233,9 @@
     }
 
     .step__caption{
-      padding: .8rem 1rem;
+      padding: .5rem 0 0;
       font-size: .9rem;
-      color: var(--howto-gray); /* 文字色を濃く */
-      background: #fff;
-      border-top: 1px solid #ddd;
+      color: var(--howto-gray);
       font-weight: 500;
     }
 
@@ -257,13 +251,23 @@
       padding: .6em 1.2em;
       border-radius: 99px;
       text-decoration: none;
-      font-weight: 500; /* 標準の太さ */
+      font-weight: 500;
       font-size: .95rem;
       transition: all .2s;
+      white-space: nowrap; /* ★テキストの折り返しを禁止（ボタンが太るのを防止） */
     }
+    
+    /* スマホ向けの微調整 */
+    @media (max-width: 600px) {
+      .nav-btn{
+        font-size: 0.85rem; /* スマホでは文字サイズを少し小さく */
+        padding: .6em 1em; /* 余白も少し調整して収まりよく */
+      }
+    }
+
     .nav-btn.prev{
-      color: #333; /* 文字を濃く */
-      border: 1px solid #999; /* 枠線を濃く */
+      color: #333;
+      border: 1px solid #999;
       background: #fff;
     }
     .nav-btn.prev:hover{
@@ -273,13 +277,13 @@
     }
     .nav-btn.next{
       margin-left: auto;
-      background: var(--howto-accent); /* 濃い緑 */
+      background: var(--howto-accent);
       color: #fff;
       border: 2px solid var(--howto-accent);
       box-shadow: 0 4px 10px rgba(0,137,123,0.3);
     }
     .nav-btn.next:hover{
-      background: var(--howto-accent-dark); /* さらに濃い緑 */
+      background: var(--howto-accent-dark);
       border-color: var(--howto-accent-dark);
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(0,137,123,0.4);
@@ -296,7 +300,7 @@
     .lb-content{ position: relative; display: grid; }
     .lb-img{ display: block; max-width: 100%; max-height: 85vh; object-fit: contain; }
     
-    /* ×ボタン（黒背景・白文字・枠線なし） */
+    /* ×ボタン */
     .lb-close{
       position: absolute;
       top: 15px; right: 15px;
@@ -317,7 +321,6 @@
       background: rgba(0,0,0,0.9);
     }
 
-    /* トップページ：サブメニュー背景を白に */
     .page-howto .submenu{ background: #fff; }
 
   </style>
@@ -404,7 +407,7 @@
             </div>
             <div class="unit-hero__content">
               <h1 class="unit-hero__title">初めての方へ</h1>
-              <p class="unit-hero__lead">トップページから目的の情報を見つけるまでの「進み方」を、図解で分かりやすくご案内します。</p>
+              <p class="unit-hero__lead">ここでは目的ページまでの進み方を、図解でご案内します。</p>
             </div>
           </div>
           <div class="note">画像クリックで大きく表示されます。</div>
@@ -498,7 +501,7 @@
           <div class="step__body">
             <div class="step__desc">
               <p>選択した分野に含まれる「事業所の一覧」が表示されます。</p>
-              <p>詳細を見たい事業所を選んでください。例では<strong>「わぁははクラブ」</strong>をクリックします。</p>
+              <p>詳細を見たい事業所を選んでください.例では<strong>「わぁははクラブ」</strong>をクリックします。</p>
             </div>
             <figure class="step__figure">
               <button type="button" class="step__img-btn js-lb-trigger" aria-label="画像を拡大する">
