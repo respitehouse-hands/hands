@@ -46,53 +46,6 @@
     body.page-citizen .l-main{ background:#fff; }
     body.page-citizen .page{ background:#fff; }
 
-    /* ===== ドロップダウン（紺系） ===== */
-    body.page-citizen #site-header .submenu{
-      background:#f2f6ff;
-      border:1px solid color-mix(in oklab, var(--unit-brand) 32%, #fff);
-      box-shadow:0 12px 28px rgba(11,43,107,.10);
-      border-radius:12px;
-      padding:.4rem 0;
-      min-width:16rem;
-    }
-    body.page-citizen #site-header .submenu a{
-      display:block; padding:.7rem 1rem; color:#0f1f3a; text-decoration:none; white-space:nowrap;
-      border-radius:8px; background:transparent;
-    }
-    body.page-citizen #site-header .submenu a:hover,
-    body.page-citizen #site-header .submenu a:focus-visible{
-      background: color-mix(in oklab, var(--unit-brand) 18%, #fff);
-      color: var(--unit-ink); outline: none;
-    }
-
-    /* ===== モバイル（ハンバーガー） ===== */
-    @media (max-width:1024px){
-      body.page-citizen #site-header .c-hamburger-menu__bg{
-        background: rgba(11,43,107,.45) !important; backdrop-filter: blur(2px);
-      }
-      body.page-citizen #hamburger:checked ~ .c-hamburger-menu__list{
-        background: #ffffff !important;
-        border: 1px solid color-mix(in oklab, var(--unit-brand) 18%, #fff);
-        box-shadow: 0 14px 36px rgba(11,43,107,.16); z-index: 1001;
-      }
-      body.page-citizen #hamburger:checked ~ .c-hamburger-menu__list > .c-header__list-item{
-        background: #ffffff !important; border-bottom: 1px solid #eef1f5;
-      }
-      body.page-citizen #site-header .submenu{
-        background:#ffffff !important;
-        border:1px solid color-mix(in oklab, var(--unit-brand) 22%, #fff);
-        box-shadow:0 10px 28px rgba(11,43,107,.12);
-      }
-      body.page-citizen #site-header .submenu a{
-        background: transparent !important; color: #0f1f3a;
-      }
-      body.page-citizen #site-header .submenu a:hover,
-      body.page-citizen #site-header .submenu a:focus-visible{
-        background: color-mix(in oklab, var(--unit-brand) 12%, #fff) !important; color: var(--unit-ink);
-      }
-      .c-header .sub-caret{ cursor:pointer; }
-    }
-
     /* ===== ヒーロー ===== */
     .unit-hero{
       margin:2.2rem 0 2.4rem;
@@ -164,7 +117,7 @@
       padding-left:.5rem; border-left:6px solid var(--unit-brand);
     }
 
-    /* パンくず */
+    /* パンくず（共通スタイルに統一） */
     .breadcrumb{
       max-width: var(--my-max);
       margin: 0 auto 1rem;
@@ -175,9 +128,10 @@
       color:#6b7280; font-size:.95rem;
     }
     .breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
-    .breadcrumb a{ color: color-mix(in oklab, var(--unit-brand) 70%, #000); text-decoration:none; font-weight:500; }
-    .breadcrumb a:hover{ text-decoration:underline; }
-    .breadcrumb [aria-current="page"]{ color:#374151; font-weight:600; }
+    .breadcrumb a{ color: #555; text-decoration:none; transition: color 0.2s; }
+    .breadcrumb a:hover{ color: var(--unit-brand); text-decoration:underline; }
+    /* 現在地は太字にしない（色のみ変更） */
+    .breadcrumb [aria-current="page"]{ color: var(--unit-brand); font-weight:400; }
 
 
     /* ===== BTT（上へ戻る）ボタン：白地・紺文字・紺リング ===== */
@@ -255,11 +209,80 @@
       }
     }
 
-    /* サブメニュー最終固定 */
-    body.page-citizen .submenu{
-      background:#ffffff !important;
-      border:1px solid #e5e7eb !important;
-      box-shadow:0 10px 24px rgba(0,0,0,.08) !important;
+    /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+    }
+    .site-footer a:hover {
+      color: #007867 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px !important;
+      text-decoration-thickness: 1px !important;
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important;
+    }
+
+    /* ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important;
+    }
+
+    /* 現在地（citizen.html）のヘッダー表示：色だけ変えて太字にはしない */
+    .c-header__list-item.is-current .c-header__list-link,
+    .c-header__list-item .submenu a[aria-current="page"] {
+        color: #0b2b6b !important; /* このページのテーマカラー（紺） */
+        font-weight: 400 !important;
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
     }
   </style>
 </head>
@@ -274,8 +297,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
-
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
@@ -289,7 +310,7 @@
         </ul>
       </li>
 
-      <li class="c-header__list-item has-sub">
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
@@ -317,6 +338,7 @@
         </ul>
       </li>
 
+      <li class="c-header__list-item"><a href="news.html" class="c-header__list-link">お知らせ</a></li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -447,7 +469,7 @@
             <li><a href="myroot.html">マイルートリンク</a></li>
             <li><a href="ichisapo.html">若者サポートステーション</a></li>
             <li><a href="jobcafe.html">ジョブカフェ</a></li>
-            <li><a href="citizen.html" aria-current="page">市民活動センター</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
           </ul>
         </div>
         <div class="footer__group">
@@ -506,5 +528,33 @@
   update(); // 初期化
 })();
 </script>
+
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200;
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      // ...（既存の処理）
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
 </body>
 </html>
