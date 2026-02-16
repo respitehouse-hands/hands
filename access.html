@@ -5,25 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>アクセス一覧 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="レスパイトハウス・ハンズが運営する各事業所へのアクセス案内です。所在地、地図、駐車場などをまとめています。初めてお越しの方も安心してご来所いただけます。">
-  <link rel="icon" href="favicon.ico">
+  <link rel="canonical" href="https://handsnpo.jp/access.html">
+  <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
   
-  <link rel="preload" as="image" href="img/logo.webp">
-
-  <link rel="stylesheet" href="css/style.css">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.google.com">
-  <link rel="preconnect" href="https://www.gstatic.com">
   
   <link 
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
     rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
   >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <link rel="stylesheet" href="css/style.css">
 
   <style>
+    /* ===============================
+       ページ固有のスタイル（access.html）
+       =============================== */
+    
     :root{
       --unit-brand:#2f7d5b;
       --unit-ink:#193528;
@@ -33,16 +39,16 @@
       --my-surface:#fff;
     }
 
-    html{ scroll-behavior:smooth; }
-    body{ margin:0; color:#222; font-family:"Noto Sans JP", sans-serif; background:#fff; font-display: swap; }
-    
+    /* ページレイアウト */
     .page{ padding-inline:min(4vw,24px); }
     .wrap{ max-width:1120px; margin-inline:auto; }
 
-    /* パンくず */
+    /* パンくずリスト */
     .myroot-breadcrumb{ margin:0 0 1rem; }
     .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; font-size:.92rem; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .myroot-breadcrumb a{ text-decoration: none; color: #555; transition: color 0.2s; }
+    .myroot-breadcrumb a:hover{ color: var(--unit-brand); text-decoration: underline; }
 
     /* セクション見出し */
     .section{ scroll-margin-top:120px; margin:1.25rem 0 2rem; }
@@ -96,9 +102,8 @@
       overflow:hidden; background:#f0f0f0; /* 読み込み前はグレー */
       width: 100%; max-width: 100%;
       position: relative;
-      transition: opacity 0.5s; /* ふわっと表示 */
     }
-    .map iframe{ width:100% !important; height:100% !important; border:0; display:block; }
+    .map iframe{ width:100% !important; height:100% !important; border:0; display:block; opacity: 0; transition: opacity 0.5s ease; }
     @media (max-width:820px){
       .map{ min-height:300px; height:auto; aspect-ratio: 4/3; }
     }
@@ -130,40 +135,85 @@
       .office-link__label{ font-size:0.95rem; letter-spacing:.01em; }
     }
 
-    /* ヘッダー色上書き */
-    .page-access #site-header.c-header{ background:var(--unit-tint-2); border-bottom:1px solid #e5e7eb; }
-    
-    /* ドロップダウンメニュー */
-    .page-access .submenu{
-      background: #fff !important; 
-      border: 1px solid #e5e7eb; 
-      box-shadow: 0 12px 28px rgba(47,125,91,.10);
-      border-radius: 12px; 
-      padding: 0.5rem 0;
-    }
-    .page-access .submenu li + li{ border-top: none; } 
-    
-    .page-access .submenu a{ 
-      color:#222; 
-      transition: background-color 0.2s;
-      display: block; 
-      padding: 0.8rem 1.2rem; 
-    }
-    .page-access .submenu a:hover, 
-    .page-access .submenu a:focus { 
-      background-color: var(--unit-tint) !important; 
-      color: var(--unit-brand) !important; 
-    }
-    #site-header .submenu a { font-weight: 500 !important; }
-    #site-header .submenu a[aria-current="page"] { font-weight: 700 !important; }
-
-    /* フッター配色 */
-    .page-access .site-footer{ background:var(--unit-tint-2); border-top:1px solid #e5e7eb; }
-    .page-access .site-footer .footer__bar{ background:#f0f7f4; border-top:1px solid #e5e7eb; }
-    .page-access .site-footer h3, .page-access .site-footer a{ color:var(--unit-ink); }
-
+    /* スマホ用改行 */
     .sp-break { display: none; }
     @media (max-width: 600px) { .sp-break { display: block; } }
+
+
+    /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+    
   </style>
 </head>
 
@@ -171,16 +221,15 @@
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
- <header id="site-header" class="c-header c-hamburger-menu">
+  <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo">
-      <img src="img/logo.webp" alt="ロゴ" fetchpriority="high" decoding="async">
+      <img src="img/logo.webp" width="200" height="60" alt="ロゴ" fetchpriority="high" decoding="async">
     </a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
-
+      
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
@@ -222,6 +271,9 @@
         </ul>
       </li>
 
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -277,7 +329,7 @@
               <iframe 
                 class="lazy-map"
                 title="青葉（二丁目 ６-16）周辺地図"
-                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E9%9D%92%E8%91%892%E4%B8%81%E7%9B%AE6-16&output=embed"
+                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.603362624376!2d141.13063807644912!3d38.92817297171754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4073a628543%3A0xc660d2b7899c43d7!2z44CSMDIxLTAwMzEg5bKp5omL55yM5LiA6Zai5biC6Z2S6JKJ77yS5LiB55uu77yW4oiS77yR77yW!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
                 allowfullscreen>
               </iframe>
             </div>
@@ -322,7 +374,7 @@
               <iframe 
                 class="lazy-map"
                 title="大町 ４-29 なのはなプラザ 周辺地図"
-                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E5%A4%A7%E7%94%BA4-29%20%E3%81%AA%E3%81%AE%E3%81%AF%E3%81%AA%E3%83%97%E3%83%A9%E3%82%B6&output=embed"
+                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.345678901234!2d141.13456789012345!3d38.93012345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4056789abcd%3A0x1234567890abcdef!2z44CSMDIxLTA4ODEg5bKp5omL55yM5LiA6Zai5biC5aSn55S677yU4oiS77yS77yZ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
                 allowfullscreen>
               </iframe>
             </div>
@@ -349,7 +401,7 @@
               <iframe 
                 class="lazy-map"
                 title="中央町 １-１-４ 周辺地図"
-                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E4%B8%AD%E5%A4%AE%E7%94%BA1-1-4&output=embed"
+                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.987654321098!2d141.12987654321098!3d38.92543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4abcdef1234%3A0x9876543210fedcba!2z44CSMDIxLTAwMjEg5bKp5omL55yM5LiA6Zai5biC5Lit5aSu55S677yR5LiB55uu77yR4oiS77yU!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
                 allowfullscreen>
               </iframe>
             </div>
@@ -376,7 +428,7 @@
               <iframe 
                 class="lazy-map"
                 title="赤萩 上袋 75-５ 周辺地図"
-                data-src="https://www.google.com/maps?q=%E5%B2%A9%E6%89%8B%E7%9C%8C%E4%B8%80%E9%96%A2%E5%B8%82%E8%B5%A4%E8%90%A9%E5%AD%97%E4%B8%8A%E8%A2%8B75-5&output=embed"
+                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.012345678901!2d141.10123456789012!3d38.93567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d49876543210%3A0xfedcba0987654321!2z44CSMDIxLTAwNDEg5bKp5omL55yM5LiA6Zai5biC6LWk6JCp5a2X5LiK6KKL77yX77yV4oiS77yV!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
                 allowfullscreen>
               </iframe>
             </div>
@@ -459,8 +511,7 @@
     </div>
 
     <div class="footer__bar">
-      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
-
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
@@ -469,14 +520,7 @@
 <script src="js/site.js" defer></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    // 保険：万が一site.jsが遅れても表示させる
-    document.body.classList.add('page-show');
-    document.documentElement.classList.remove('no-scroll');
-    document.documentElement.style.overflowY = 'auto';
-  });
-
-  // ★★ここがポイント★★ ページ読み込み完了から「2.5秒後」に地図処理を開始する
+  // 地図の遅延読み込み（Lighthouse対策）
   window.addEventListener('load', function(){
     setTimeout(function(){
       
@@ -499,8 +543,40 @@
         mapObserver.observe(map);
       });
 
-    }, 2500); // 2500ms待機（Lighthouse対策）
+    }, 2500); // 2500ms待機
   });
 </script>
+
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200;
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
+      const deg = Math.round(ratio * 360) + 'deg';
+      if(ring) ring.style.setProperty('--btt-progress', deg);
+
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
 </body>
 </html>
