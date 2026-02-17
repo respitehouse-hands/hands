@@ -38,9 +38,7 @@
     .finder-page{ padding-inline:min(4vw,24px); }
     .finder-wrap{ max-width:1120px; margin-inline:auto; }
 
-    .fd-breadcrumb{ margin:0 0 1rem; }
-    .fd-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1rem 0; margin:0; flex-wrap:wrap; }
-    .fd-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    /* fd-breadcrumb の記述は削除し、下部の共通CSS（.breadcrumb）を使用します */
 
     .fd-hero{
       background:linear-gradient(180deg,#e7f6f3 0%, #f7fafb 60%);
@@ -178,10 +176,138 @@
       border: 1px solid #e5e7eb !important;
       box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
     }
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;      
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;    
+        opacity: 1 !important;      
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ※ <style>の末尾に貼ることで確実に上書きします
+       ======================================================== */
+
+    /* 外枠の余白とリセット */
+    .breadcrumb {
+      margin: 0 0 1.75rem !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    /* リスト本体の並び */
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+
+    /* 区切り記号（›）の設定 */
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important; /* 薄いグレー */
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+
+    /* リンク文字の設定 */
+    .breadcrumb a {
+      color: #425466 !important; /* philosophy.htmlと同じ落ち着いた紺グレー */
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+
+    /* ホバー時の設定 */
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important; /* 色は変えず下線のみ */
+      background: transparent !important;
+    }
+
+    /* 現在地（リンクなしの文字） */
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important; /* 少しだけ濃い黒に近い色 */
+      font-weight: 400 !important;
+    }
+
   </style>
 </head>
 
-<body>
+<body class="page-finder">
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
@@ -191,7 +317,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -233,7 +358,9 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -246,7 +373,7 @@
 
   <main id="main" class="finder-page">
     <section class="finder-wrap" aria-labelledby="fd-title">
-      <nav class="fd-breadcrumb" aria-label="パンくず">
+      <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li aria-current="page">あなたに合う支援をさがす</li>
