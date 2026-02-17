@@ -201,7 +201,7 @@
 
     .faq2-section{
       margin: 0 0 32px;
-      scroll-margin-top: 120px;
+      scroll-margin-top: 10px;
     }
     .faq2-h2{
       margin: 10px 0 12px;
@@ -506,6 +506,47 @@
     }
 
 
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ======================================================== */
+    .breadcrumb {
+      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
+      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      padding: 0 2% !important;
+      background: transparent !important;
+    }
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important;
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+    .breadcrumb a {
+      color: #425466 !important;
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important;
+      background: transparent !important;
+    }
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important;
+      font-weight: 400 !important;
+    }
+
   </style>
 </head>
 
@@ -579,7 +620,7 @@
       <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
-          <li><a href="howto.html">初めての方へ</a></li>
+          <li><a href="howto.html">　初めての方へ</a></li>
           <li aria-current="page">FAQ</li>
         </ol>
       </nav>
@@ -1076,4 +1117,3 @@
 
 </body>
 </html>
-
