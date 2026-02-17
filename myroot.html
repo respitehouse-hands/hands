@@ -684,45 +684,45 @@ html{ scroll-behavior: smooth; }
   }
 }
 
+
+
 /* ===== ヘッダーナビ：上段リンクの色をサブと同じ緑に統一 ===== */
-#site-header .c-header__list > .c-header__list-item > .c-header__list-link:hover,
-#site-header .c-header__list > .c-header__list-item > .c-header__list-link:focus-visible{
-  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 14%, #fff) !important;
-  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 70%, #fff) !important;
-  color: var(--unit-brand-ink, #0f3d37) !important;
-  box-shadow: 0 6px 18px rgba(31,138,122,.12) !important;
-}
+    /* マウスを乗せた時（ホバー時） */
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link:hover,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link:focus-visible{
+      background: transparent !important;       /* ←ここを透明にする */
+      border-color: transparent !important;     /* ←枠線も透明にする */
+      color: var(--unit-brand, #1f8a7a) !important; /* 文字色は緑にする */
+      box-shadow: none !important;              /* ←影を消す */
+    }
 
-/* 現在地表示（is-current や aria-current）も緑面に */
-#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link,
-#site-header .c-header__list > .c-header__list-item > .c-header__list-link[aria-current="page"]{
-  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 18%, #fff) !important;
-  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 75%, #fff) !important;
-  color: var(--unit-brand-ink, #0f3d37) !important;
-  box-shadow: inset 0 -2px 0 color-mix(in oklab, var(--unit-brand, #1f8a7a) 55%, #fff) !important;
-}
+    /* 現在地表示（is-current や aria-current）の設定 */
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link[aria-current="page"]{
+      background: transparent !important;       /* ←ここを透明にする */
+      border-color: transparent !important;
+      color: var(--unit-brand, #1f8a7a) !important;
+      box-shadow: none !important;
+    }
 
-/* 上段 <li> に背景を付けている共通指定があれば打ち消す（保険） */
-#site-header .c-header__list > .c-header__list-item{
-  background: transparent !important;
-}
+    /* 上段 <li> に背景を付けている共通指定があれば打ち消す（保険） */
+    #site-header .c-header__list > .c-header__list-item{
+      background: transparent !important;
+    }
 
-/* 現在地（.is-current）は“常時”色を付けない */
-#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link{
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  color: inherit !important;     /* 文字色も通常に戻す */
-}
+    /* 現在地（.is-current）のホバー時も同様に背景を消す */
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:hover,
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:focus-visible{
+      background: transparent !important;       /* ←ここを透明にする */
+      border-color: transparent !important;
+      color: var(--unit-brand, #1f8a7a) !important;
+      box-shadow: none !important;              /* ←影を消す */
+    }
 
-/* ただしホバー/フォーカス時は緑に（他の上段と同じ） */
-#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:hover,
-#site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:focus-visible{
-  background: color-mix(in oklab, var(--unit-brand, #1f8a7a) 14%, #fff) !important;
-  border-color: color-mix(in oklab, var(--unit-brand, #1f8a7a) 70%, #fff) !important;
-  color: var(--unit-brand-ink, #0f3d37) !important;
-  box-shadow: 0 6px 18px rgba(31,138,122,.12) !important;
-}
+
+
+
+
 
 /* ===== アクセス系（myroot版）横スク抑止 ===== */
 #page,
@@ -1069,6 +1069,124 @@ body .submenu{
   margin-top: 0.6rem;
 }
 
+
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
+
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ======================================================== */
+    .breadcrumb {
+      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
+      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      padding: 0 2% !important;
+      background: transparent !important;
+    }
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important;
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+    .breadcrumb a {
+      color: #425466 !important;
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important;
+      background: transparent !important;
+    }
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important;
+      font-weight: 400 !important;
+    }
+
   </style>
 </head>
 
@@ -1083,7 +1201,7 @@ body .submenu{
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
+
 
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -1104,11 +1222,11 @@ body .submenu{
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
         <ul class="submenu">
           <li><a href="wahaha.html">わぁははクラブ</a></li>
-          <li><a href="residence.html" aria-current="page">居宅介護</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
           <li><a href="little.html">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
-          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="myroot.html"  aria-current="page">マイルートリンク</a></li>
           <li><a href="ichisapo.html">若者サポートステーション</a></li>
           <li><a href="jobcafe.html">ジョブカフェ</a></li>
           <li><a href="citizen.html">市民活動センター</a></li>
@@ -1126,7 +1244,9 @@ body .submenu{
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -1141,7 +1261,7 @@ body .submenu{
   <main id="main" class="l-main myroot-page">
     <section class="myroot-wrap" aria-labelledby="myroot-title">
       <!-- パンくず -->
-      <nav class="myroot-breadcrumb" aria-label="パンくず">
+      <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li><a href="office.html">事業所紹介</a></li>
