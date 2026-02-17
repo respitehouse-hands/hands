@@ -323,6 +323,81 @@
 
     .page-howto .submenu{ background: #fff; }
 
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
   </style>
 </head>
 
@@ -336,7 +411,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -378,7 +452,9 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
