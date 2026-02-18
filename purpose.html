@@ -126,6 +126,124 @@
     .page-purpose .submenu{
       background: #fff;
     }
+
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
+
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ======================================================== */
+    .breadcrumb {
+      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
+      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      padding: 0 2% !important;
+      background: transparent !important;
+    }
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important;
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+    .breadcrumb a {
+      color: #425466 !important;
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important;
+      background: transparent !important;
+    }
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important;
+      font-weight: 400 !important;
+    }
+
   </style>
 </head>
 
@@ -140,7 +258,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
       <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -182,7 +299,9 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -210,7 +329,7 @@
     <section class="purpose-body" aria-label="本文">
       <p>私たちレスパイトハウス・ハンズは、自分の生まれ育った地域での生活を望むしょうがいを持つ方々の支援と、このまちにおける新たな社会福祉の資源となることを目指し、平成11年4月に障害者地域生活支援サービス団体として活動を開始しました。</p>
       <p>一関市を中心に事業を展開し、現在では利用登録会員は約100名となり、一関市をはじめ両磐地区に暮らすしょうがいを持つ方々に、幅広くご利用いただいております。しょうがいを持つ方々が、いつでも気軽に利用できるレスパイトサービスの提供を出発点とし、現在は障害者総合支援法に基づく各種サービスを複合的に実施しています。</p>
-      <p>また、平成17年よりいちのせき市民活動センターの運営を開始し、市民活動団体の支援や地域づくり、協働の推進など、中間支援にも取り組んでまいりました。福祉と市民活動の両面から、誰もが豊かに、安心して暮らせる地域づくりを目指し、しょうがいを持つ方々およびそのご家族が、地域の中で安心して生活できる社会の実現を図っています。あわせて、老若男女を問わず、みんながまちづくりに参加し作り上げていく一関市の未来に向けて、私たちにできることを考え、取り組んでまいります。</p>
+      <p>また平成17年よりいちのせき市民活動センターの運営を開始し、市民活動団体の支援や地域づくり、協働の推進など、中間支援にも取り組んでまいりました。福祉と市民活動の両面から、誰もが豊かに安心して暮らせる地域づくりを目指し、しょうがいを持つ方々とそのご家族が、地域で安心して暮らすことのできる社会の実現を図っています。老若男女を問わず、みんながまちづくりに参加し作り上げていく一関市の未来に向けて、私たちにできることを考え、取り組んでまいります。</p>
       <p>東日本大震災後は、いわて連携復興センターの団体会員としての活動に加え、独自に陸前高田市のミニ商店街再生に携わってきました。さらに、陸前高田市におけるまちづくりや市民活動団体の連携を支えるため、陸前高田まちづくり協働センターを設置し、地域の再生と人と人とのつながりを支える役割を担っています。</p>
       <p>私たちハンズは、県内の福祉の向上にとどまらず、さまざまな分野の市民活動を支え、連携しながら、社会的に弱い立場にある人たちやしょうがいを持つ人たちと地域が一体となり、元気で豊かな地域をつくっていくこと――インクルージョンの実現を、これからも目指してまいります。</p>
     </section>
