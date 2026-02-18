@@ -63,10 +63,7 @@
     .unit-soudan .site-footer .footer__bar{ background:#e6f5f2; border-top:1px solid #ccece6; }
     .unit-soudan .site-footer h3, .unit-soudan .site-footer a{ color:var(--unit-brand-ink); }
 
-    /* パンくず（共通スタイル .myroot-breadcrumb） */
-    .myroot-breadcrumb{ margin:0 0 1rem; }
-    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
-    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+ 
 
     /* ===== ヒーロー（相談支援） ===== */
     .unit-hero{
@@ -215,7 +212,7 @@
     }
 
     /* セクション */
-    .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
+    .section{ scroll-margin-top:10px; margin:1.25rem 0 1.6rem; }
     .section__title{
       font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); color:#111; margin:3rem 0 3rem;
       padding-left:.5rem; border-left:6px solid var(--unit-brand);
@@ -262,23 +259,144 @@
     .cta .cta__icon path{ stroke:currentColor; fill:none; }
     @media (max-width:680px){ .cta{ width:100%; min-width:0; flex-basis: 100%; } }
 
-    /* 上へ戻る（ページだけ上書き） */
-    .unit-soudan #backToTop.btt.btt--ring{
-      --btt-bg:#2f7d6d; --btt-bg-h:#266659; --btt-fg:#fff;
-      --btt-ring:rgba(47,125,109,.35); --btt-ring-h:rgba(47,125,109,.55); --btt-focus:#cff0e9;
-      --btt-ring-active: #2f7d6d;
-      --btt-ring-base: #eaf6f3;
+/* ===== このページ（unit-soudan）専用：上へ戻るボタン ===== */
+    /* デザイン案：白背景 × 濃いミント（ブランドインク） */
+    .unit-soudan #backToTop.btt.btt--ring {
+      --btt-bg: #ffffff;       /* 円の内側：真っ白 */
+      --btt-bg-h: #ffffff;     /* ホバー時も白 */
+      
+      --btt-fg: #123f36;       /* 文字と矢印：このページで一番濃いミント */
+      
+      /* 待機状態のリング（薄い線） */
+      --btt-ring: rgba(18, 63, 54, 0.1); 
+      --btt-ring-h: rgba(18, 63, 54, 0.2);
+      
+      /* フォーカス時の色 */
+      --btt-focus: #123f36;
     }
-    .unit-soudan #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
-    .unit-soudan #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
-    .unit-soudan #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
-    .unit-soudan #backToTop .btt__label{ color:var(--btt-fg); }
-    .unit-soudan #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
-    .unit-soudan #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
-    .unit-soudan #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
 
-    :root { --sticky-offset: 120px; }
-    section{ scroll-margin-top: var(--sticky-offset); }
+    /* ▼ スクロールした時に「伸びていく円」の色設定 */
+    body.unit-soudan {
+      --btt-ring-active: #123f36 !important; /* 動く円：一番濃いミント */
+      --btt-ring-base: rgba(18, 63, 54, 0.1) !important; /* 軌道の色：ごく薄いミント */
+    }
+
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
+
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ======================================================== */
+    .breadcrumb {
+      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
+      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      padding: 0 2% !important;
+      background: transparent !important;
+    }
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important;
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+    .breadcrumb a {
+      color: #425466 !important;
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important;
+      background: transparent !important;
+    }
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important;
+      font-weight: 400 !important;
+    }
 
   </style>
 </head>
@@ -293,7 +411,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -335,7 +452,9 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -348,7 +467,7 @@
 
   <main id="main" class="l-main page">
     <section class="wrap" aria-labelledby="title">
-      <nav class="myroot-breadcrumb" aria-label="パンくず">
+      <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li><a href="office.html">事業所紹介</a></li>
