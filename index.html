@@ -486,7 +486,144 @@
 
     } /* ▲▲▲ PC限定エリアここまで ▲▲▲ */
 
-  </style>
+
+
+/* --- 重要なお知らせバー（固定） --- */
+.info-bar {
+  background-color: #ffffff; /* 背景を白に */
+  border-bottom: 1px solid #e5e7eb; /* 下に薄い線を入れて区切る */
+  width: 100%;
+  padding: 1.2rem 0; /* 上下の余白を広げて「幅」を持たせる */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* ほんのり影を落として浮き立たせる */
+  position: relative;
+  z-index: 5;
+}
+
+.info-bar__inner {
+  max-width: 1100px; /* コンテンツ幅（ヘッダーなどに合わせる） */
+  margin: 0 auto;
+  padding: 0 24px;   /* 左右の余白 */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 中央寄せ */
+}
+
+/* リンク全体 */
+.info-bar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #333;       /* 文字は読みやすい濃いグレー */
+  font-weight: 700;  /* 太字で強調 */
+  font-size: 1.05rem; /* 文字を大きく */
+  transition: opacity 0.2s;
+}
+
+.info-bar__link:hover {
+  opacity: 0.7;      /* マウスを乗せた時の変化 */
+  color: #009688;    /* ブランドカラー（緑）に変化させても綺麗です */
+}
+
+/* 「重要」バッジ */
+.info-badge {
+  background-color: #ef4444; /* 赤 */
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;    /* 縮まないようにする */
+}
+
+/* 日付 */
+.info-date {
+  color: #6b7280;    /* グレー */
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* スマホ表示の調整 */
+@media (max-width: 768px) {
+  .info-bar {
+    padding: 1rem 0; /* スマホでは少し高さを抑える */
+    text-align: left;
+  }
+  .info-bar__inner {
+    justify-content: flex-start; /* 左寄せに戻す */
+  }
+  .info-bar__link {
+    flex-wrap: wrap; /* 長いタイトルを折り返す */
+    gap: 8px;
+    font-size: 0.95rem; /* スマホでは文字サイズを少し調整 */
+  }
+  .info-text {
+    width: 100%;     /* タイトルを改行して表示 */
+    line-height: 1.5;
+  }
+}
+
+.info-bar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: none;          /* ★ここを none に変更 */
+  padding: 1rem 0;
+}
+/* バッジの色などはそのまま */
+
+/* 「重要」バッジのデザイン変更 */
+.info-badge {
+  background-color: #ef4444; /* 赤 */
+  color: #fff;
+  font-size: 0.75rem;      /* 文字サイズ */
+  font-weight: 700;
+  line-height: 1;
+  
+  /* ★ここを変更：丸みをつける */
+  padding: 5px 10px;       /* 丸くした分、横の余白を少し広げてバランスを取る */
+  border-radius: 99px;     /* 大きな数字にすると、カプセル型（角丸）になります */
+  
+  flex-shrink: 0;
+  transform: translateY(-1px); /* 気持ち上に上げて、文字と中心を合わせる */
+}
+
+/* スマホでの微調整（もし必要なら） */
+@media (max-width: 768px) {
+  .info-badge {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* 「重要」バッジのデザイン（拡大版） */
+.info-badge {
+  background-color: #ef4444; /* 赤 */
+  color: #fff;
+  
+  /* ▼▼▼ ここを大きくしました ▼▼▼ */
+  font-size: 0.9rem;       /* 文字を大きく（約14px相当） */
+  padding: 6px 14px;       /* 余白を広げて、ゆったりとした丸みに */
+  /* ▲▲▲ ここまで ▲▲▲ */
+
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 99px;     /* カプセル型 */
+  flex-shrink: 0;
+  
+  /* 文字との高さ合わせ（微調整） */
+  transform: translateY(-1px); 
+  margin-right: 4px;       /* 右の日付との間隔を少し確保 */
+}
+
+/* スマホでは少しだけ控えめに（画面からはみ出さない配慮） */
+@media (max-width: 768px) {
+  .info-badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+ </style>
 </head>
 
 <body class="page-home">
@@ -553,6 +690,16 @@
         <span class="c-hamburger-menu__button-mark"></span>
       </label>
     </header>
+
+<div class="info-bar">
+  <div class="info-bar__inner">
+    <a href="news7.html" class="info-bar__link">
+      <span class="info-badge">重要</span>
+      <span class="info-date">2026.02.18</span>
+      <span class="info-text">【ジョブカフェ一関】サイト休止のお知らせ</span>
+    </a>
+  </div>
+</div>
 
     <main id="main">
       <div class="topview">
