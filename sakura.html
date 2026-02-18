@@ -296,6 +296,152 @@
     .cta__icon path{ stroke:currentColor; fill:none; }
     @media (max-width:680px){ .cta{ flex-basis:100%; width:100%; } }
 
+
+   /* ===============================
+       ヘッダー・フッターの最新スタイル適用
+       =============================== */
+
+    /* フッターリンク（隙間のある下線） */
+    .site-footer a {
+      text-decoration: none !important; /* デフォルトの下線は消す */
+      transition: all 0.2s ease;        /* 変化をなめらかに */
+    }
+    .site-footer a:hover {
+      color: #007867 !important;        /* 文字を緑にする */
+      text-decoration: underline !important;   /* 下線を引く */
+      text-underline-offset: 4px !important;   /* 文字から4px離す */
+      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+    }
+
+    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+    }
+
+    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;   /* 色だけ変える（緑） */
+        font-weight: 400 !important; /* 太さは標準のまま！ */
+    }
+
+    /* ヘッダーメニュー（PC専用・アニメーションあり） */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;     
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;   
+        opacity: 1 !important;     
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+
+
+    /* ========================================================
+       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ======================================================== */
+    .breadcrumb {
+      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
+      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      padding: 0 2% !important;
+      background: transparent !important;
+    }
+    .breadcrumb ol {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: .5rem .75rem !important;
+      list-style: none !important;
+      padding: 1.2em 0 !important;
+      margin: 0 !important;
+      font-size: .9rem !important;
+      font-family: "Noto Sans JP", sans-serif !important;
+    }
+    .breadcrumb li + li::before {
+      content: "›" !important;
+      color: #9ca3af !important;
+      margin: 0 .25rem !important;
+      font-weight: 400 !important;
+    }
+    .breadcrumb a {
+      color: #425466 !important;
+      text-decoration: none !important;
+      font-weight: 400 !important;
+      transition: text-decoration 0.2s ease !important;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline !important;
+      color: #425466 !important;
+      background: transparent !important;
+    }
+    .breadcrumb li[aria-current="page"] {
+      color: #17222f !important;
+      font-weight: 400 !important;
+    }
+
+
+/* ▼▼▼ ドロップダウンメニューの色を「ピンク」に上書き ▼▼▼ */
+    header .submenu a:hover {
+      background-color: #FFF0F5 !important; /* 背景：ごく薄いピンク */
+   
+    }
+
+/* ===== このページ（unit-sakura）専用：上へ戻るボタン ===== */
+    /* デザイン案：白背景 × 濃いピンク（ブランドインク）のラインと文字 */
+    .unit-sakura #backToTop.btt.btt--ring {
+      --btt-bg: #ffffff;       /* 円の内側：真っ白 */
+      --btt-bg-h: #ffffff;     /* ホバー時も白 */
+      
+      --btt-fg: #6E2142;       /* 文字と矢印：このページで一番濃いピンク */
+      
+      /* 待機状態のリング（薄い線） */
+      --btt-ring: rgba(110, 33, 66, 0.1); 
+      --btt-ring-h: rgba(110, 33, 66, 0.2);
+      
+      /* フォーカス時の色 */
+      --btt-focus: #6E2142;
+    }
+
+    /* ▼ スクロールした時に「伸びていく円」の色設定 */
+    body.unit-sakura {
+      --btt-ring-active: #6E2142 !important; /* 動く円：一番濃いピンク */
+      --btt-ring-base: rgba(110, 33, 66, 0.1) !important; /* 軌道の色：ごく薄いピンク */
+    }
+
   </style>
 </head>
 
@@ -308,7 +454,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-      <li class="c-header__list-item"><a href="index.html" class="c-header__list-link">TOP</a></li>
 
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
@@ -350,7 +495,9 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -362,7 +509,7 @@
   </header>
 
   <main class="wrap" id="main">
-      <nav class="myroot-breadcrumb" aria-label="パンくず">
+      <nav class="breadcrumb" aria-label="パンくず">
         <ol>
           <li><a href="index.html">TOP</a></li>
           <li><a href="office.html">事業所紹介</a></li>
@@ -401,7 +548,7 @@
               <a class="btn ghost" href="tel:0191483622">電話で相談（0191-48-3622）</a>
               <a class="btn ghost" href="mailto:hands.sakura@gmail.com">メールで問い合わせ</a>
             </div>
-            <p class="unit-hero__small">※状況により電話対応が難しい場合がございます。</p>
+            <p class="unit-hero__small">※電話対応が難しい場合がございます。</p>
           </aside>
         </div>
       </div>
