@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>定款 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズの定款を掲載しています。">
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズのサイトマップです。本サイト内の各ページ構成と内容を一覧でご確認いただけます。">
+  <title>サイトマップ | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
   
-  <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/style.css" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
@@ -21,153 +21,110 @@
     body{opacity:1!important; background: #fff; color: #17222f;}
     #splash{display:none!important}
 
-    /* 文書ページ用レイアウト */
-    .doc-container{ max-width: 1040px; margin-inline: auto; padding: 0 min(4vw, 24px); }
-
-
-
-    /* ヒーロー：シンプル版 */
-    .hero--simple{ 
-      padding: 30px 0 20px; 
-      text-align: center;
+    /* ページ固有：サイトマップのレイアウト */
+    
+    /* ★修正：パンくずリストを他ページのデザイン（.myroot-breadcrumb）に統一 */
+    .myroot-breadcrumb{ 
+      max-width: min(1100px, 92vw); 
+      margin: clamp(16px, 2vw, 24px) auto 0; /* 中央寄せと余白 */
+      padding: 0 2%; 
     }
-    .hero__title{
-      font-family: "Zen Maru Gothic", sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
+    .myroot-breadcrumb ol{ 
+      display:flex; 
+      gap:.5rem .75rem; 
+      list-style:none; 
+      padding:0; 
+      margin:0; 
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    .myroot-breadcrumb li{
+      display: flex;
+      align-items: center;
+    }
+    /* 区切り文字 */
+    .myroot-breadcrumb li+li::before{ 
+      content:"›"; 
+      color:#9ca3af; 
+      margin:0 .25rem 0 .2rem; 
+      font-family: system-ui, sans-serif; 
+    }
+    /* リンクスタイル */
+    .myroot-breadcrumb a{
+      text-decoration:none; 
+      color: #4b5563; /* 落ち着いたグレー */
+      transition: color 0.2s;
+    }
+    .myroot-breadcrumb a:hover{
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    /* 現在地 */
+    .myroot-breadcrumb li[aria-current="page"] {
+      color: #17222f; /* 濃い黒 */
+      font-weight: 500;
+    }
+
+    .sitemap{max-width:min(1100px,92vw); margin: clamp(16px,4vw,60px) auto; padding: 0 2%;}
+    .sitemap__title{
+      font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+      font-size:clamp(22px,3.6vw,32px);
+      line-height:1.3;
+      margin:.2em 0 .8em;
+      padding-bottom: .4em;
+      border-bottom: 2px solid #e6edf2;
       color: #17222f;
-      margin: 0;
-    }
-
-    /* ── 目次のデザイン ── */
-    .bylaws-toc{
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: clamp(24px, 4vw, 36px);
-      margin: 0 0 60px;
-      max-width: 900px; 
-      margin-inline: auto; 
-    }
-    .bylaws-toc__title{
-      margin: 0 0 1.2rem;
-      font: 700 1.2rem "Zen Maru Gothic", sans-serif;
-      color: #0f172a;
-      text-align: center;
-    }
-    .bylaws-toc__list{
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem 3rem;
-    }
-    @media (max-width: 600px) {
-      .bylaws-toc__list { grid-template-columns: 1fr; }
-    }
-
-    .bylaws-toc__list a{
-      color: #334155;
-      text-decoration: none;
-      display: block;
-      padding: 0.4em 0;
-      border-bottom: 1px dashed #cbd5e1;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .bylaws-toc__list a:hover{
-      color: #0f766e;
-      border-bottom-color: #0f766e;
-    }
-
-    /* ── 条文のスタイル ── */
-    .bylaws{
-      line-height: 1.8;
-      color: #334155;
-    }
-    .bylaws section.anchor{
-      scroll-margin-top: 10px;
-      margin-bottom: 4rem; 
-    }
-    .bylaws h2{
-      font-size: 1.4rem;
-      font-family: "Zen Maru Gothic", sans-serif;
-      color: #0f172a;
-      border-bottom: 2px solid #0f766e;
-      padding-bottom: 0.5rem;
-      margin: 0 0 1.5rem;
-    }
-    .article{
-      margin-bottom: 2rem;
-    }
-    /* 条文の見出し（第○条） */
-    .article-title{
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .article p{
-      margin: 0 0 0.8rem;
-      text-align: justify;
     }
     
-    /* リストのスタイル調整 */
-    .bylaws ol{
-      margin: 0.5rem 0 1rem;
-      padding-left: 1.8em;
+    .sitemap__grid{
+      display:grid; 
+      grid-template-columns:repeat(3,minmax(0,1fr)); 
+      gap: clamp(12px, 2vw, 24px); 
     }
-    .bylaws li{
-      margin-bottom: 0.4rem;
-    }
-    /* 漢数字等のリストに対応するための調整 */
-    .list-none {
-      list-style: none;
-      padding-left: 1em;
-    }
-    .list-none li {
-      text-indent: -1em;
-      padding-left: 1em;
-    }
+    @media (max-width:1000px){ .sitemap__grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .sitemap__grid{grid-template-columns:1fr} }
 
-    /* 附則内の役員名簿などのレイアウト */
-    .officer-list {
-      margin-left: 1em;
-      margin-bottom: 1.5rem;
-      display: grid;
-      gap: 0.5em;
+    .sitemap__section{
+      border:1px solid #e8eee9; 
+      border-radius:12px; 
+      padding: 16px; 
+      background:#fcfdfd;
     }
-    .officer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-    }
-    .officer-role {
+    .sitemap__heading{
+      font-family:"Zen Maru Gothic", sans-serif;
+      font-size:1.1rem; 
+      margin:0 0 .8em; 
+      color:#193528; 
       font-weight: 700;
-      min-width: 5em;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 0.4em;
     }
+    .sitemap__list{margin:0; padding:0; list-style:none; display:grid; gap:.6em;}
+    
+    .sitemap__list li { position: relative; padding-left: 1em; }
+    
+    .sitemap__list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.75em;
+        width: 6px;
+        height: 6px;
+        background: #cbd5e1;
+        border-radius: 50%;
+    }
+    
+    .sitemap__list a{
+      text-decoration:none; 
+      color: #17222f; 
+      transition: color 0.2s;
+      font-size: 0.95rem; 
+      letter-spacing: -0.04em; 
+    }
+    .sitemap__list a:hover{text-decoration:underline; color: #1d4ed8;}
+    
+    .sitemap__note{color:#66776f; font-size:.9rem; margin-top:.8em;}
 
-    /* ページトップへ戻るリンク（本文内） */
-    .backtop{
-      text-align: right;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-    }
-    .backtop a{
-      text-decoration: none;
-      color: #64748b;
-    }
-
-    /* ★修正：ドロップダウンメニューの背景を白に強制 */
-    #site-header .submenu {
-      background-color: #fff !important;
-    }
-
-    /* 印刷用調整 */
-    @media print{
-      .bylaws-toc, .backtop, #site-header, .site-footer, #backToTop{ display: none; }
-      body{ background: #fff; color: #000; }
-      .hero--simple{ padding: 0; }
-    }
 
    /* ===============================
        ヘッダー・フッターの最新スタイル適用
@@ -285,10 +242,21 @@
       font-weight: 400 !important;
     }
 
+    /* ページトップへ戻るリンク（本文内） */
+    .backtop{
+      text-align: right;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .backtop a{
+      text-decoration: none;
+      color: #64748b;
+    }
+
   </style>
 </head>
 
-<body class="page-teikan">
+<body>
 <a id="top" class="visually-hidden">top</a>
 
 <div id="page">
@@ -354,634 +322,86 @@
   </header>
 
   <main id="main">
-    
-    <div class="doc-container">
-      <nav class="breadcrumb" aria-label="パンくず">
-        <ol>
-          <li><a href="index.html">TOP</a></li>
-          <li><a href="corp.html">法人概要</a></li>
-          <li aria-current="page">定款</li>
-        </ol>
-      </nav>
-    </div>
 
-    <section class="hero--simple" aria-label="ページ見出し">
-      <div class="doc-container">
-        <h1 class="hero__title">定款</h1>
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="index.html">TOP</a></li>
+        <li aria-current="page">サイトマップ</li>
+      </ol>
+    </nav>
+
+    <section class="sitemap">
+      <h1 class="sitemap__title">サイトマップ</h1>
+
+      <div class="sitemap__grid">
+        <section class="sitemap__section" aria-labelledby="sm-top">
+          <h2 id="sm-top" class="sitemap__heading">はじめに</h2>
+          <ul class="sitemap__list">
+            <li><a href="index.html">TOPページ</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </section>
+
+        <section class="sitemap__section" aria-labelledby="sm-corp">
+          <h2 id="sm-corp" class="sitemap__heading">法人概要</h2>
+          <ul class="sitemap__list">
+            <li><a href="corp.html">法人概要（トップ）</a></li>
+            <li><a href="purpose.html">設立趣旨</a></li>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </section>
+
+        <section class="sitemap__section" aria-labelledby="sm-offices">
+          <h2 id="sm-offices" class="sitemap__heading">事業所紹介</h2>
+          <ul class="sitemap__list">
+            <li><a href="office.html">事業所紹介（トップ）</a></li>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </section>
+
+        <section class="sitemap__section" aria-labelledby="sm-howto">
+          <h2 id="sm-howto" class="sitemap__heading">初めての方へ</h2>
+          <ul class="sitemap__list">
+            <li><a href="howto.html">サイトの歩き方</a></li>
+            <li><a href="finder.html">あなたに合う支援をさがす</a></li>
+            <li><a href="access.html">アクセス一覧</a></li>
+            <li><a href="faq.html">FAQ（よくある質問）</a></li>
+          </ul>
+        </section>
+
+        <section class="sitemap__section" aria-labelledby="sm-public">
+          <h2 id="sm-public" class="sitemap__heading">情報公開・その他</h2>
+          <ul class="sitemap__list">
+            <li><a href="news.html">お知らせ・活動報告</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html" aria-current="page">サイトマップ</a></li>
+          </ul>
+        </section>
+
+        <section class="sitemap__section" aria-labelledby="sm-external">
+          <h2 id="sm-external" class="sitemap__heading">外部リンク</h2>
+          <ul class="sitemap__list">
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </section>
       </div>
     </section>
 
-    <section class="doc-container">
-
-      <nav class="bylaws-toc" aria-labelledby="toc-title">
-        <h2 id="toc-title" class="bylaws-toc__title">目次</h2>
-        <div class="bylaws-toc__list">
-          <a href="#ch1">第1章　総則</a>
-          <a href="#ch2">第2章　目的及び事業</a>
-          <a href="#ch3">第3章　会員</a>
-          <a href="#ch4">第4章　役員及び職員</a>
-          <a href="#ch5">第5章　総会</a>
-          <a href="#ch6">第6章　理事会</a>
-          <a href="#ch7">第7章　資産及び会計</a>
-          <a href="#ch8">第8章　定款の変更、解散及び合併</a>
-          <a href="#ch9">第9章　公告の方法</a>
-          <a href="#ch10">第10章　雑則</a>
-          <a href="#appx">附則</a>
-        </div>
-      </nav>
-
-      <article class="bylaws">
-        
-        <section id="ch1" class="anchor">
-          <h2>第1章　総則</h2>
-          <div class="article">
-            <span class="article-title">（名称）</span>
-            <p>第１条　この法人は、特定非営利活動法人レスパイトハウス・ハンズという。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（事務所）</span>
-            <p>第２条　この法人は、主たる事務所を岩手県一関市青葉2丁目6番16号に置く。</p>
-            <p>２　この法人は、前項のほか、従たる事務所を岩手県一関市赤荻字上袋75番地5に置く。</p>
-          </div>
-        </section>
-
-        <section id="ch2" class="anchor">
-          <h2>第2章　目的及び事業</h2>
-          <div class="article">
-            <span class="article-title">（目的）</span>
-            <p>第３条　この法人は、心身に障害を持つ人たち及びその家族に対し、地域生活を営む上で必要な支援及び社会参加を促進するための総合的援助を行うとともに、分野を超えたNPO活動により住民、企業、行政とのパートナーシップを推進し、すべての人が豊かに健やかに安心して暮らせる地域社会の実現に寄与することを目的とする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（特定非営利活動の種類）</span>
-            <p>第４条　この法人は、前条の目的を達成するため、次に掲げる種類の特定非営利活動を行う。</p>
-            <ol class="list-none">
-              <li>(１)　保健、医療又は福祉の増進を図る活動</li>
-              <li>(２)　社会教育の推進を図る活動</li>
-              <li>(３)　まちづくりの推進を図る活動</li>
-              <li>(４)　学術、文化、芸術又はスポーツの振興を図る活動</li>
-              <li>(５)　環境の保全を図る活動</li>
-              <li>(６)　災害救援活動</li>
-              <li>(７)　地域安全活動</li>
-              <li>(８)　人権の擁護又は平和の推進を図る活動</li>
-              <li>(９)　国際協力の活動</li>
-              <li>(10)　男女共同参画社会の形成の促進を図る活動</li>
-              <li>(11)　子どもの健全育成を図る活動</li>
-              <li>(12)　情報化社会の発展を図る活動</li>
-              <li>(13)　科学技術の振興を図る活動</li>
-              <li>(14)　経済活動の活性化を図る活動</li>
-              <li>(15)　職業能力の開発又は雇用機会の拡充を支援する活動</li>
-              <li>(16)　消費者の保護を図る活動</li>
-              <li>(17)　前各号に掲げる活動を行う団体の運営又は活動に関する連絡、助言又は援助の活動</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（事業）</span>
-            <p>第５条　この法人は、第3条の目的を達成するため、次の事業を行う。</p>
-            <ol class="list-none">
-              <li>① 障害者の日常生活及び社会生活を総合的に支援するための法律に規定される障害福祉サービス事業（居宅介護、重度訪問介護、行動援護、重度障害者等包括支援、短期入所、生活介護、共同生活介護、相談支援事業、自立訓練、就労移行支援、就労継続支援、共同生活援助等）</li>
-              <li>② 障害者の日常生活及び社会生活を総合的に支援するための法律に規定される市町村地域生活支援事業（日中一時支援、移動支援、居住支援、相談支援等）</li>
-              <li>③ 児童福祉法に規定される障害児通所支援事業及び相談支援事業等</li>
-              <li>④ 第二種社会福祉事業
-                <ul class="list-none" style="margin: 0.5em 0 0.5em 1em;">
-                  <li>ア)放課後等デイサービス　リトルハンズ</li>
-                  <li>イ)障害児発達支援事業　ii療育センターコッコハンズ</li>
-                  <li>ウ）ハンズ生活介護事業所　わぁははクラブ、さくらなみき</li>
-                </ul>
-              </li>
-              <li>⑤ その他、レスパイトサービス・宿泊サービス・付き添い介助、相談援助等の私的契約による障害児者の支援に関する事業</li>
-              <li>⑥ 障害者余暇活動支援事業</li>
-              <li>⑦ 道路運送法に規定される福祉有償運送</li>
-              <li>⑧ 障害児者乗馬推進事業</li>
-              <li>⑨ ボランティア啓発及び会報・出版物の発行</li>
-              <li>⑩ いちのせき市民活動センター設置運営</li>
-              <li>⑪ 地域における市民活動、地域自治組織の支援、協働推進に関する事業</li>
-              <li>⑫ まちづくりにおける情報収集、発信及び調査研究に関する事業</li>
-              <li>⑬ 行政、企業、市民団体等の連携のための業務受託に関する事業</li>
-              <li>⑭その他、第３条の目的を達成するために必要な事業</li>
-            </ol>
-          </div>
-        </section>
-
-        <section id="ch3" class="anchor">
-          <h2>第3章　会員</h2>
-          <div class="article">
-            <span class="article-title">（種別）</span>
-            <p>第６条　この法人の会員は、次の３種とし、正会員をもって特定非営利活動促進法（以下「法」という。）上の社員とする。</p>
-            <ol class="list-none">
-              <li>(1)　正会員　この法人の目的に賛同して、入会した個人</li>
-              <li>(2)　利用会員　この法人が実施する在宅福祉サービスを利用するために登録した個人</li>
-              <li>(3)　協力会員　この法人が実施する事業への協力を行う個人及び団体</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（入会）</span>
-            <p>第７条　正会員及びその他の会員として入会しようとするものは、会長が別に定める入会申込書により会長に申し込むものとし、会長は、入会申込者が本会の目的に賛同し、活動及び事業に協力できる者と認めるときは、正当な理由がない限り入会を認めなければならない。</p>
-            <p>２　会長は、前項のものの入会を認めないときは、速やかに、理由を付した書面をもって本人にその旨を通知しなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（会費）</span>
-            <p>第８条　正会員及びその他の会員は、総会において別に定める会費を納入しなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（会員の資格の喪失）</span>
-            <p>第９条　正会員及びその他の会員が次の各号の一に該当するに至ったときは、その資格を喪失する。</p>
-            <ol class="list-none">
-              <li>(1)　退会届の提出をしたとき。</li>
-              <li>(2)　本人が死亡したとき。</li>
-              <li>(3)　協力会員である団体が消滅したとき。</li>
-              <li>(4)　正当な理由なく会費を滞納し、催告を受けてもそれに応じず、納入しないとき。</li>
-              <li>(5)　除名されたとき。</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（退会）</span>
-            <p>第10条　正会員及びその他の会員は、会長が別に定める退会届を会長に提出して、任意に退会することができる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（除名）</span>
-            <p>第11条　会員が次の各号の一に該当するに至ったときは、総会の議決により、これを除名することができる。この場合、その会員に対し、議決の前に弁明の機会を与えなければならない。</p>
-            <ol class="list-none">
-              <li>(1)　この定款等に違反したとき。</li>
-              <li>(2)　この法人の名誉を傷つけ、又は目的に反する行為をしたとき。</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（拠出金品の不返還）</span>
-            <p>第12条　既納の会費及びその他の拠出金品は、返還しない。</p>
-          </div>
-        </section>
-
-        <section id="ch4" class="anchor">
-          <h2>第4章　役員及び職員</h2>
-          <div class="article">
-            <span class="article-title">（種別及び定数）</span>
-            <p>第13条　この法人に次の役員を置く。</p>
-            <ol class="list-none">
-              <li>(1)　理事 ５人以上　10人以内</li>
-              <li>(2)　監事 ２人以上</li>
-            </ol>
-            <p>２　理事のうち、1人を会長、2人を副会長とする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（選任等）</span>
-            <p>第14条　理事及び監事は、総会において正会員の中から選任する。</p>
-            <p>２　会長及び副会長は、理事の互選とする。</p>
-            <p>３　役員のうちには、それぞれの役員について、その配偶者若しくは三親等以内の親族が一人を超えて含まれ、又は当該役員並びにその配偶者及び三親等以内の親族が役員の総数の3分の1を超えて含まれることになってはならない。</p>
-            <p>４　監事は、理事又はこの法人の職員を兼ねることができない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（職務）</span>
-            <p>第15条　会長は、この法人を代表し、その業務を総理する。なお、会長以外の理事は、法人の業務について、この法人を代表しない。</p>
-            <p>２　副会長は、会長を補佐し、会長に事故あるとき又は会長が欠けたときは、会長があらかじめ指名した順序によって、その職務を代行する。</p>
-            <p>３　理事は、理事会を構成し、この定款の定め及び理事会の議決に基づき、この法人の業務を執行する。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（任期等）</span>
-            <p>第16条　役員の任期は、２年とする。ただし、再任を妨げない。</p>
-            <p>２　補欠のため、又は増員によって就任した役員の任期は、それぞれの前任者又は現任者の任期の残存期間とする。</p>
-            <p>３　役員は、辞任又は任期満了後においても、後任者が就任するまでは、その職務を行わなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（欠員補充）</span>
-            <p>第17条　理事又は監事のうち、その定数の3分の1を超える者が欠けたときは、遅滞なくこれを補充しなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（解任）</span>
-            <p>第18条　役員が次の各号の一に該当するに至ったときは、総会の議決により、これを解任することができる。この場合、その役員に対し、議決する前に弁明の機会を与えなければならない。</p>
-            <ol class="list-none">
-              <li>(1)　心身の故障のため、職務の遂行に堪えないと認められるとき。</li>
-              <li>(2)　職務上の義務違反その他役員としてふさわしくない行為があったとき。</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（報酬等）</span>
-            <p>第19条　役員は、その総数の3分の1以下の範囲内で報酬を受けることができる。</p>
-            <p>２　役員には、その職務を執行するために要した費用を弁償することができる。</p>
-            <p>３　前2項に関して必要な事項は、総会の議決を経て、会長が別に定める。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（事務局及び職員）</span>
-            <p>第20条　この法人に、必要に応じて事務を処理するため事務局を設け、事務局長及び必要な職員を置くことができる。</p>
-          </div>
-        </section>
-
-        <section id="ch5" class="anchor">
-          <h2>第5章　総会</h2>
-          <div class="article">
-            <span class="article-title">（種別）</span>
-            <p>第21条　この法人の総会は、通常総会及び臨時総会の2種とする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（構成）</span>
-            <p>第22条　総会は、正会員をもって構成する。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（権能）</span>
-            <p>第23条　総会は、以下の事項について議決する。</p>
-            <ol class="list-none">
-              <li>(1)　定款の変更</li>
-              <li>(2)　解散</li>
-              <li>(3)　合併</li>
-              <li>(4)　事業計画及び活動予算</li>
-              <li>(5)　事業報告及び活動決算</li>
-              <li>(6)　役員の選任及又は解任、職務及び報酬</li>
-              <li>(7)　 会費の額</li>
-              <li>(8)　その他運営に関する重要事項</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（開催）</span>
-            <p>第24条　通常総会は、毎年１回開催する。</p>
-            <p>２　臨時総会は、次の各号の一に該当する場合に開催する。</p>
-            <ol class="list-none">
-              <li>(1)　理事会が必要と認め招集の請求をしたとき。</li>
-              <li>(2)　正会員総数の５分の１以上から会議の目的である事項を記載した書面をもって招集の請求があったとき。</li>
-              <li>(3)　第15条第4項第4号の規定により、監事から招集があったとき。</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（招集）</span>
-            <p>第25条　総会は、前条第2項第3号の場合を除き、会長が招集する。</p>
-            <p>２　会長は、前条第2項第1号及び第2号の規定による請求があったときは、その日から30日以内に臨時総会を招集しなければならない。</p>
-            <p>３　総会を招集するときは、会議の日時、場所、目的及び審議事項を記載した書面をもって、少なくとも５日前までに通知しなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議長）</span>
-            <p>第26条　総会の議長は、その総会において、出席した正会員の中から選出する。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（定足数）</span>
-            <p>第27条　総会は、正会員総数の２分の１以上の出席がなければ開会することができない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議決）</span>
-            <p>第28条　総会における決議事項は、第25条第3項の規定によってあらかじめ通知した事項とする。</p>
-            <p>２　総会の議事は、この定款に規定するもののほか、出席した正会員の過半数をもって決し、可否同数のときは、議長の決するところによる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（表決権等）</span>
-            <p>第29条　各正会員の表決権は、平等なるものとする。</p>
-            <p>２　やむを得ない理由のため総会に出席できない正会員は、あらかじめ通知された事項について書面をもって表決し、又は他の正会員を代理人として表決を委任することができる。</p>
-            <p>３　前項の規定により表決した正会員は、前2条及び次条第1項の適用については、総会に出席したものとみなす。</p>
-            <p>４　総会の議決について、特別の利害関係を有する正会員は、その議事の議決に加わることができない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議事録）</span>
-            <p>第30条　総会の議事については、次の事項を記載した議事録を作成しなければならない。</p>
-            <ol class="list-none">
-              <li>(1)　日時及び場所</li>
-              <li>(2)　正会員の総数及び出席者数（書面表決者及び表決委任者がある場合にあっては、その数を付記すること。）　</li>
-              <li>(3)　審議事項</li>
-              <li>(4)　議事の経過の概要及び議決の結果</li>
-              <li>(5)　議事録署名人の選任に関する事項</li>
-            </ol>
-            <p>２　議事録には、議長及びその会議において選任された議事録署名人2人以上が署名、押印しなければならない。</p>
-          </div>
-        </section>
-
-        <section id="ch6" class="anchor">
-          <h2>第6章　理事会</h2>
-          <div class="article">
-            <span class="article-title">（構成）</span>
-            <p>第31条　理事会は、理事をもって構成する。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（権能）</span>
-            <p>第32条　理事会は、この定款で定めるもののほか、次の事項を議決する。</p>
-            <ol class="list-none">
-              <li>(1)　借入金(事業年度内の収入をもって償還する短期借入金を除く。第48条において同じ。)その他新たな義務の負担及び権利の放棄</li>
-              <li>(2)　事務局の組織及び運営</li>
-              <li>(3) 総会に付議すべき事項</li>
-              <li>(4)　総会の議決した事項の執行に関する事項</li>
-              <li>(5)　その他総会の議決を要しない会務の執行に関する事項</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（開催）</span>
-            <p>第33条　理事会は、次の各号の一に該当する場合に開催する。</p>
-            <ol class="list-none">
-              <li>(1)　会長が必要と認めたとき。</li>
-              <li>(2)　理事総数の３分の１以上から会議の目的である事項を記載した書面をもって招集の請求があったとき。</li>
-              <li>(3)　第15条第4項第5号の規定により、監事から招集の請求があったとき。</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（招集）</span>
-            <p>第34条　理事会は、会長が招集する。</p>
-            <p>２　会長は、前条第2号及び第3号の規定による請求があったときは、その日から14日以内に理事会を招集しなければならない。</p>
-            <p>３　理事会を招集するときは、会議の日時、場所、目的及び審議事項を記載した書面をもって、少なくとも５日前までに通知しなければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議長）</span>
-            <p>第35条　理事会の議長は、会長がこれに当たる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議決）</span>
-            <p>第36条　理事会における議決事項は、第34条第3項の規定によってあらかじめ通知した事項とする。</p>
-            <p>２　理事会の議事は、理事総数の過半数をもって決し、可否同数のときは、議長の決するところによる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（表決権等）</span>
-            <p>第37条　各理事の表決権は、平等なるものとする。</p>
-            <p>２　やむを得ない理由のため理事会に出席できない理事は、あらかじめ通知された事項について書面をもって表決することができる。</p>
-            <p>３　前項の規定により表決した理事は、次条第1項の適用については、理事会に出席したものとみなす。</p>
-            <p>４　理事会の議決について、特別の利害関係を有する理事は、その議事の議決に加わることができない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（議事録）</span>
-            <p>第38条　理事会の議事については、次の事項を記載した議事録を作成しなければならない。</p>
-            <ol class="list-none">
-              <li>(1)　日時及び場所</li>
-              <li>(2)　理事総数、出席者数及び出席者氏名（書面表決者にあっては、その旨を付記すること。）</li>
-              <li>(3)　審議事項</li>
-              <li>(4)　議事の経過の概要及び議決の結果</li>
-              <li>(5)　議事録署名人の選任に関する事項</li>
-            </ol>
-            <p>２　議事録には、議長及びその会議において選任された議事録署名人2人以上が署名、押印しなければならない。</p>
-          </div>
-        </section>
-
-        <section id="ch7" class="anchor">
-          <h2>第7章　資産及び会計</h2>
-          <div class="article">
-            <span class="article-title">（資産の構成）</span>
-            <p>第39条　この法人の資産は、次の各号に掲げるものをもって構成する。</p>
-            <ol class="list-none">
-              <li>(1)　設立の時の財産目録に記載された資産</li>
-              <li>(2)　会費</li>
-              <li>(3)　寄付金品</li>
-              <li>(4)　財産から生じる収益</li>
-              <li>(5)　事業に伴う収益</li>
-              <li>(6)　その他の収益</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（資産の管理）</span>
-            <p>第40条　この法人の資産は、会長が管理し、その方法は、総会の議決を経て、会長が別に定める。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（会計の原則）</span>
-            <p>第41条　この法人の会計は、法第27条各号に掲げる原則に従って行うものとする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（事業計画及び予算）</span>
-            <p>第42条　この法人の事業計画及びこれに伴う活動予算は、会長が作成し、総会の議決を経なければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（暫定予算）</span>
-            <p>第43条　前条の規定にかかわらず、やむを得ない理由により予算が成立しないときは、会長は、理事会の議決を経て、予算成立の日まで前事業年度の予算に準じ収益費用を講じることができる。</p>
-            <p>２　前項の収益費用は、新たに成立した予算の収益費用とみなす。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（予備費の設定及び使用）</span>
-            <p>第44条　予算超過又は予算外の支出に充てるため、予算中に予備費を設けることができる。</p>
-            <p>２　予備費を使用するときは、理事会の議決を経なければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（予算の追加及び更正）</span>
-            <p>第45条　予算作成後にやむを得ない事由が生じたときは、総会の議決を経て、既定予算の追加又は更正をすることができる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（事業報告及び決算）</span>
-            <p>第46条　この法人の事業報告書、活動計算書、貸借対照表及び財産目録等の決算に関する書類は、毎事業年度終了後、速やかに、会長が作成し、監事の監査を受け、総会の議決を経なければならない。</p>
-            <p>２　決算上剰余金を生じたときは、次事業年度に繰り越すものとする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（事業年度）</span>
-            <p>第47条　この法人の事業年度は、毎年４月１日に始まり翌年３月31日に終わる。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（臨機の措置）</span>
-            <p>第48条　予算をもって定めるもののほか、借入金の借り入れその他新たな義務の負担をし、又は権利の放棄をしようとするときは、総会の議決を経なければならない。</p>
-          </div>
-        </section>
-
-        <section id="ch8" class="anchor">
-          <h2>第8章　定款の変更、解散及び合併</h2>
-          <div class="article">
-            <span class="article-title">（定款の変更）</span>
-            <p>第49条　この法人が定款を変更しようとするときは、総会に出席した正会員の４分の３以上の多数による議決を経、かつ、法第25条第３項に規定する以下の事項を変更する場合、所轄庁の認証を得なければならない。</p>
-            <ol class="list-none">
-              <li>(1) 目的</li>
-              <li>(2) 名称</li>
-              <li>(3) その行う特定非営利活動の種類及び当該特定非営利活動に係る事業の種類</li>
-              <li>(4) 主たる事務所及びその他の事務所の所在地（所轄庁変更を伴うものに限る）</li>
-              <li>(5) 社員の得喪に関する事項</li>
-              <li>(6) 役員に関する事項（役員の定数に関する事項を除く）</li>
-              <li>(7) 会議に関する事項</li>
-              <li>(8) その他の事業を行う場合における、その種類その他当該その他の事業に関する事項</li>
-              <li>(9) 解散に関する事項（残余財産の帰属すべき事項に限る）</li>
-              <li>(10) 定款の変更に関する事項</li>
-            </ol>
-          </div>
-          <div class="article">
-            <span class="article-title">（解散）</span>
-            <p>第50条　この法人は、次に掲げる事由により解散する。</p>
-            <ol class="list-none">
-              <li>(1)　総会の決議</li>
-              <li>(2)　目的とする特定非営利活動に係る事業の成功の不能</li>
-              <li>(3)　正会員の欠亡</li>
-              <li>(4)　合併</li>
-              <li>(5)　破産手続き開始の決定</li>
-              <li>(6)　所轄庁による設立の認証の取消し</li>
-            </ol>
-            <p>２　前項第1号の事由によりこの法人が解散するときは、正会員総数の４分の３以上の承諾を得なければならない。</p>
-            <p>３　第1項第2号の事由により解散するときは、所轄庁の認定を得なければならない。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（残余財産の帰属）</span>
-            <p>第51条　この法人が解散（合併又は破産による解散を除く。）したときに残存する財産は、法第11条第3項に掲げる者のうち、一関市に譲渡するものとする。</p>
-          </div>
-          <div class="article">
-            <span class="article-title">（合併）</span>
-            <p>第52条　この法人が合併しようとするときは、総会において正会員総数の４分の３以上の議決を経、かつ、所轄庁の認証を得なければならない。</p>
-          </div>
-        </section>
-
-        <section id="ch9" class="anchor">
-          <h2>第９章　公告の方法</h2>
-          <div class="article">
-            <span class="article-title">（公告の方法）</span>
-            <p>第53条　この法人の公告は、この法人の掲示場に掲示するとともに、岩手日日新聞に掲載してこれを行う。</p>
-          </div>
-        </section>
-
-        <section id="ch10" class="anchor">
-          <h2>第10章　雑則</h2>
-          <div class="article">
-            <span class="article-title">（細則）</span>
-            <p>第54条　この定款の施行について必要な細則は、理事会の議決を経て、会長がこれを定める。</p>
-          </div>
-        </section>
-
-        <section id="appx" class="anchor">
-          <h2>附則</h2>
-          <div class="article">
-            <p>1. この定款は、この法人の成立の日から施行する。</p>
-            <p>2. この法人の設立当初の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>千 葉　純</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 幸 一</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>河 島 一 男</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>金 野 直 司</span></div>
-            </div>
-
-            <p>3. この法人の設立当初の役員の任期は、第16条第1項の規定にかかわらず、成立の日から平成14年５月末日までとする。</p>
-            <p>4. この法人の設立当初の事業計画及び収支予算は、第42条の規定にかかわらず、設立総会の定めるところによるものとする。</p>
-            <p>5. この法人の設立当初の事業年度は、第47条の規定にかかわらず、成立の日から平成13年３月31日までとする。</p>
-            <p>6. この法人の設立当初の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1． この定款は、平成14年5月26日から施行する。</p>
-            <p>2．この法人の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>千 葉　純</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 幸 一</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>河 島 一 男</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>金 野 直 司</span></div>
-            </div>
-
-            <p>3． この法人の役員の任期は、平成14年6月1日から平成16年５月末日までとする。</p>
-            <p>4．この法人の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1．この定款は、平成15年4月7日から施行する。</p>
-            <p>2．この法人の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>千 葉　純</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 幸 一</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>河 島 一 男</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>金 野 直 司</span></div>
-            </div>
-
-            <p>3．この法人の役員の任期は、平成14年6月1日から平成16年５月末日までとする。</p>
-            <p>4．この法人の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1． この定款は、平成16年9月14日から施行する。</p>
-            <p>2．この法人の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>菅 原　敏</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 幸 一</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>千 葉　純</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>金 野 直 司</span></div>
-            </div>
-
-            <p>3. この法人の役員の任期は、平成16年6月1日から平成18年５月末日までとする。</p>
-            <p>4．この法人の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③ 協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1．この定款は、平成18年9月5日から施行する。</p>
-            <p>2．この法人の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>菅 原　敏</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 幸 一</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>千 葉　純</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>金 野 直 司</span></div>
-            </div>
-
-            <p>3．この法人の役員の任期は、平成18年6月1日から平成20年５月末日までとする。</p>
-            <p>4．の法人の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1.この定款は、平成20年8月21日から施行する。</p>
-            <p>2.この法人の役員は、次に掲げる者とする。</p>
-            
-            <div class="officer-list">
-              <div class="officer-row"><span class="officer-role">会長</span><span>小 野 仁 志</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>森 上 隆 司</span></div>
-              <div class="officer-row"><span class="officer-role">副会長</span><span>佐々木芳 久</span></div>
-              <div class="officer-row"><span class="officer-role">理事</span><span>菅 原　敏</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>田 代 永 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>村 上 勝 弘</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 田 雅 子</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>千 葉 喜 恵</span></div>
-              <div class="officer-row"><span class="officer-role">監事</span><span>金 野 直 司</span></div>
-              <div class="officer-row"><span class="officer-role">同</span><span>佐 藤 紘 子</span></div>
-            </div>
-
-            <p>3.この法人の役員の任期は、平成20年6月1日から平成22年５月末日までとする。</p>
-            <p>4.この法人の会費は、第8条の規定にかかわらず、次に掲げる額とする。</p>
-            <p style="margin-left:1em;">①正会員　　　　　年会費　　　　6,000円</p>
-            <p style="margin-left:1em;">②利用会員　　　　年会費　　 　12,000円</p>
-            <p style="margin-left:1em;">③協力会員　　　　年会費　一口　3,000円</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1.この定款は、平成24年6月1日から施行する。</p>
-          </div>
-
-          <div class="article" style="border-top:1px solid #ddd; padding-top:2rem;">
-            <p><strong>附　則</strong></p>
-            <p>1.この定款は、平成25年6月1日から施行する。</p>
-          </div>
-
-        </section>
-
-       
-      </article>
-    </section>
   </main>
 
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
@@ -991,6 +411,7 @@
       <span class="btt__label">TOP</span>
     </span>
   </button>
+
 
   <footer class="site-footer" aria-labelledby="footer-title">
     <h2 id="footer-title" class="visually-hidden">フッター</h2>
@@ -1007,9 +428,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map">
-          <a href="https://www.google.com/maps/search/?api=1&query=特定非営利活動法人レスパイトハウス・ハンズ+岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a>
-        </p>
+        <p class="footer__map"><a href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
