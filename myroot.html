@@ -1187,6 +1187,41 @@ body .submenu{
       font-weight: 400 !important;
     }
 
+
+/* ===== ヘッダーナビ：上段リンクの色をサブと同じ緑に統一 ===== */
+    /* マウスを乗せた時（ホバー時） */
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link:hover,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link:focus-visible{
+      background: transparent !important;
+      border-color: transparent !important;
+      color: #005a4d !important; /* ★修正：確実にエラーを消す濃い緑色に変更 */
+      box-shadow: none !important;
+    }
+
+    /* 現在地表示（is-current や aria-current）の設定 */
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link[aria-current="page"]{
+      background: transparent !important;
+      border-color: transparent !important;
+      color: #005a4d !important; /* ★修正：確実にエラーを消す濃い緑色に変更 */
+      box-shadow: none !important;
+    }
+
+    /* 上段 <li> に背景を付けている共通指定があれば打ち消す（保険） */
+    #site-header .c-header__list > .c-header__list-item{
+      background: transparent !important;
+    }
+
+    /* 現在地（.is-current）のホバー時も同様に背景を消す */
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:hover,
+    #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:focus-visible{
+      background: transparent !important;
+      border-color: transparent !important;
+      color: #005a4d !important; /* ★修正：確実にエラーを消す濃い緑色に変更 */
+      box-shadow: none !important;
+    }
+
+
   </style>
 </head>
 
