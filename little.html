@@ -553,6 +553,19 @@
       font-weight: 400 !important;
     }
 
+
+/* ▼▼▼ 修正：リンクのコントラスト比を改善し、読みやすく ▼▼▼ */
+    .text-link { 
+      color: var(--unit-ink); /* 明るい黄色から、視認性の高い濃い茶色に変更 */
+      text-decoration: underline; 
+      font-weight: 700; 
+      text-underline-offset: 3px; /* 下線を少し離して、より洗練された印象に */
+    }
+    .text-link:hover { 
+      text-decoration: none; 
+      opacity: 0.7; /* ホバー時は少し薄くして、クリックできることを直感的に伝える */
+    }
+
   </style>
 </head>
 
