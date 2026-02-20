@@ -516,6 +516,12 @@
       box-shadow: 0 0 0 3px #bae6fd, 0 8px 20px rgba(2, 132, 199, 0.18);
     }
 
+/* ★修正：アクセス表の項目名を、より濃いグレーに変更して見やすく */
+    .facts dt{ color:#4b5563; font-weight:500; }
+
+/* ★修正：h3からクラス指定に変更。見た目はそのまま維持 */
+    .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
+
   </style>
 </head>
 
@@ -616,8 +622,8 @@
             </ul>
           </div>
 
-          <aside class="callout" aria-label="まずはご相談ください">
-            <h3>まずはご相談ください</h3>
+<aside class="callout" aria-label="まずはご相談ください">
+            <p class="callout-title">まずはご相談ください</p>
             <p>相談は無料です。ご状況を伺いながら、支援の進め方を一緒に考えます。</p>
 
             <div class="cta-row">
