@@ -480,6 +480,42 @@
       color: var(--res-accent, #0088cc) !important;   /* 文字：ページのメインカラー */
     }
 
+.subnav-list a{
+      display:inline-block; text-decoration:none; 
+      color: #374151; /* ★修正：より濃いグレーに変更 */
+      border:1px solid var(--line); padding:.65em 1.05em; border-radius:999px; background:#fff;
+      transition:.18s ease-in-out;
+    }
+    .subnav-list a:hover{ border-color:var(--brand); color:var(--brand-ink); box-shadow:0 6px 18px rgba(88,182,242,.14); }
+    .subnav-help{ text-align:center; 
+      color: #4b5563; /* ★修正：説明文もより濃いグレーに変更 */
+      font-size:.92rem; margin:.35rem 0 0; }
+
+.muted{ 
+      color: #4b5563; /* ★修正：より濃いグレーに変更（#657b8f → #4b5563） */
+      font-size:.95rem; 
+    }
+
+
+/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
+    body.unit-sky .cta-bar .cta{
+      /* ★修正：背景を濃いめの青（#0284c7）に変更し、白文字とのコントラストを確保 */
+      background: #0284c7;  
+      border: 2px solid #0284c7;
+      color: #fff;
+    }
+    body.unit-sky .cta-bar .cta:hover{
+      /* ★修正：ホバー時も連動してさらに濃い青（#0369a1）に変更 */
+      background: #0369a1;  
+      border-color: #0369a1;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.20);
+      transform: translateY(-1px);
+    }
+    body.unit-sky .cta-bar .cta:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px #bae6fd, 0 8px 20px rgba(2, 132, 199, 0.18);
+    }
+
   </style>
 </head>
 
