@@ -353,6 +353,71 @@
       font-weight: 400 !important;
     }
 
+/* ▼▼▼ メンテナンス用アラートボックス ▼▼▼ */
+    .alert-box {
+      background-color: #fff;
+      border: 2px solid #fca5a5;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .alert-box__icon {
+      color: #ef4444;
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 24px;
+      height: 24px;
+    }
+    .alert-box__text {
+      margin: 0;
+      color: #991b1b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .alert-box__text strong {
+      display: block;
+      color: #b91c1c;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .alert-box__link {
+      color: #b91c1c;
+      text-decoration: underline;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    .alert-box__link:hover {
+      opacity: 0.7;
+    }
+
+/* ▼ アイコンも文字に合わせて少し大きく ▼ */
+    .alert-box__icon {
+      color: #ef4444;
+      flex-shrink: 0;
+      margin-top: 3px; /* 文字が大きくなる分、位置を微調整 */
+      width: 28px;     /* 24px → 28px に拡大 */
+      height: 28px;    /* 24px → 28px に拡大 */
+    }
+    
+    /* ▼ 本文とタイトルの文字サイズを拡大 ▼ */
+    .alert-box__text {
+      margin: 0;
+      color: #991b1b; 
+      font-size: 1.05rem; /* 0.95rem → 1.05rem に拡大（読みやすく） */
+      line-height: 1.6;
+    }
+    .alert-box__text strong {
+      display: block;
+      color: #b91c1c;
+      font-size: 1.15rem; /* 1rem → 1.15rem に拡大（タイトルをより強調） */
+      margin-bottom: 0.4rem; /* 文字が大きくなった分、下の余白も少し広げる */
+    }
+
+    /* ▲▲▲ メンテナンス用アラートボックス ▲▲▲ */
+
   </style>
 </head>
 
@@ -456,6 +521,19 @@
               <li>求職者の皆様のニーズに合わせたサポートを提供します。</li>
             </ul>
           </div>
+
+<div class="alert-box">
+            <svg class="alert-box__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <p class="alert-box__text">
+              <strong>【重要】公式サイト一時休止のお知らせ</strong>
+              現在、ジョブカフェ一関の公式サイトはリニューアル作業のため閲覧できません。<br>
+              状況につきましては、<a href="news7.html" class="alert-box__link">こちらのお知らせ（当サイト内）</a>をご確認ください。
+            </p>
+          </div>
+ 
+        
 
           <div class="links" id="links" aria-label="公式リンク">
             <a class="linkcard" href="http://jc-ichi.jp/" target="_blank" rel="noopener noreferrer external">
