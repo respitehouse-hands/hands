@@ -26,6 +26,11 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
+    /* ▼▼▼ 追加：パフォーマンス対策（ローディング待機を無効化し即座に表示） ▼▼▼ */
+    html, body { opacity: 1 !important; visibility: visible !important; }
+    html.no-scroll, body.no-scroll { overflow: auto !important; }
+    #splash { display: none !important; }
+
     /* ===== 基本（ブランド色は入れない） ===== */
     :root{
       --ink:#17222f;
@@ -249,33 +254,21 @@
       font-size:.7em; color:#8aa0b3; font-weight:600; margin-left:.15em; vertical-align:baseline; opacity:.85;
     }
 
-
-
 /* ===== このページ（unit-sky）専用：上へ戻るボタン ===== */
-    /* デザイン案：白背景 × 一番濃い青のラインと文字 */
     .unit-sky #backToTop.btt.btt--ring {
-      --btt-bg: #ffffff;       /* 円の内側：真っ白 */
-      --btt-bg-h: #ffffff;     /* ホバー時も白のまま（清潔感維持） */
-      
-      --btt-fg: #0f4e77;       /* 文字と矢印：このページで一番濃い青（ブランドインク色） */
-      
-      /* 待機状態のリング（薄い線） */
+      --btt-bg: #ffffff;
+      --btt-bg-h: #ffffff;
+      --btt-fg: #0f4e77;
       --btt-ring: rgba(15, 78, 119, 0.1); 
       --btt-ring-h: rgba(15, 78, 119, 0.2);
-      
-      /* フォーカス時の色 */
       --btt-focus: #0f4e77;
     }
 
-    /* ▼ スクロールした時に「伸びていく円」の色設定 */
     body.unit-sky {
-      --btt-ring-active: #0f4e77 !important; /* 動く円：一番濃い青 */
-      --btt-ring-base: rgba(15, 78, 119, 0.1) !important; /* 軌道の色：ごく薄い青 */
+      --btt-ring-active: #0f4e77 !important;
+      --btt-ring-base: rgba(15, 78, 119, 0.1) !important; 
     }
 
-
-
-    /* パンくず */
     .myroot-breadcrumb{ margin:0 0 1rem; }
     .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
@@ -302,23 +295,6 @@
       .unit-sky .has-sub .sub-toggle:checked ~ .sub-caret::after{ content:"－"; }
     }
 
-    /* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
-    body.unit-sky .cta-bar .cta{
-      background: #58b6f2;         /* 空色 */
-      border: 2px solid #58b6f2;
-      color: #fff;
-    }
-    body.unit-sky .cta-bar .cta:hover{
-      background: #2ea6f0;         /* 濃いめの空色 */
-      border-color: #2ea6f0;
-      box-shadow: 0 8px 20px rgba(88,182,242,.20);
-      transform: translateY(-1px);
-    }
-    body.unit-sky .cta-bar .cta:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(88,182,242,.18);
-    }
-
     /* ===== 居宅介護：下部CTAの横幅をそろえる ===== */
     body.unit-sky .cta-bar{
       max-width: var(--max);
@@ -327,24 +303,21 @@
       display: flex;
       gap: .8rem;
       justify-content: center;
-      flex-wrap: wrap;            /* 狭い時は折り返し */
+      flex-wrap: wrap;            
     }
 
     body.unit-sky .cta-bar .cta{
-      display: flex;              /* 中央寄せ */
+      display: flex;              
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
       padding: .95em 1.2em;
       border-radius: 12px;
-
-      /* ここで“同じ幅”にする */
-      flex: 1 1 16rem;            /* 両ボタンとも16remを基準に等分 */
-      min-width: 16rem;           /* PC時に細くなりすぎないように */
+      flex: 1 1 16rem;            
+      min-width: 16rem;           
       text-align: center;
     }
 
-    /* スマホ時は縦並びで幅100%に */
     @media (max-width: 680px){
       body.unit-sky .cta-bar .cta{
         flex-basis: 100%;
@@ -357,37 +330,37 @@
       scroll-margin-top: 20px;
     }
 
-
    /* ===============================
        ヘッダー・フッターの最新スタイル適用
        =============================== */
 
     /* フッターリンク（隙間のある下線） */
     .site-footer a {
-      text-decoration: none !important; /* デフォルトの下線は消す */
-      transition: all 0.2s ease;        /* 変化をなめらかに */
+      text-decoration: none !important; 
+      transition: all 0.2s ease;        
     }
     .site-footer a:hover {
-      color: #007867 !important;        /* 文字を緑にする */
-      text-decoration: underline !important;   /* 下線を引く */
-      text-underline-offset: 4px !important;   /* 文字から4px離す */
-      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+      color: #007867 !important;        
+      text-decoration: underline !important;   
+      text-underline-offset: 4px !important;   
+      text-decoration-thickness: 1px !important; 
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important; 
     }
 
-    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    /* ヘッダー・ドロップダウン修正 */
     header .submenu {
       background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+      border: 1px solid #e5e7eb !important; 
     }
     header .submenu a:hover {
-      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+      background-color: #e6f4fa !important; /* ドロップダウンホバーはページ色（青） */
+      color: var(--res-accent, #0088cc) !important;
     }
 
-    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    /* 現在地（初めての方へ）の太字を解除 */
     .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   /* 色だけ変える（緑） */
-        font-weight: 400 !important; /* 太さは標準のまま！ */
+        color: #007867 !important;   
+        font-weight: 400 !important; 
     }
 
     /* ヘッダーメニュー（PC専用・アニメーションあり） */
@@ -399,7 +372,7 @@
         font-weight: 400 !important;
         padding: 0.5em 0.6em !important; 
         display: inline-block;
-        filter: none !important;     
+        filter: none !important;      
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -411,8 +384,8 @@
         text-shadow: 0 0 0.5px #007867 !important;
         text-decoration: none !important; 
         font-weight: 400 !important;
-        filter: none !important;   
-        opacity: 1 !important;     
+        filter: none !important;    
+        opacity: 1 !important;      
         background: transparent !important;
       }
       header .c-header__list-link::after {
@@ -432,13 +405,10 @@
       }
     }
 
-
-    /* ========================================================
-       共通パンくずリスト（philosophy.htmlのデザインを移植）
-       ======================================================== */
+    /* パンくずリスト */
     .breadcrumb {
-      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
-      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
+      margin: 0 auto 1.75rem !important; 
+      max-width: min(1100px, 92vw) !important; 
       padding: 0 2% !important;
       background: transparent !important;
     }
@@ -474,69 +444,34 @@
       font-weight: 400 !important;
     }
 
-/* ▼▼▼ ドロップダウンメニューの色を「青」に上書き ▼▼▼ */
-    header .submenu a:hover {
-      background-color: #e6f4fa !important; /* 背景：ごく薄い青 */
-      color: var(--res-accent, #0088cc) !important;   /* 文字：ページのメインカラー */
-    }
-
-.subnav-list a{
+    /* ▼▼▼ コントラスト・見出し順序修正済みのスタイル ▼▼▼ */
+    
+    .subnav-list a{
       display:inline-block; text-decoration:none; 
-      color: #374151; /* ★修正：より濃いグレーに変更 */
+      color: #374151; /* コントラスト修正 */
       border:1px solid var(--line); padding:.65em 1.05em; border-radius:999px; background:#fff;
       transition:.18s ease-in-out;
     }
     .subnav-list a:hover{ border-color:var(--brand); color:var(--brand-ink); box-shadow:0 6px 18px rgba(88,182,242,.14); }
+    
     .subnav-help{ text-align:center; 
-      color: #4b5563; /* ★修正：説明文もより濃いグレーに変更 */
-      font-size:.92rem; margin:.35rem 0 0; }
+      color: #4b5563; /* コントラスト修正 */
+      font-size:.92rem; margin:.35rem 0 0; 
+    }
 
-.muted{ 
-      color: #4b5563; /* ★修正：より濃いグレーに変更（#657b8f → #4b5563） */
+    .muted{ 
+      color: #4b5563; /* コントラスト修正 */
       font-size:.95rem; 
     }
 
-
-/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色を空色に ===== */
+    /* フッター直前CTAの色修正 */
     body.unit-sky .cta-bar .cta{
-      /* ★修正：背景を濃いめの青（#0284c7）に変更し、白文字とのコントラストを確保 */
-      background: #0284c7;  
-      border: 2px solid #0284c7;
-      color: #fff;
-    }
-    body.unit-sky .cta-bar .cta:hover{
-      /* ★修正：ホバー時も連動してさらに濃い青（#0369a1）に変更 */
-      background: #0369a1;  
-      border-color: #0369a1;
-      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.20);
-      transform: translateY(-1px);
-    }
-    body.unit-sky .cta-bar .cta:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 3px #bae6fd, 0 8px 20px rgba(2, 132, 199, 0.18);
-    }
-
-/* ★修正：アクセス表の項目名を、より濃いグレーに変更して見やすく */
-    .facts dt{ color:#4b5563; font-weight:500; }
-
-/* ★修正：h3からクラス指定に変更。見た目はそのまま維持 */
-    .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
-
-.cta-btn--tel{
-      background: #005b96;        /* ★修正：基準を確実にクリアする濃い青に変更 */
-      border-color: #005b96;
-      color: #fff;
-    }
-    .cta-btn--tel:hover{ filter:brightness(.96); }
-
-/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色 ===== */
-    body.unit-sky .cta-bar .cta{
-      background: #005b96;         /* ★修正：基準を確実にクリアする濃い青に変更 */
+      background: #005b96;  /* 基準を確実にクリアする濃い青 */
       border: 2px solid #005b96;
       color: #fff;
     }
     body.unit-sky .cta-bar .cta:hover{
-      background: #004573;         /* ホバー時は連動してさらに濃く */
+      background: #004573;
       border-color: #004573;
       box-shadow: 0 8px 20px rgba(0, 91, 150, 0.20);
       transform: translateY(-1px);
@@ -546,6 +481,118 @@
       box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(0, 91, 150, 0.18);
     }
 
+    /* アクセス表の項目名修正 */
+    .facts dt{ color:#4b5563; font-weight:500; }
+
+    /* 見出し順序修正用のクラス */
+    .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
+
+    /* ページ上部「電話する」ボタン修正 */
+    .cta-btn--tel{
+      background: #005b96; /* 基準を確実にクリアする濃い青 */
+      border-color: #005b96;
+      color: #fff;
+    }
+    .cta-btn--tel:hover{ filter:brightness(.96); }
+
+
+
+
+
+/* ▼▼▼ 修正版：事業所案内（セパレート型レイアウト） ▼▼▼ */
+    /* 外枠のカードスタイルを解除（透明なラッパーにする） */
+    .access-card {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+    
+    .access-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* PCは左右半々 */
+      gap: 24px; /* ★ここで左右の間隔をしっかりと空ける */
+    }
+    
+    /* 左側：情報エリア（独立したカードにする） */
+    .access-content {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px; /* 角丸 */
+      box-shadow: 0 10px 30px rgba(23,34,47,.05); /* 影 */
+      padding: clamp(24px, 3vw, 40px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .access-row {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f4f8;
+      padding-bottom: 1rem;
+    }
+    .access-row:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .access-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--brand-ink);
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+    }
+    
+    .access-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+    
+    .access-value {
+      margin: 0 0 0 1.9rem;
+      color: #333;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    /* 右側：地図エリア（独立したカードにする） */
+    .access-map-area {
+      position: relative;
+      min-height: 320px;
+      background: #f0f9ff;
+      border: 1px solid var(--line); /* 枠線 */
+      border-radius: 16px; /* 角丸 */
+      box-shadow: 0 10px 30px rgba(23,34,47,.05); /* 影 */
+      overflow: hidden; /* 角丸からはみ出さないように */
+    }
+    .access-map-area iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    
+    /* スマホ表示（800px以下） */
+    @media (max-width: 800px) {
+      .access-layout {
+        grid-template-columns: 1fr; /* 縦積み */
+        gap: 16px; /* 縦の間隔 */
+      }
+      .access-map-area {
+        height: 300px;
+      }
+      .access-content {
+        padding: 24px;
+      }
+    }
+
   </style>
 </head>
 
@@ -553,7 +600,9 @@
   <a id="top" class="visually-hidden">top</a>
 
   <header id="site-header" class="c-header c-hamburger-menu">
-    <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
+    <a href="index.html" class="c-header__logo">
+      <img src="img/logo.webp" alt="ロゴ" width="120" height="48" fetchpriority="high" decoding="async">
+    </a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
@@ -646,7 +695,7 @@
             </ul>
           </div>
 
-<aside class="callout" aria-label="まずはご相談ください">
+          <aside class="callout" aria-label="まずはご相談ください">
             <p class="callout-title">まずはご相談ください</p>
             <p>相談は無料です。ご状況を伺いながら、支援の進め方を一緒に考えます。</p>
 
@@ -725,20 +774,55 @@
       </div>
     </section>
 
-    <section id="access" aria-labelledby="access-title">
+<section id="access" aria-labelledby="access-title">
       <h2 id="access-title" class="sec-title">事業所案内</h2>
-      <div class="card">
-        <dl class="facts">
-          <div><dt>所在地</dt><dd>〒021-0031　岩手県一関市青葉二丁目 6-16</dd></div>
-          <div><dt>TEL / FAX</dt><dd>TEL：0191-31-5720　／　FAX：0191-31-5721</dd></div>
-          <div><dt>E-Mail</dt><dd>hands-ma@ceres.ocn.ne.jp（担当：千田）</dd></div>
-        </dl>
+      
+      <div class="card access-card">
+        <div class="access-layout">
+          
+          <div class="access-content">
+            <div class="access-row">
+              <div class="access-label">
+                <svg class="access-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                所在地
+              </div>
+<div class="access-value">
+                〒021-0031<br>
+                岩手県一関市青葉二丁目 6-16<br>
+                <a href="https://www.google.com/maps/search/?api=1&query=〒021-0031+岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener" style="display:inline-block; margin-top:0.4rem; color:#005b96; font-size:0.9rem; text-decoration:underline;">Googleマップで見る →</a>
+              </div>
+            </div>
 
-        <div class="map" style="margin:1rem 0;">
-          <iframe title="ハンズ居宅介護事業所 周辺地図" loading="lazy" allowfullscreen
-                  referrerpolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=岩手県一関市青葉二丁目6-16&t=&z=15&ie=UTF8&iwloc=&output=embed">
-          </iframe>
+            <div class="access-row">
+              <div class="access-label">
+                <svg class="access-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                TEL / FAX
+              </div>
+              <div class="access-value">
+                TEL：<a href="tel:0191-31-5720" style="color:inherit; text-decoration:none;">0191-31-5720</a><br>
+                FAX：0191-31-5721
+              </div>
+            </div>
+
+            <div class="access-row">
+              <div class="access-label">
+                <svg class="access-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                E-Mail
+              </div>
+              <div class="access-value">
+                hands-ma@ceres.ocn.ne.jp<br>
+                <span class="muted" style="font-size:0.85rem;">（担当：千田）</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="access-map-area">
+            <iframe title="ハンズ居宅介護事業所 周辺地図" loading="lazy" allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://maps.google.com/maps?q=岩手県一関市青葉二丁目6-16&t=&z=15&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -832,7 +916,19 @@
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-</div><script src="js/site.js"></script>
+</div>
+
+<script src="js/site.js" defer></script>
+
+<script>
+  // JSで画面を表示（万が一CSSが効かない場合の保険）
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.classList.add('page-show');
+    document.documentElement.classList.remove('no-scroll');
+    var s = document.getElementById('splash'); 
+    if(s) s.style.display='none';
+  });
+</script>
 
 </body>
 </html>
