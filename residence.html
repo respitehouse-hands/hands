@@ -26,12 +26,12 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* ▼▼▼ 追加：パフォーマンス対策（ローディング待機を無効化し即座に表示） ▼▼▼ */
+    /* ▼▼▼ パフォーマンス対策：ローディング待機を無効化し即座に表示 ▼▼▼ */
     html, body { opacity: 1 !important; visibility: visible !important; }
     html.no-scroll, body.no-scroll { overflow: auto !important; }
     #splash { display: none !important; }
 
-    /* ===== 基本（ブランド色は入れない） ===== */
+    /* ===== 基本設定 ===== */
     :root{
       --ink:#17222f;
       --ink-2:#425466;
@@ -53,7 +53,7 @@
     }
     .wrap{ max-width:var(--max); margin-inline:auto; padding-inline:min(4vw,24px); }
 
-    /* ===== このページだけの“空色テーマ”を body.unit-sky に閉じ込める ===== */
+    /* ===== このページだけの“空色テーマ” ===== */
     .unit-sky{
       --accent:#edf7ff;
       --brand:#58b6f2;
@@ -62,7 +62,7 @@
       --chip-line: color-mix(in oklab, var(--brand) 45%, #fff);
     }
 
-    /* ▼▼ ヘッダー（このページのみ色替え。構造は触らない） ▼▼ */
+    /* ヘッダー配色調整 */
     .unit-sky #site-header{
       background: var(--accent) !important;
       border-bottom: 1px solid #cfe9ff;
@@ -70,7 +70,7 @@
     .unit-sky #site-header::after{ background: none !important; }
     .unit-sky #site-header .c-header__list{ background: transparent !important; box-shadow: none !important; }
 
-    /* ▼ このページ（unit-sky）だけのフッター配色 */
+    /* フッター配色調整 */
     .unit-sky .site-footer{ background:#edf7ff; border-top:1px solid #cfe9ff; }
     .unit-sky .site-footer .footer__bar{ background:#edf7ff; border-top:1px solid #cfe9ff; }
     .unit-sky .site-footer::before,
@@ -78,7 +78,7 @@
     .unit-sky .site-footer h3,
     .unit-sky .site-footer a{ color:#0f4e77; }
 
-    /* ヘッダー帯＆ドロップダウン色統一 */
+    /* ヘッダー帯＆ドロップダウン */
     body.unit-sky #site-header.c-header{ background:#e0faff; border-bottom:1px solid color-mix(in oklab, #58b6f2 28%, #fff); }
     body.unit-sky .submenu{
       background:#ffffff;
@@ -90,14 +90,13 @@
     body.unit-sky .submenu a:hover,
     body.unit-sky .submenu a:focus{ background:#eaf8ff; color:#0f4e77; }
 
-    /* 1段目メニュー背景は無色へ */
     body.unit-sky header.c-header .c-header__list > .c-header__list-item,
     body.unit-sky header.c-header .c-header__list > .c-header__list-item:hover,
     body.unit-sky header.c-header .c-header__list > .c-header__list-item:focus-within{
       background: transparent !important;
     }
 
-    /* ===== ページ固有ブロック ===== */
+    /* ===== ヒーローエリア ===== */
     .hero{
       margin:1.2rem 0 1.8rem;
       border:1px solid var(--line);
@@ -117,9 +116,7 @@
       width: 100px !important; height: 100px !important;
       display:grid; place-items:center;
     }
-    .emblem img{
-      width: 100px !important; height: auto !important;
-    }
+    .emblem img{ width: 100px !important; height: auto !important; }
     
     .hero-title{
       margin:0 0 .1rem;
@@ -127,12 +124,6 @@
       color:var(--brand-ink);
     }
     .hero-lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
-
-    .chips{ margin:.7rem 0 0; display:flex; gap:.5rem .6rem; flex-wrap:wrap; padding:0; list-style:none; }
-    .chips li{
-      border:1px solid var(--chip-line); background:#fff; color:var(--brand-ink);
-      border-radius:999px; padding:.28em .7em; font:500 .9rem "Noto Sans JP",system-ui;
-    }
 
     .hero-grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:1.55fr .95fr; }
     @media (max-width:920px){ .hero-grid{ grid-template-columns:1fr; } }
@@ -146,7 +137,6 @@
               mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z"/></svg>') no-repeat center / 100% 100%;
     }
 
-    /* —— ここが“左に青ラインのカード” —— */
     .callout{
       background:#fff;
       border:1px solid var(--chip-line);
@@ -155,76 +145,58 @@
       padding:clamp(12px,1.8vw,18px) clamp(14px,2vw,20px);
       box-shadow:0 8px 26px rgba(88,182,242,.08);
     }
-    .callout h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); }
+    .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
 
-    /* ▼ TEL/MAIL をボタン化 */
-    .cta-row{
-      display:grid;
-      gap:.6rem;
-      margin-top:.4rem;
-    }
+    .cta-row{ display:grid; gap:.6rem; margin-top:.4rem; }
     .cta-btn{
       display:flex; align-items:center; justify-content:center; gap:.6rem;
-      height:52px;
-      width:100%;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:700;
-      border:1px solid #cfe3f6;
-      background:#fff;
-      color:#0f4e77;
+      height:52px; width:100%; border-radius:12px; text-decoration:none; font-weight:700;
+      border:1px solid #cfe3f6; background:#fff; color:#0f4e77;
       box-shadow:0 4px 12px rgba(15,78,119,.08);
       transition:filter .15s ease, background .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
     .cta-btn svg{ flex:0 0 auto; }
 
     .cta-btn--tel{
-      background:#56aef2;        /* 青実ボタン */
-      border-color:#56aef2;
-      color:#fff;
+      background: #005b96; /* 基準を確実にクリアする濃い青 */
+      border-color: #005b96;
+      color: #fff;
     }
     .cta-btn--tel:hover{ filter:brightness(.96); }
 
     .cta-btn--mail{
-      background:#fff;            /* 白ボタン */
-      border-color:#cfe3f6;
-      color:#0f4e77;
+      background:#fff; border-color:#cfe3f6; color:#0f4e77;
     }
     .cta-btn--mail:hover{
-      background:#f6fbff;
-      border-color:#a6c8e8;
-      box-shadow:0 6px 16px rgba(15,78,119,.12);
+      background:#f6fbff; border-color:#a6c8e8; box-shadow:0 6px 16px rgba(15,78,119,.12);
     }
 
-    /* サブナビ（ページ内） */
+    /* サブナビ */
     .subnav{ position:sticky; top:0; z-index:15; background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
     .subnav-inner{ max-width:var(--max); margin-inline:auto; padding:.7rem min(4vw,24px); }
     .subnav-list{ display:flex; justify-content:center; flex-wrap:wrap; gap:.6rem .7rem; list-style:none; padding:0; margin:0; }
     .subnav-list a{
-      display:inline-block; text-decoration:none; color:var(--ink);
+      display:inline-block; text-decoration:none; 
+      color: #374151; /* コントラスト修正 */
       border:1px solid var(--line); padding:.65em 1.05em; border-radius:999px; background:#fff;
       transition:.18s ease-in-out;
     }
     .subnav-list a:hover{ border-color:var(--brand); color:var(--brand-ink); box-shadow:0 6px 18px rgba(88,182,242,.14); }
-    .subnav-help{ text-align:center; color:#657b8f; font-size:.92rem; margin:.35rem 0 0; }
+    .subnav-help{ text-align:center; color:#4b5563; font-size:.92rem; margin:.35rem 0 0; }
 
     /* セクション */
     section{ scroll-margin-top:84px; }
-
     .sec-title{
       font:700 clamp(1.25rem, 2vw, 1.5rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui;
       margin: clamp(28px, 4.5vw, 44px) 0 clamp(16px, 2.4vw, 44px);
-      padding-left:.72rem;
-      border-left:5px solid var(--brand);
+      padding-left:.72rem; border-left:5px solid var(--brand);
     }
-    #flow-title{ font-size: clamp(1.25rem, 2vw, 1.5rem); }
-
     .card{
       background:#fff; border:1px solid var(--line); border-radius:var(--radius);
       padding:clamp(14px,2.2vw,20px) clamp(16px,2.6vw,24px);
       box-shadow:0 10px 30px rgba(23,34,47,.05);
     }
-    .muted{ color:#657b8f; font-size:.95rem; }
+    .muted{ color:#4b5563; font-size:.95rem; }
 
     /* フロー */
     .flow{ display:grid; gap:12px; }
@@ -234,365 +206,94 @@
       color:#fff; display:grid; place-items:center; font-weight:700;
     }
     .flow .flow-item h3{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); }
-    .dot{ margin:.4rem 0 .2rem 1rem; }
-    .dot li{ list-style:disc; margin:.25rem 0; }
-
-    /* アクセス表・地図 */
-    .facts{ display:grid; gap:.6rem .9rem; grid-template-columns: 1fr 2fr; }
-    .facts dt{ color:#4f657a; }
-    .facts dd{ margin:0; }
-    @media (max-width:680px){ .facts{ grid-template-columns:1fr; } }
-
-    .map{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#f7fbff; min-height:260px; }
-    .map iframe{ width:100%; height:350px; border:0; display:block; }
 
     /* アンカーオフセット */
     :root { --sticky-offset: 120px; }
     #services, #flow, #city, #access { scroll-margin-top: var(--sticky-offset); }
+    .sec-title .note-mark{ font-size:.7em; color:#8aa0b3; font-weight:600; margin-left:.15em; vertical-align:baseline; opacity:.85; }
 
-    .sec-title .note-mark{
-      font-size:.7em; color:#8aa0b3; font-weight:600; margin-left:.15em; vertical-align:baseline; opacity:.85;
-    }
-
-/* ===== このページ（unit-sky）専用：上へ戻るボタン ===== */
+    /* 上へ戻るボタン */
     .unit-sky #backToTop.btt.btt--ring {
-      --btt-bg: #ffffff;
-      --btt-bg-h: #ffffff;
-      --btt-fg: #0f4e77;
-      --btt-ring: rgba(15, 78, 119, 0.1); 
-      --btt-ring-h: rgba(15, 78, 119, 0.2);
-      --btt-focus: #0f4e77;
+      --btt-bg: #ffffff; --btt-bg-h: #ffffff; --btt-fg: #0f4e77;
+      --btt-ring: rgba(15, 78, 119, 0.1); --btt-ring-h: rgba(15, 78, 119, 0.2); --btt-focus: #0f4e77;
     }
+    body.unit-sky { --btt-ring-active: #0f4e77 !important; --btt-ring-base: rgba(15, 78, 119, 0.1) !important; }
 
-    body.unit-sky {
-      --btt-ring-active: #0f4e77 !important;
-      --btt-ring-base: rgba(15, 78, 119, 0.1) !important; 
-    }
-
+    /* パンくず */
     .myroot-breadcrumb{ margin:0 0 1rem; }
     .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
 
-    /* スマホのメニュー確実化 */
+    /* スマホメニュー */
     @media (max-width: 750px){
       .unit-sky .c-hamburger-menu{ position:relative; z-index:4000; }
       .unit-sky .c-hamburger-menu__list{ z-index:4001; }
       .unit-sky .c-hamburger-menu__bg{ z-index:4000; }
       .unit-sky #site-header .c-header__list{ background:#fff !important; box-shadow:none !important; }
-
       .unit-sky .has-sub{ display:grid; grid-template-columns:1fr auto; align-items:center; position:relative; }
       .unit-sky .has-sub > .c-header__list-link{ grid-column:1; position:relative; z-index:1; padding-right:.5rem; }
       .unit-sky .has-sub .sub-caret{ grid-column:2; z-index:2; width:56px !important; height:44px !important; display:flex !important; align-items:center !important; justify-content:center !important; cursor:pointer; user-select:none; margin-left:4px; }
       .unit-sky .has-sub .sub-caret::after{ content:"＋"; font-size:22px; line-height:1; color:#2f3e33; }
-
-      .unit-sky .has-sub > .submenu{
-        position:static !important; display:none !important; opacity:1 !important; visibility:visible !important; transform:none !important;
-        background:#fff !important; border:1px solid #e6eaef !important; border-radius:12px !important; box-shadow:0 10px 26px rgba(0,0,0,.06) !important;
-        margin:.35rem 0 0 !important; width:100% !important;
-      }
+      .unit-sky .has-sub > .submenu{ position:static !important; display:none !important; opacity:1 !important; visibility:visible !important; transform:none !important; background:#fff !important; border:1px solid #e6eaef !important; border-radius:12px !important; box-shadow:0 10px 26px rgba(0,0,0,.06) !important; margin:.35rem 0 0 !important; width:100% !important; }
       .unit-sky .has-sub .sub-toggle{ display:none; }
       .unit-sky .has-sub .sub-toggle:checked ~ .submenu{ display:block !important; }
       .unit-sky .has-sub .sub-toggle:checked ~ .sub-caret::after{ content:"－"; }
     }
 
-    /* ===== 居宅介護：下部CTAの横幅をそろえる ===== */
-    body.unit-sky .cta-bar{
-      max-width: var(--max);
-      margin: 1.25rem auto 2.4rem;
-      padding-inline: min(4vw,24px);
-      display: flex;
-      gap: .8rem;
-      justify-content: center;
-      flex-wrap: wrap;            
-    }
-
+    /* フッターCTA（幅揃え） */
+    body.unit-sky .cta-bar{ max-width: var(--max); margin: 1.25rem auto 2.4rem; padding-inline: min(4vw,24px); display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
     body.unit-sky .cta-bar .cta{
-      display: flex;              
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      padding: .95em 1.2em;
-      border-radius: 12px;
-      flex: 1 1 16rem;            
-      min-width: 16rem;           
-      text-align: center;
+      display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: .95em 1.2em; border-radius: 12px;
+      flex: 1 1 16rem; min-width: 16rem; text-align: center;
+      background: #005b96; border: 2px solid #005b96; color: #fff; /* 色修正済み */
     }
+    body.unit-sky .cta-bar .cta:hover{ background: #004573; border-color: #004573; box-shadow: 0 8px 20px rgba(0, 91, 150, 0.20); transform: translateY(-1px); }
+    body.unit-sky .cta-bar .cta:focus-visible{ outline: none; box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(0, 91, 150, 0.18); }
+    @media (max-width: 680px){ body.unit-sky .cta-bar .cta{ flex-basis: 100%; min-width: 0; width: 100%; } }
 
-    @media (max-width: 680px){
-      body.unit-sky .cta-bar .cta{
-        flex-basis: 100%;
-        min-width: 0;
-        width: 100%;
-      }
-    }
-
-    #services, #flow, #city, #access, #overview {
-      scroll-margin-top: 20px;
-    }
-
-   /* ===============================
-       ヘッダー・フッターの最新スタイル適用
-       =============================== */
-
-    /* フッターリンク（隙間のある下線） */
-    .site-footer a {
-      text-decoration: none !important; 
-      transition: all 0.2s ease;        
-    }
-    .site-footer a:hover {
-      color: #007867 !important;        
-      text-decoration: underline !important;   
-      text-underline-offset: 4px !important;   
-      text-decoration-thickness: 1px !important; 
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important; 
-    }
-
-    /* ヘッダー・ドロップダウン修正 */
-    header .submenu {
-      background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important; 
-    }
-    header .submenu a:hover {
-      background-color: #e6f4fa !important; /* ドロップダウンホバーはページ色（青） */
-      color: var(--res-accent, #0088cc) !important;
-    }
-
-    /* 現在地（初めての方へ）の太字を解除 */
-    .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   
-        font-weight: 400 !important; 
-    }
-
-    /* ヘッダーメニュー（PC専用・アニメーションあり） */
-    @media (min-width: 960px) {
-      header .c-header__list-link {
-        position: relative;
-        text-decoration: none !important;
-        color: #333 !important;
-        font-weight: 400 !important;
-        padding: 0.5em 0.6em !important; 
-        display: inline-block;
-        filter: none !important;      
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        transition: all 0.2s ease !important; 
-      }
-      header .c-header__list .c-header__list-link:hover {
-        color: #007867 !important;
-        text-shadow: 0 0 0.5px #007867 !important;
-        text-decoration: none !important; 
-        font-weight: 400 !important;
-        filter: none !important;    
-        opacity: 1 !important;      
-        background: transparent !important;
-      }
-      header .c-header__list-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0px !important;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background-color: #007867;
-        transition: width 0.3s ease;
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-      header .c-header__list .c-header__list-link:hover::after {
-        width: calc(100% - 1.2em); 
-      }
-    }
-
-    /* パンくずリスト */
-    .breadcrumb {
-      margin: 0 auto 1.75rem !important; 
-      max-width: min(1100px, 92vw) !important; 
-      padding: 0 2% !important;
-      background: transparent !important;
-    }
-    .breadcrumb ol {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: .5rem .75rem !important;
-      list-style: none !important;
-      padding: 1.2em 0 !important;
-      margin: 0 !important;
-      font-size: .9rem !important;
-      font-family: "Noto Sans JP", sans-serif !important;
-    }
-    .breadcrumb li + li::before {
-      content: "›" !important;
-      color: #9ca3af !important;
-      margin: 0 .25rem !important;
-      font-weight: 400 !important;
-    }
-    .breadcrumb a {
-      color: #425466 !important;
-      text-decoration: none !important;
-      font-weight: 400 !important;
-      transition: text-decoration 0.2s ease !important;
-    }
-    .breadcrumb a:hover {
-      text-decoration: underline !important;
-      color: #425466 !important;
-      background: transparent !important;
-    }
-    .breadcrumb li[aria-current="page"] {
-      color: #17222f !important;
-      font-weight: 400 !important;
-    }
-
-    /* ▼▼▼ コントラスト・見出し順序修正済みのスタイル ▼▼▼ */
-    
-    .subnav-list a{
-      display:inline-block; text-decoration:none; 
-      color: #374151; /* コントラスト修正 */
-      border:1px solid var(--line); padding:.65em 1.05em; border-radius:999px; background:#fff;
-      transition:.18s ease-in-out;
-    }
-    .subnav-list a:hover{ border-color:var(--brand); color:var(--brand-ink); box-shadow:0 6px 18px rgba(88,182,242,.14); }
-    
-    .subnav-help{ text-align:center; 
-      color: #4b5563; /* コントラスト修正 */
-      font-size:.92rem; margin:.35rem 0 0; 
-    }
-
-    .muted{ 
-      color: #4b5563; /* コントラスト修正 */
-      font-size:.95rem; 
-    }
-
-    /* フッター直前CTAの色修正 */
-    body.unit-sky .cta-bar .cta{
-      background: #005b96;  /* 基準を確実にクリアする濃い青 */
-      border: 2px solid #005b96;
-      color: #fff;
-    }
-    body.unit-sky .cta-bar .cta:hover{
-      background: #004573;
-      border-color: #004573;
-      box-shadow: 0 8px 20px rgba(0, 91, 150, 0.20);
-      transform: translateY(-1px);
-    }
-    body.unit-sky .cta-bar .cta:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(0, 91, 150, 0.18);
-    }
-
-    /* アクセス表の項目名修正 */
-    .facts dt{ color:#4b5563; font-weight:500; }
-
-    /* 見出し順序修正用のクラス */
-    .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
-
-    /* ページ上部「電話する」ボタン修正 */
-    .cta-btn--tel{
-      background: #005b96; /* 基準を確実にクリアする濃い青 */
-      border-color: #005b96;
-      color: #fff;
-    }
-    .cta-btn--tel:hover{ filter:brightness(.96); }
-
-
-
-
-
-/* ▼▼▼ 修正版：事業所案内（セパレート型レイアウト） ▼▼▼ */
-    /* 外枠のカードスタイルを解除（透明なラッパーにする） */
+    /* ▼▼▼ 追加：事業所案内（セパレート型レイアウト） ▼▼▼ */
     .access-card {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      overflow: visible !important;
+      background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; overflow: visible !important;
     }
-    
-    .access-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* PCは左右半々 */
-      gap: 24px; /* ★ここで左右の間隔をしっかりと空ける */
-    }
-    
-    /* 左側：情報エリア（独立したカードにする） */
+    .access-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .access-content {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px; /* 角丸 */
-      box-shadow: 0 10px 30px rgba(23,34,47,.05); /* 影 */
-      padding: clamp(24px, 3vw, 40px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 10px 30px rgba(23,34,47,.05);
+      padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center;
     }
-    
-    .access-row {
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #f0f4f8;
-      padding-bottom: 1rem;
-    }
-    .access-row:last-child {
-      margin-bottom: 0;
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    
-    .access-label {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 700;
-      color: var(--brand-ink);
-      margin-bottom: 0.4rem;
-      font-size: 1rem;
-    }
-    
-    .access-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--brand);
-      flex-shrink: 0;
-    }
-    
-    .access-value {
-      margin: 0 0 0 1.9rem;
-      color: #333;
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-    
-    /* 右側：地図エリア（独立したカードにする） */
+    .access-row { margin-bottom: 1.5rem; border-bottom: 1px solid #f0f4f8; padding-bottom: 1rem; }
+    .access-row:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+    .access-label { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; color: var(--brand-ink); margin-bottom: 0.4rem; font-size: 1rem; }
+    .access-icon { width: 20px; height: 20px; color: var(--brand); flex-shrink: 0; }
+    .access-value { margin: 0 0 0 1.9rem; color: #333; line-height: 1.7; font-size: 0.95rem; }
     .access-map-area {
-      position: relative;
-      min-height: 320px;
-      background: #f0f9ff;
-      border: 1px solid var(--line); /* 枠線 */
-      border-radius: 16px; /* 角丸 */
-      box-shadow: 0 10px 30px rgba(23,34,47,.05); /* 影 */
-      overflow: hidden; /* 角丸からはみ出さないように */
+      position: relative; min-height: 320px; background: #f0f9ff;
+      border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 10px 30px rgba(23,34,47,.05); overflow: hidden;
     }
-    .access-map-area iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
-    
-    /* スマホ表示（800px以下） */
+    .access-map-area iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     @media (max-width: 800px) {
-      .access-layout {
-        grid-template-columns: 1fr; /* 縦積み */
-        gap: 16px; /* 縦の間隔 */
-      }
-      .access-map-area {
-        height: 300px;
-      }
-      .access-content {
-        padding: 24px;
-      }
+      .access-layout { grid-template-columns: 1fr; gap: 16px; }
+      .access-map-area { height: 300px; }
+      .access-content { padding: 24px; }
     }
 
+    /* ヘッダー・フッター・パンくず（共通スタイル上書き） */
+    .site-footer a { text-decoration: none !important; transition: all 0.2s ease; }
+    .site-footer a:hover { color: #007867 !important; text-decoration: underline !important; text-underline-offset: 4px !important; text-decoration-thickness: 1px !important; text-decoration-color: rgba(0, 120, 103, 0.6) !important; }
+    header .submenu { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; }
+    header .submenu a:hover { background-color: #e6f4fa !important; color: var(--res-accent, #0088cc) !important; }
+    .c-header__list-item.is-current .c-header__list-link { color: #007867 !important; font-weight: 400 !important; }
+    @media (min-width: 960px) {
+      header .c-header__list-link { position: relative; text-decoration: none !important; color: #333 !important; font-weight: 400 !important; padding: 0.5em 0.6em !important; display: inline-block; filter: none !important; background: transparent !important; border: none !important; box-shadow: none !important; border-radius: 0 !important; transition: all 0.2s ease !important; }
+      header .c-header__list .c-header__list-link:hover { color: #007867 !important; text-shadow: 0 0 0.5px #007867 !important; text-decoration: none !important; font-weight: 400 !important; filter: none !important; opacity: 1 !important; background: transparent !important; }
+      header .c-header__list-link::after { content: ''; position: absolute; bottom: 0px !important; left: 50%; width: 0; height: 2px; background-color: #007867; transition: width 0.3s ease; transform: translateX(-50%); pointer-events: none; }
+      header .c-header__list .c-header__list-link:hover::after { width: calc(100% - 1.2em); }
+    }
+    .breadcrumb { margin: 0 auto 1.75rem !important; max-width: min(1100px, 92vw) !important; padding: 0 2% !important; background: transparent !important; }
+    .breadcrumb ol { display: flex !important; flex-wrap: wrap !important; gap: .5rem .75rem !important; list-style: none !important; padding: 1.2em 0 !important; margin: 0 !important; font-size: .9rem !important; font-family: "Noto Sans JP", sans-serif !important; }
+    .breadcrumb li + li::before { content: "›" !important; color: #9ca3af !important; margin: 0 .25rem !important; font-weight: 400 !important; }
+    .breadcrumb a { color: #425466 !important; text-decoration: none !important; font-weight: 400 !important; transition: text-decoration 0.2s ease !important; }
+    .breadcrumb a:hover { text-decoration: underline !important; color: #425466 !important; background: transparent !important; }
+    .breadcrumb li[aria-current="page"] { color: #17222f !important; font-weight: 400 !important; }
   </style>
 </head>
 
@@ -607,7 +308,6 @@
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
@@ -620,7 +320,6 @@
           <li><a href="officers.html">役員</a></li>
         </ul>
       </li>
-
       <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
@@ -637,7 +336,6 @@
           <li><a href="citizen.html">市民活動センター</a></li>
         </ul>
       </li>
-
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
@@ -676,7 +374,6 @@
           <div class="emblem unit-hero__emblem">
             <img src="img/residence_logo.webp" alt="居宅介護事業所のロゴ">
           </div>
-
           <div>
             <h1 id="hero-title" class="hero-title">ハンズ居宅介護事業所</h1>
             <p class="hero-lead">
@@ -706,7 +403,6 @@
                 </svg>
                 電話する（0191-31-5720）
               </a>
-
               <a class="cta-btn cta-btn--mail" href="mailto:hands-ma@ceres.ocn.ne.jp" aria-label="メールで相談">
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                   <path fill="none" stroke="currentColor" d="M3 5h18v14H3z"/>
@@ -774,7 +470,7 @@
       </div>
     </section>
 
-<section id="access" aria-labelledby="access-title">
+    <section id="access" aria-labelledby="access-title">
       <h2 id="access-title" class="sec-title">事業所案内</h2>
       
       <div class="card access-card">
@@ -786,7 +482,7 @@
                 <svg class="access-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 所在地
               </div>
-<div class="access-value">
+              <div class="access-value">
                 〒021-0031<br>
                 岩手県一関市青葉二丁目 6-16<br>
                 <a href="https://www.google.com/maps/search/?api=1&query=〒021-0031+岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener" style="display:inline-block; margin-top:0.4rem; color:#005b96; font-size:0.9rem; text-decoration:underline;">Googleマップで見る →</a>
@@ -810,7 +506,7 @@
                 E-Mail
               </div>
               <div class="access-value">
-                hands-ma@ceres.ocn.ne.jp<br>
+                <a href="mailto:hands-ma@ceres.ocn.ne.jp" style="color:inherit; text-decoration:underline;">hands-ma@ceres.ocn.ne.jp</a><br>
                 <span class="muted" style="font-size:0.85rem;">（担当：千田）</span>
               </div>
             </div>
