@@ -522,6 +522,30 @@
 /* ★修正：h3からクラス指定に変更。見た目はそのまま維持 */
     .callout-title{ margin:.1rem 0 .35rem; font-weight:700; color:var(--brand-ink); font-size:1.15em; }
 
+.cta-btn--tel{
+      background: #005b96;        /* ★修正：基準を確実にクリアする濃い青に変更 */
+      border-color: #005b96;
+      color: #fff;
+    }
+    .cta-btn--tel:hover{ filter:brightness(.96); }
+
+/* ===== 居宅介護ページ（unit-sky）専用：フッター直前CTAの色 ===== */
+    body.unit-sky .cta-bar .cta{
+      background: #005b96;         /* ★修正：基準を確実にクリアする濃い青に変更 */
+      border: 2px solid #005b96;
+      color: #fff;
+    }
+    body.unit-sky .cta-bar .cta:hover{
+      background: #004573;         /* ホバー時は連動してさらに濃く */
+      border-color: #004573;
+      box-shadow: 0 8px 20px rgba(0, 91, 150, 0.20);
+      transform: translateY(-1px);
+    }
+    body.unit-sky .cta-bar .cta:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 3px #94d8ff, 0 8px 20px rgba(0, 91, 150, 0.18);
+    }
+
   </style>
 </head>
 
