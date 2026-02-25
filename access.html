@@ -23,6 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
   </noscript>
 
+  <style>
+    /* 読み込み待ちを無効化し、即座に画面を表示させる */
+    html, body { opacity: 1 !important; visibility: visible !important; }
+    #splash { display: none !important; }
+  </style>
+
   <link rel="stylesheet" href="css/style.css">
 
   <style>
@@ -181,7 +187,7 @@
         font-weight: 400 !important;
         padding: 0.5em 0.6em !important; 
         display: inline-block;
-        filter: none !important;     
+        filter: none !important;      
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -193,8 +199,8 @@
         text-shadow: 0 0 0.5px #007867 !important;
         text-decoration: none !important; 
         font-weight: 400 !important;
-        filter: none !important;   
-        opacity: 1 !important;     
+        filter: none !important;    
+        opacity: 1 !important;      
         background: transparent !important;
       }
       header .c-header__list-link::after {
@@ -213,10 +219,7 @@
         width: calc(100% - 1.2em); 
       }
     }
-
-
-    html, body { opacity: 1 !important; visibility: visible !important; }
-  #splash { display: none !important; }
+    
   </style>
 </head>
 
@@ -583,4 +586,3 @@
 
 </body>
 </html>
-
