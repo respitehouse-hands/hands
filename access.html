@@ -105,11 +105,13 @@
     .map{ 
       height:100%; min-height:440px; 
       border:1px solid var(--my-line); border-radius:12px; 
-      overflow:hidden; background:#f0f0f0; /* 読み込み前はグレー */
+      overflow:hidden; background:#f0f0f0;
       width: 100%; max-width: 100%;
       position: relative;
     }
-    .map iframe{ width:100% !important; height:100% !important; border:0; display:block; opacity: 0; transition: opacity 0.5s ease; }
+    /* ★修正：opacity 0 の指定を削除し、初めから見えるようにしました */
+    .map iframe{ width:100% !important; height:100% !important; border:0; display:block; }
+    
     @media (max-width:820px){
       .map{ min-height:300px; height:auto; aspect-ratio: 4/3; }
     }
@@ -150,35 +152,31 @@
        ヘッダー・フッターの最新スタイル適用
        =============================== */
 
-    /* フッターリンク（隙間のある下線） */
     .site-footer a {
-      text-decoration: none !important; /* デフォルトの下線は消す */
-      transition: all 0.2s ease;        /* 変化をなめらかに */
+      text-decoration: none !important;
+      transition: all 0.2s ease;
     }
     .site-footer a:hover {
-      color: #007867 !important;        /* 文字を緑にする */
-      text-decoration: underline !important;   /* 下線を引く */
-      text-underline-offset: 4px !important;   /* 文字から4px離す */
-      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+      color: #007867 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px !important;
+      text-decoration-thickness: 1px !important;
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important;
     }
 
-    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
     header .submenu {
       background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+      border: 1px solid #e5e7eb !important;
     }
     header .submenu a:hover {
-      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
+      background-color: #f4f4f4 !important;
     }
 
-    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
     .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   /* 色だけ変える（緑） */
-        font-weight: 400 !important; /* 太さは標準のまま！ */
+        color: #007867 !important;
+        font-weight: 400 !important;
     }
 
-    /* ヘッダーメニュー（PC専用・アニメーションあり） */
     @media (min-width: 960px) {
       header .c-header__list-link {
         position: relative;
@@ -331,11 +329,12 @@
                 </li>
               </ul>
             </div>
+            
             <div class="map" aria-label="青葉（二丁目６-16）地図">
               <iframe 
-                class="lazy-map"
                 title="青葉（二丁目 ６-16）周辺地図"
-                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.603362624376!2d141.13063807644912!3d38.92817297171754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4073a628543%3A0xc660d2b7899c43d7!2z44CSMDIxLTAwMzEg5bKp5omL55yM5LiA6Zai5biC6Z2S6JKJ77yS5LiB55uu77yW4oiS77yR77yW!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.603362624376!2d141.13063807644912!3d38.92817297171754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4073a628543%3A0xc660d2b7899c43d7!2z44CSMDIxLTAwMzEg5bKp5omL55yM5LiA6Zai5biC6Z2S6JKJ77yS5LiB55uu77yW4oiS77yR77yW!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                loading="lazy"
                 allowfullscreen>
               </iframe>
             </div>
@@ -376,11 +375,12 @@
                 </li>
               </ul>
             </div>
+            
             <div class="map" aria-label="大町（なのはなプラザ４F）地図">
               <iframe 
-                class="lazy-map"
                 title="大町 ４-29 なのはなプラザ 周辺地図"
-                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.345678901234!2d141.13456789012345!3d38.93012345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4056789abcd%3A0x1234567890abcdef!2z44CSMDIxLTA4ODEg5bKp5omL55yM5LiA6Zai5biC5aSn55S677yU4oiS77yS77yZ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.345678901234!2d141.13456789012345!3d38.93012345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4056789abcd%3A0x1234567890abcdef!2z44CSMDIxLTA4ODEg5bKp5omL55yM5LiA6Zai5biC5aSn55S677yU4oiS77yS77yZ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                loading="lazy"
                 allowfullscreen>
               </iframe>
             </div>
@@ -403,11 +403,12 @@
                 </li>
               </ul>
             </div>
+            
             <div class="map" aria-label="中央町（１-１-４）地図">
               <iframe 
-                class="lazy-map"
                 title="中央町 １-１-４ 周辺地図"
-                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.987654321098!2d141.12987654321098!3d38.92543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4abcdef1234%3A0x9876543210fedcba!2z44CSMDIxLTAwMjEg5bKp5omL55yM5LiA6Zai5biC5Lit5aSu55S677yR5LiB55uu77yR4oiS77yU!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.987654321098!2d141.12987654321098!3d38.92543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d4abcdef1234%3A0x9876543210fedcba!2z44CSMDIxLTAwMjEg5bKp5omL55yM5LiA6Zai5biC5Lit5aSu55S677yR5LiB55uu77yR4oiS77yU!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                loading="lazy"
                 allowfullscreen>
               </iframe>
             </div>
@@ -430,11 +431,12 @@
                 </li>
               </ul>
             </div>
+            
             <div class="map" aria-label="赤萩（上袋75-５）地図">
               <iframe 
-                class="lazy-map"
                 title="赤萩 上袋 75-５ 周辺地図"
-                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.012345678901!2d141.10123456789012!3d38.93567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d49876543210%3A0xfedcba0987654321!2z44CSMDIxLTAwNDEg5bKp5omL55yM5LiA6Zai5biC6LWk6JCp5a2X5LiK6KKL77yX77yV4oiS77yV!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3080.012345678901!2d141.10123456789012!3d38.93567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f88d49876543210%3A0xfedcba0987654321!2z44CSMDIxLTAwNDEg5bKp5omL55yM5LiA6Zai5biC6LWk6JCp5a2X5LiK6KKL77yX77yV4oiS77yV!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                loading="lazy"
                 allowfullscreen>
               </iframe>
             </div>
@@ -524,34 +526,6 @@
 </div>
 
 <script src="js/site.js" defer></script>
-
-<script>
-  // 地図の遅延読み込み（Lighthouse対策）
-  window.addEventListener('load', function(){
-    setTimeout(function(){
-      
-      var mapObserver = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var iframe = entry.target;
-            if(iframe.dataset.src){
-              iframe.src = iframe.dataset.src;
-              iframe.removeAttribute('data-src');
-              iframe.style.opacity = 1; // 読み込み開始でふわっと表示
-              observer.unobserve(iframe);
-            }
-          }
-        });
-      }, { rootMargin: "200px 0px" });
-
-      var maps = document.querySelectorAll('.lazy-map');
-      maps.forEach(function(map) {
-        mapObserver.observe(map);
-      });
-
-    }, 2500); // 2500ms待機
-  });
-</script>
 
 <script>
   (function(){
