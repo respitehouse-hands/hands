@@ -640,6 +640,51 @@
   margin-right: 4px;       
 }
     
+
+
+/* ▼▼▼ 謎の緑背景を「白」で完全に塗りつぶして上書きする ▼▼▼ */
+    
+    /* 1. ボタンエリアとその親枠の背景を強制的に真っ白（#ffffff）にする */
+    body.page-home #main,
+    body.page-home .cta-bar {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        border: none !important;
+    }
+
+    /* 2. 裏側で悪さをしている疑似要素（装飾）を消す、または白にする */
+    body.page-home .cta-bar::before,
+    body.page-home .cta-bar::after,
+    body.page-home #main::before,
+    body.page-home #main::after {
+        display: none !important;
+        background: #ffffff !important;
+    }
+
+
+/* =========================================
+       【修正版】フッター上の帯だけを消し、フッターの背景色は元に戻す
+       ========================================= */
+    /* 1. メインエリアとボタン周りだけを強制的に白にする（フッターは除外） */
+    body.page-home #page,
+    body.page-home #main,
+    body.page-home .cta-bar {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        background-image: none !important;
+    }
+
+    /* 2. 隙間から色を漏らしている裏側の装飾（疑似要素）を無効化（フッターは除外） */
+    body.page-home #page::before,
+    body.page-home #page::after,
+    body.page-home #main::before,
+    body.page-home #main::after,
+    body.page-home .cta-bar::before,
+    body.page-home .cta-bar::after {
+        display: none !important;
+        content: none !important;
+    }
+
  </style>
 </head>
 
