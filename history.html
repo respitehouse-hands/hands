@@ -374,6 +374,40 @@
     }
 
 
+/* =========================================
+       【デザイン統一】背景色をタイムラインのグレー（#f8fafc）に合わせる
+       ========================================= */
+    /* 1. 一番底のキャンバスとメインエリアの背景をグレーで統一 */
+    html,
+    body.page-history,
+    body.page-history #page,
+    body.page-history .l-main {
+        background-color: #f8fafc !important;
+        background-image: none !important;
+    }
+
+    /* 2. CTAバーも同じグレーで塗りつぶして同化させる */
+    body.page-history .cta-bar {
+        background: #f8fafc !important;
+        background-color: #f8fafc !important;
+        background-image: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. 隙間から漏れ出る波装飾（疑似要素）を全消去（そのまま維持） */
+    body.page-history #page::before,
+    body.page-history #page::after,
+    body.page-history .l-main::before,
+    body.page-history .l-main::after,
+    body.page-history .cta-bar::before,
+    body.page-history .cta-bar::after {
+        display: none !important;
+        content: none !important;
+        background: none !important;
+    }
+
+
 
 
   </style>
@@ -932,7 +966,6 @@
   
 </body>
 </html>
-
 
 
 
