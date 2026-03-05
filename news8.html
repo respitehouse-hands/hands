@@ -233,6 +233,84 @@
         width: calc(100% - 1.2em); 
       }
     }
+
+/* =========================================
+       ヘッダーメニューの装飾リセット＆モダン化（他ページと統一）
+       ========================================= */
+    /* ▼ メニューの丸い囲み（背景・枠線）を完全に消去 ▼ */
+    #site-header .c-header__list > .c-header__list-item,
+    #site-header .c-header__list > .c-header__list-item:hover,
+    #site-header .c-header__list > .c-header__list-item:focus-within,
+    #site-header .c-header__list > .c-header__list-item.is-current,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link,
+    #site-header .c-header__list > .c-header__list-item:hover > .c-header__list-link,
+    #site-header .c-header__list > .c-header__list-item:focus-within > .c-header__list-link,
+    #site-header .sub-toggle:checked ~ .c-header__list-link {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    #site-header .c-header__list > .c-header__list-item::before,
+    #site-header .c-header__list > .c-header__list-item > .c-header__list-link::before {
+        display: none !important;
+    }
+
+    /* ▼ サブメニューの白背景化 ▼ */
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important;
+    }
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;
+        font-weight: 400 !important;
+    }
+
+    /* ▼ PC版：ホバー時の下線アニメーションとリセット ▼ */
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important;
+        display: inline-block;
+        filter: none !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important;
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important;
+        font-weight: 400 !important;
+        filter: none !important;
+        opacity: 1 !important;
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em);
+      }
+    }
+
   </style>
 </head>
 
