@@ -659,13 +659,15 @@
     subs.forEach(s => s.classList.remove('is-open'));
     step1.style.display = 'none';
     const tgt = document.getElementById(id);
+    
     if (tgt){ 
       tgt.classList.add('is-open'); 
-      tgt.querySelector('.fd-sub__title')?.focus?.();
+      /* スクロールさせずにフォーカスのみ移動（スクリーンリーダー等の対応） */
+      tgt.querySelector('.fd-sub__title')?.focus({ preventScroll: true });
     }
+    
     dots.forEach((d,i) => d.classList.toggle('is-active', i === 1));
     history.replaceState(null,'', '#' + id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function backToCats(){
@@ -673,9 +675,12 @@
     step1.style.display = '';
     dots.forEach((d,i) => d.classList.toggle('is-active', i === 0));
     history.replaceState(null,'', '#');
-    document.getElementById('fd-title')?.focus?.();
+    
+    /* 選び直す際も、強制スクロールは一切行わない */
+    document.getElementById('fd-title')?.focus({ preventScroll: true });
   }
 
+  /* カード全体をクリッカブルにし、Enterキーでも発火させる */
   document.querySelectorAll('.js-choose').forEach(card => {
     card.addEventListener('click', () => openSub(card.dataset.target));
     card.addEventListener('keydown', (e) => {
@@ -706,4 +711,5 @@
 
 </body>
 </html>
+
 
