@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -97,141 +96,58 @@
       word-break: break-all;
     }
 
-    /* ドロップダウンメニュー */
-    body.page-privacy #site-header .submenu {
-      background: #fff !important;
+    /* ============================================
+       【重要】パンくずリスト 共通ルール（history.htmlのスタイルに統一）
+       ============================================ */
+    /* ★修正：本文エリア(.doc)と同じ幅と余白を持たせて左端を揃える */
+    .breadcrumb { 
+      max-width: min(1200px, 92vw) !important; 
+      margin: 0 auto 2rem !important; 
+      padding: 0 2% !important; 
+      background: transparent !important; 
+    }
+    .breadcrumb ol { display: flex !important; flex-wrap: wrap !important; gap: .5rem .75rem !important; list-style: none !important; padding: 1.5em 0 !important; margin: 0 !important; font-size: 0.85rem !important; font-family: "Noto Sans JP", sans-serif !important; }
+    .breadcrumb li + li::before { content: "›" !important; color: #9ca3af !important; margin: 0 .25rem 0 .2rem !important; font-weight: 400 !important; }
+    .breadcrumb a { color: #666 !important; text-decoration: none !important; font-weight: 400 !important; transition: color 0.2s ease !important; }
+    .breadcrumb a:hover { color: #009688 !important; text-decoration: none !important; background: transparent !important; }
+    .breadcrumb li[aria-current="page"] { color: #333 !important; font-weight: 400 !important; }
+
+    /* ============================================
+       【重要】ヘッダー・フッター 共通ルール
+       ============================================ */
+    #site-header .submenu {
+      background-color: #ffffff !important;
       border: 1px solid #e5e7eb !important;
       box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
     }
-    
-    body.page-privacy #site-header .submenu a {
-      background-color: #fff;
-      color: #222;
-      transition: background-color 0.2s, color 0.2s;
-    }
-
-    body.page-privacy #site-header .submenu a:hover {
-      background-color: #eaf3ee !important; 
-      color: #2f7d5b !important;
-    }
-
-
-   /* ===============================
-       ヘッダー・フッターの最新スタイル適用
-       =============================== */
-
-    /* フッターリンク（隙間のある下線） */
-    .site-footer a {
-      text-decoration: none !important; /* デフォルトの下線は消す */
-      transition: all 0.2s ease;        /* 変化をなめらかに */
-    }
+    .site-footer a { text-decoration: none !important; transition: all 0.2s ease; }
     .site-footer a:hover {
-      color: #007867 !important;        /* 文字を緑にする */
-      text-decoration: underline !important;   /* 下線を引く */
-      text-underline-offset: 4px !important;   /* 文字から4px離す */
-      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
+      color: #007867 !important; text-decoration: underline !important; 
+      text-underline-offset: 4px !important; text-decoration-thickness: 1px !important; 
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important;
     }
-
-    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
-    header .submenu {
-      background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
-    }
-    header .submenu a:hover {
-      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
-    }
-
-    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
+    header .submenu a:hover { background-color: #f4f4f4 !important; }
     .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   /* 色だけ変える（緑） */
-        font-weight: 400 !important; /* 太さは標準のまま！ */
+        color: #007867 !important; font-weight: 400 !important;
     }
 
-    /* ヘッダーメニュー（PC専用・アニメーションあり） */
     @media (min-width: 960px) {
       header .c-header__list-link {
-        position: relative;
-        text-decoration: none !important;
-        color: #333 !important;
-        font-weight: 400 !important;
-        padding: 0.5em 0.6em !important; 
-        display: inline-block;
-        filter: none !important;     
+        position: relative; text-decoration: none !important; color: #333 !important;
+        font-weight: 400 !important; padding: 0.5em 0.6em !important; display: inline-block;
+        transition: color 0.2s ease !important;
         background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        transition: all 0.2s ease !important; 
+        border: none !important; outline: none !important; box-shadow: none !important;
       }
-      header .c-header__list .c-header__list-link:hover {
-        color: #007867 !important;
-        text-shadow: 0 0 0.5px #007867 !important;
-        text-decoration: none !important; 
-        font-weight: 400 !important;
-        filter: none !important;   
-        opacity: 1 !important;     
-        background: transparent !important;
-      }
+      header .c-header__list .c-header__list-link:hover { color: #007867 !important; }
+      
       header .c-header__list-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0px !important;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background-color: #007867;
-        transition: width 0.3s ease;
-        transform: translateX(-50%);
-        pointer-events: none;
+        content: ''; position: absolute; bottom: 0px !important; left: 50%;
+        width: 0; height: 2px; background-color: #007867; transition: width 0.3s ease;
+        transform: translateX(-50%); pointer-events: none;
       }
-      header .c-header__list .c-header__list-link:hover::after {
-        width: calc(100% - 1.2em); 
-      }
+      header .c-header__list .c-header__list-link:hover::after { width: calc(100% - 1.2em); }
     }
-
-
-    /* ========================================================
-       共通パンくずリスト（philosophy.htmlのデザインを移植）
-       ======================================================== */
-    .breadcrumb {
-      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
-      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
-      padding: 0 2% !important;
-      background: transparent !important;
-    }
-    .breadcrumb ol {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: .5rem .75rem !important;
-      list-style: none !important;
-      padding: 1.2em 0 !important;
-      margin: 0 !important;
-      font-size: .9rem !important;
-      font-family: "Noto Sans JP", sans-serif !important;
-    }
-    .breadcrumb li + li::before {
-      content: "›" !important;
-      color: #9ca3af !important;
-      margin: 0 .25rem !important;
-      font-weight: 400 !important;
-    }
-    .breadcrumb a {
-      color: #425466 !important;
-      text-decoration: none !important;
-      font-weight: 400 !important;
-      transition: text-decoration 0.2s ease !important;
-    }
-    .breadcrumb a:hover {
-      text-decoration: underline !important;
-      color: #425466 !important;
-      background: transparent !important;
-    }
-    .breadcrumb li[aria-current="page"] {
-      color: #17222f !important;
-      font-weight: 400 !important;
-    }
-
   </style>
 </head>
 
@@ -342,8 +258,11 @@
       <h2>6. 開示等のご請求</h2>
       <p>保有個人データの開示、訂正、利用停止等のご請求は、下記「お問い合わせ窓口」までご連絡ください。ご本人確認のうえ、法令に基づき対応します。</p>
 
-      <h2>7. クッキー等の利用</h2>
-      <p>本サイトは表示や動作の安定のためにクッキー等を利用する場合があります。これらはブラウザ設定で無効化できます。<strong>アクセス解析等のツールは現時点では利用していません</strong>。将来導入する場合は、本ページにツール名・提供者・取得情報・利用目的・オプトアウト方法等を追記します。</p>
+      <h2>7. アクセス解析ツールの利用について</h2>
+      <p>当サイトでは、サイトの利用状況を把握し、サービス向上に役立てるためにGoogleによるアクセス解析ツール「Google Analytics」を利用しています。<br>
+      このGoogle Analyticsはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。<br>
+      この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。<br>
+      この規約に関しての詳細は<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank" rel="noopener">Google Analyticsサービス利用規約</a>のページや<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">Googleポリシーと規約ページ</a>をご覧ください。</p>
 
       <h2>8. 外部リンク</h2>
       <p>外部サイトへのリンク先での個人情報の取扱いについて、当法人は責任を負いません。各サイトのポリシーをご確認ください。</p>
@@ -371,7 +290,7 @@
         </div>
       </div>
 
-      <p><small>施行日：2025年11月1日</small></p>
+      <p><small>改定日：2026年3月13日</small></p>
     </article>
   </main>
 
@@ -475,7 +394,7 @@
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
       
-      // 円形プログレスバーの更新（もしCSSで対応していれば）
+      // 円形プログレスバーの更新
       const deg = Math.round(ratio * 360) + 'deg';
       if(ring) ring.style.setProperty('--btt-progress', deg);
 
@@ -498,8 +417,7 @@
 </script>
 <style> body { opacity: 1 !important; } #splash { display: none !important; } </style>
 
+<script src="js/site.js"></script>
+
 </body>
 </html>
-
-
-
