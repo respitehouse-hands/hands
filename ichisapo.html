@@ -2,8 +2,6 @@
 <html lang="ja">
 <head>
 
-<!-- Google tag (gtag.js) -->
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -15,7 +13,7 @@ gtag('config', 'G-N79L2L2TWT');
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>【運営元】いちのせき若者サポートステーション（いちさぽ）のご案内 | レスパイトハウス・ハンズ</title>
-  <meta name="description" content="一関市のNPO法人レスパイトハウス・ハンズが運営する「いちのせき若者サポートステーション（いちさぽ）」のご案内です。15歳～49歳の働くことに悩みを抱える方へ、専門相談員が地域に寄り添った就労支援を行います。個別相談や公式サイトへのリンクはこちらから。">
+  <meta name="description" content="一関市のNPO法人レスパイトハウス・ハンズが運営する「いちのせき若者サポートステーション（いちさぽ）」のご案内です。15歳～49歳の働くことに悩みを抱える方へ、専門相談員が地域に寄り添った就労支援を行います。個別相談や公式サイトへのリンクはこちらから。">
   
   <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
@@ -120,7 +118,7 @@ gtag('config', 'G-N79L2L2TWT');
     .linkcard__icon svg{ width:22px; height:22px; fill: currentColor; }
     .linkcard__body{ display:grid; gap:.2rem; }
     .linkcard__title{ font-weight:700; }
-    .linkcard__url{ font-size:.92rem; color:#4b5563; }
+    .linkcard__url{ font-size:.8rem; color:#4b5563; }
 
     /* サブナビ（ページ内） */
     .subnav{ position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--my-line);
@@ -316,35 +314,6 @@ gtag('config', 'G-N79L2L2TWT');
       color: #17222f !important;
       font-weight: 400 !important;
     }
-
-
-/* =========================================
-       【完全決着】JSの自動スペーサーを無視し、ヘッダーを最上部へ強制固定
-       ========================================= */
-    /* 1. 隠しアンカーによる物理的干渉を完全に無効化 */
-    body.page-ichisapo a#top {
-        position: absolute !important;
-        top: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
-
-    /* 2. ヘッダーをスペーサーの影響を受けない「絶対的な最上部」へ固定 */
-    body.page-ichisapo #site-header.c-header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        margin-top: 0 !important;
-        transform: translateY(0) !important;
-        z-index: 9999 !important;
-    }
-
-    /* 3. ヘッダーが浮遊した分、パンくずリストが下敷きにならないよう開始位置を下げる */
-    body.page-ichisapo .breadcrumb {
-        padding-top: 110px !important; /* ヘッダーの高さ分（約110px）押し下げる */
-    }
-
 
   </style>
 </head>
@@ -558,6 +527,3 @@ gtag('config', 'G-N79L2L2TWT');
 <script src="js/site.js"></script>
 </body>
 </html>
-
-
-
