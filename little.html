@@ -52,9 +52,9 @@
       --unit-tint:#fff7e6; 
       --unit-tint-2:#fffaf1; 
       
-      /* TOPボタン用変数をサイト全体に強制適用して緑を防ぐ */
+/* TOPボタン用変数をサイト全体に強制適用して緑を防ぐ */
       --c-primary: #f59e0b !important; 
-      --btt-ring-active:#f59e0b !important;
+      --btt-ring-active: #b45309 !important; /* ←ここを #b45309 に変更 */
       --btt-center:#fff !important;
     }
     
@@ -100,13 +100,13 @@
     body.page-little .site-footer .footer__bar{ background:#fff4df !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
     body.page-little .site-footer h3, body.page-little .site-footer a{ color:var(--unit-ink); }
 
-    /* BTTボタンの色上書き */
-    body.page-little #backToTop { --c-primary: #f59e0b !important; }
-    body.page-little #backToTop .btt__inner { background-color: #fff !important; color: #f59e0b !important; border: 2px solid transparent !important; }
-    body.page-little #backToTop .btt__icon, body.page-little #backToTop .btt__icon path { fill: #f59e0b !important; }
-    body.page-little #backToTop .btt__label { color: #f59e0b !important; }
-    body.page-little #backToTop svg circle, body.page-little #backToTop .btt__ring-bar { stroke: #f59e0b !important; }
-    body.page-little #backToTop .btt__ring { border-color: rgba(245, 158, 11, 0.2) !important; }
+/* BTTボタンの色上書き（視認性とブランドカラーの両立のため #b45309 に変更） */
+    body.page-little #backToTop { --c-primary: #b45309 !important; }
+    body.page-little #backToTop .btt__inner { background-color: #fff !important; color: #b45309 !important; border: 2px solid transparent !important; }
+    body.page-little #backToTop .btt__icon, body.page-little #backToTop .btt__icon path { fill: #b45309 !important; }
+    body.page-little #backToTop .btt__label { color: #b45309 !important; }
+    body.page-little #backToTop svg circle, body.page-little #backToTop .btt__ring-bar { stroke: #b45309 !important; }
+    body.page-little #backToTop .btt__ring { border-color: rgba(180, 83, 9, 0.2) !important; } /* RGB値を合わせました */
 
     /* フッターリンク */
     .site-footer a { text-decoration: none !important; transition: all 0.2s ease; }
