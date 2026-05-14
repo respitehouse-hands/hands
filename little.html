@@ -361,6 +361,26 @@
     *, *::before, *::after{ box-sizing:border-box; }
     img, svg, video, canvas{ display:block; max-width:100%; height:auto; }
 
+    /* ==========================================
+       リトルハンズの特徴セクション（チェックマーク調整）
+       ========================================== */
+    #features ul li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      list-style: none;
+    }
+    #features ul li::before {
+      content: "✔\FE0E";
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      color: #f59e0b;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+
     @media (max-width: 920px){ 
       .myroot-grid{ grid-template-columns:1fr; align-items:start; } 
       .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
@@ -553,19 +573,19 @@
         <div style="display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 700; color: #f59e0b; border-bottom: 2px solid #fef3c7; padding-bottom: 0.8rem; margin-bottom: 1.5rem;">寄り添う支援と安心・安全</h3>
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>お子さんひとりひとりの特性に寄り添う個別支援</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>日常の健康状態を把握し、安心・安全を最優先に</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>ご家族のための相談窓口やレスパイト（休息）提供</li>
+            <ul style="padding: 0; margin: 0;">
+              <li>お子さんひとりひとりの特性に寄り添う個別支援</li>
+              <li>日常の健康状態を把握し、安心・安全を最優先に</li>
+              <li>ご家族のための相談窓口やレスパイト（休息）提供</li>
             </ul>
           </div>
           
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 700; color: #f59e0b; border-bottom: 2px solid #fef3c7; padding-bottom: 0.8rem; margin-bottom: 1.5rem;">多彩なプログラムと地域連携</h3>
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>音楽リズム、調理実習、創作活動など楽しい行事</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>天気の良い日は近隣の公園へウォーキング</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: #f59e0b; font-weight: bold;">✔</span>学校や相談支援事業所と密に連携したサポート体制</li>
+            <ul style="padding: 0; margin: 0;">
+              <li>音楽リズム、調理実習、創作活動など楽しい行事</li>
+              <li>天気の良い日は近隣の公園へウォーキング</li>
+              <li>学校や相談支援事業所と密に連携したサポート体制</li>
             </ul>
           </div>
         </div>
