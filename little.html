@@ -1,26 +1,25 @@
 <!doctype html>
 <html lang="ja">
 <head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N79L2L2TWT');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N79L2L2TWT');
+  </script>
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>【お知らせ】「リトルハンズ」のページを更新いたしました | 特定非営利活動法人レスパイトハウス・ハンズ</title>
-  <meta name="description" content="放課後等デイサービス「リトルハンズ」の紹介ページを更新いたしました。日々の活動風景の写真や、支援プログラムの詳細などを新たに追加しております。" />
+  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが運営する「リトルハンズ」は、子どもとそのご家族に寄り添い、安心して過ごせる居場所づくりや支援を行っています。">
 
-  <link rel="icon" href="/favicon.ico">
+  <title>リトルハンズ | レスパイトハウス・ハンズ</title>
+  
+  <link rel="icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
   <link rel="apple-touch-icon" href="img/icon_192.png">
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <link rel="stylesheet" href="css/style.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,206 +34,409 @@
   </noscript>
 
   <style>
-    /* 念のための強制表示設定 */
-    body { opacity: 1 !important; }
-    #splash { display: none !important; }
-    #page { opacity: 1 !important; visibility: visible !important; }
+    /* ==========================================
+       ベース変数と共通設定（リトルハンズテーマ）
+       ========================================== */
+    :root{
+      --my-accent:#f59e0b; 
+      --my-ink:#222;
+      --my-ink-2:#555;
+      --my-line:#e5e7eb;
+      --my-surface:#fff;
+      --my-radius:14px;
+      --my-max:1120px;
+      
+      --unit-brand:#f59e0b;
+      --unit-brand-ink:#7a3e00;
+      --unit-ink:#7a3e00; 
+      --unit-tint:#fff7e6; 
+      --unit-tint-2:#fffaf1; 
+      
+/* TOPボタン用変数をサイト全体に強制適用して緑を防ぐ */
+      --c-primary: #f59e0b !important; 
+      --btt-ring-active: #b45309 !important; /* ←ここを #b45309 に変更 */
+      --btt-center:#fff !important;
+    }
+    
+    .myroot-page{ padding-inline:min(4vw,24px); }
+    .myroot-wrap{ max-width:var(--my-max) !important; margin-inline:auto !important; }
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .myroot-section{ scroll-margin-top: 10px; margin:1.25rem 0 1.5rem; }
+    .myroot-card{
+      background:var(--my-surface); border:1px solid var(--my-line); border-radius:var(--my-radius);
+      box-shadow:0 1px 0 #00000008; padding:1rem 0.9rem; margin:0; height:100%; box-sizing:border-box;
+    }
+    .myroot-card.p-0{ padding:1.5rem 1.8rem; }
+    .myroot-grid{ display:grid; gap:clamp(16px,2.4vw,24px); grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr); align-items:stretch; }
+    
+    .muted{ color:#6b7280; font-size:.92rem; }
+    .strong{ font-weight:700; }
+    .sp-br{ display:none; }
+    .pc-br{ display:block; }
 
-    .submenu {
-      background-color: #ffffff !important;
-      border: 1px solid #e5e7eb;
-    }
-
-    .news-wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 min(4vw, 24px);
-    }
-
-    /* ▼ リトルハンズ用の案内ボックス ▼ */
-    .update-box {
-        background-color: #fffaf1; 
-        border: 2px solid #f59e0b;
-        border-radius: 16px;
-        padding: 2.5rem 2rem;
-        margin: 2.5rem 0;
-        text-align: center;
-    }
-
-    .new-page-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1.5rem;
-        padding: 1rem 2.5rem;
-        background-color: #f59e0b;
-        color: #ffffff !important;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.1rem;
-        border-radius: 999px;
-        transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-    }
-
-    .new-page-btn:hover {
-        background-color: #d97706;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
-    }
-
-    @media (max-width: 600px) {
-        .new-page-btn {
-            font-size: 1rem;
-            width: 100%;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-        .update-box {
-            padding: 2rem 1.5rem;
-        }
-    }
-
-.news-body h2 {
-        font-family: "Zen Maru Gothic","Noto Sans JP",system-ui,sans-serif;
-        font-size: clamp(1.15rem, 5vw, 1.75rem); /* 約18px〜28pxへ微調整 */
-        margin: 1.5rem 0 0.5rem;
-        line-height: 1.4;
-        letter-spacing: -0.01em; /* わずかに字間を詰めて1行に収まりやすくする */
-    }
-
-    .article__meta {
-        display: flex;
-        gap: .8em;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .ny-lead {
-        line-height: 1.8;
-        color: #333;
-    }
-
-    .link-back {
-      display: inline-flex;
-      align-items: center;
-      color: #888;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .link-back::before {
-      content: "←";
-      margin-right: 0.5em;
-    }
-    .link-back:hover {
-      color: #f59e0b;
-    }
-
-    .breadcrumb {
-      margin: 0 auto 1.75rem !important;
-      max-width: min(1100px, 92vw) !important;
-      padding: 0 2% !important;
-      background: transparent !important;
-    }
-    .breadcrumb ol {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: .5rem .75rem !important;
-      list-style: none !important;
-      padding: 1.2em 0 !important;
-      margin: 0 !important;
-      font-size: .9rem !important;
-    }
-    .breadcrumb li + li::before {
-      content: "›" !important;
-      color: #9ca3af !important;
-      margin: 0 .25rem !important;
-    }
-    .breadcrumb a {
-      color: #425466 !important;
-      text-decoration: none !important;
-    }
-
-    .site-footer a {
-        text-decoration: none !important;
-        transition: all 0.2s ease;
-    }
-    .site-footer a:hover {
-      color: #007867 !important;
-      text-decoration: underline !important;
-      text-underline-offset: 4px !important;
-      text-decoration-thickness: 1px !important;
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important;
-    }
-
-    header .submenu {
-      background-color: #ffffff !important;
+    /* ==========================================
+       テンプレートCSSの調整
+       ========================================== */
+    
+    /* ===== submenu 色調整 ===== */
+    body.page-little #site-header .submenu{
+      background: #fff !important;
       border: 1px solid #e5e7eb !important;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08) !important;
     }
-    header .submenu a:hover {
-      background-color: #f4f4f4 !important;
+    body.page-little #site-header .submenu a:hover,
+    body.page-little #site-header .submenu a:focus-visible{
+      background: color-mix(in oklab, var(--unit-brand, #f59e0b) 18%, #fff) !important;
+      color: var(--unit-ink, #7a3e00) !important;
+      border-radius: 8px;
+      outline: none;
     }
-    .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;
-        font-weight: 400 !important;
-    }
+    body.page-little #site-header .submenu a{ color: var(--unit-ink, #7a3e00); }
+
+    /* ===== フッター ===== */
+    body.page-little .site-footer{ background:#fff4df !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
+    body.page-little .site-footer .footer__bar{ background:#fff4df !important; border-top:1px solid color-mix(in oklab, var(--unit-brand) 28%, #fff); }
+    body.page-little .site-footer h3, body.page-little .site-footer a{ color:var(--unit-ink); }
+
+/* BTTボタンの色上書き（視認性とブランドカラーの両立のため #b45309 に変更） */
+    body.page-little #backToTop { --c-primary: #b45309 !important; }
+    body.page-little #backToTop .btt__inner { background-color: #fff !important; color: #b45309 !important; border: 2px solid transparent !important; }
+    body.page-little #backToTop .btt__icon, body.page-little #backToTop .btt__icon path { fill: #b45309 !important; }
+    body.page-little #backToTop .btt__label { color: #b45309 !important; }
+    body.page-little #backToTop svg circle, body.page-little #backToTop .btt__ring-bar { stroke: #b45309 !important; }
+    body.page-little #backToTop .btt__ring { border-color: rgba(180, 83, 9, 0.2) !important; } /* RGB値を合わせました */
+
+    /* フッターリンク */
+    .site-footer a { text-decoration: none !important; transition: all 0.2s ease; }
+    .site-footer a:hover { color: #007867 !important; text-decoration: underline !important; text-underline-offset: 4px !important; text-decoration-thickness: 1px !important; text-decoration-color: rgba(0, 120, 103, 0.6) !important; }
+
+    header .submenu { background-color: #ffffff !important; border: 1px solid #e5e7eb !important; }
+    header .submenu a:hover { background-color: #f4f4f4 !important; }
+    .c-header__list-item.is-current .c-header__list-link { color: #007867 !important; font-weight: 400 !important; }
 
     @media (min-width: 960px) {
       header .c-header__list-link {
-        position: relative;
-        text-decoration: none !important;
-        color: #333 !important;
-        font-weight: 400 !important;
-        padding: 0.5em 0.6em !important; 
-        display: inline-block;
-        transition: all 0.2s ease !important; 
+        position: relative; text-decoration: none !important; color: #333 !important; font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; display: inline-block; filter: none !important; background: transparent !important;
+        border: none !important; box-shadow: none !important; border-radius: 0 !important; transition: all 0.2s ease !important; 
       }
       header .c-header__list .c-header__list-link:hover {
-        color: #007867 !important;
-        text-shadow: 0 0 0.5px #007867 !important;
+        color: #007867 !important; text-shadow: 0 0 0.5px #007867 !important; text-decoration: none !important; 
+        font-weight: 400 !important; filter: none !important; opacity: 1 !important; background: transparent !important;
       }
       header .c-header__list-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0px !important;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background-color: #007867;
-        transition: width 0.3s ease;
-        transform: translateX(-50%);
+        content: ''; position: absolute; bottom: 0px !important; left: 50%; width: 0; height: 2px;
+        background-color: #007867; transition: width 0.3s ease; transform: translateX(-50%); pointer-events: none;
       }
-      header .c-header__list .c-header__list-link:hover::after {
-        width: calc(100% - 1.2em); 
+      header .c-header__list .c-header__list-link:hover::after { width: calc(100% - 1.2em); }
+    }
+
+    /* ==========================================
+       メインコンテンツ用のデザイン
+       ========================================== */
+    .hero-action-btns { display: flex; flex-direction: row; gap: 1.5rem; align-items: center; justify-content: center; padding: 0 1.5rem; }
+    .hero-action-btns a {
+      display: flex; justify-content: center; align-items: center; flex: 1; max-width: 320px; 
+      padding: 1.2rem 1.5rem; border-radius: 999px; text-decoration: none !important; font-weight: 700; font-size: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-sizing: border-box;
+    }
+    .btn-primary-call { background: #f59e0b; color: #fff !important; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2); }
+    .btn-primary-call:hover { background: #d97706; color: #fff !important; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); }
+    .btn-secondary-mail { background: #fff; color: #f59e0b !important; border: 2px solid #f59e0b; }
+    .btn-secondary-mail:hover { background: #fffaf1; color: #d97706 !important; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15); }
+
+    .btn-cta-call {
+      display: flex; align-items: center; justify-content: center; flex: 1; min-width: 250px;
+      background: #fff !important; color: #f59e0b !important; padding: 1.2rem; border-radius: 999px;
+      text-decoration: none !important; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .btn-cta-call:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); background: #fffaf1 !important; color: #d97706 !important; }
+    
+    .btn-cta-mail {
+      display: flex; align-items: center; justify-content: center; flex: 1; min-width: 250px;
+      background: #7a3e00 !important; color: #fff !important; padding: 1.2rem; border-radius: 999px;
+      text-decoration: none !important; font-weight: 700; font-size: 1.1rem; border: 2px solid #7a3e00 !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .btn-cta-mail:hover { background: #451a03 !important; border-color: #451a03 !important; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); color: #fff !important;}
+    
+    .myroot-subnav { border-bottom: none !important; padding: 1rem 0 2rem !important; background: transparent !important; position:sticky; top:0; z-index:5; margin:0 auto; max-width:var(--my-max); }
+    .myroot-subnav__list { display: flex; flex-wrap: wrap; justify-content: center !important; gap: 0.8rem 1rem !important; }
+    .myroot-subnav__list a {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.8rem 1.6rem !important; background: #fff !important; border: 1px solid #e5e7eb !important;
+      border-radius: 999px !important; color: #444 !important; font-weight: 700 !important;
+      font-size: 0.95rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: all 0.2s ease !important;
+    }
+    .myroot-subnav__list a:hover { background: #f59e0b !important; color: #fff !important; border-color: #f59e0b !important; box-shadow: 0 6px 15px rgba(245, 158, 11, 0.2); transform: translateY(-2px); }
+
+    /* ==========================================
+       ▼ 一日の流れ（横長カード・縦積みUI） ▼
+       ========================================== */
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .flow-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .flow-card-top {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      text-align: center;
+    }
+    .flow-card-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+    .flow-card-info p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .flow-card-btn-wrap {
+      margin-top: 1.5rem;
+    }
+    .toggle-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 1rem;
+      background: #fffaf1;
+      color: #f59e0b;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+    .toggle-label:hover { background: #fef3c7; }
+    
+    .timeline-panel { 
+      max-height: 0; 
+      opacity: 0; 
+      overflow: hidden; 
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+      padding: 0 2rem;
+    }
+    
+    .accordion-toggle:checked ~ .timeline-panel { 
+      max-height: 1500px; 
+      opacity: 1; 
+      padding-bottom: 2.5rem; 
+    }
+    
+    .toggle-icon { display: inline-block; transition: transform 0.3s ease; }
+    .accordion-toggle:checked ~ .flow-card-top .toggle-icon { 
+      transform: rotate(180deg); 
+    }
+
+    /* ▼ アコーディオン内部のレイアウト（スマホ用デフォルト） ▼ */
+    .timeline-inner {
+      position: relative; 
+      padding: 0.5rem 0; 
+      width: fit-content; 
+      margin: 0 ; /* スマホでは中央寄せ */
+    }
+    .timeline-image {
+      display: none; /* スマホでは画像を非表示 */
+    }
+
+    /* ▼ PC表示向けのレイアウト調整 ▼ */
+    @media (min-width: 921px) {
+      .flow-card-top {
+        flex-direction: row; 
+        align-items: center;
+        justify-content: space-between;
+        text-align: left; 
+        padding: 2.5rem 3rem;
+      }
+      .flow-card-info {
+        flex: 1;
+        padding-right: 3rem; 
+      }
+      .flow-card-btn-wrap {
+        margin-top: 0;
+        width: 260px; 
+        flex-shrink: 0;
+      }
+      .timeline-panel {
+        padding: 0 3rem; 
+      }
+      .timeline-content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+      }
+      .timeline-inner {
+        margin: 0; 
+        flex: 1; 
+      }
+      .timeline-image {
+        display: block;
+        flex: 1;
+        max-width: 320px; 
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      }
+      .timeline-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
       }
     }
 
-    /* ヘッダーメニューの装飾リセット */
-    #site-header .c-header__list > .c-header__list-item,
-    #site-header .c-header__list > .c-header__list-item:hover,
-    #site-header .c-header__list > .c-header__list-item:focus-within,
-    #site-header .c-header__list > .c-header__list-item.is-current,
-    #site-header .c-header__list > .c-header__list-item > .c-header__list-link,
-    #site-header .c-header__list > .c-header__list-item:hover > .c-header__list-link,
-    #site-header .c-header__list > .c-header__list-item:focus-within > .c-header__list-link,
-    #site-header .sub-toggle:checked ~ .c-header__list-link {
-        background: transparent !important;
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    #site-header .c-header__list > .c-header__list-item::before,
-    #site-header .c-header__list > .c-header__list-item > .c-header__list-link::before {
-        display: none !important;
+    /* ==========================================
+       その他の設定
+       ========================================== */
+    .facts-list{ margin:0; padding:0; }
+    .fact-row{ display:flex; flex-wrap:wrap; border-bottom:1px solid var(--my-line); padding:1.1rem 0; }
+    .fact-row:first-child{ padding-top:0; }
+    .fact-row:last-child{ border-bottom:none; padding-bottom:0; }
+    .fact-row dt{ width:180px; flex-shrink:0; font-weight:700; color:var(--unit-brand-ink); display:flex; align-items:center; gap:.5rem; margin:0 0 .3rem 0; }
+    .fact-row dd{ margin:0; flex:1; color:#333; line-height:1.8; }
+
+    .program-card { background: #fff; border: 1px solid var(--my-line); border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 1.5rem; }
+    .program-card h4 { color: #f59e0b; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; border-bottom: 2px solid #fef3c7; padding-bottom: 0.5rem; }
+    .program-card p, .program-card li { color: #444; line-height: 1.7; font-size: 0.95rem; }
+
+    .gallery-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 280px)); gap: 2.5rem 2rem; justify-content: center; }
+    .gallery-img-wrap { width: 100%; max-width: 280px; margin: 0 auto; aspect-ratio: 3/4; overflow: hidden; border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); border: 1px solid transparent; }
+    .gallery-item { display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+    .gallery-item:hover { transform: translateY(-4px); }
+    .gallery-item:hover .gallery-img-wrap { box-shadow: 0 12px 32px rgba(245, 158, 11, 0.15); }
+    .gallery-img { object-fit: cover; width: 100%; height: 100%; display: block; }
+    .gallery-caption { margin: 1rem 0 0.5rem; text-align: center; font-weight: 700; color: #b45309; font-size: 1.05rem; line-height: 1.5; }
+    
+    .modal-check { display: none; }
+
+    .modal-overlay { 
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+      background: rgba(0,0,0,0.5); 
+      backdrop-filter: blur(4px); 
+      -webkit-backdrop-filter: blur(4px); 
+      z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; 
+      display: flex; justify-content: center; align-items: center; cursor: pointer; 
     }
 
+    .modal-img { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); transform: scale(0.9); transition: all 0.3s ease; }
+    .modal-check:checked ~ .modal-overlay { opacity: 1; visibility: visible; }
+    .modal-check:checked ~ .modal-overlay .modal-img { transform: scale(1); }
+
+    .fact-link{ color:#111; text-decoration:underline; text-decoration-color:var(--my-line); text-underline-offset:3px; transition:color .2s; }
+    .fact-link:hover{ color:var(--my-accent); text-decoration-color:var(--my-accent); }
+    .map{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fafafa; display:grid; place-items:center; height:100%; min-height:300px; box-sizing:border-box; }
+    .map iframe{ width:100%; height:100%; border:0; display:block; }
+
+    .breadcrumb{ margin:0 auto 1.75rem !important; max-width:min(1100px, 92vw) !important; padding:0 2% !important; background:transparent !important; }
+    .breadcrumb ol{ display:flex !important; flex-wrap:wrap !important; gap:.5rem .75rem !important; list-style:none !important; padding:1.2em 0 !important; margin:0 !important; font-size:.9rem !important; font-family:"Noto Sans JP", sans-serif !important; }
+    .breadcrumb li + li::before{ content:"›" !important; color:#9ca3af !important; margin:0 .25rem !important; font-weight:400 !important; }
+    .breadcrumb a{ color:#425466 !important; text-decoration:none !important; font-weight:400 !important; transition:text-decoration 0.2s ease !important; }
+    .breadcrumb a:hover{ text-decoration:underline !important; color:#425466 !important; background:transparent !important; }
+    .breadcrumb li[aria-current="page"]{ color:#17222f !important; font-weight:400 !important; }
+    
+    #page, .l-main.myroot-page, .myroot-wrap, #access.myroot-section, .myroot-grid, .map.map--embed{ max-width:100%; min-width:0; overflow-x:clip; }
+    html, body{ width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after{ box-sizing:border-box; }
+    img, svg, video, canvas{ display:block; max-width:100%; height:auto; }
+
+    /* ==========================================
+       リトルハンズの特徴セクション（チェックマーク調整）
+       ========================================== */
+    #features ul li {
+      position: relative;
+      padding-left: 1.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      list-style: none;
+    }
+    #features ul li::before {
+      content: "✔\FE0E";
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      color: #f59e0b;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+
+    @media (max-width: 920px){ 
+      .myroot-grid{ grid-template-columns:1fr; align-items:start; } 
+      .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
+      .pc-br{ display:none; }
+    }
+    
+    @media (max-width: 600px) {
+      .sp-hide { display: none !important; }
+      .sp-br { display: inline !important; }
+
+      #concept {
+        display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important;
+        border-radius: 0 !important; width: 100vw !important; max-width: 100vw !important; margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important; background-size: cover !important; background-position: 30% 50% !important;
+        padding: 2rem 1.5rem 1rem !important; min-height: 350px !important; gap: 0.5rem !important; 
+      }
+      
+      #concept p[style*="color: #f59e0b"] { display: block !important; font-size: 1rem !important; margin-top: 1rem !important; margin-bottom: 0rem !important; }
+      #concept h1 { font-size: 1.5rem !important; text-align: center !important; white-space: nowrap !important; margin-top: -0.3rem !important; text-shadow: 0 0 10px #fff, 0 0 15px #fff !important; }
+      #concept div[style*="max-width: 650px"] { text-align: center !important; margin-top: 0rem !important; }
+      #concept div[style*="max-width: 650px"] p { font-size: 1rem !important; line-height: 1.6 !important; text-shadow: 0 0 10px #fff, 0 0 15px #fff !important; }
+
+      .hero-action-btns { flex-direction: row !important; gap: 0.8rem !important; padding: 0 1rem !important; }
+      .hero-action-btns a { flex: 1 !important; max-width: none !important; padding: 1rem 0.5rem !important; font-size: 0.85rem !important; white-space: nowrap !important; }
+
+      .myroot-subnav__list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem !important; padding: 0 1rem !important; }
+      .myroot-subnav__list a { padding: 0.8rem 0.5rem !important; font-size: 0.85rem !important; border-radius: 12px !important; text-align: center; white-space: nowrap; }
+      
+      .fact-row{ display:block; padding:.9rem 0; } 
+      .fact-row dt{ width:100%; margin-bottom:.4rem; color:#444; } 
+      .fact-row dd{ padding-left:1.8rem; }
+      .myroot-card.p-0{ padding:1.2rem; }
+      
+      .btn-cta-call, .btn-cta-mail { width:100% !important; min-width:0 !important; }
+
+      /* ギャラリー設定（スマホ限定のカルーセル） */
+      #gallery .gallery-container {
+        display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important;
+        gap: 4vw !important; padding-inline: 10vw !important; justify-content: flex-start !important; -webkit-overflow-scrolling: touch;
+      }
+      #gallery .gallery-container::-webkit-scrollbar { display: none; }
+      #gallery .gallery-container { -ms-overflow-style: none; scrollbar-width: none; }
+      #gallery .gallery-container > div { flex: 0 0 80vw !important; scroll-snap-align: center !important; }
+      #gallery .gallery-item { width: 100% !important; margin: 0 !important; }
+      #gallery .gallery-img-wrap { max-width: none !important; }
+      
+      /* ▼ 追加：スマホ時はフッター直上のボタンを縦並びにする ▼ */
+      .cta-bottom-wrap { flex-direction: column !important; }
+    }
   </style>
 </head>
 
-<body>
-<div id="page">
+<body class="page-little">
+<a id="top" class="visually-hidden">top</a>
 
+<div id="page">
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
@@ -253,7 +455,8 @@
           <li><a href="officers.html">役員</a></li>
         </ul>
       </li>
-      <li class="c-header__list-item has-sub">
+
+      <li class="c-header__list-item has-sub is-current">
         <input type="checkbox" id="sub-offices" class="sub-toggle">
         <a href="office.html" class="c-header__list-link">事業所紹介</a>
         <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
@@ -261,7 +464,7 @@
           <li><a href="wahaha.html">わぁははクラブ</a></li>
           <li><a href="residence.html">居宅介護</a></li>
           <li><a href="soudan.html">相談支援</a></li>
-          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="little.html" aria-current="page">リトルハンズ</a></li>
           <li><a href="sakura.html">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
           <li><a href="ichisapo.html">若者サポートステーション</a></li>
@@ -269,6 +472,7 @@
           <li><a href="citizen.html">市民活動センター</a></li>
         </ul>
       </li>
+
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-howto" class="sub-toggle">
         <a href="howto.html" class="c-header__list-link">初めての方へ</a>
@@ -279,7 +483,7 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </li>
-      <li class="c-header__list-item is-current">
+      <li class="c-header__list-item">
         <a href="news.html" class="c-header__list-link">お知らせ</a>
       </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
@@ -291,60 +495,442 @@
       <span class="c-hamburger-menu__button-mark"></span>
     </label>
   </header>
+  <main id="main" class="l-main myroot-page" style="padding: 0;">
+    
+    <div style="background: #fff; padding-top: 1rem;">
+      <div class="myroot-wrap">
+        <nav class="breadcrumb" aria-label="パンくず">
+          <ol>
+            <li><a href="index.html">TOP</a></li>
+            <li><a href="office.html">事業所紹介</a></li>
+            <li aria-current="page">リトルハンズ</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
-  <main class="l-main" style="padding-top: 1rem;">
-    <div class="news-wrap">
+    <div class="myroot-wrap" style="padding: 0 clamp(1.2rem, 4vw, 2rem);">
 
-      <nav class="breadcrumb" aria-label="パンくず">
-        <ol>
-          <li><a href="index.html">TOP</a></li>
-          <li><a href="news.html">NEWS</a></li>
-          <li aria-current="page">【リトルハンズ】ページ更新のお知らせ</li>
-        </ol>
-      </nav>
+      <section id="concept" style="
+        position: relative;
+        max-width: 1040px;
+        margin: 1rem auto 2.5rem; 
+        text-align: center;
+        padding: 1.5rem clamp(1rem, 3vw, 2.5rem) clamp(3rem, 6vw, 6rem); 
+        scroll-margin-top: 10px;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('img/little_pic.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        box-sizing: border-box;
+      ">
+        <p class="sp-hide" style="font-size: 1.1rem; font-weight: 700; color: #f59e0b; margin-top: 4rem; margin-bottom: 0.5rem; letter-spacing: 0.1em; text-shadow: 0 0 10px #fff;">CONCEPT</p>
+        
+        <h1 style="font-size: clamp(1.4rem, 5vw, 2.2rem); font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; color: #111; line-height: 1.4; margin-bottom: clamp(6rem, 15vw, 18rem); text-shadow: 0 0 10px #fff;">
+          「楽しい！」を大切に。
+        </h1>
+        
+        <div style="display: inline-block; text-align: center; max-width: 650px; margin-top: 4rem;">
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #333; margin: 0; text-shadow: 0 0 10px #fff; font-weight: 500;">
+            リトルハンズは、障がいのあるお子さんが<br class="sp-br">安心して過ごせる「居場所」です。
+          </p>
+          <p class="sp-hide" style="font-size: 1.1rem; line-height: 1.8; color: #333; margin: 0; text-shadow: 0 0 10px #fff; font-weight: 500;">
+            お子さんの個性を大切に、様々な体験や遊びを通じて自立と成長を促します。
+          </p>
+        </div>
+      </section>
 
-      <section class="news-body" aria-labelledby="ny-title">
-        <h2 id="ny-title">【リトルハンズ】ページ更新のお知らせ</h2>
+      <div class="hero-action-btns" style="margin-bottom: 4rem;">
+        <a href="tel:0191-31-5720" class="btn-primary-call">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          電話で相談
+        </a>
+        <a href="mailto:hands.guitar@ocn.ne.jp" class="btn-secondary-mail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M4 6h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9 2 2 2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          メールで相談
+        </a>
+      </div>
+    </div>
 
-        <p class="article__meta">
-          <time datetime="2026-05-15">2026.05.15（金）</time>
-          <span class="news__tag">お知らせ</span>
-        </p>
+    <nav class="myroot-subnav" aria-label="ページ内メニュー" style="margin-bottom: 4rem;">
+      <div class="myroot-subnav__list">
+        <a href="#features">特徴・活動風景</a>
+        <a href="#program">支援プログラム</a>
+        <a href="#flow">一日の流れ</a>
+        <a href="#access">アクセス</a>
+      </div>
+    </nav>
 
-        <p class="ny-lead">
-          日頃よりレスパイトハウス・ハンズをご利用いただき、ありがとうございます。
-          <br><br>
-          この度、当法人が運営する放課後等デイサービス「リトルハンズ」の紹介ページを更新しました。
-          <br><br>
-          今回の更新では、ご家族や利用者様に写真掲載をご了承いただき、ハロウィンパーティーや季節の工作といった日々の活動風景の写真を掲載しております。利用者様の楽しい雰囲気が、少しでも皆さまにお伝えできれば幸いです。
-          <br><br>
-          また、新たに設定した支援プログラム（5領域）や一日の流れについても、より分かりやすくご覧いただけるようになりました。
-        </p>
+    <div class="myroot-wrap" style="padding: 0 clamp(1.2rem, 4vw, 2rem);">
 
-        <div class="update-box" role="region" aria-label="更新したウェブサイトへのご案内">
-          <h3 style="margin-top:0; font-size:1.3rem; color: #111;">リトルハンズ 紹介ページ</h3>
-          <p style="color: #444; line-height: 1.6; margin-bottom: 0;">新しくなったページは、下記ボタンよりご覧いただけます。<br>お子様とご家族の安心できる居場所づくりに、今後とも努めてまいります。</p>
+      <section id="features" style="background: #fffaf1; border-radius: 24px; padding: clamp(2rem, 5vw, 2rem); margin-bottom: 4rem; scroll-margin-top: 10px;">
+        <h2 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111;">
+          リトルハンズの特徴
+        </h2>
+        
+        <div style="display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #f59e0b; border-bottom: 2px solid #fef3c7; padding-bottom: 0.8rem; margin-bottom: 1.5rem;">寄り添う支援と安心・安全</h3>
+            <ul style="padding: 0; margin: 0;">
+              <li>お子さんひとりひとりの特性に寄り添う個別支援</li>
+              <li>日常の健康状態を把握し、安心・安全を最優先に</li>
+              <li>ご家族のための相談窓口やレスパイト（休息）提供</li>
+            </ul>
+          </div>
           
-          <a href="little.html" class="new-page-btn">
-            リトルハンズのページを見る
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </a>
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: #f59e0b; border-bottom: 2px solid #fef3c7; padding-bottom: 0.8rem; margin-bottom: 1.5rem;">多彩なプログラムと地域連携</h3>
+            <ul style="padding: 0; margin: 0;">
+              <li>音楽リズム、調理実習、創作活動など楽しい行事</li>
+              <li>天気の良い日は近隣の公園へウォーキング</li>
+              <li>学校や相談支援事業所と密に連携したサポート体制</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="myroot-section" aria-labelledby="gallery-title" style="max-width: 1000px; margin: 0 auto 6rem; scroll-margin-top: 10px;">
+        <h2 id="gallery-title" style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111;">日々の活動風景</h2>
+        
+        <div class="gallery-container">
+          
+          <div>
+            <input type="checkbox" id="img-modal-1" class="modal-check">
+            
+            <label for="img-modal-1" class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="img/little_pic4.webp" alt="ハロウィンの仮装" class="gallery-img">
+                </div>
+                <p class="gallery-caption">ハロウィンパーティー🎃</p>
+            </label>
+            
+            <label for="img-modal-1" class="modal-overlay">
+              <img src="img/little_pic4.webp" alt="ハロウィンの仮装 拡大" class="modal-img">
+            </label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="img-modal-2" class="modal-check">
+            
+            <label for="img-modal-2" class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="img/little_pic3.webp" alt="カニの工作" class="gallery-img">
+                </div>
+                <p class="gallery-caption">季節の工作・創作活動🦀</p>
+            </label>
+            
+            <label for="img-modal-2" class="modal-overlay">
+              <img src="img/little_pic3.webp" alt="カニの工作 拡大" class="modal-img">
+            </label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="img-modal-3" class="modal-check">
+            
+            <label for="img-modal-3" class="gallery-item">
+                <div class="gallery-img-wrap">
+                    <img src="img/little_pic2.webp" alt="お菓子釣りゲーム" class="gallery-img">
+                </div>
+                <p class="gallery-caption">お菓子釣りゲーム🎣</p>
+            </label>
+            
+            <label for="img-modal-3" class="modal-overlay">
+              <img src="img/little_pic2.webp" alt="お菓子釣りゲーム 拡大" class="modal-img">
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="program" class="myroot-section" aria-labelledby="program-title" style="max-width: 1000px; margin: 0 auto 6rem; scroll-margin-top: 10px;">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+          <h2 id="program-title" style="font-size: 1.8rem; font-weight: 700; color: #111; margin-bottom: 1rem;">支援プログラム</h2>
+          <p style="font-size: 1.05rem; line-height: 1.8; color: #555;">
+            リトルハンズでは、厚生労働省のガイドラインに基づき、5領域を含む支援プログラム等を作成・公表しています。<br>
+            <span style="font-size: 0.9rem; color: #888;">作成日：令和7年3月1日</span>
+          </p>
         </div>
 
-        <nav class="article__nav" style="margin-top: 3rem;">
-          <a class="link-back" href="news.html">NEWS一覧へ戻る</a>
-        </nav>
+        <div class="myroot-card p-0" style="margin-bottom: 3rem;">
+          <dl class="facts-list">
+            <div class="fact-row">
+              <dt>法人（事業所）理念</dt>
+              <dd>
+                <ul style="list-style:none; padding:0; margin:0; line-height:1.7;">
+                  <li style="margin-bottom:0.5rem;"><strong>1. 一人ひとりの個性を支援</strong><br>本人の希望を大切にし、様々な体験の機会を提供します。</li>
+                  <li style="margin-bottom:0.5rem;"><strong>2. ご家族のための支援</strong><br>ご家族皆様の時間がより有意義になるようサポートします。</li>
+                  <li><strong>3. リーズナブルな支援</strong><br>いつでも気軽に、安心してご利用いただける環境を整えます。</li>
+                </ul>
+              </dd>
+            </div>
+            <div class="fact-row">
+              <dt>支援方針</dt>
+              <dd>障がいのある方々が、生まれ育った地域で安心して生活できるよう支援を行います。日常生活における基本動作の指導や集団生活への適応訓練を通じて、自立の促進と生活の質の向上を目指します。ご本人やご家族の状況・環境に応じて、一人ひとりに合わせた支援を提供します。</dd>
+            </div>
+            <div class="fact-row">
+              <dt>営業時間</dt>
+              <dd>9:00 〜 18:00</dd>
+            </div>
+            <div class="fact-row">
+              <dt>送迎実施の有無</dt>
+              <dd>あり</dd>
+            </div>
+          </dl>
+        </div>
 
+        <h3 style="font-size: 1.5rem; font-weight: 700; color: #7a3e00; margin-bottom: 1.5rem; text-align: center;">本人支援（5領域）</h3>
+        <div class="myroot-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+          
+          <div class="program-card">
+            <h4>健康・生活</h4>
+            <p>看護師による定期的な訪問日を設け、健康管理を行っています. 身支度・食事・排せつ等の生活全般の支援に加え、お預かり時以外のアフターフォローも個別に対応いたします。</p>
+          </div>
+          
+          <div class="program-card">
+            <h4>運動・感覚</h4>
+              <p>集団活動の中で、運動やダンスなど身体を動かす課題を提供します。</p>
+              <p>日常生活に必要な姿勢保持や運動機能を観察し、体重管理を含めた健康状態を把握。必要に応じて個別の支援を行います。</p>
+          </div>
+          
+          <div class="program-card">
+            <h4>認知・行動</h4>
+            <p>個別の支援計画に基づき、お子様の特性や能力に合わせた課題を提供し、認知・行動面の発達を促します。</p>
+          </div>
+
+          <div class="program-card">
+            <h4>言語・コミュニケーション</h4>
+            <p>ソーシャルスキル（社会技能）を取り入れた活動を行います. 発音練習、読み書きの学習、絵本や紙芝居の読み聞かせなどを通じ、コミュニケーション能力を育みます。</p>
+          </div>
+
+          <div class="program-card">
+            <h4>人間関係・社会性</h4>
+            <p>外出や生活におけるマナー習得などの社会適応訓練を行います. 月に1度の外出活動や、ボランティア体験などを通じて多様な人と関わる機会を設け、社会性を養います。</p>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.5rem; font-weight: 700; color: #7a3e00; margin-bottom: 1.5rem; text-align: center;">その他の支援・連携</h3>
+        <div class="myroot-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div class="program-card">
+            <h4>家族支援</h4>
+            <p>相談支援事業所と連携し、レスパイト（一時的な休息）サービスを提供します。ご家族向けの相談窓口を設置し、日々の悩みや不安に寄り添います。</p>
+          </div>
+          <div class="program-card">
+            <h4>移行支援</h4>
+            <p>将来の自立や進路に向け、相談支援事業所と密に連携してサポートします。</p>
+          </div>
+          <div class="program-card">
+            <h4>地域支援・連携</h4>
+            <p>相談支援事業所をはじめ、学校、医療機関等との連携を強化し、地域全体でお子様を支える体制を作ります。<br><br></p>
+          </div>
+          <div class="program-card">
+            <h4>職員の質の向上</h4>
+            <p>事業所内での研修に加え、外部研修への参加も積極的に行い、職員の専門性と支援の質の向上に努めています。</p>
+          </div>
+          <div class="program-card">
+            <h4>主な行事等</h4>
+            <p>毎日の日課に沿った活動に加え、季節ごとの行事を毎月開催しています. また、お子様の興味に合わせた個別の活動も設定しています。</p>
+          </div>
+        </div>
       </section>
+
+      <section id="flow" style="margin-bottom: 6rem; scroll-margin-top: 10px;">
+        <h2 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111;">一日の流れ</h2>
+        
+        <div class="flow-container">
+          
+          <div class="flow-card">
+            <input type="checkbox" id="toggle-afterschool" class="accordion-toggle" style="display: none;">
+            
+            <div class="flow-card-top">
+              <div class="flow-card-info">
+                <h3>放課後利用プログラム</h3>
+                <p>
+                  月〜金の放課後（13:00–18:00）に利用する場合の流れです。<br>
+                  <span style="font-size: 0.85rem; color: #888; display: inline-block; margin-top: 0.5rem;">※下校時間に合わせて学校までお迎えします。</span>
+                </p>
+              </div>
+              <div class="flow-card-btn-wrap">
+                <label for="toggle-afterschool" class="toggle-label">
+                  スケジュールを見る
+                  <svg class="toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </label>
+              </div>
+            </div>
+
+            <div class="timeline-panel">
+              <div style="border-top: 2px dashed #fef3c7; padding-top: 2rem; margin-top: -0.5rem;">
+                
+                <div class="timeline-content-wrapper">
+                  <div class="timeline-inner">
+                    <div style="position: absolute; left: 6px; top: 8px; bottom: 8px; width: 4px; background: #fef3c7; border-radius: 2px;"></div>
+
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">1. 来所・挨拶</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">2. 自由遊び</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">3. おやつ</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">4. 集団・個別の設定活動</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">5. 自由遊び／順次降所</h4>
+                    </div>
+                  </div>
+
+                  <div class="timeline-image">
+                    <img src="img/little_pic2.webp" alt="放課後利用の様子（お菓子釣り）">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-card">
+            <input type="checkbox" id="toggle-fullday" class="accordion-toggle" style="display: none;">
+            
+            <div class="flow-card-top">
+              <div class="flow-card-info">
+                <h3>一日利用プログラム</h3>
+                <p>土日・祝日や学校の長期休暇（09:00–18:00）に利用する場合の流れです。</p>
+              </div>
+              <div class="flow-card-btn-wrap">
+                <label for="toggle-fullday" class="toggle-label">
+                  スケジュールを見る
+                  <svg class="toggle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </label>
+              </div>
+            </div>
+
+            <div class="timeline-panel">
+              <div style="border-top: 2px dashed #fef3c7; padding-top: 2rem; margin-top: -0.5rem;">
+                
+                <div class="timeline-content-wrapper">
+                  <div class="timeline-inner">
+                    <div style="position: absolute; left: 6px; top: 8px; bottom: 8px; width: 4px; background: #fef3c7; border-radius: 2px;"></div>
+
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">1. 来所・挨拶</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">2. 学習タイム</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">3. 自由遊び</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">4. 昼食</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">5. ゆっくりタイム</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">6. 集団・個別の設定活動</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">7. おやつ</h4>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1;">
+                      <div style="flex-shrink: 0; width: 16px; height: 16px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 0 6px #fff;"></div>
+                      <h4 style="font-weight: 700; font-size: 1.05rem; color: #333; margin: 0;">8. 自由遊び／順次降所</h4>
+                    </div>
+                  </div>
+
+                  <div class="timeline-image">
+                    <img src="img/little_pic3.webp" alt="一日利用の様子（カニの工作）">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-card">
+            <div class="flow-card-top" style="padding-bottom: 2.5rem;">
+              <div class="flow-card-info" style="padding-right: 0;">
+                <h3>送迎について</h3>
+                <p>ご自宅・学校への送迎を実施しております。詳細はお気軽にご相談ください。</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <section id="access" class="myroot-section" aria-labelledby="access-title">
+        <h2 id="access-title" class="myroot-section__title" style="border-left:6px solid #f59e0b; padding-left:.5rem;">事業所のご案内</h2>
+        <div class="myroot-grid">
+          <div class="myroot-card p-0">
+            <dl class="facts-list">
+              <div class="fact-row">
+                <dt>所在地</dt>
+                <dd>〒021-0041<br>一関市赤萩字上袋75-5</dd>
+              </div>
+              <div class="fact-row">
+                <dt>開所時間</dt>
+                <dd>放課後利用：月〜金 13:00–18:00<br>一日利用：土日祝・長期休暇 09:00–18:00</dd>
+              </div>
+              <div class="fact-row">
+                <dt>連絡先</dt>
+                <dd>
+                  TEL: <a href="tel:0191-31-5720" class="fact-link">0191-31-5720</a><br>
+                  <span class="muted small">（常時受付）</span>
+                </dd>
+              </div>
+              <div class="fact-row">
+                <dt>アクセス</dt>
+                <dd>JR「一ノ関駅」よりお車で約15分<br>岩手県交通「中道」バス停下車 徒歩5分</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="map" id="gmapBox">
+            <iframe title="リトルハンズ周辺地図" src="https://maps.google.co.jp/maps?output=embed&q=一関市赤萩字上袋75-5&z=15" width="100%" height="100%" loading="lazy" style="border:0;" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </section>
+
     </div>
   </main>
+
+  <aside style="background: #f59e0b; padding: 4rem 1.5rem; text-align: center; margin-top: 4rem;">
+    <h2 style="color: #fff; font-size: 1.5rem; margin-bottom: 2.5rem; font-weight: 700;">お気軽にお問い合わせください</h2>
+    <div class="cta-bottom-wrap" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto;">
+      
+      <a href="tel:0191-31-5720" class="btn-cta-call">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        電話で相談
+      </a>
+      
+      <a href="mailto:hands.guitar@ocn.ne.jp" class="btn-cta-mail">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M4 6h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9 2 2 2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        メールで相談
+      </a>
+      
+    </div>
+  </aside>
 
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
     <span class="btt__inner" aria-hidden="true">
-      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false">
-        <path d="M12 5l-6 6h4v7h4v-7h4z"/>
-      </svg>
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
       <span class="btt__label">TOP</span>
     </span>
   </button>
@@ -364,7 +950,7 @@
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
         </address>
         <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
-        <p class="footer__map"><a href="https://www.google.com/maps?q=岩手県一関市青葉二丁目6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉二丁目６-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
       </section>
 
       <nav class="footer__nav" aria-label="フッターナビゲーション">
@@ -383,7 +969,7 @@
             <li><a href="wahaha.html">わぁははクラブ</a></li>
             <li><a href="residence.html">居宅介護</a></li>
             <li><a href="soudan.html">相談支援</a></li>
-            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="little.html" aria-current="page">リトルハンズ</a></li>
             <li><a href="sakura.html">さくらなみき</a></li>
             <li><a href="myroot.html">マイルートリンク</a></li>
             <li><a href="ichisapo.html">若者サポートステーション</a></li>
@@ -396,7 +982,7 @@
           <ul>
             <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
             <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
-            <li><a href="https://jc-ichinoseki.jp" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
             <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
           </ul>
         </div>
@@ -413,43 +999,14 @@
     </div>
 
     <div class="footer__bar">
-      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <small>©2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
-
 </div>
 
-<script>
-  document.body.classList.add('page-show');
-  document.documentElement.classList.remove('no-scroll');
-  var s = document.getElementById('splash'); 
-  if(s) s.style.display='none';
-
-  (function(){
-    const btn = document.getElementById('backToTop');
-    if(!btn) return;
-    const showAt = 200;
-    const ring = btn.querySelector('.btt__ring');
-    const update = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
-      const deg = Math.round(ratio * 360) + 'deg';
-      if(ring) ring.style.setProperty('--btt-progress', deg);
-      if (scrollTop > showAt) btn.classList.add('is-visible');
-      else btn.classList.remove('is-visible');
-    };
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-    });
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-</script>
+<script src="js/site.js"></script>
 
 </body>
 </html>
