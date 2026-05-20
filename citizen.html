@@ -2,8 +2,7 @@
 <html lang="ja">
 <head>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -14,7 +13,7 @@
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>いちのせき市民活動センター | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <title>【運営元】いちのせき市民活動センターのご案内 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="いちのせき市民活動センターの概要と外部リンクをまとめたページです。活動内容や詳細情報については公式サイトをご確認ください。">
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
@@ -97,30 +96,6 @@
       background: var(--unit-brand); box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
     }
 
-    /* 外部リンクカード */
-    .links{ display:grid; gap:clamp(12px,2vw,16px); margin-top:1.2rem; }
-    .linkcard{
-      display:flex; align-items:center; gap:.8rem;
-      padding:1rem 1.1rem; border:1px solid var(--my-line); border-radius:var(--my-radius);
-      background:#fff; text-decoration:none; color:#111;
-      transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
-    }
-    .linkcard:hover{
-      border-color: color-mix(in oklab, var(--unit-brand) 45%, #fff);
-      box-shadow:0 10px 24px rgba(11,43,107,.12);
-      transform: translateY(-1px);
-    }
-    .linkcard__icon{
-      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
-      background: color-mix(in oklab, var(--unit-brand) 14%, #fff);
-      border:1px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
-      color: var(--unit-brand);
-    }
-    .linkcard__icon svg{ width:22px; height:22px; display:block; }
-    .linkcard__body{ display:grid; gap:.2rem; }
-    .linkcard__title{ font-weight:700; }
-    .linkcard__url{ font-size:.92rem; color:#4b5563; }
-
     /* セクション見出し */
     .section{ scroll-margin-top:110px; margin:1.25rem 0 1.6rem; }
     .section__title{
@@ -144,9 +119,7 @@
     /* 現在地は太字にしない（色のみ変更） */
     .breadcrumb [aria-current="page"]{ color: var(--unit-brand); font-weight:400; }
 
-
     /* ===== BTT（上へ戻る）ボタン：白地・紺文字・紺リング ===== */
-    /* style.cssのデフォルト（白地・緑文字）を、このページ用に「白地・紺文字」へ上書き */
     body.page-citizen {
       --btt-ring-active: #0b2b6b;  /* リング進捗色（深紺） */
       --btt-center: #ffffff;       /* 中央の丸：白 */
@@ -178,7 +151,6 @@
     body.page-citizen #backToTop:hover .btt__inner {
       background-color: #f0f4fa !important; 
     }
-
 
     /* ページ本体の背景を白で固定 */
     body.page-citizen #page,
@@ -295,6 +267,55 @@
         width: calc(100% - 1.2em); 
       }
     }
+
+    /* ========================================================
+       CTAエリア（公式への巨大ボタンと誘導文）
+       ======================================================== */
+    .note-section {
+      margin: 2rem 0 1rem;
+      text-align: center;
+      border: none;
+    }
+    .note-text {
+      color: #4b5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .note-text strong {
+      color: var(--unit-ink);
+      font-weight: 700;
+    }
+    .cta-area {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+    .btn-primary-large {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: var(--unit-brand);
+      color: #fff !important; 
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 700;
+      text-decoration: none !important;
+      padding: 1.2rem 2.5rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(11,43,107,.25);
+      transition: all 0.2s ease;
+    }
+    .btn-primary-large:hover {
+      background: #082050; /* 少し暗めの紺 */
+      box-shadow: 0 12px 28px rgba(11,43,107,.35);
+      transform: translateY(-3px);
+    }
+    .icon-external {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
   </style>
 </head>
 
@@ -406,30 +427,26 @@
               <li>旧東磐井地域を拠点とした<strong>せんまやサテライト</strong>もご利用ください。</li>
             </ul>
           </div>
-
-          <div class="links" id="links" aria-label="公式リンク">
-            <a class="linkcard" href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer external">
-              <span class="linkcard__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-                  <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <span class="linkcard__body">
-                <span class="linkcard__title">いちのせき市民活動センター 公式サイトへ</span>
-                <span class="linkcard__url">（新しいタブで開きます）</span>
-              </span>
-            </a>
-          </div>
         </div>
       </section>
 
-      <section id="note" class="section" aria-labelledby="note-title">
-        <h2 id="note-title" class="section__title">ご確認ください</h2>
-        <p class="small">
-          このページでは、センターの概要と公式サイトへの導線のみをご案内しています。<br>
-          最新情報・お問い合わせ等は、<a href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer">公式サイト</a>をご確認ください。
+      <section id="note" class="section note-section" aria-labelledby="note-title">
+        <h2 id="note-title" class="visually-hidden">ご確認ください</h2>
+        <p class="note-text">
+          ※このページでは、センターの概要のみをご案内しています。<br>
+          最新情報やお問い合わせ等は、以下の<strong>公式サイト</strong>をご確認ください。
         </p>
       </section>
+
+      <div class="cta-area">
+        <a class="btn-primary-large" href="https://www.center-i.org/" target="_blank" rel="noopener noreferrer external">
+          <span>市民活動センター 公式サイトへ進む</span>
+          <svg class="icon-external" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z"/>
+          </svg>
+        </a>
+      </div>
+
     </section>
   </main>
 
@@ -569,5 +586,3 @@
 
 </body>
 </html>
-
-
