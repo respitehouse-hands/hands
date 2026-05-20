@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,7 +13,7 @@
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ジョブカフェ一関 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <title>【運営元】ジョブカフェ一関のご案内 | 特定非営利活動法人レスパイトハウス・ハンズ</title>
   <meta name="description" content="ジョブカフェ一関の概要と外部リンクを掲載したページです。サービスの詳細や最新情報は公式サイトをご確認ください。">
   
   <link rel="icon" href="favicon.ico">
@@ -88,9 +87,9 @@
 
     .unit-hero__points{ margin-top:.8rem; }
     .points{ display:grid; gap:.6rem; margin:0; padding:0; list-style:none; }
-    .points li{ position:relative; padding-left:.3em; line-height:1.9; }
+    .points li{ position:relative; padding-left:1.35em; line-height:1.9; font-size:.95rem; }
     .points li::before{
-      content:""; position:absolute; left:0; top:.58em; width:.75em; height:.75em; border-radius:50%;
+      content:""; position:absolute; left:0; top:.6em; width:.75em; height:.75em; border-radius:50%;
       background: var(--unit-brand); box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
     }
 
@@ -114,42 +113,6 @@
 
     .page-jobcafe{ --btt-ring-active:#d97706; --btt-center:#fff6ea; }
     .page-jobcafe #backToTop .btt__icon{ fill:#d97706; }
-
-    /* リンクカード（外部リンク） */
-    .page-jobcafe .links{ gap:16px; }
-    .page-jobcafe .linkcard{
-      display:flex; align-items:center; gap:12px;
-      padding:16px 18px; border:1px solid var(--my-line); border-radius:14px; background:#fff;
-      margin: 2rem 0;
-      text-decoration:none; color:#111; box-shadow: 0 1px 0 #0000000a;
-      transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
-    }
-    .page-jobcafe .linkcard:hover{
-      border-color: color-mix(in oklab, var(--unit-brand) 45%, #fff);
-      box-shadow: 0 10px 24px rgba(217,119,6,.12);
-      transform: translateY(-1px);
-    }
-    .page-jobcafe .linkcard__icon{
-      width:56px; height:56px; border-radius:14px; display:grid; place-items:center; flex:0 0 auto;
-      background: color-mix(in oklab, var(--unit-brand) 12%, #fff);
-      border:1px solid color-mix(in oklab, var(--unit-brand) 35%, #fff);
-      color: var(--unit-brand);
-    }
-    .page-jobcafe .linkcard__icon svg{ width:28px; height:28px; fill:currentColor; }
-    .page-jobcafe .linkcard__body{ display:grid; gap:.2rem; }
-    .page-jobcafe .linkcard__title{ font-weight:700; }
-    .page-jobcafe .linkcard__url{ font-size:.95rem; color:#4b5563; }
-
-    .page-jobcafe .l-main a[target="_blank"]::after,
-    .page-jobcafe .l-main a[rel~="external"]::after{
-      content:""; display:inline-block !important;
-      width:1.05em !important; height:1.05em !important;
-      margin-left:.35em; vertical-align:-.15em;
-      background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z'/%3E%3C/svg%3E") no-repeat center / contain;
-              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z'/%3E%3C/svg%3E") no-repeat center / contain;
-    }
-    .page-jobcafe .l-main a.linkcard[target="_blank"]::after,
-    .page-jobcafe .l-main a.linkcard[rel~="external"]::after{ content:none !important; }
 
     .unit-hero ul > li { margin: 0.5rem 0; }
 
@@ -276,44 +239,69 @@
       header .c-header__list .c-header__list-link:hover::after { width: calc(100% - 1.2em); }
     }
 
-    /* アラートボックス（リニューアル案内用） */
-    .alert-box {
-      background-color: #fff;
-      border: 2px solid #2f7d5b; /* 色を緑系に変更 */
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin: 1.5rem 0 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    /* ========================================================
+       CTAエリア（公式への巨大ボタンと誘導文）
+       ======================================================== */
+    .note-section {
+      margin: 2rem 0 1rem;
+      text-align: center;
+      border: none;
     }
-    .alert-box__icon {
-      color: #2f7d5b;
-      flex-shrink: 0;
-      margin-top: 3px;
-      width: 28px;
-      height: 28px;
-    }
-    .alert-box__text {
-      margin: 0;
-      color: #111;
-      font-size: 1.05rem;
+    .note-text {
+      color: #4b5563;
+      font-size: 0.95rem;
       line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
-    .alert-box__text strong {
-      display: block;
-      color: #2f7d5b;
-      font-size: 1.15rem;
-      margin-bottom: 0.4rem;
-    }
-    .alert-box__link {
-      color: #2f7d5b;
-      text-decoration: underline;
+    .note-text strong {
+      color: var(--unit-ink);
       font-weight: 700;
-      transition: opacity 0.2s;
     }
-    .alert-box__link:hover {
-      opacity: 0.7;
+    
+    /* リニューアルのお知らせ用テキスト（強調） */
+    .renewal-notice {
+      display: inline-block;
+      background: color-mix(in oklab, var(--unit-brand) 10%, #fff);
+      color: var(--unit-ink);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      border: 1px solid color-mix(in oklab, var(--unit-brand) 30%, #fff);
+    }
+    .renewal-notice strong {
+      color: var(--unit-brand);
+    }
+
+    .cta-area {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+    .btn-primary-large {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: var(--unit-brand);
+      color: #fff !important; 
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 700;
+      text-decoration: none !important;
+      padding: 1.2rem 2.5rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(217,119,6,.25);
+      transition: all 0.2s ease;
+    }
+    .btn-primary-large:hover {
+      background: var(--unit-ink);
+      box-shadow: 0 12px 28px rgba(122,62,0,.3);
+      transform: translateY(-3px);
+    }
+    .icon-external {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
     }
   </style>
 </head>
@@ -411,43 +399,36 @@
             </div>
           </div>
 
-
-
-<div class="unit-hero__points">
+          <div class="unit-hero__points">
             <ul class="points">
               <li>セミナーやキャリアカウンセリングなど、求職中の方へ様々な支援を行っています。</li>
               <li>職業適性評価、応募書類の添削や模擬面接など。</li>
               <li>求職者の皆様のニーズに合わせたサポートを提供します。</li>
             </ul>
           </div>
-
-          <p style="margin: 1.8rem 0 1rem; font-size: 0.95rem; color: #4b5563; line-height: 1.6;">
-            ※公式サイトがリニューアルされ、URLが新しくなりました。<br>
-            最新情報やサービス内容につきましては、下記の新しい公式サイトよりご覧ください。
-          </p>
-
- 
-          <div class="links" id="links" aria-label="公式リンク">
-            <a class="linkcard" href="https://jc-ichinoseki.jp" target="_blank" rel="noopener noreferrer external">
-              <span class="linkcard__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z"/></svg>
-              </span>
-              <span class="linkcard__body">
-                <span class="linkcard__title">ジョブカフェ一関 新公式サイトへ</span>
-                <span class="linkcard__url">jc-ichinoseki.jp（新しいタブで開きます）</span>
-              </span>
-            </a>
-          </div>
         </div>
       </section>
 
-      <section id="note" class="section" aria-labelledby="note-title">
-        <h2 id="note-title" class="section__title">ご確認ください</h2>
-        <p class="small">
-          このページでは、ジョブカフェ一関の概要と公式サイトへの導線のみをご案内しています。<br>
-          最新情報・予約・開催スケジュール・アクセス等は、<a href="https://jc-ichinoseki.jp" target="_blank" rel="noopener noreferrer">公式サイト</a>をご確認ください。
-        </p>
+      <section id="note" class="section note-section" aria-labelledby="note-title">
+        <h2 id="note-title" class="visually-hidden">ご確認ください</h2>
+        
+        <div class="renewal-notice">
+          ※令和8年2月に<strong>公式サイトがリニューアル</strong>されました。<br>
+          最新情報やサービス内容につきましては、下記公式サイトよりご確認ください。
+        </div>
+        
+
       </section>
+
+      <div class="cta-area">
+        <a class="btn-primary-large" href="https://jc-ichinoseki.jp" target="_blank" rel="noopener noreferrer external">
+          <span>ジョブカフェ一関 公式サイトへ進む</span>
+          <svg class="icon-external" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h7v2H7v10h10v-5h2v7H5V5Z"/>
+          </svg>
+        </a>
+      </div>
+
     </section>  
   </main>
 
@@ -532,4 +513,3 @@
 <script src="js/site.js" defer></script>
 </body>
 </html>
-
