@@ -2,470 +2,391 @@
 <html lang="ja">
 <head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-N79L2L2TWT');
 </script>
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが運営する就労継続支援B型事業所「さくらなみき」は、働くことに不安のある方が自分のペースで作業に取り組み、社会参加を目指す支援を行っています。">
+<title>さくらなみき | 就労継続支援B型事業所 | レスパイトハウス・ハンズ</title>
 
-  <title>さくらなみき | レスパイトハウス・ハンズ</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
-    rel="stylesheet"
-    media="print"
-    onload="this.media='all'"
-  >
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
-  </noscript>
-
+<meta name="description" content="特定非営利活動法人レスパイトハウス・ハンズが運営する就労継続支援B型事業所「さくらなみき」は、働くことに不安のある方が自分のペースで作業に取り組み、社会参加を目指す支援を行っています。">
   <link rel="icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
-  <link rel="apple-touch-icon" href="img/icon_192.png">
-  
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+<link rel="apple-touch-icon" href="img/icon_192.png">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link 
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'"
+>
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+</noscript>
 
   <style>
-    :root{ --ink:#17222f; --ink-2:#425466; --line:#e6edf2; --surface:#fff; --radius:14px; --max:1120px; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0; color:var(--ink);
-      font:400 16px/1.8 "Noto Sans JP",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      background: #ffffff;
-    }
-    .wrap{ max-width:var(--max); margin-inline:auto; padding-inline:min(4vw,24px); }
-
-    /* -------- ページ専用（桜）トークン -------- */
-    .unit-sakura{
-      --brand:#F48FB1;             /* ピンク */
-      --brand-ink:#6E2142;         /* 濃色 */
-      --brand-weak:#FFF0F5;        /* 薄い面色 */
-      --chip-line: color-mix(in oklab, var(--brand) 40%, #fff);
-      --header-bg:#FFF5F9;
-      --menu-border:color-mix(in oklab, var(--brand) 28%, #fff);
-      --menu-divider:color-mix(in oklab, var(--brand) 16%, #fff);
-      --nav-text:#6E2142;
-      --nav-hover-bg:#FFE6EF;
+    /* ==========================================
+       ベース変数と共通設定（さくらなみき専用ピンクテーマ）
+       ========================================== */
+    :root{
+      --my-accent:#d81b60;
+      --my-ink:#222;
+      --my-ink-2:#555;
+      --my-line:#e5e7eb;
+      --my-surface:#fff;
+      --my-radius:14px;
+      --my-max:1120px;
+      
+      --unit-brand:#d81b60;       /* メインの濃いピンク */
+      --unit-brand-ink:#880e4f;   /* テキスト用の深いピンク */
+      --unit-grad-1:#fce4ec;      /* 薄いピンク（背景・ホバー用） */
+      --unit-grad-2:#f8bbd0;      /* 少し濃いピンク（グラデーション用） */
+      --unit-tint-weak:#fff0f5;   /* ごくごく薄いピンク */
     }
 
-    /* ヘッダー色上書き（構造は共通のまま） */
-    body.unit-sakura #site-header.c-header{ background:var(--header-bg); border-bottom:1px solid var(--menu-border); }
-    body.unit-sakura .submenu{
-      background:#fff; border:1px solid var(--menu-border); box-shadow:0 12px 28px rgba(110,33,66,.10);
-    }
-    body.unit-sakura .submenu li + li{ border-top:1px solid var(--menu-divider); }
-    body.unit-sakura .submenu a{ color:var(--nav-text); }
-    body.unit-sakura .submenu a:hover, body.unit-sakura .submenu a:focus{ background:var(--nav-hover-bg); color:var(--nav-text); }
-
-
-    /* フッター配色（このページ限定） */
-    .unit-sakura .site-footer{ background:#FFF5F9; border-top:1px solid var(--menu-border); }
-    .unit-sakura .site-footer .footer__bar{ background:#FFF1F6; border-top:1px solid var(--menu-border); }
-    .unit-sakura .site-footer h3, .unit-sakura .site-footer a{ color:var(--brand-ink); }
-
-    /* ========== ヒーローバンド ========== */
-    .unit-hero{
-      margin:1.2rem 0 1.8rem; border-radius:20px; border:1px solid var(--line);
-      background:
-        radial-gradient(900px 240px at 15% -12%, #fff5f9, transparent 60%),
-        radial-gradient(640px 200px at 90% -25%, #fff0f6, transparent 60%),
-        linear-gradient(180deg,#fff,#fff);
-      box-shadow:0 18px 48px rgba(110,33,66,.06);
-    }
-    .unit-hero__inner{ padding:clamp(18px,3.2vw,36px) clamp(18px,3.6vw,40px); }
-    .unit-hero__head{ display:grid; grid-template-columns:auto 1fr; gap:clamp(12px,2vw,20px); align-items:center; margin-bottom:clamp(12px,2vw,18px); }
-    
-    /* ロゴ周り */
-    .unit-hero__emblem{
-      max-width: 120px; 
-      border-radius: 0; 
-      background: none;
-      border: none;
-      box-shadow: none;
-      display: flex;
-      align-items: center;
-    }
-    @media (max-width: 600px) {
-      .unit-hero__emblem {
-        max-width: 80px; 
-      }
+    /* ▼ ページ全体の背景色を白に強制固定（緑色を排除） ▼ */
+    html, body, #page, .l-main {
+      background-color: #ffffff !important;
     }
 
-    .unit-hero__emblem img{ 
-      width: auto; 
-      height: auto; 
-      display: block; 
-      max-width: 100%;
-    }
-    
-    .unit-hero__title{ margin:0 0 .1rem; font:700 clamp(1.2rem,2.2vw,1.7rem)/1.2 "Zen Maru Gothic","Noto Sans JP",system-ui; color:var(--brand-ink); }
-    .unit-hero__lead{ margin:1.1rem 0 1.1rem; color:#1f2d3a; }
-    .unit-hero__grid{ display:grid; gap:clamp(16px,2.2vw,24px); grid-template-columns:1.55fr .95fr; }
-    @media (max-width:920px){ .unit-hero__grid{ grid-template-columns:1fr; } }
-    
-    /* ★修正：リスト全体の左余白を削除して左寄せにする */
-    .unit-hero__points ul{ margin:.2rem 0 0; padding:0; }
-    .unit-hero__points li{ margin:.45rem 0; line-height:1.9; }
-
-    .unit-hero__callout{
-      border:1px solid color-mix(in oklab, var(--brand) 28%, #fff);
-      border-radius:14px; background:#fff;
-      box-shadow:0 18px 48px rgba(110,33,66,.06), inset 0 0 0 6px var(--brand-weak);
-      padding:clamp(16px,2.4vw,22px);
-    }
-    .unit-hero__callout h3{ margin:.2rem 0 .6rem; color:var(--brand-ink); font-weight:700; }
-    .unit-hero__cta{ display:grid; gap:.8rem; margin:.6rem 0; }
-    .unit-hero__small{ color:#657b8f; font-size:.92rem; }
-
-    /* ボタン */
-    .unit-sakura .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      text-decoration:none; font-weight:700;
-      padding:.72em 1.2em; border-radius:999px;
-      border:1.5px solid color-mix(in oklab, var(--brand) 55%, #fff);
-      background:#fff; color:var(--brand-ink);
-      transition:background .18s ease, border-color .18s ease, transform .03s ease;
-      box-shadow:0 2px 0 rgba(0,0,0,.02);
-    }
-    .unit-sakura .btn.ghost:hover{ background:var(--brand-weak); }
-    .unit-sakura .btn:active{ transform:translateY(1px); }
-
-    /* セクション共通見出し */
-    .sec-title{
-      font:700 clamp(1.25rem, 2vw, 1.5rem)/1.25 "Zen Maru Gothic","Noto Sans JP",system-ui;
-      margin: clamp(28px, 4.5vw, 44px) 0 clamp(16px, 2.4vw, 32px);
-      padding-left:.72rem; border-left:5px solid var(--brand); color:var(--brand-ink);
-    }
-
-    .card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-      padding:clamp(14px,2.2vw,20px) clamp(16px,2.6vw,24px); box-shadow:0 10px 30px rgba(23,34,47,.05); }
-    .grid{ display:grid; grid-template-columns:1fr; gap:16px; }
-    @media (min-width:880px){ .grid{ grid-template-columns:1fr 1fr; } }
-
-    /* 基本情報の2カラムレイアウト */
-    .basic-grid {
-      display: grid;
-      gap: clamp(24px, 4vw, 64px);
-      grid-template-columns: 1.2fr 1fr;
-      align-items: start;
-    }
-    @media (max-width: 800px) {
-      .basic-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-
-    /* テーブル */
-    .info-table{ 
-      width: 100%;
-      border-collapse: collapse; 
-      background: transparent;
-      border: none;
-    }
-    .info-table th, .info-table td{ 
-      padding: 14px 10px; 
-      vertical-align: top; 
-      text-align: left; 
-      border-bottom: 1px solid #f0f0f0;
-    }
-    .info-table th{ 
-      width: 7em; 
-      background: transparent;
-      color: var(--brand-ink); 
-      font-weight: 700; 
-      white-space: nowrap;
-    }
-    .info-table tr:last-child th, .info-table tr:last-child td{ border-bottom:none; }
-
-    /* 右側の「主な作業の例」ブロック */
-    .work-box {
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-    .work-box h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--brand-ink);
-      margin: 0 0 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--brand-weak);
-    }
-    .work-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .work-list li {
-      position: relative;
-      padding-left: 1em;
-      margin-bottom: 0.8em;
-      line-height: 1.7;
-      color: #333;
-    }
-    /* ピンクの丸チェック */
-    .work-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.6em;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--brand); /* ピンク色 */
-    }
-
-    .map{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff7fb; min-height:260px; }
-    .map iframe{ width:100%; height:350px; border:0; display:block; }
-
-    /* 上へ戻るピンク系 */
-    .unit-sakura #backToTop.btt.btt--ring{
-      --btt-bg:#F48FB1; --btt-bg-h:#EC6A95; --btt-fg:#fff;
-      --btt-ring:rgba(244,143,177,.35); --btt-ring-h:rgba(244,143,177,.55); --btt-focus:#fed1e1;
-      --btt-ring-active: #F48FB1;
-      --btt-ring-base: #FFE6EF;
-    }
-    .unit-sakura #backToTop .btt__ring{ border-color:var(--btt-ring); box-shadow:0 4px 16px var(--btt-ring); }
-    .unit-sakura #backToTop .btt__inner{ background:var(--btt-bg); color:var(--btt-fg); }
-    .unit-sakura #backToTop .btt__icon{ fill:var(--btt-fg); stroke:var(--btt-fg); }
-    .unit-sakura #backToTop .btt__label{ color:var(--btt-fg); }
-    .unit-sakura #backToTop:hover .btt__inner{ background:var(--btt-bg-h); }
-    .unit-sakura #backToTop:hover .btt__ring{ border-color:var(--btt-ring-h); box-shadow:0 6px 22px var(--btt-ring-h); }
-    .unit-sakura #backToTop:focus-visible{ outline:2px solid var(--btt-focus); outline-offset:3px; border-radius:999px; }
-
-    :root { --sticky-offset: 120px; }
-    section{ scroll-margin-top: var(--sticky-offset); }
-
-    /* チェックマークの重複と色を完全修正 */
-    .checklist {
-      list-style: none !important;
-      padding-left: 0;
-      margin: 0.5rem 0;
-    }
-    .checklist li {
-      list-style: none !important;
-      position: relative;
-      padding-left: 1.5em; 
-      margin-bottom: 0.5em;
-      line-height: 1.8;
-    }
-    .checklist li::marker { content: none !important; display: none !important; }
-
-    /* ピンク色のチェックマークを描画 */
-    .unit-sakura .checklist li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.4em;
-      width: 1.1em;
-      height: 1.1em;
-      background-color: var(--brand) !important; /* ピンク色を強制 */
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.29 5.71a1 1 0 0 1 0 1.41l-9.5 9.5a1 1 0 0 1-1.41 0l-4.5-4.5a1 1 0 1 1 1.41-1.41L10 14.09l8.29-8.38a1 1 0 0 1 1.41 0Z'/%3E%3C/svg%3E") no-repeat center / contain;
-    }
-
-    /* パンくず */
+    .myroot-page{ padding-inline:min(4vw,24px); }
+    .myroot-wrap{ max-width:var(--my-max) !important; margin-inline:auto !important; }
     .myroot-breadcrumb{ margin:0 0 1rem; }
     .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em; margin:0; }
     .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
-
-    /* CTA配色 */
-    body.unit-sakura .cta-bar .cta{
-      background: #F48FB1;
-      border: 2px solid #F48FB1;
-      color: #fff;
+    .myroot-section{ scroll-margin-top: 10px; margin:1.25rem 0 1.5rem; }
+    .myroot-card{
+      background:var(--my-surface); border:1px solid var(--my-line); border-radius:var(--my-radius);
+      box-shadow:0 1px 0 #00000008; padding:1rem 0.9rem; margin:0; height:100%; box-sizing:border-box;
     }
-    body.unit-sakura .cta-bar .cta:hover{
-      background: #EC6A95;
-      border-color: #EC6A95;
-      box-shadow: 0 8px 20px rgba(236,106,149,.20);
-      transform: translateY(-1px);
+    .myroot-card.p-0{ padding:1.5rem 1.8rem; }
+    .myroot-grid{ display:grid; gap:clamp(16px,2.4vw,24px); grid-template-columns: minmax(0, 1.6fr) minmax(0, .9fr); align-items:stretch; }
+    
+    /* ユーティリティクラス */
+    .muted{ color:#6b7280; font-size:.92rem; }
+    .strong{ font-weight:700; }
+    .sp-br{ display:none; } 
+
+    /* ==========================================
+       ヒーローエリアとCTAボタン
+       ========================================== */
+    .hero-action-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 601px) {
+      .hero-action-btns { flex-direction: row; }
+    }
+    .hero-action-btns a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 280px; 
+      padding: 1.2rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-sizing: border-box;
     }
     
-    /* CTAレイアウト */
-    .cta-bar{
-      max-width:var(--max); margin:1.25rem auto 2.4rem; padding-inline:min(4vw,24px);
-      display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;
-    }
-    .cta{
-      display:flex; align-items:center; justify-content:center; padding:.95em 1.2em; border-radius:12px;
-      text-decoration:none; font-weight:700; flex:1 1 16rem; min-width:16rem; text-align:center;
-    }
-    .cta__icon{ width:1.1em; height:1.1em; margin-right:.5em; }
-    .cta__icon path{ stroke:currentColor; fill:none; }
-    @media (max-width:680px){ .cta{ flex-basis:100%; width:100%; } }
+    .btn-primary-call { background: var(--unit-brand); color: #fff; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.2); }
+    .btn-primary-call:hover { background: #ad1457; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(216, 27, 96, 0.4); }
+    .btn-primary-call:active { transform: translateY(0); box-shadow: 0 2px 10px rgba(216, 27, 96, 0.3); }
+    
+    .btn-secondary-mail { background: #fff; color: var(--unit-brand); border: 2px solid var(--unit-brand); }
+    .btn-secondary-mail:hover { background: var(--unit-grad-1); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(216, 27, 96, 0.15); }
+    .btn-secondary-mail:active { transform: translateY(0); background: var(--unit-grad-2); }
 
-
-   /* ===============================
-       ヘッダー・フッターの最新スタイル適用
-       =============================== */
-
-    /* フッターリンク（隙間のある下線） */
-    .site-footer a {
-      text-decoration: none !important; /* デフォルトの下線は消す */
-      transition: all 0.2s ease;        /* 変化をなめらかに */
+    /* フッター直前のCTAボタン */
+    .btn-cta-call {
+      display: flex; align-items: center; justify-content: center; flex: 1; min-width: 250px;
+      background: #fff; color: var(--unit-brand); padding: 1.2rem; border-radius: 999px;
+      text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .site-footer a:hover {
-      color: #007867 !important;        /* 文字を緑にする */
-      text-decoration: underline !important;   /* 下線を引く */
-      text-underline-offset: 4px !important;   /* 文字から4px離す */
-      text-decoration-thickness: 1px !important; /* 線を細くして繊細に */
-      text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
-    }
+    .btn-cta-call:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); background: var(--unit-tint-weak); }
+    .btn-cta-call:active { transform: translateY(0); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); }
 
-    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
-    header .submenu {
-      background-color: #ffffff !important;
-      border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
+    .btn-cta-mail {
+      display: flex; align-items: center; justify-content: center; flex: 1; min-width: 250px;
+      background: transparent; color: #fff; padding: 1.2rem; border-radius: 999px;
+      text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #fff;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    header .submenu a:hover {
-      background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
-    }
+    .btn-cta-mail:hover { background: #fff; color: var(--unit-brand); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+    .btn-cta-mail:active { transform: translateY(0); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
 
-    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
-    .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   /* 色だけ変える（緑） */
-        font-weight: 400 !important; /* 太さは標準のまま！ */
+    /* ==========================================
+       サブナビゲーション
+       ========================================== */
+    .myroot-subnav {
+      border-bottom: none !important;
+      padding: 1rem 0 2rem !important;
+      background: transparent !important;
+      position:sticky; top:0; z-index:5; 
+      margin:0 auto; max-width:var(--my-max); 
     }
-
-    /* ヘッダーメニュー（PC専用・アニメーションあり） */
-    @media (min-width: 960px) {
-      header .c-header__list-link {
-        position: relative;
-        text-decoration: none !important;
-        color: #333 !important;
-        font-weight: 400 !important;
-        padding: 0.5em 0.6em !important; 
-        display: inline-block;
-        filter: none !important;     
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        transition: all 0.2s ease !important; 
-      }
-      header .c-header__list .c-header__list-link:hover {
-        color: #007867 !important;
-        text-shadow: 0 0 0.5px #007867 !important;
-        text-decoration: none !important; 
-        font-weight: 400 !important;
-        filter: none !important;   
-        opacity: 1 !important;     
-        background: transparent !important;
-      }
-      header .c-header__list-link::after {
-        content: '';
-        position: absolute;
-        bottom: 0px !important;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background-color: #007867;
-        transition: width 0.3s ease;
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-      header .c-header__list .c-header__list-link:hover::after {
-        width: calc(100% - 1.2em); 
-      }
+    .myroot-subnav__list {
+      display: flex; flex-wrap: wrap; justify-content: center !important; gap: 0.8rem 1rem !important;
     }
+    .myroot-subnav__list a {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+      padding: 0.8rem 1.6rem !important; background: #fff !important; border: 1px solid #e5e7eb !important;
+      border-radius: 999px !important; color: #444 !important; font-weight: 700 !important;
+      font-size: 0.95rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      transition: all 0.2s ease !important;
+    }
+    .myroot-subnav__list a::after {
+      content: ""; display: inline-block; width: 16px; height: 16px; background-color: currentColor;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center;
+      transition: transform 0.2s ease;
+    }
+    .myroot-subnav__list a:hover {
+      background: var(--unit-brand) !important; color: #fff !important; border-color: var(--unit-brand) !important;
+      box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2); transform: translateY(-2px);
+    }
+    .myroot-subnav__list a:hover::after { transform: translateY(3px); }
 
+    /* ==========================================
+       タイムライン＆アコーディオン
+       ========================================== */
+    .timeline-panel {
+      max-height: 0; opacity: 0; overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px);
+    }
+    #toggle-step3:checked ~ .timeline-panel {
+      max-height: 1500px; opacity: 1; transform: translateY(0); margin-top: 2rem;
+    }
+    .toggle-icon { display: inline-block; transition: transform 0.3s ease; }
+    #toggle-step3:checked ~ .steps-grid .toggle-icon { transform: rotate(180deg); }
+    .toggle-label:hover { background: var(--unit-grad-1) !important; }
+
+    /* ==========================================
+       Q&Aセクション
+       ========================================== */
+    .qa { border: none !important; background: transparent; display: flex; flex-direction: column; gap: 1rem; }
+    .qa details { 
+      border: 1px solid var(--my-line) !important; border-radius: 12px; background: #fff; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: all 0.2s ease; overflow: hidden; 
+    }
+    .qa details:hover { border-color: rgba(216, 27, 96, 0.4) !important; box-shadow: 0 4px 15px rgba(216, 27, 96, 0.08); }
+    .qa summary { 
+      cursor: pointer; padding: 1.2rem 1.5rem !important; font-weight: 700; display: flex; 
+      align-items: center; justify-content: space-between; list-style: none; transition: background 0.2s; 
+    }
+    .qa summary::-webkit-details-marker, .qa summary::after { display: none !important; } 
+    .qa summary:hover { background: var(--unit-tint-weak); color: var(--unit-brand-ink); }
+    .qa-q-mark { color: var(--unit-brand); font-size: 1.5rem; font-weight: 900; margin-right: 0.6rem; font-family: 'Zen Maru Gothic', sans-serif; line-height: 1; }
+    .qa-a-mark { color: #ff9800; font-size: 1.5rem; font-weight: 900; margin-right: 0.6rem; font-family: 'Zen Maru Gothic', sans-serif; line-height: 1; }
+    .qa-icon { 
+      display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; 
+      background: var(--unit-grad-1); color: var(--unit-brand); border-radius: 50%; flex-shrink: 0; margin-left: 1rem; 
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease; 
+    }
+    details[open] summary .qa-icon { transform: rotate(180deg); background: var(--unit-brand); color: #fff; }
+    .qa .a { 
+      padding: 0 1.5rem 1.5rem !important; display: flex; align-items: flex-start; 
+      border-top: 1px dashed #eee; margin-top: 0.5rem; padding-top: 1.2rem !important; 
+    }
+    .qa .a-text { flex: 1; color: #444; line-height: 1.8; }
+
+    /* ==========================================
+       その他（テーブル・マップ等）
+       ========================================== */
+    .facts-list{ margin:0; padding:0; }
+    .fact-row{ display:flex; flex-wrap:wrap; border-bottom:1px solid var(--my-line); padding:1.1rem 0; }
+    .fact-row:first-child{ padding-top:0; }
+    .fact-row:last-child{ border-bottom:none; padding-bottom:0; }
+    .fact-row dt{ width:140px; flex-shrink:0; font-weight:700; color:var(--my-ink-2); display:flex; align-items:center; gap:.5rem; margin:0 0 .3rem 0; }
+    .fact-row dd{ margin:0; flex:1; color:#111; line-height:1.7; }
+    .fact-link{ color:#111; text-decoration:underline; text-decoration-color:var(--my-line); text-underline-offset:3px; transition:color .2s; }
+    .fact-link:hover{ color:var(--my-accent); text-decoration-color:var(--my-accent); }
+    
+    /* ▼ マップの調整 ▼ */
+    .map{ border:1px solid var(--my-line); border-radius:12px; overflow:hidden; background:#fafafa; display:grid; place-items:center; height:100%; min-height:300px; box-sizing:border-box; width: 100%; max-width: 100%; }
+    .map iframe{ width:100%; height:100%; border:0; display:block; }
+    .map.map--embed{ overflow:hidden; }
+    .map.map--embed iframe{ display:block; width:100% !important; max-width:100% !important; height:auto !important; aspect-ratio:16/9; border:0; }
+    
+    .myroot-page + .cta-bar{ max-width:var(--my-max); margin:1.25rem auto 2rem; padding-inline:min(4vw,24px); display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
+    .myroot-page + .cta-bar .cta{ flex:1 1 0; display:flex; align-items:center; justify-content:center; padding:.9em 1.2em; white-space:nowrap; }
+
+    .breadcrumb{ margin:0 auto 1.75rem !important; max-width:min(1100px, 92vw) !important; padding:0 2% !important; background:transparent !important; }
+    .breadcrumb ol{ display:flex !important; flex-wrap:wrap !important; gap:.5rem .75rem !important; list-style:none !important; padding:1.2em 0 !important; margin:0 !important; font-size:.9rem !important; font-family:"Noto Sans JP", sans-serif !important; }
+    .breadcrumb li + li::before{ content:"›" !important; color:#9ca3af !important; margin:0 .25rem !important; font-weight:400 !important; }
+    .breadcrumb a{ color:#425466 !important; text-decoration:none !important; font-weight:400 !important; transition:text-decoration 0.2s ease !important; }
+    .breadcrumb a:hover{ text-decoration:underline !important; color:#425466 !important; background:transparent !important; }
+    .breadcrumb li[aria-current="page"]{ color:#17222f !important; font-weight:400 !important; }
+
+    #page, .l-main.myroot-page, .myroot-wrap, #access.myroot-section, .myroot-grid, .map.map--embed{ max-width:100%; min-width:0; overflow-x:clip; }
+    html, body{ width:100%; max-width:100%; overflow-x:hidden; }
+    *, *::before, *::after{ box-sizing:border-box; }
+    img, svg, video, canvas{ display:block; max-width:100%; height:auto; }
 
     /* ========================================================
-       共通パンくずリスト（philosophy.htmlのデザインを移植）
+       ▼ 絶対に緑を許さない！ヘッダー・フッター・上へ戻るボタンの完全ピンク化 ▼
        ======================================================== */
-    .breadcrumb {
-      margin: 0 auto 1.75rem !important; /* 中央寄せ維持のため auto 追加 */
-      max-width: min(1100px, 92vw) !important; /* コンテンツ幅に合わせる */
-      padding: 0 2% !important;
-      background: transparent !important;
-    }
-    .breadcrumb ol {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: .5rem .75rem !important;
-      list-style: none !important;
-      padding: 1.2em 0 !important;
-      margin: 0 !important;
-      font-size: .9rem !important;
-      font-family: "Noto Sans JP", sans-serif !important;
-    }
-    .breadcrumb li + li::before {
-      content: "›" !important;
-      color: #9ca3af !important;
-      margin: 0 .25rem !important;
-      font-weight: 400 !important;
-    }
-    .breadcrumb a {
-      color: #425466 !important;
-      text-decoration: none !important;
-      font-weight: 400 !important;
-      transition: text-decoration 0.2s ease !important;
-    }
-    .breadcrumb a:hover {
-      text-decoration: underline !important;
-      color: #425466 !important;
-      background: transparent !important;
-    }
-    .breadcrumb li[aria-current="page"] {
-      color: #17222f !important;
-      font-weight: 400 !important;
+
+    /* フッターの背景色と上線 */
+    html body .site-footer,
+    html body .site-footer .footer__bar { 
+      background-color: var(--unit-tint-weak) !important; 
+      border-top: 1px solid var(--unit-grad-1) !important; 
     }
 
-
-/* ▼▼▼ ドロップダウンメニューの色を「ピンク」に上書き ▼▼▼ */
-    header .submenu a:hover {
-      background-color: #FFF0F5 !important; /* 背景：ごく薄いピンク */
-   
+    /* フッターの文字色を濃いピンクに */
+    html body .site-footer,
+    html body .site-footer p,
+    html body .site-footer h3,
+    html body .site-footer small { 
+      color: var(--unit-brand-ink) !important; 
     }
 
-/* ===== このページ（unit-sakura）専用：上へ戻るボタン ===== */
-    /* デザイン案：白背景 × 濃いピンク（ブランドインク）のラインと文字 */
-    .unit-sakura #backToTop.btt.btt--ring {
-      --btt-bg: #ffffff;       /* 円の内側：真っ白 */
-      --btt-bg-h: #ffffff;     /* ホバー時も白 */
+    /* フッターリンクのホバー色もピンクに */
+    html body .site-footer a { color: var(--unit-brand-ink) !important; text-decoration:none !important; transition:all 0.2s ease; }
+    html body .site-footer a:hover { color: var(--unit-brand) !important; text-decoration:underline !important; text-underline-offset:4px !important; text-decoration-thickness:1px !important; text-decoration-color:rgba(216, 27, 96, 0.6) !important; }
+
+    /* ヘッダーの背景色と下線 */
+    html body #site-header.c-header { 
+      background-color: var(--unit-tint-weak) !important; 
+      border-bottom: 1px solid var(--unit-grad-1) !important; 
+    }
+
+    /* ヘッダー・サブメニュー（ホバー色などもすべてピンク） */
+    html body #site-header .submenu { background-color:#ffffff !important; border:1px solid var(--unit-grad-1) !important; box-shadow:0 10px 24px rgba(136, 14, 79, 0.08) !important; }
+    html body #site-header .submenu a { color: var(--unit-brand-ink) !important; }
+    html body #site-header .submenu a:hover,
+    html body #site-header .submenu a:focus-visible { background-color: var(--unit-grad-1) !important; color: var(--unit-brand-ink) !important; }
+
+    html body #site-header .c-header__list-item.is-current .c-header__list-link { color: var(--unit-brand-ink) !important; font-weight:400 !important; }
+
+    @media (min-width:960px){ 
+      html body #site-header .c-header__list-link { position:relative; text-decoration:none !important; color:#333 !important; font-weight:400 !important; padding:0.5em 0.6em !important; display:inline-block; filter:none !important; background:transparent !important; border:none !important; box-shadow:none !important; border-radius:0 !important; transition:all 0.2s ease !important; } 
+      html body #site-header .c-header__list .c-header__list-link:hover,
+      html body #site-header .c-header__list .c-header__list-link:focus-visible { color: var(--unit-brand-ink) !important; text-shadow:0 0 0.5px var(--unit-brand-ink) !important; text-decoration:none !important; font-weight:400 !important; filter:none !important; opacity:1 !important; background:transparent !important; } 
+      html body #site-header .c-header__list-link::after { content:''; position:absolute; bottom:0px !important; left:50%; width:0; height:2px; background-color: var(--unit-brand-ink) !important; transition:width 0.3s ease; transform:translateX(-50%); pointer-events:none; } 
+      html body #site-header .c-header__list .c-header__list-link:hover::after,
+      html body #site-header .c-header__list .c-header__list-link:focus-visible::after { width:calc(100% - 1.2em); } 
+      html body #access .myroot-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+    }
+
+    /* ハンバーガーメニューの線もピンク化 */
+    html body .c-hamburger-menu__button-mark { background-color: var(--unit-brand-ink) !important; }
+
+    /* 深く潜んでいたヘッダーメニュー等のクリック・ホバー時の緑色を強制上書き */
+    html body #site-header .c-header__list > .c-header__list-item > .c-header__list-link:hover, 
+    html body #site-header .c-header__list > .c-header__list-item > .c-header__list-link:focus-visible { background:transparent !important; border-color:transparent !important; color: var(--unit-brand-ink) !important; box-shadow:none !important; }
+    
+    html body #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link, 
+    html body #site-header .c-header__list > .c-header__list-item > .c-header__list-link[aria-current="page"] { background:transparent !important; border-color:transparent !important; color: var(--unit-brand-ink) !important; box-shadow:none !important; }
+    
+    html body #site-header .c-header__list > .c-header__list-item { background:transparent !important; }
+    
+    html body #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:hover, 
+    html body #site-header .c-header__list > .c-header__list-item.is-current > .c-header__list-link:focus-visible { background:transparent !important; border-color:transparent !important; color: var(--unit-brand-ink) !important; box-shadow:none !important; }
+    
+    /* 上へ戻るボタンの完全ピンク化（スクロールゲージ、矢印、文字） */
+    html body #backToTop,
+    html body #backToTop.btt.btt--ring {
+      --btt-bg: #ffffff !important;
+      --btt-bg-h: #ffffff !important;
+      --btt-fg: var(--unit-brand) !important;
+      --btt-ring: rgba(216, 27, 96, 0.15) !important;
+      --btt-ring-h: rgba(216, 27, 96, 0.3) !important;
+      --btt-focus: var(--unit-brand) !important;
+      --btt-ring-active: var(--unit-brand) !important;
+      --btt-ring-base: rgba(216, 27, 96, 0.1) !important;
+      --c-primary: var(--unit-brand) !important;
+    }
+    html body #backToTop .btt__inner { background-color: #ffffff !important; color: var(--unit-brand) !important; border: 2px solid transparent !important; }
+    html body #backToTop .btt__icon { fill: var(--unit-brand) !important; stroke: var(--unit-brand) !important; }
+    html body #backToTop .btt__icon path { fill: var(--unit-brand) !important; stroke: var(--unit-brand) !important; }
+    html body #backToTop .btt__label { color: var(--unit-brand) !important; }
+    html body #backToTop svg circle { stroke: var(--unit-brand) !important; }
+    html body #backToTop .btt__ring-bar { stroke: var(--unit-brand) !important; }
+  
+    /* ==========================================
+       スマートフォン専用スタイル
+       ========================================== */
+    @media (max-width: 920px){ 
+      .myroot-grid{ grid-template-columns:1fr; align-items:start; } 
+      .map{ height:auto; aspect-ratio:4/3; min-height:340px; }
+    }
+    @media (max-width: 680px){ 
+      .myroot-page + .cta-bar .cta{ width:100%; } 
+    }
+    @media (max-width: 600px) {
+      .sp-br{ display:block; margin-bottom:.2rem; content:""; }
+      .unit-hero__lead span { display: inline !important; }
       
-      --btt-fg: #6E2142;       /* 文字と矢印：このページで一番濃いピンク */
+      /* スマホ用の写真背景（半透明白グラデーション付き） */
+      #concept {
+        display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important;
+        border-radius: 0 !important; width: 100vw !important; max-width: 100vw !important; margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important; 
+        background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('img/sakura_pic.webp') !important;
+        background-size: cover !important; 
+        background-position: center !important; 
+        padding: 3rem 1.5rem 2rem !important; min-height: auto !important; gap: 0.5rem !important; 
+      }
       
-      /* 待機状態のリング（薄い線） */
-      --btt-ring: rgba(110, 33, 66, 0.1); 
-      --btt-ring-h: rgba(110, 33, 66, 0.2);
+      /* ▼ 修正：スマホ時のトップキャッチコピーを強制1行化 ▼ */
+      #concept h2 { font-size: clamp(1.15rem, 5vw, 1.4rem) !important; white-space: nowrap !important; }
+      #concept h2 .sp-br { display: none !important; }
+
+      /* ▼ 修正：スマホ時の電話・メールボタンを横並びに固定 ▼ */
+      .hero-action-btns { flex-direction: row !important; gap: 0.8rem !important; padding: 0 1rem !important; }
+      .hero-action-btns a { flex: 1 !important; max-width: none !important; padding: 1rem 0.5rem !important; font-size: 0.85rem !important; white-space: nowrap !important; }
       
-      /* フォーカス時の色 */
-      --btt-focus: #6E2142;
-    }
+      /* ▼ 修正：スマホ時の「対象となる方」見出しと注記の強制1行化 ▼ */
+      #target h2 { font-size: clamp(1.3rem, 4.5vw, 1.4rem) !important; white-space: nowrap !important; }
+      #target h2 .sp-br { display: none !important; }
+      #target p { font-size: clamp(0.7rem, 3.2vw, 0.85rem) !important; white-space: nowrap !important; letter-spacing: -0.02em !important; }
 
-    /* ▼ スクロールした時に「伸びていく円」の色設定 */
-    body.unit-sakura {
-      --btt-ring-active: #6E2142 !important; /* 動く円：一番濃いピンク */
-      --btt-ring-base: rgba(110, 33, 66, 0.1) !important; /* 軌道の色：ごく薄いピンク */
-    }
+      .myroot-subnav__list { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem !important; padding: 0 1rem !important; }
+      .myroot-subnav__list a { padding: 0.8rem 0.5rem !important; font-size: 0.85rem !important; border-radius: 12px !important; text-align: center; white-space: nowrap; }
+      /* 奇数個のときのレイアウト崩れ防止 */
+      .myroot-subnav__list a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+      
+      .qa summary { padding: 1rem 0.8rem !important; font-size: 0.9rem; }
+      .qa-icon { width: 24px; height: 24px; margin-left: 0.5rem; }
+      .qa-q-mark { font-size: 1.3rem; margin-right: 0.4rem; }
 
+      .fact-row{ display:block; padding:.9rem 0; } 
+      .fact-row dt{ width:100%; margin-bottom:.4rem; color:#444; } 
+      .fact-row dd{ padding-left:1.8rem; }
+      .myroot-card.p-0{ padding:1.2rem; }
+      .myroot-page + .cta-bar{ flex-direction:column; gap:.8rem; padding-inline:1.5rem; } 
+      .myroot-page + .cta-bar .cta{ width:100%; flex:auto; justify-content:center; padding:1rem; }
+    }
   </style>
 </head>
 
 <body class="unit-sakura">
-  <a id="top" class="visually-hidden">top</a>
+<a id="top" class="visually-hidden">top</a>
 
+<div id="page">
   <header id="site-header" class="c-header c-hamburger-menu">
     <a href="index.html" class="c-header__logo"><img src="img/logo.webp" alt="ロゴ"></a>
     <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
     <label for="hamburger" class="c-hamburger-menu__bg"></label>
 
     <ul class="c-header__list c-hamburger-menu__list">
-
       <li class="c-header__list-item has-sub">
         <input type="checkbox" id="sub-company" class="sub-toggle">
         <a href="corp.html" class="c-header__list-link">法人概要</a>
@@ -491,7 +412,7 @@
           <li><a href="sakura.html" aria-current="page">さくらなみき</a></li>
           <li><a href="myroot.html">マイルートリンク</a></li>
           <li><a href="ichisapo.html">若者サポートステーション</a></li>
-          <li><a href="jobcafe.html">ジョブカフェ一関</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ</a></li>
           <li><a href="citizen.html">市民活動センター</a></li>
         </ul>
       </li>
@@ -519,130 +440,451 @@
     </label>
   </header>
 
-  <main class="wrap" id="main">
-      <nav class="breadcrumb" aria-label="パンくず">
-        <ol>
-          <li><a href="index.html">TOP</a></li>
-          <li><a href="office.html">事業所紹介</a></li>
-          <li aria-current="page">さくらなみき</li>
-        </ol>
-      </nav>
+  <main id="main" class="l-main myroot-page" style="padding: 0;">
+    
+    <div style="background: transparent; padding-top: 1rem;">
+      <div class="myroot-wrap">
+        <nav class="breadcrumb" aria-label="パンくず">
+          <ol>
+            <li><a href="index.html">TOP</a></li>
+            <li><a href="office.html">事業所紹介</a></li>
+            <li aria-current="page">さくらなみき</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
 
-    <section class="unit-hero" aria-labelledby="unit-hero-title">
-      <div class="unit-hero__inner">
-        <div class="unit-hero__head">
-          <div class="unit-hero__emblem" aria-hidden="true">
-            <img src="img/sakura_logo.webp" alt="さくらなみき ロゴ">
-          </div>
-
-          <div class="unit-hero__titlewrap">
-            <h2 id="unit-hero-title" class="unit-hero__title">さくらなみき</h2>
-            <p class="unit-hero__lead">
-              　障がいをお持ちの方へ「働く機会」や「訓練」を提供する就労支援事業所です。<br>
-              「就労継続支援B型事業」や「中間的就労支援作業」などがございます。
-            </p>
-          </div>
-        </div>
-
-        <div class="unit-hero__grid">
-          <div class="unit-hero__points">
-            <ul class="checklist">
-              <li>障がいや難病により働くことが困難な方に、就労の場と支援を提供します。</li>
-              <li>作業の様子など見学も可能です。お気軽にお問い合わせください。</li>
-              <li>対象地域：一関・平泉／送迎あり</li>
-            </ul>
-          </div>
-
-          <aside class="unit-hero__callout" aria-label="お問い合わせはこちら">
-            <h3>お問い合わせはこちら</h3>
-            <div class="unit-hero__cta">
-              <a class="btn ghost" href="tel:0191483622">電話で相談（0191-48-3622）</a>
-              <a class="btn ghost" href="mailto:hands.sakura@gmail.com">メールで問い合わせ</a>
-            </div>
-            <p class="unit-hero__small">※電話対応が難しい場合がございます。</p>
-          </aside>
-        </div>
+    <section id="concept" style="
+      position: relative;
+      max-width: 1040px;
+      margin: 1rem auto 2.5rem; 
+      text-align: center;
+      padding: 3rem clamp(1rem, 3vw, 2.5rem); 
+      scroll-margin-top: 10px;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('img/sakura_pic.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(110,33,66,.04);
+      box-sizing: border-box;
+    ">
+      <p style="font-size: 1.1rem; font-weight: 700; color: var(--unit-brand); margin-bottom: 1rem; letter-spacing: 0.1em; text-shadow: 0 0 10px #fff;">CONCEPT</p>
+      
+      <h2 style="font-size: clamp(1.35rem, 4.5vw, 2.2rem); font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; color: #111; line-height: 1.8; margin-bottom: 2.5rem; text-shadow: 0 0 10px #fff;">
+        <span style="display: inline-block;">自分のペースで、</span><br class="sp-br">
+        <span style="display: inline-block;">少しずつ前へ。</span>
+      </h2>
+      
+      <div style="display: inline-block; text-align: center; max-width: 100%;">
+        <p style="font-size: 1.1rem; line-height: 2.2; color: #444; margin: 0; text-shadow: 0 0 10px #fff;">
+          <br>「働きたいけれど、体力に自信がない」<br>「一般の職場で働くのが心配」<br><br>
+          さくらなみきは、そんな不安から一歩を踏み出す「就労継続支援B型事業所」です。<br><br>
+          
+        </p>
       </div>
     </section>
 
-    <section id="basic" aria-labelledby="basic-title">
-      <h2 id="basic-title" class="sec-title">基本情報</h2>
-      <div class="card">
+    <div class="myroot-wrap" style="padding: 0 clamp(1.2rem, 4vw, 2rem);">
+      <div class="hero-action-btns" style="margin-bottom: 4rem;">
+        <a href="tel:0191-48-3622" class="btn-primary-call">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          0191-48-3622
+        </a>
+        <a href="mailto:hands.sakura@gmail.com" class="btn-secondary-mail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M4 6h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9 2 2 2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          メール相談
+        </a>
+      </div>
+    </div>
+
+    <nav class="myroot-subnav" aria-label="ページ内メニュー" style="margin-bottom: 4rem;">
+      <div class="myroot-subnav__list">
+        <a href="#target">対象となる方</a>
+        <a href="#service">作業内容・支援</a>
+        <a href="#flow">ご利用の流れ</a>
+        <a href="#qa">よくある質問</a>
+        <a href="#access">アクセス</a>
+      </div>
+    </nav>
+
+    <div class="myroot-wrap" style="padding: 0 clamp(1.2rem, 4vw, 2rem);">
+
+      <section id="target" style="background: var(--unit-grad-2); border-radius: 24px; padding: clamp(2rem, 5vw, 2rem); margin-bottom: 6rem; scroll-margin-top: 10px;">
+        <h2 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111;">
+          こんなお悩み、<br class="sp-br">ありませんか？
+        </h2>
         
-        <div class="basic-grid">
-          <table class="info-table">
-            <tbody>
-              <tr><th>定員</th><td>20名（就労継続支援B型）</td></tr>
-              <tr><th>作業内容</th><td>弁当の製造等</td></tr>
-              <tr><th>開所日</th><td>月曜～金曜、土曜（不定期）</td></tr>
-              <tr><th>開所時間</th><td>09:00～17:00</td></tr>
-              <tr><th>利用可能地域</th><td>一関、平泉</td></tr>
-              <tr><th>送迎</th><td>あり</td></tr>
-            </tbody>
-          </table>
+        <div style="display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--unit-brand); border-bottom: 2px solid var(--unit-grad-1); padding-bottom: 0.8rem; margin-bottom: 1.5rem;">ご本人・ご家族の方へ</h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>働きたい意欲はあるが、体力や体調に不安がある</li>
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>一般企業で働く前のステップとして、経験を積みたい</li>
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>日中安心して過ごせる居場所や、役割がほしい</li>
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>徐々に生活リズムを整えていきたい</li>
+            </ul>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">※一関市・平泉町にお住まいの方が対象となります。</p>
+          </div>
+          
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--unit-brand); border-bottom: 2px solid var(--unit-grad-1); padding-bottom: 0.8rem; margin-bottom: 1.5rem;">見学・体験のご案内</h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>実際の作業風景（お弁当製造等）を見学いただけます</li>
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>事業所の雰囲気や通いやすさを体験で確認できます</li>
+              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>送迎サービス（一関・平泉エリア）もご利用可能です</li>
+            </ul>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">※見学や体験をご希望の際は、事前にご連絡ください。</p>
+          </div>
+        </div>
+      </section>
 
-          <div class="work-box">
-            <h3>主な作業の例</h3>
-            <p style="margin: 0 0 1rem; font-size: 0.9rem; line-height: 1.6; color: #555;">
-              お弁当製造に関わる、以下のような作業があります。適性に合わせて担当します。
-            </p>
-            <ul class="work-list">
-              <li>食材のカット・下準備</li>
-              <li>お弁当の盛り付け・パック詰め</li>
-              <li>食器や調理器具の洗浄</li>
-              <li>厨房内の清掃・片付け</li>
+      <section id="service" style="margin-bottom: 6rem; scroll-margin-top: 10px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <h2 style="font-size: clamp(1.4rem, 5vw, 1.8rem); font-weight: 700; color: #111; margin-bottom: 1rem; line-height: 1.5;">
+            <span style="display: inline-block;">お弁当製造を通じた</span><span style="display: inline-block;">就労支援</span>
+          </h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; color: #444; max-width: 700px; margin: 0 auto; text-align: left;">
+            さくらなみきでは、毎日のお弁当作りをメインの作業としています。調理から清掃まで様々な工程があり、ご自身の適性や希望に合った作業からスタートできます。
+          </p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.06);">
+          
+          <div style="flex: 1 1 300px; background: var(--unit-brand); color: #fff; padding: clamp(2rem, 4vw, 3.5rem);">
+<h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              お弁当の製造・販売
+            </h3>
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem; opacity: 0.9;">やりがいを感じるモノづくり</p>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+              <li style="border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 0;">・食材のカット、下準備</li>
+              <li style="border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 0;">・おかずの調理補助</li>
+              <li style="border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0.8rem 0;">・お弁当箱への盛り付け、パック詰め</li>
+              <li style="padding: 0.8rem 0 0;">・受注、販売サポート</li>
             </ul>
           </div>
-        </div>
 
-      </div>
-    </section>
+          <div style="flex: 1 1 300px; background: #fff; border: 1px solid #e5e7eb; padding: clamp(2rem, 4vw, 3.5rem);">
+            <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--unit-brand); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              清掃・その他の作業
+            </h3>
+            <p style="margin-bottom: 1.5rem; font-size: 1.05rem; color: #555;">衛生管理と裏方の大切な仕事</p>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #333;">
+              <li style="border-bottom: 1px solid #eee; padding: 0.8rem 0;">・使用した食器や調理器具の洗浄</li>
+              <li style="border-bottom: 1px solid #eee; padding: 0.8rem 0;">・厨房内やフロアの清掃、片付け</li>
+              <li style="border-bottom: 1px solid #eee; padding: 0.8rem 0;">・中間的就労支援作業</li>
+              <li style="padding: 0.8rem 0 0;">※ご本人の適性に合わせて分担します</li>
+            </ul>
+          </div>
 
-    <section id="outline" aria-labelledby="outline-title">
-      <h2 id="outline-title" class="sec-title">事業所概要・アクセス</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>事業所概要</h3>
-          <p>〒021-0021<br>一関市中央町１丁目１-４</p>
-          <p>
-            TEL：<a href="tel:0191483622">0191-48-3622</a><br>
-            FAX：0191-48-3623<br>
-            MAIL：<a href="mailto:hands.sakura@gmail.com">hands.sakura@gmail.com</a>
-          </p>
         </div>
-        <div class="card">
-          <h3>アクセス</h3>
-          <p>
-            お車・・・JR「一ノ関駅」より約５分<br>
-            バス・・・岩手県交通「一関市役所前」にて降車後、徒歩３分
-          </p>
-          <div class="map" aria-label="Googleマップ">
-            <iframe src="https://maps.google.com/maps?q=一関市中央町１丁目１-４&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                    title="さくらなみき 周辺地図" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+      </section>
+
+<section id="flow" style="margin-bottom: 6rem; scroll-margin-top: 10px;">
+        <style>
+          .flow-container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 1rem;
+          }
+          .flow-block {
+            display: flex;
+            align-items: stretch;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            overflow: hidden;
+          }
+          /* 左側の数字エリア */
+          .flow-side {
+            width: 100px;
+            background: var(--unit-brand);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            padding: 1rem;
+            text-align: center;
+          }
+          .flow-side-step {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+            margin-bottom: 2px;
+          }
+          .flow-side-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: sans-serif;
+            line-height: 1;
+          }
+          /* 右側の文章エリア */
+          .flow-body {
+            padding: 1.5rem;
+            flex: 1;
+          }
+          .flow-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 0.75rem 0;
+            color: #111;
+          }
+          .flow-body p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin: 0;
+          }
+          /* ステップを繋ぐ矢印 */
+          .flow-arrow {
+            text-align: center;
+            color: var(--unit-grad-2);
+            font-size: 1.5rem;
+            line-height: 1;
+            margin: 1rem 0;
+          }
+
+          /* スマートフォン用の調整 */
+          @media (max-width: 600px) {
+            .flow-side {
+              width: 65px; /* スマホ時は左の幅をきゅっとスリムに */
+              padding: 0.75rem;
+            }
+            .flow-side-step {
+              font-size: 0.6rem;
+            }
+            .flow-side-num {
+              font-size: 1.3rem;
+            }
+            .flow-body {
+              padding: 1.2rem; /* スマホ用に余白を調整 */
+            }
+            .flow-body h3 {
+              font-size: 1.1rem !important;
+            }
+            .flow-body p {
+              font-size: 0.88rem !important;
+              line-height: 1.6 !important;
+            }
+            .flow-arrow {
+              margin: 0.6rem 0;
+              font-size: 1.2rem;
+            }
+          }
+        </style>
+
+        <h2 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 4rem; color: #111;">ご利用の流れ</h2>
+        
+        <div class="flow-container">
+          
+          <!-- STEP 01 -->
+          <div class="flow-block">
+            <div class="flow-side">
+              <span class="flow-side-step">STEP</span>
+              <span class="flow-side-num">01</span>
+            </div>
+            <div class="flow-body">
+              <h3>相談</h3>
+              <p>
+                まずは相談支援事業所等へご相談ください。当事業所へ直接お問い合わせいただいても構いません。 </p>
+            </div>
+          </div>
+
+          <div class="flow-arrow">▼</div>
+
+          <!-- STEP 02 -->
+          <div class="flow-block">
+            <div class="flow-side">
+              <span class="flow-side-step">STEP</span>
+              <span class="flow-side-num">02</span>
+            </div>
+            <div class="flow-body">
+              <h3>見学</h3>
+              <p>
+                作業の様子や職場の雰囲気を見学していただきます。</p>
+            </div>
+          </div>
+
+          <div class="flow-arrow">▼</div>
+
+          <!-- STEP 03 -->
+          <div class="flow-block">
+            <div class="flow-side">
+              <span class="flow-side-step">STEP</span>
+              <span class="flow-side-num">03</span>
+            </div>
+            <div class="flow-body">
+              <h3>体験</h3>
+              <p>
+                一通りの作業を実際に体験していただきます。<br>「やりたいこと」「苦手なこと」を一緒に確認し、ひとりひとりに合った作業を考えていきます。
+              </p>
+            </div>
+          </div>
+
+          <div class="flow-arrow">▼</div>
+
+          <!-- STEP 04 -->
+          <div class="flow-block">
+            <div class="flow-side">
+              <span class="flow-side-step">STEP</span>
+              <span class="flow-side-num">04</span>
+            </div>
+            <div class="flow-body">
+              <h3>サービス支給の申請</h3>
+              <p>
+                市役所福祉課でサービス利用の申請を行います。
+              </p>
+            </div>
+          </div>
+
+          <div class="flow-arrow">▼</div>
+
+          <!-- STEP 05 -->
+          <div class="flow-block">
+            <div class="flow-side">
+              <span class="flow-side-step">STEP</span>
+              <span class="flow-side-num">05</span>
+            </div>
+            <div class="flow-body">
+              <h3>利用契約・ご利用開始</h3>
+              <p>
+                お手元に決定通知書が届きましたら、当事業所と利用契約を結んでいただきご利用開始となります。
+             
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="qa" class="myroot-section" aria-labelledby="qa-title" style="max-width: 800px; margin: 0 auto 6rem; scroll-margin-top: 10px;">
+        <h2 id="qa-title" class="myroot-section__title" style="text-align: center; border: none; padding: 0; margin-bottom: 2rem;">よくあるご質問</h2>
+        <div class="qa">
+          
+          <details>
+            <summary>
+              <span style="display: flex; align-items: center; line-height: 1.5;"><span class="qa-q-mark">Q.</span>毎日通わなければいけませんか？</span>
+              <span class="qa-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <div class="a">
+              <span class="qa-a-mark">A.</span>
+              <div class="a-text">
+                いいえ、毎日通う必要はありません。週1回からでも、午前中だけの利用でも構いません。ご自身の体調やペースに合わせて、無理なく少しずつ日数を増やしていくことができます。
+              </div>
+            </div>
+          </details>
+          
+          <details>
+            <summary>
+              <span style="display: flex; align-items: center; line-height: 1.5;"><span class="qa-q-mark">Q.</span>作業した分の工賃（お給料）はもらえますか？</span>
+              <span class="qa-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <div class="a">
+              <span class="qa-a-mark">A.</span>
+              <div class="a-text">
+                はい、作業内容や通所した時間に応じて、事業所の規定に基づいた工賃をお支払いいたします。金額や支払い方法については、見学・面談の際にご説明いたします。
+              </div>
+            </div>
+          </details>
+          
+          <details>
+            <summary>
+              <span style="display: flex; align-items: center; line-height: 1.5;"><span class="qa-q-mark">Q.</span>料理の経験が全くないのですが、大丈夫ですか？</span>
+              <span class="qa-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <div class="a">
+              <span class="qa-a-mark">A.</span>
+              <div class="a-text">
+                全く問題ありません。包丁を使わない簡単な盛り付けや、パックの準備、食器の洗浄など経験がなくても取り組める作業から始められます。スタッフが丁寧にサポートしますのでご安心ください。
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="display: flex; align-items: center; line-height: 1.5;"><span class="qa-q-mark">Q.</span>定員はありますか？すぐに利用できますか？</span>
+              <span class="qa-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <div class="a">
+              <span class="qa-a-mark">A.</span>
+              <div class="a-text">
+                さくらなみきの定員は「20名」となっております。現在の空き状況や、ご利用開始までの待機期間につきましては日々変動いたしますので、まずはお電話またはメールにてお気軽にお問い合わせください。
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <section id="access" class="myroot-section" aria-labelledby="access-title">
+        <h2 id="access-title" class="myroot-section__title" style="border-left:6px solid var(--unit-brand); padding-left:.5rem;">事業所のご案内</h2>
+        <div class="myroot-grid">
+          <div class="myroot-card p-0">
+            <dl class="facts-list">
+              <div class="fact-row">
+                <dt>所在地</dt>
+                <dd>〒021-0021<br>一関市中央町１丁目１-４</dd>
+              </div>
+              <div class="fact-row">
+                <dt>開所時間</dt>
+                <dd>月曜～金曜、土曜（不定期）<br>09:00～17:00</dd>
+              </div>
+              <div class="fact-row">
+                <dt>定員</dt>
+                <dd>20名</dd>
+              </div>
+              <div class="fact-row">
+                <dt>連絡先</dt>
+                <dd>
+                  TEL: <a href="tel:0191-48-3622" class="fact-link">0191-48-3622</a><br>
+                  FAX: 0191-48-3623
+                </dd>
+              </div>
+              <div class="fact-row">
+                <dt>MAIL</dt>
+                <dd><a href="mailto:hands.sakura@gmail.com" class="fact-link">hands.sakura@gmail.com</a></dd>
+              </div>
+              <div class="fact-row">
+                <dt>アクセス</dt>
+                <dd>JR「一ノ関駅」よりお車で約5分<br>岩手県交通「一関市役所前」バス停下車 徒歩3分</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="map map--embed" id="gmapBox">
+            <iframe title="さくらなみき周辺地図" src="https://maps.google.co.jp/maps?output=embed&q=一関市中央町１丁目１-４&z=15" width="100%" height="100%" loading="lazy" style="border:0;" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+    </div>
   </main>
 
-  <nav class="cta-bar" aria-label="主要導線">
-    <a class="cta" href="tel:0191-48-3622" aria-label="電話で相談">
-      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.93 19.93 0 0 1-8.69-3.07 19.5 19.5 0 0 1-6-6A19.93 19.93 0 0 1 2.08 4.2 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.32 1.7.6 2.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.8.28 1.64.48 2.5.6A2 2 0 0 1 22 16.92Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      電話で相談
-    </a>
-    <a class="cta" href="mailto:hands.sakura@gmail.com" aria-label="メールで問い合わせ">
-      <svg class="cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-        <path d="M22 8 12 14 2 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      メールで問い合わせ
-    </a>
-  </nav>
+  <aside style="background: var(--unit-brand); padding: 4rem 1.5rem; text-align: center; margin-top: 4rem;">
+    <h2 style="color: #fff; font-size: 1.5rem; margin-bottom: 2.5rem; font-weight: 700;">見学・体験のご相談はお気軽に</h2>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 0 auto;">
+      
+      <a href="tel:0191-48-3622" class="btn-cta-call" style="color: var(--unit-brand-ink) !important;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        0191-48-3622
+      </a>
+      
+      <a href="mailto:hands.sakura@gmail.com" class="btn-cta-mail">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M4 6h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9 2 2 2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        メールで問い合わせ
+      </a>
+      
+    </div>
+  </aside>
 
   <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
     <span class="btt__ring" aria-hidden="true"></span>
@@ -660,8 +902,8 @@
           <img src="img/logo.webp" alt="レスパイトハウス ハンズ" height="48">
         </a>
         <address class="footer__addr">
-          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
-          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+<p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031 岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
@@ -690,7 +932,7 @@
             <li><a href="sakura.html" aria-current="page">さくらなみき</a></li>
             <li><a href="myroot.html">マイルートリンク</a></li>
             <li><a href="ichisapo.html">若者サポートステーション</a></li>
-            <li><a href="jobcafe.html">ジョブカフェ一関</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ</a></li>
             <li><a href="citizen.html">市民活動センター</a></li>
           </ul>
         </div>
@@ -721,9 +963,7 @@
       <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
     </div>
   </footer>
+</div><script src="js/site.js"></script>
 
-  <script src="js/site.js"></script>
 </body>
 </html>
-
-
