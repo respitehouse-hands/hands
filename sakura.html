@@ -510,7 +510,35 @@
 
     <div class="myroot-wrap" style="padding: 0 clamp(1.2rem, 4vw, 2rem);">
 
-      <section id="target" style="background: var(--unit-grad-2); border-radius: 24px; padding: clamp(2rem, 5vw, 2rem); margin-bottom: 6rem; scroll-margin-top: 10px;">
+<section id="target" style="background: var(--unit-grad-2); border-radius: 24px; padding: clamp(2rem, 5vw, 2rem); margin-bottom: 6rem; scroll-margin-top: 10px;">
+        <!-- チェックマークを完全に固定するスタイル定義 -->
+        <style>
+          .target-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          }
+          .target-list li {
+            position: relative;
+            padding-left: 1.8rem; /* マークの分だけ左に余白を作る */
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #111;
+          }
+          /* 機種依存しない、本物のシャープなチェックマークをCSSで描画 */
+          .target-list li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 6px; /* 文字の高さに合わせて微調整 */
+            width: 6px;
+            height: 11px;
+            border-right: 2px solid var(--unit-brand); /* チェックの長い線 */
+            border-bottom: 2px solid var(--unit-brand); /* チェックの短い線 */
+            transform: rotate(45deg); /* 傾けてL字をチェックマークにする */
+          }
+        </style>
+
         <h2 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: #111;">
           こんなお悩み、<br class="sp-br">ありませんか？
         </h2>
@@ -518,21 +546,21 @@
         <div style="display: grid; gap: 3rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--unit-brand); border-bottom: 2px solid var(--unit-grad-1); padding-bottom: 0.8rem; margin-bottom: 1.5rem;">ご本人・ご家族の方へ</h3>
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>働きたい意欲はあるが、体力や体調に不安がある</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>一般企業で働く前のステップとして、経験を積みたい</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>日中安心して過ごせる居場所や、役割がほしい</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>徐々に生活リズムを整えていきたい</li>
+            <ul class="target-list">
+              <li>働きたい意欲はあるが、体力や体調に不安がある</li>
+              <li>一般企業で働く前のステップとして、経験を積みたい</li>
+              <li>日中安心して過ごせる居場所や、役割がほしい</li>
+              <li>徐々に生活リズムを整えていきたい</li>
             </ul>
             <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">※一関市・平泉町にお住まいの方が対象となります。</p>
           </div>
           
           <div>
             <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--unit-brand); border-bottom: 2px solid var(--unit-grad-1); padding-bottom: 0.8rem; margin-bottom: 1.5rem;">見学・体験のご案内</h3>
-            <ul style="list-style: none; padding: 0; margin: 0;">
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>実際の作業風景（お弁当製造等）を見学いただけます</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>事業所の雰囲気や通いやすさを体験で確認できます</li>
-              <li style="position: relative; padding-left: 2rem; margin-bottom: 1rem; line-height: 1.6;"><span style="position: absolute; left: 0; color: var(--unit-brand); font-weight: bold;">✔</span>送迎サービス（一関・平泉エリア）もご利用可能です</li>
+            <ul class="target-list">
+              <li>実際の作業風景（お弁当製造等）を見学いただけます</li>
+              <li>事業所の雰囲気や通いやすさを体験で確認できます</li>
+              <li>送迎サービス（一関・平泉エリア）もご利用可能です</li>
             </ul>
             <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">※見学や体験をご希望の際は、事前にご連絡ください。</p>
           </div>
