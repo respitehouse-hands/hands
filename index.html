@@ -496,7 +496,8 @@
     .info-bar__link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #333; font-weight: 700; font-size: 1.05rem; transition: opacity 0.2s; }
     .info-bar__link:hover { opacity: 0.7; color: #009688; }
     .info-badge { background-color: #cc0000; color: #fff; font-size: 0.85rem; padding: 5px 10px; font-weight: 700; line-height: 1; border-radius: 99px; flex-shrink: 0; transform: translateY(-1px); margin-right: 4px; }
-    .info-badge--notice { background-color: #007867; }
+/* 白文字（#ffffff）とのコントラスト比を「4.5:1」以上確保した、視認性の高い美しい濃いピンク */
+    .info-badge--notice { background-color: #d81b60; }
     .info-date { color: #6b7280; font-weight: 500; font-size: 0.95rem; }
 
     @media (max-width: 768px) {
@@ -578,10 +579,10 @@
 
 <div class="info-bar">
   <div class="info-bar__inner">
-    <a href="news9.html" class="info-bar__link">
+    <a href="news10.html" class="info-bar__link">
       <span class="info-badge info-badge--notice">お知らせ</span>
-      <span class="info-date">2026.05.15</span>
-      <span class="info-text">【リトルハンズ】ページ更新のお知らせ</span>
+      <span class="info-date">2026.06.12</span>
+      <span class="info-text">【さくらなみき】ページ更新のお知らせ</span>
     </a>
   </div>
 </div>
@@ -743,10 +744,17 @@
 
        <ul class="news__list">
           <li class="news__item">
+            <a href="news10.html">
+              <time datetime="2026-06-12" class="news__date">2026.06.12</time>
+              <span class="news__tag">お知らせ</span>
+              <span class="news__title">【さくらなみき】紹介ページリニューアルのお知らせ <span class="badge-new" aria-label="新着">NEW</span></span>
+            </a>
+          </li>
+          <li class="news__item">
             <a href="news9.html">
               <time datetime="2026-05-15" class="news__date">2026.05.15</time>
               <span class="news__tag">お知らせ</span>
-              <span class="news__title">【リトルハンズ】ページ更新のお知らせ <span class="badge-new" aria-label="新着">NEW</span></span>
+              <span class="news__title">【リトルハンズ】ページ更新のお知らせ</span>
             </a>
           </li>
           <li class="news__item">
@@ -768,13 +776,6 @@
               <time datetime="2025-12-24" class="news__date">2025.12.24</time>
               <span class="news__tag">お知らせ</span>
               <span class="news__title">年末年始の休業について</span>
-            </a>
-          </li>
-          <li class="news__item">
-            <a href="news5.html">
-              <time datetime="2025-12-19" class="news__date">2025.12.19</time>
-              <span class="news__tag">お知らせ</span>
-              <span class="news__title">よくある質問（FAQ）ページ公開のお知らせ</span>
             </a>
           </li>
         </ul>
@@ -816,7 +817,7 @@
           </a>
           <address class="footer__addr">
             <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
-            〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+            〒021-0031 岩手県一関市青葉二丁目 ６-16<br>
             TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
             FAX：0191-31-5721<br>
             MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
