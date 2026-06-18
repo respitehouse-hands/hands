@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ja">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N79L2L2TWT');
+</script>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>パンフレット・資料ダウンロード | 特定非営利活動法人レスパイトハウス・ハンズ</title>
+  <meta name="description" content="レスパイトハウス・ハンズが運営する各事業所のパンフレットをPDF形式でダウンロードいただけます。利用をご検討中の方やご家族、相談支援員の方もぜひご活用ください。">
+  <link rel="canonical" href="https://handsnpo.jp/download.html">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_192.png">
+  
+  <style>
+    /* 読み込み待ちを無効化 */
+    html, body { opacity: 1 !important; visibility: visible !important; }
+    #splash { display: none !important; }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" 
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===============================
+       ページ固有のスタイル（download.html）
+       =============================== */
+    
+    :root{
+      --unit-brand:#2f7d5b;
+      --unit-brand-hover:#246045;
+      --unit-ink:#193528;
+      --unit-tint:#eaf7f1;
+      --my-line:#e5e7eb;
+      --my-surface:#fff;
+    }
+
+    .page{ padding-inline:min(4vw,24px); padding-bottom: 6rem; }
+    .wrap{ max-width:1120px; margin-inline:auto; }
+
+    /* パンくずリスト */
+    .myroot-breadcrumb{ margin:0 0 1rem; }
+    .myroot-breadcrumb ol{ display:flex; gap:.5rem .75rem; list-style:none; padding:1.5em 0; margin:0; font-size:.92rem; }
+    .myroot-breadcrumb li+li::before{ content:"›"; color:#9ca3af; margin:0 .25rem 0 .2rem; }
+    .myroot-breadcrumb a{ text-decoration: none; color: #555; transition: color 0.2s; }
+    .myroot-breadcrumb a:hover{ color: var(--unit-brand); text-decoration: underline; }
+
+    /* セクション見出し */
+    .section{ scroll-margin-top:120px; margin:1.25rem 0 2rem; }
+    .section__title{
+      font-weight:700; font-size:clamp(1.25rem,2vw,1.5rem); margin:2.2rem 0 1rem; color:var(--unit-ink);
+      padding-left:.5rem; border-left:6px solid var(--unit-brand); line-height:1.2;
+    }
+    .section__desc {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* スマホ用クイックナビゲーション（2列×3段・上品でシンプルなボタンデザイン） */
+    .dl-quick-nav {
+      display: none;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .dl-quick-nav {
+        display: block;
+        width: 100%;
+      }
+      .dl-quick-nav__inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2列配置にして横幅を確保 */
+        gap: 10px; /* ボタン同士に適度な隙間 */
+        width: 100%;
+      }
+      .dl-quick-nav__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--unit-tint); /* ハンズの薄緑を背景に敷いて優しさを演出 */
+        color: var(--unit-brand);
+        text-decoration: none;
+        padding: 0.8rem 0.5rem;
+        border-radius: 12px; /* 少し丸みを持たせて柔らかな印象に */
+        font-size: 0.88rem; /* 正式名称がしっかり読めるサイズ */
+        font-weight: 700;
+        text-align: center;
+        border: none; /* 強い枠線を廃止してノイズを軽減 */
+        transition: all 0.2s ease;
+      }
+      /* タップされた（アクティブ）時の効果 */
+      .dl-quick-nav__link:active {
+        background: #d4eedf;
+        transform: translateY(1px);
+      }
+    }
+
+    /* パンフレットグリッド */
+    .dl-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    /* パンフレットカード */
+    .dl-card {
+      background: var(--my-surface);
+      border: 1px solid var(--my-line);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease;
+      isolation: isolate; /* 角丸の親要素の描画バグを防ぐ */
+      scroll-margin-top: 10px; /* ジャンプ時にヘッダーと被らないための余白 */
+    }
+    .dl-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    /* サムネイル枠（A4比率 1:1.414） */
+    .dl-card__thumb {
+      width: 100%;
+      aspect-ratio: 1 / 1.414;
+      background-color: #f3f4f6;
+      border-bottom: 1px solid var(--my-line);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    /* 隙間バグの対策を適用 */
+    .dl-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      /* 最初からわずかに拡大させて隙間を埋める */
+      transform: scale(1.015); 
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      /* チラつき・ガタつき防止 */
+      backface-visibility: hidden;
+      will-change: transform; 
+    }
+    
+    /* ホバー時は現在の設定（1.03）より少し大きく滑らかに拡大 */
+    .dl-card:hover .dl-card__thumb img {
+      transform: scale(1.05);
+    }
+    
+    .dl-card__thumb::after {
+      content: "NO IMAGE";
+      position: absolute;
+      color: #9ca3af;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      z-index: 0;
+    }
+
+    /* カードテキストエリア */
+    .dl-card__body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .dl-card__title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--unit-ink);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.4;
+    }
+    .dl-card__text {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0 0 1.5rem 0;
+      flex: 1;
+    }
+
+    /* ダウンロードボタン */
+    .dl-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      background: var(--unit-brand);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+    .dl-btn:hover, .dl-btn:focus-visible {
+      background: var(--unit-brand-hover);
+      color: #fff;
+      outline: none;
+    }
+    .dl-btn__size {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    /* ===============================
+       ヘッダー・フッター用共通スタイル
+       =============================== */
+    .site-footer a {
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+    }
+    .site-footer a:hover {
+      color: #007867 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px !important;
+      text-decoration-thickness: 1px !important;
+      text-decoration-color: rgba(0, 120, 103, 0.6) !important;
+    }
+    header .submenu {
+      background-color: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+    }
+    header .submenu a:hover {
+      background-color: #f4f4f4 !important;
+    }
+    .c-header__list-item.is-current .c-header__list-link {
+        color: #007867 !important;
+        font-weight: 400 !important;
+    }
+    @media (min-width: 960px) {
+      header .c-header__list-link {
+        position: relative;
+        text-decoration: none !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        padding: 0.5em 0.6em !important; 
+        display: inline-block;
+        filter: none !important;      
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        transition: all 0.2s ease !important; 
+      }
+      header .c-header__list .c-header__list-link:hover {
+        color: #007867 !important;
+        text-shadow: 0 0 0.5px #007867 !important;
+        text-decoration: none !important; 
+        font-weight: 400 !important;
+        filter: none !important;    
+        opacity: 1 !important;      
+        background: transparent !important;
+      }
+      header .c-header__list-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0px !important;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #007867;
+        transition: width 0.3s ease;
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+      header .c-header__list .c-header__list-link:hover::after {
+        width: calc(100% - 1.2em); 
+      }
+    }
+  </style>
+</head>
+
+<body class="page-download">
+<a id="top" class="visually-hidden">top</a>
+
+<div id="page">
+  <header id="site-header" class="c-header c-hamburger-menu">
+    <a href="index.html" class="c-header__logo">
+      <img src="img/logo.webp" width="200" height="60" alt="ロゴ" fetchpriority="high" decoding="async">
+    </a>
+    <input type="checkbox" id="hamburger" class="c-hamburger-menu__input"/>
+    <label for="hamburger" class="c-hamburger-menu__bg"></label>
+
+    <ul class="c-header__list c-hamburger-menu__list">
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-company" class="sub-toggle">
+        <a href="corp.html" class="c-header__list-link">法人概要</a>
+        <label for="sub-company" class="sub-caret" aria-label="法人概要のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="purpose.html">設立趣旨</a></li>
+          <li><a href="philosophy.html">ハンズの理念</a></li>
+          <li><a href="history.html">ハンズのあゆみ</a></li>
+          <li><a href="teikan.html">定款</a></li>
+          <li><a href="officers.html">役員</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub">
+        <input type="checkbox" id="sub-offices" class="sub-toggle">
+        <a href="office.html" class="c-header__list-link">事業所紹介</a>
+        <label for="sub-offices" class="sub-caret" aria-label="事業所紹介のメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="wahaha.html">わぁははクラブ</a></li>
+          <li><a href="residence.html">居宅介護</a></li>
+          <li><a href="soudan.html">相談支援</a></li>
+          <li><a href="little.html">リトルハンズ</a></li>
+          <li><a href="sakura.html">さくらなみき</a></li>
+          <li><a href="myroot.html">マイルートリンク</a></li>
+          <li><a href="ichisapo.html">若者サポートステーション</a></li>
+          <li><a href="jobcafe.html">ジョブカフェ一関</a></li>
+          <li><a href="citizen.html">市民活動センター</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item has-sub is-current">
+        <input type="checkbox" id="sub-howto" class="sub-toggle">
+        <a href="howto.html" class="c-header__list-link">初めての方へ</a>
+        <label for="sub-howto" class="sub-caret" aria-label="初めての方へのメニューを開閉"></label>
+        <ul class="submenu">
+          <li><a href="finder.html">あなたに合う支援をさがす</a></li>
+          <li><a href="access.html">アクセス一覧</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </li>
+
+      <li class="c-header__list-item">
+        <a href="news.html" class="c-header__list-link">お知らせ</a>
+      </li>
+<li class="c-header__list-item">
+  <a href="download.html" class="c-header__list-link">資料ダウンロード</a>
+</li>
+      <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
+    </ul>
+
+    <label for="hamburger" class="c-hamburger-menu__button">
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+      <span class="c-hamburger-menu__button-mark"></span>
+    </label>
+ </header>
+
+  <main id="main" class="l-main page">
+    <section class="wrap" aria-labelledby="page-title">
+      <nav class="myroot-breadcrumb" aria-label="パンくず">
+        <ol>
+          <li><a href="index.html">TOP</a></li>
+          <li aria-current="page">資料ダウンロード</li>
+        </ol>
+      </nav>
+
+      <h1 id="page-title" class="section__title">パンフレット・資料ダウンロード</h1>
+      <!-- 【修正】シンプルで洗練された文言に変更 -->
+      <p class="section__desc">
+        レスパイトハウス・ハンズが運営する各事業所の案内パンフレットをPDF形式で配布しております。参考資料としてご活用ください。
+      </p>
+
+      <!-- 【修正】スマホ用：2列×3段・正式名称のクリーンなナビゲーション -->
+      <nav class="dl-quick-nav" aria-label="事業所パンフレットの切り替え">
+        <div class="dl-quick-nav__inner">
+          <a href="#dl-hands" class="dl-quick-nav__link">総合案内</a>
+          <a href="#dl-soudan" class="dl-quick-nav__link">相談支援</a>
+          <a href="#dl-kyotaku" class="dl-quick-nav__link">居宅介護</a>
+          <a href="#dl-wahaha" class="dl-quick-nav__link">わぁははクラブ</a>
+          <a href="#dl-little" class="dl-quick-nav__link">リトルハンズ</a>
+          <a href="#dl-sakura" class="dl-quick-nav__link">さくらなみき</a>
+        </div>
+      </nav>
+
+      <div class="dl-grid">
+        
+        <article class="dl-card" id="dl-hands">
+          <a href="pdf/hands.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="ハンズ総合パンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_hands.webp" alt="ハンズ総合パンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">特定非営利活動法人ハンズ<br>総合案内パンフレット</h2>
+            <p class="dl-card__text">
+              レスパイトハウス・ハンズが運営する各事業所案内や理念などを包括的にまとめた総合案内パンフレットです。
+            </p>
+            <a href="pdf/hands.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約3.8MB)</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="dl-card" id="dl-soudan">
+          <a href="pdf/soudan.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="ハンズ相談支援事業所パンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_soudan.webp" alt="ハンズ相談支援事業所パンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">ハンズ相談支援事業所<br>パンフレット</h2>
+            <p class="dl-card__text">
+              障害福祉サービスなどの利用申請に必要となる「サービス等利用計画」の作成や、日々の生活の中での困りごと、将来への不安に関する専門的な相談窓口のご案内です。
+            </p>
+            <a href="pdf/soudan.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約1.4MB)</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="dl-card" id="dl-kyotaku">
+          <a href="pdf/kyotaku.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="ハンズ居宅介護事業所パンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_kyotaku.webp" alt="ハンズ居宅介護事業所パンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">ハンズ居宅介護事業所<br>パンフレット</h2>
+            <p class="dl-card__text">
+              ご自宅を訪問し、入浴や排せつ、食事などの「身体介護」をはじめ、調理や洗濯、買い物などの家事援助を行い、住み慣れた地域での安心を支えるホームヘルプサービスのご案内です。
+            </p>
+            <a href="pdf/kyotaku.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約2.1MB)</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="dl-card" id="dl-wahaha">
+          <a href="pdf/wahaha.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="わぁははクラブパンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_wahaha.webp" alt="わぁははクラブパンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">わぁははクラブ<br>（生活介護事業所）</h2>
+            <p class="dl-card__text">
+              学校卒業後の日中活動を支援する場として、ひとりひとりの個性を大切にする生活介護事業所です。日常の健康管理、具体的な支援内容についてご案内しています。
+            </p>
+            <a href="pdf/wahaha.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約3.4MB)</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="dl-card" id="dl-little">
+          <a href="pdf/little.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="リトルハンズパンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_little.webp" alt="リトルハンズパンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">リトルハンズ<br>（放課後等デイサービス）</h2>
+            <p class="dl-card__text">
+              学校の放課後や長期休暇中、子どもたちが安心して過ごせる居場所を提供する放課後等デイサービスのご案内です。遊びや創作活動、集団行動の体験を通して生活能力の向上や自立に向けた支援プログラムなどをご確認いただけます。
+            </p>
+            <a href="pdf/little.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約3.8MB)</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="dl-card" id="dl-sakura">
+          <a href="pdf/sakura.pdf" target="_blank" rel="noopener" style="display: block; cursor: pointer;" aria-label="さくらなみきパンフレットのPDFを開く">
+            <div class="dl-card__thumb">
+              <img src="img/pamphlet_sakura.webp" alt="さくらなみきパンフレット表紙" loading="lazy">
+            </div>
+          </a>
+          <div class="dl-card__body">
+            <h2 class="dl-card__title">さくらなみき<br>（就労継続支援B型事業所）</h2>
+            <p class="dl-card__text">
+              働くことに不安のある方が、毎日の美味しいお弁当製造・販売作業を通じて自分のペースでステップアップを目指す事業所案内です。作業内容や利用の流れをまとめています。
+            </p>
+            <a href="pdf/sakura.pdf" class="dl-btn" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              PDFをダウンロード <span class="dl-btn__size">(約3.2MB)</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" class="btt btt--ring" aria-label="ページの先頭へ" data-no-print>
+    <span class="btt__ring" aria-hidden="true"></span>
+    <span class="btt__inner" aria-hidden="true">
+      <svg class="btt__icon" viewBox="0 0 24 24" focusable="false"><path d="M12 5l-6 6h4v7h4v-7h4z"/></svg>
+      <span class="btt__label">TOP</span>
+    </span>
+  </button>
+
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <h2 id="footer-title" class="visually-hidden">フッター</h2>
+    <div class="footer__inner">
+      <section class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="img/logo.webp" alt="レスパイトハウス ハンズ" loading="lazy" decoding="async">
+        </a>
+        <address class="footer__addr">
+          <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
+          〒021-0031 岩手県一関市青葉二丁目 ６-16<br>
+          TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
+          FAX：0191-31-5721<br>
+          MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
+        </address>
+        <p class="footer__note">受付時間：平日 9:00–18:00（年末年始を除く）</p>
+        <p class="footer__map"><a href="https://www.google.com/maps/search/?api=1&query=岩手県一関市青葉2-6-16" target="_blank" rel="noopener">Googleマップで見る</a></p>
+      </section>
+
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <div class="footer__group">
+          <h3>法人概要</h3>
+          <ul>
+            <li><a href="philosophy.html">ハンズの理念</a></li>
+            <li><a href="history.html">ハンズのあゆみ</a></li>
+            <li><a href="teikan.html">定款</a></li>
+            <li><a href="officers.html">役員</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>事業所紹介</h3>
+          <ul>
+            <li><a href="wahaha.html">わぁははクラブ</a></li>
+            <li><a href="residence.html">居宅介護</a></li>
+            <li><a href="soudan.html">相談支援</a></li>
+            <li><a href="little.html">リトルハンズ</a></li>
+            <li><a href="sakura.html">さくらなみき</a></li>
+            <li><a href="myroot.html">マイルートリンク</a></li>
+            <li><a href="ichisapo.html">若者サポートステーション</a></li>
+            <li><a href="jobcafe.html">ジョブカフェ一関</a></li>
+            <li><a href="citizen.html">市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>外部リンク</h3>
+          <ul>
+            <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
+            <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
+            <li><a href="https://jc-ichinoseki.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
+          </ul>
+        </div>
+        <div class="footer__group">
+          <h3>情報公開</h3>
+          <ul>
+            <li><a href="news.html">お知らせ・活動報告</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="accessibility.html">アクセシビリティ方針</a></li>
+            <li><a href="sitemap.html">サイトマップ</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer__bar">
+      <small>© 2025 特定非営利活動法人レスパイトハウス・ハンズ</small>
+      <a href="#top" class="footer__top" aria-label="ページの先頭へ">▲ TOP</a>
+    </div>
+  </footer>
+</div>
+
+<script src="js/site.js" defer></script>
+
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    if(!btn) return;
+
+    const showAt = 200;
+    const ring = btn.querySelector('.btt__ring');
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docH > 0 ? Math.min(scrollTop / docH, 1) : 0;
+      const deg = Math.round(ratio * 360) + 'deg';
+      if(ring) ring.style.setProperty('--btt-progress', deg);
+
+      if (scrollTop > showAt) btn.classList.add('is-visible');
+      else btn.classList.remove('is-visible');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+</body>
+</html>scroll-margin-top
