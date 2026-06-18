@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N79L2L2TWT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -34,7 +33,7 @@
 
     /* ページ固有：サイトマップのレイアウト */
     
-    /* ★修正：パンくずリストを他ページのデザイン（.myroot-breadcrumb）に統一 */
+    /* パンくずリストを他ページのデザイン（.myroot-breadcrumb）に統一 */
     .myroot-breadcrumb{ 
       max-width: min(1100px, 92vw); 
       margin: clamp(16px, 2vw, 24px) auto 0; /* 中央寄せと余白 */
@@ -154,7 +153,7 @@
       text-decoration-color: rgba(0, 120, 103, 0.6) !important; /* 線だけ少し薄く */
     }
 
-    /* ★修正点1：ドロップダウンメニューの背景を白に固定 */
+    /* ドロップダウンメニューの背景を白に固定 */
     header .submenu {
       background-color: #ffffff !important;
       border: 1px solid #e5e7eb !important; /* 薄いグレーの枠線 */
@@ -163,10 +162,9 @@
       background-color: #f4f4f4 !important; /* ホバー時はごく薄いグレー */
     }
 
-    /* ★修正点2：現在地（初めての方へ）の太字を解除 */
-    .c-header__list-item.is-current .c-header__list-link {
-        color: #007867 !important;   /* 色だけ変える（緑） */
-        font-weight: 400 !important; /* 太さは標準のまま！ */
+    /* サイトマップ表示時は「サイトマップ」がハイライトされるべきですが、現状のヘッダー側には「サイトマップ」の単体ボタンがないため、他のメニューに太字・緑色が当たらないよう400（標準）に統一して保護します */
+    header .c-header__list-item .c-header__list-link {
+        font-weight: 400 !important;
     }
 
     /* ヘッダーメニュー（PC専用・アニメーションあり） */
@@ -312,8 +310,8 @@
         <a href="news.html" class="c-header__list-link">お知らせ</a>
       </li>
       <li class="c-header__list-item">
-  <a href="download.html" class="c-header__list-link">資料ダウンロード</a>
-</li>
+        <a href="download.html" class="c-header__list-link">資料ダウンロード</a>
+      </li>
       <li class="c-header__list-item"><a href="contact.html" class="c-header__list-link">お問い合わせ</a></li>
     </ul>
 
@@ -376,7 +374,7 @@
         <section class="sitemap__section" aria-labelledby="sm-howto">
           <h2 id="sm-howto" class="sitemap__heading">初めての方へ</h2>
           <ul class="sitemap__list">
-            <li><a href="howto.html">サイトの歩き方</a></li>
+            <li><a href="howto.html">初めての方へ</a></li>
             <li><a href="finder.html">あなたに合う支援をさがす</a></li>
             <li><a href="access.html">アクセス一覧</a></li>
             <li><a href="faq.html">FAQ（よくある質問）</a></li>
@@ -386,6 +384,7 @@
         <section class="sitemap__section" aria-labelledby="sm-public">
           <h2 id="sm-public" class="sitemap__heading">情報公開・その他</h2>
           <ul class="sitemap__list">
+            <li><a href="download.html">資料ダウンロード</a></li>
             <li><a href="news.html">お知らせ・活動報告</a></li>
             <li><a href="privacy.html">プライバシーポリシー</a></li>
             <li><a href="accessibility.html">アクセシビリティ方針</a></li>
@@ -398,7 +397,7 @@
           <ul class="sitemap__list">
             <li><a href="https://www.city.ichinoseki.iwate.jp/" target="_blank" rel="noopener">一関市HP</a></li>
             <li><a href="https://ichisapo.jp/" target="_blank" rel="noopener">いちのせき若者サポートステーション</a></li>
-            <li><a href="http://jc-ichi.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
+            <li><a href="https://jc-ichinoseki.jp/" target="_blank" rel="noopener">ジョブカフェ一関</a></li>
             <li><a href="https://www.center-i.org/" target="_blank" rel="noopener">いちのせき市民活動センター</a></li>
           </ul>
         </section>
@@ -416,7 +415,7 @@
         </a>
         <address class="footer__addr">
           <p>特定非営利活動法人レスパイトハウス・ハンズ</p>
-          〒021-0031　岩手県一関市青葉二丁目 ６-16<br>
+          〒021-0031 岩手県一関市青葉二丁目 ６-16<br>
           TEL：<a href="tel:0191-31-5720">0191-31-5720</a><br>
           FAX：0191-31-5721<br>
           MAIL：<a href="mailto:hands.guitar@ocn.ne.jp">hands.guitar@ocn.ne.jp</a>
@@ -490,5 +489,3 @@
 </script>
 </body>
 </html>
-
-
